@@ -1,8 +1,9 @@
 // src/sanity/seed-services.ts
 // Programmatic seeding of the CMS with actual service data
+// This file is a CLI script — excluded from Next.js build via tsconfig
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createClient } from '@sanity/client'
 import dotenv from 'dotenv'
-import path from 'path'
 
 // Load environment variables
 dotenv.config({ path: '.env.local' })
