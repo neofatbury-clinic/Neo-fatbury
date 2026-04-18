@@ -196,13 +196,6 @@ export const siteSettings = defineType({
         }),
       ],
     }),
-    defineField({
-      name: 'headerAnnouncement',
-      title: 'Announcement Bar Message',
-      type: 'string',
-      description: '💡 An optional message shown at the very top of the website (e.g. "🎉 Free Consultation This Week!"). Leave empty to hide it.',
-      group: 'seo',
-    }),
 
     // ── ROBOTS & SITEMAP ─────────────────────────
     defineField({
