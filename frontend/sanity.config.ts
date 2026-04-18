@@ -3,8 +3,10 @@ import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { media } from 'sanity-plugin-media'
+import { seoPane } from 'sanity-plugin-seo-pane'
+import { assist } from '@sanity/assist'
 import { schemaTypes } from './src/sanity/schemaTypes'
-import { structure } from './src/sanity/structure'
+import { structure, defaultDocumentNode } from './src/sanity/structure'
 
 export default defineConfig({
   basePath: '/studio',
@@ -15,9 +17,10 @@ export default defineConfig({
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
 
   plugins: [
-    structureTool({ structure }),
-    visionTool(),  // lets you query content (dev only)
-    media(),       // visual media library for clients
+    structureTool({ structure, defaultDocumentNode }),
+    visionTool(),
+    media(),
+    assist(), // AI assistant for non-technical users
   ],
 
   schema: {

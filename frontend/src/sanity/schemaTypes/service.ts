@@ -249,6 +249,7 @@ export const service = defineType({
       fields: [
         defineField({ name: 'metaTitle', title: 'Google Search Title', type: 'string', description: '💡 What people see as the blue link in Google search results.' }),
         defineField({ name: 'metaDescription', title: 'Google Search Description', type: 'text', rows: 3, description: '💡 The short summary Google shows under your link.' }),
+        defineField({ name: 'canonicalUrl', title: 'Canonical URL', type: 'url', description: '💡 Optional: Use this if you want search engines to point to a different preferred version of this page.' }),
         defineField({ name: 'ogImage', title: 'Social Share Image', type: 'image', description: '💡 Image shown when you share this link on WhatsApp/Facebook.' }),
       ],
     }),

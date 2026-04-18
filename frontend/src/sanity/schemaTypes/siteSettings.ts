@@ -23,7 +23,7 @@ export const siteSettings = defineType({
       name: 'clinicName',
       title: 'Clinic Name',
       type: 'string',
-      description: '💡 Your clinic's official name. Shown in the header and footer.',
+      description: "💡 Your clinic's official name. Shown in the header and footer.",
       validation: (r) => r.required(),
       group: 'brand',
     }),
@@ -179,7 +179,7 @@ export const siteSettings = defineType({
       title: 'Default Google Settings',
       type: 'object',
       group: 'seo',
-      description: '💡 These are used when a page doesn\'t have its own Google title/description. Think of this as the "fallback" for SEO.',
+      description: "💡 These are used when a page doesn't have its own Google title/description. Think of this as the 'fallback' for SEO.",
       fields: [
         defineField({ name: 'title', title: 'Default Google Title', type: 'string', description: '💡 What appears in the browser tab and Google search. Example: "NeoFatbury - Best Skin Clinic in Hyderabad"' }),
         defineField({ name: 'description', title: 'Default Google Description', type: 'text', rows: 3, description: '💡 The text snippet Google shows below your page title. Keep it under 155 characters.' }),
@@ -203,7 +203,7 @@ export const siteSettings = defineType({
       description: '💡 Controls whether Google and other search engines can find and show your website.',
       fields: [
         defineField({ name: 'allowIndexing', title: 'Allow Google to show my website in search results?', type: 'boolean', initialValue: true, description: '💡 Turn this ON (default). Only turn OFF if you want to hide the website from Google temporarily.' }),
-        defineField({ name: 'customRobotsTxt', title: 'Custom Rules for Search Engines (Advanced)', type: 'text', rows: 4, description: '⚠️ Only change this if you know what you\'re doing. Leave empty for default settings.' }),
+        defineField({ name: 'customRobotsTxt', title: 'Custom Rules for Search Engines (Advanced)', type: 'text', rows: 4, description: "⚠️ Only change this if you know what you're doing. Leave empty for default settings." }),
       ],
     }),
     defineField({
@@ -238,7 +238,7 @@ export const siteSettings = defineType({
       title: 'Social Media Pages',
       type: 'object',
       group: 'social',
-      description: '💡 Add links to your clinic\'s social media pages. These appear in the footer and schema.',
+      description: "💡 Add links to your clinic's social media pages. These appear in the footer and schema.",
       fields: [
         defineField({ name: 'instagram', title: 'Instagram Page URL', type: 'url', description: '💡 Example: https://instagram.com/neofatbury' }),
         defineField({ name: 'facebook', title: 'Facebook Page URL', type: 'url', description: '💡 Example: https://facebook.com/neofatbury' }),

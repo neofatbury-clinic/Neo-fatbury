@@ -105,6 +105,7 @@ export const homepage = defineType({
       fields: [
         defineField({ name: 'metaTitle', title: 'Homepage Google Title', type: 'string' }),
         defineField({ name: 'metaDescription', title: 'Homepage Meta Description', type: 'text', rows: 3 }),
+        defineField({ name: 'canonicalUrl', title: 'Canonical URL', type: 'url', description: '💡 Optional: Only fill this if this homepage is a duplicate of another website.' }),
         defineField({ name: 'ogImage', title: 'Social Share Image', type: 'image', options: { hotspot: true } }),
       ],
     }),

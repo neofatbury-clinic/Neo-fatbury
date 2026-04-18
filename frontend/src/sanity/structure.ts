@@ -1,16 +1,16 @@
 // src/sanity/structure.ts
 // Controls what the content editor sees in the Sanity Studio sidebar
-// Organized like a professional CMS — easy for non-technical users
-import type { StructureResolver } from 'sanity/structure'
+import type { StructureResolver, DefaultDocumentNodeResolver } from 'sanity/structure'
+import { seoPane } from 'sanity-plugin-seo-pane'
 
 export const structure: StructureResolver = (S) =>
   S.list()
     .title('NeoFatbury CMS')
     .items([
 
-      // ── GLOBAL SETTINGS (always first) ──────────
+      // ── GLOBAL SETTINGS ──────────────────────────
       S.listItem()
-        .title('⚙️ Clinic Settings & Brand')
+        .title('⚙️ Clinic Info & Settings')
         .id('siteSettings')
         .child(
           S.document()
@@ -102,7 +102,7 @@ export const structure: StructureResolver = (S) =>
         .child(S.documentTypeList('gallery').title('Gallery')),
 
       S.listItem()
-        .title('⭐ Client Testimonials')
+        .title('⭐ Patient Reviews')
         .schemaType('testimonial')
         .child(S.documentTypeList('testimonial').title('Testimonials')),
 
@@ -114,3 +114,22 @@ export const structure: StructureResolver = (S) =>
         .schemaType('teamMember')
         .child(S.documentTypeList('teamMember').title('Team Members')),
     ])
+
+// ── SEO PREVIEW PANE ─────────────────────────────
+// This adds the "SEO" tab next to "Edit" for Pages/Services
+export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, { schemaType }) => {
+  if (['service', 'blogPost', 'homepage'].includes(schemaType)) {
+    return S.document().views([
+      S.view.form(),
+      S.view
+        .component(seoPane)
+        .options({
+          // Friendly SEO instructions for developers/users
+          keywords: `seo.keywords`,
+          url: (doc: any) => `https://neofatbury.com/${doc?.slug?.current || ''}`,
+        })
+        .title('🔍 SEO Preview'),
+    ])
+  }
+  return S.document().views([S.view.form()])
+}
