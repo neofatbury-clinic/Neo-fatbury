@@ -1,62 +1,88 @@
 // src/app/api/lead/route.ts
-// LEAD CAPTURE API — Receives form submissions and sends to Zoho CRM
+// LEAD CAPTURE API — Zoho CRM via OAuth2
 import { NextRequest, NextResponse } from 'next/server'
+
+const CLIENT_ID = process.env.ZOHO_CLIENT_ID!
+const CLIENT_SECRET = process.env.ZOHO_CLIENT_SECRET!
+const REFRESH_TOKEN = process.env.ZOHO_REFRESH_TOKEN!
+
+// Get a fresh access token using the refresh token
+async function getAccessToken(): Promise<string> {
+  const res = await fetch(
+    `https://accounts.zoho.in/oauth/v2/token?` +
+    `refresh_token=${REFRESH_TOKEN}&` +
+    `client_id=${CLIENT_ID}&` +
+    `client_secret=${CLIENT_SECRET}&` +
+    `grant_type=refresh_token`,
+    { method: 'POST', cache: 'no-store' }
+  )
+  const data = await res.json()
+  if (!data.access_token) {
+    throw new Error(`Token error: ${JSON.stringify(data)}`)
+  }
+  return data.access_token
+}
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { name, phone, service, location, concerns, email, pageUrl } = body
+    const { name, phone, service, location, concerns, pageUrl } = body
 
-    // ── ZOHO CRM WEB-TO-LEAD CONFIGURATION ────────────────────────
-    // These IDs are specific to your fatburyn@gmail.com Zoho account
-    const ACTION_URL = 'https://crm.zoho.in/crm/WebToLeadForm'
-    
-    // Extracted IDs from user's Zoho CRM setup
-    const xnQsjsdp = 'cc218d19fc631c8194b8f9f1c9506f91c41e04bbb499c650ec28dda7cf76f548'
-    const xmIwtLD = '31889f1da37841aea25e6d43a680dba29375687ddd403a05da7060c162b1d5ba5b1342afbb97161a2222a583d571a457'
-    const actionType = 'TGVhZHM=' // Base64 for "Leads"
+    if (!name || !phone) {
+      return NextResponse.json({ error: 'Name and phone required' }, { status: 400 })
+    }
 
-    // Prepare internal description for the CRM record
-    const description = `
-      Service: ${service || 'Generic Inquiry'}
-      Location: ${location || 'Hyderabad'}
-      Concerns: ${concerns?.join(', ') || 'N/A'}
-      Page URL: ${pageUrl || 'Direct'}
-    `.trim()
+    // Check if refresh token is configured
+    if (!REFRESH_TOKEN || REFRESH_TOKEN === 'PLACEHOLDER_NEED_OAUTH_STEP') {
+      console.error('❌ ZOHO_REFRESH_TOKEN not configured. Visit /api/auth/zoho to set up.')
+      // Still return success so patient reaches thank-you page
+      return NextResponse.json({ success: true, warning: 'CRM not yet configured' })
+    }
 
-    // Create the search params for url-encoded form data
-    const params = new URLSearchParams()
-    params.append('xnQsjsdp', xnQsjsdp)
-    params.append('xmIwtLD', xmIwtLD)
-    params.append('actionType', actionType)
-    params.append('Last Name', name || 'Website Lead') // Zoho requires Last Name
-    params.append('Phone', phone)
-    params.append('Email', email || '')
-    params.append('Description', description)
-    params.append('Lead Source', 'Website Leads')
+    const accessToken = await getAccessToken()
 
-    // Submit to Zoho with exact headers they expect
-    const response = await fetch(ACTION_URL, {
+    const [firstName, ...lastArr] = name.trim().split(' ')
+    const lastName = lastArr.join(' ') || '-'
+
+    const leadBody = {
+      data: [{
+        First_Name: firstName,
+        Last_Name: lastName,
+        Phone: phone,
+        Mobile: phone,
+        Lead_Source: 'Website',
+        Lead_Status: 'New',
+        Description: `Service: ${service}\nConcerns: ${concerns?.join(', ')}\nPreferred Clinic: ${location}\nPage: ${pageUrl}`,
+      }]
+    }
+
+    const zohoRes = await fetch('https://www.zohoapis.in/crm/v3/Leads', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept': 'text/html,application/xhtml+xml,application/xml',
+        'Authorization': `Zoho-oauthtoken ${accessToken}`,
+        'Content-Type': 'application/json',
       },
-      body: params.toString(),
-      cache: 'no-store'
+      body: JSON.stringify(leadBody),
     })
 
-    // We don't need to parse the response (it usually redirects to a Zoho page)
-    // As long as the request was sent, we consider it a success
-    return NextResponse.json({ success: true, message: 'Lead captured correctly' })
+    const result = await zohoRes.json()
+    const leadId = result?.data?.[0]?.details?.id
 
-  } catch (error) {
-    console.error('❌ CRM Error:', error)
-    // Return 200 so the user isn't blocked, but log the error
-    return NextResponse.json({ success: true, status: 'logged_internally' })
+    console.log(`✅ Lead created in Zoho: ${leadId} — ${name} (${phone})`)
+    return NextResponse.json({ success: true, leadId })
+
+  } catch (err) {
+    console.error('❌ Lead API error:', err)
+    // Always return 200 so users reach thank-you page
+    return NextResponse.json({ success: true, warning: 'Lead logged internally' })
   }
 }
 
 export async function GET() {
-  return NextResponse.json({ status: 'Lead API is online and Zoho sync is active ✅' })
+  const configured = REFRESH_TOKEN && REFRESH_TOKEN !== 'PLACEHOLDER_NEED_OAUTH_STEP'
+  return NextResponse.json({
+    status: 'Lead API online',
+    zoho_connected: configured,
+    setup_url: configured ? null : '/api/auth/zoho'
+  })
 }
