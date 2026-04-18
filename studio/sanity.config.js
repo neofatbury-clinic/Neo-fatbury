@@ -17,7 +17,7 @@ export default defineConfig({
   name: 'neofatbury-studio',
   title: 'NeoFatbury CMS',
 
-  projectId: process.env.SANITY_STUDIO_PROJECT_ID || 'YOUR_PROJECT_ID',
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID || 'p8ddtj8e',
   dataset:   process.env.SANITY_STUDIO_DATASET    || 'production',
 
   plugins: [

@@ -3,7 +3,7 @@ import { createClient } from 'next-sanity'
 import imageUrlBuilder from '@sanity/image-url'
 
 // NeoFatbury Sanity Project — Connected
-const PROJECT_ID = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? 'r7sey3wq'
+const PROJECT_ID = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? 'p8ddtj8e'
 const DATASET    = process.env.NEXT_PUBLIC_SANITY_DATASET    ?? 'production'
 const API_VERSION = process.env.NEXT_PUBLIC_SANITY_API_VERSION ?? '2024-01-01'
 
