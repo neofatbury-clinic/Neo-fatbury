@@ -3,8 +3,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 
-export default function Header() {
+export default function Header({ settings }: { settings?: any }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const mainPhone = settings?.branches?.[0]?.phone || '9700641000';
+  const logoUrl = settings?.logo || "/images/neofatbury-logo-web.png";
 
   return (
     <header style={wrapperStyle}>
@@ -22,8 +24,8 @@ export default function Header() {
             <Link href="/results" style={topLinkStyle}>Results</Link>
             <Link href="/contact-us" style={topLinkStyle}>Contact</Link>
             <span style={{ color: '#555' }} className="mobile-hide">Customer Care · 8 AM–10 PM</span>
-            <a href="tel:9700641000" style={{ ...topLinkStyle, fontWeight: '700', color: 'var(--color-primary)', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-              📞 9700641000
+            <a href={`tel:${mainPhone}`} style={{ ...topLinkStyle, fontWeight: '700', color: 'var(--color-primary)', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+              📞 {mainPhone}
             </a>
           </div>
         </div>
@@ -35,7 +37,7 @@ export default function Header() {
           {/* Logo - Anchored Left */}
           <Link href="/" style={logoStyle}>
             <Image
-              src="/images/neofatbury-logo-web.png"
+              src={logoUrl}
               alt="NeoFatbury Logo"
               width={180}
               height={72}
