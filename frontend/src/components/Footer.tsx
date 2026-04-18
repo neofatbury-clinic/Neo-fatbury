@@ -3,8 +3,11 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function Footer() {
+export default function Footer({ settings }: { settings?: any }) {
   const currentYear = new Date().getFullYear();
+  const branch1 = settings?.branches?.[0];
+  const branch2 = settings?.branches?.[1];
+  const logoUrl = settings?.logo || "/images/neofatbury-logo-web.png";
 
   return (
     <footer style={footerWrapper} className="footer-wrapper">
@@ -17,7 +20,7 @@ export default function Footer() {
           <div className="footer-col">
             <Link href="/" style={{ display: 'block', marginBottom: '1.25rem' }}>
               <Image 
-                src="/images/neofatbury-logo-web.png" 
+                src={logoUrl} 
                 alt="NeoFatbury" 
                 width={150} 
                 height={50} 
@@ -65,13 +68,13 @@ export default function Footer() {
           <div className="footer-col">
             <h4 style={colTitleStyle}>Clinics & Contact</h4>
             <div style={locationBox}>
-              <p style={locationTitle}>Kukatpally Clinic</p>
-              <p style={locationAddr}>Ganesh Plaza, JNTU - Hitech City Rd, Hyderabad.</p>
+              <p style={locationTitle}>{branch1?.name || 'Kukatpally Clinic'}</p>
+              <p style={locationAddr}>{branch1?.address || 'Ganesh Plaza, JNTU - Hitech City Rd, Hyderabad.'}</p>
               <a href="https://maps.google.com" target="_blank" rel="noreferrer" style={mapLink}>View on Maps</a>
             </div>
             <div style={locationBox}>
-              <p style={locationTitle}>Himayatnagar Clinic</p>
-              <p style={locationAddr}>Velma Bhavan, Himayatnagar, Hyderabad.</p>
+              <p style={locationTitle}>{branch2?.name || 'Himayatnagar Clinic'}</p>
+              <p style={locationAddr}>{branch2?.address || 'Velma Bhavan, Himayatnagar, Hyderabad.'}</p>
               <a href="https://maps.google.com" target="_blank" rel="noreferrer" style={mapLink}>View on Maps</a>
             </div>
             <p style={contactLink}>📞 9700641000</p>
@@ -113,7 +116,7 @@ export default function Footer() {
             </p>
           </div>
           <div style={copyrightWrap}>
-            <p style={copyrightText}>© 2026 NeoFatbury. All Rights Reserved.</p>
+            <p style={copyrightText}>© {currentYear} NeoFatbury. All Rights Reserved.</p>
           </div>
         </div>
 
