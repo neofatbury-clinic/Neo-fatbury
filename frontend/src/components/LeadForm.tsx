@@ -251,11 +251,14 @@ export default function LeadForm({
 
       <style>{`
         .lf-wrapper {
-          background: #ffffff;
-          padding: 1.25rem 1.1rem;
-          border-radius: 12px;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-          max-width: 380px;
+          background: rgba(255, 255, 255, 0.85);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          padding: 1.5rem 1.25rem;
+          border-radius: 20px;
+          border: 1px solid rgba(255, 255, 255, 0.4);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+          max-width: 390px;
           width: 100%;
           margin: 0 auto;
           font-family: 'Inter', sans-serif;
@@ -263,73 +266,76 @@ export default function LeadForm({
  
         .lf-title {
           text-align: center;
-          font-size: 1.15rem;
+          font-size: 1.25rem;
           font-weight: 800;
-          color: #00acb1;
+          color: #1a2b3c;
           margin: 0 0 0.15rem;
-          letter-spacing: -0.02em;
+          letter-spacing: -0.01em;
         }
  
         .lf-subtitle {
           text-align: center;
-          font-size: 0.78rem;
-          color: #777;
-          margin: 0 0 0.6rem;
+          font-size: 0.85rem;
+          color: #666;
+          margin: 0 0 1rem;
           font-weight: 500;
         }
  
         .lf-form {
           display: flex;
           flex-direction: column;
-          gap: 0.4rem;
+          gap: 0.6rem;
         }
  
         .lf-input {
           width: 100%;
-          padding: 0.5rem 0.7rem;
-          border: 1px solid #e0e0e0;
-          border-radius: 5px;
-          font-size: 0.82rem;
+          padding: 0.75rem 1rem;
+          border: 1px solid rgba(0,0,0,0.08);
+          border-radius: 12px;
+          font-size: 0.9rem;
           color: #333;
-          background: #fff;
+          background: rgba(255, 255, 255, 0.9);
           outline: none;
-          transition: border-color 0.2s;
+          transition: all 0.2s;
           box-sizing: border-box;
         }
  
         .lf-input:focus {
-          border-color: #308b98;
+          border-color: var(--color-primary);
+          box-shadow: 0 0 0 3px rgba(0, 172, 177, 0.1);
         }
  
         .lf-input::placeholder {
-          color: #bbb;
+          color: #aaa;
         }
  
         /* Section */
         .lf-section {
           display: flex;
           flex-direction: column;
-          gap: 0.3rem;
-          margin-top: 0.15rem;
+          gap: 0.5rem;
+          margin-top: 0.2rem;
         }
  
         .lf-divider-row {
           display: flex;
           align-items: center;
           gap: 0.6rem;
-          margin-bottom: 0.2rem;
+          margin: 0.5rem 0 0.2rem;
         }
  
         .lf-divider-line {
           flex: 1;
           height: 1px;
-          background: #f0f0f0;
+          background: rgba(0,0,0,0.05);
         }
  
         .lf-section-title {
           font-size: 0.82rem;
           font-weight: 700;
-          color: #555;
+          color: #888;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
           white-space: nowrap;
           text-align: center;
         }
@@ -339,9 +345,10 @@ export default function LeadForm({
           color: #999;
           font-size: 0.75rem;
           font-style: italic;
+          text-transform: none;
         }
  
-        /* Clinic buttons - FORCED TO 1 LINE */
+        /* Clinic buttons */
         .lf-clinic-row {
           display: flex;
           gap: 0.5rem;
@@ -353,47 +360,49 @@ export default function LeadForm({
           align-items: center;
           justify-content: center;
           gap: 0.4rem;
-          padding: 0.55rem 0.3rem;
+          padding: 0.75rem 0.5rem;
           border: none;
-          border-radius: 7px;
-          font-size: 0.78rem;
+          border-radius: 12px;
+          font-size: 0.8rem;
           font-weight: 700;
           cursor: pointer;
-          transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           color: white;
           white-space: nowrap;
-          box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+        }
+ 
+        .lf-clinic-btn.active {
+          transform: scale(1.02);
+          box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
  
         .lf-pin-icon {
-          width: 16px;
-          height: 16px;
+          width: 14px;
+          height: 14px;
         }
  
         .lf-clinic-hint {
           text-align: center;
           font-size: 0.75rem;
-          color: #aaa;
-          margin: 0.25rem 0 0.4rem;
+          color: #999;
+          margin: 0.2rem 0 0.4rem;
           font-style: italic;
-          letter-spacing: 0.01em;
         }
  
         /* Category Row */
         .lf-category-row {
           display: grid;
           grid-template-columns: 1fr 1fr 1fr;
-          gap: 0.35rem;
-          margin-bottom: 0.1rem;
+          gap: 0.5rem;
         }
  
         .lf-category-btn {
-          padding: 0.35rem;
-          border-radius: 5px;
-          border: 1px solid #ddd;
-          background: #fff;
+          padding: 0.6rem;
+          border-radius: 10px;
+          border: 1px solid rgba(0,0,0,0.05);
+          background: #fdfdfd;
           color: #555;
-          font-size: 0.78rem;
+          font-size: 0.8rem;
           font-weight: 600;
           cursor: pointer;
           transition: all 0.2s;
@@ -401,50 +410,47 @@ export default function LeadForm({
         }
  
         .lf-category-btn.active {
-          background: #308b98;
+          background: var(--color-primary);
           color: #fff;
-          border-color: #308b98;
-        }
- 
-        .lf-category-btn .underline {
-           text-decoration: underline;
-           text-underline-offset: 3px;
+          border-color: var(--color-primary);
+          box-shadow: 0 4px 12px rgba(0, 172, 177, 0.2);
         }
  
         /* Concern chips */
         .lf-concern-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 0.4rem;
+          gap: 0.5rem;
         }
  
         .lf-concern-chip {
-          padding: 0.3rem 0.15rem;
-          border-radius: 4px;
-          font-size: 0.68rem;
+          padding: 0.4rem 0.25rem;
+          border-radius: 8px;
+          font-size: 0.72rem;
           font-weight: 600;
           cursor: pointer;
           transition: all 0.15s;
-          border: 1px solid #ddd;
-          background: #fff;
-          color: #555;
+          border: 1px solid rgba(0,0,0,0.05);
+          background: #fdfdfd;
+          color: #666;
           display: flex;
           align-items: center;
           justify-content: center;
           text-align: center;
-          min-height: 2rem;
+          min-height: 2.2rem;
           line-height: 1.1;
         }
  
         .lf-concern-chip.active {
-          border-color: #308b98;
-          color: #308b98;
-          background: #fff;
+          border-color: var(--color-primary);
+          color: var(--color-primary);
+          background: rgba(0, 172, 177, 0.05);
+          transform: translateY(-2px);
         }
  
         .lf-more-trigger {
-          border: 1px solid #ddd;
-          color: #308b98;
+          color: var(--color-primary);
+          border-color: rgba(0, 172, 177, 0.2);
         }
  
         .chevron {
@@ -455,31 +461,35 @@ export default function LeadForm({
         /* Submit */
         .lf-submit-btn {
           width: 100%;
-          max-width: 260px;
-          margin: 0.6rem auto 0;
-          padding: 0.6rem;
-          background: #308b98;
+          margin-top: 1rem;
+          padding: 1rem;
+          background: var(--color-primary);
           color: #fff;
           border: none;
-          border-radius: 7px;
-          font-size: 0.88rem;
-          font-weight: 700;
+          border-radius: 14px;
+          font-size: 1rem;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
           cursor: pointer;
-          transition: background 0.2s;
-          box-shadow: 0 3px 10px rgba(48, 139, 152, 0.15);
+          transition: all 0.3s;
+          box-shadow: 0 10px 25px rgba(0, 172, 177, 0.25);
           display: block;
         }
  
         .lf-submit-btn:hover {
-          background: #25707a;
+          background: #008f92;
+          transform: translateY(-2px);
+          box-shadow: 0 12px 30px rgba(0, 172, 177, 0.35);
         }
  
         .lf-submit-btn:disabled {
           opacity: 0.6;
+          transform: none;
         }
  
         @media (max-width: 480px) {
-          .lf-wrapper { padding: 1rem; }
+          .lf-wrapper { padding: 1.25rem 1rem; }
           .lf-clinic-row { flex-direction: column; }
           .lf-concern-grid { grid-template-columns: 1fr 1fr; }
         }
