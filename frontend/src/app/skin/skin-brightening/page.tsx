@@ -225,6 +225,13 @@ export default function SkinBrightening() {
           transition: all 0.3s ease;
         }
         .card-trust:hover { transform: translateY(-8px); border-color: var(--color-accent); }
+
+        @media (max-width: 768px) {
+          .card-sleek { padding: 1.5rem 1rem; }
+          .card-trust { padding: 1.5rem 1rem; gap: 1rem; }
+          .card-sleek h3 { font-size: 1.05rem; }
+          .card-sleek p { font-size: 0.85rem; }
+        }
       `}</style>
     </>
   );
