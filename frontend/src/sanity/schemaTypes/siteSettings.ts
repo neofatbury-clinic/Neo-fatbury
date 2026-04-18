@@ -16,6 +16,7 @@ export const siteSettings = defineType({
     { name: 'contactForm', title: '📝 Lead Form' },
     { name: 'social', title: '📱 Social Media' },
     { name: 'ads', title: '📊 Google Ads & Analytics' },
+    { name: 'branding', title: '🖍️ Header & Footer Branding' },
   ],
   fields: [
     // ── BRAND ─────────────────────────────────────
@@ -279,6 +280,30 @@ export const siteSettings = defineType({
       type: 'string',
       description: '⚠️ This is auto-configured. Do NOT change unless instructed by your developer.',
       group: 'ads',
+    }),
+
+    // ── BRANDING ──────────────────────────────────
+    defineField({
+      name: 'headerAnnouncement',
+      title: 'Top Bar News Message',
+      type: 'string',
+      description: '💡 e.g., "🎉 Free Clinical Analysis for first 50 patients!". Leave empty to hide.',
+      group: 'branding',
+    }),
+    defineField({
+      name: 'footerCopyright',
+      title: 'Footer Copyright Text',
+      type: 'string',
+      initialValue: '© 2024 NeoFatbury Clinical Skin, Hair & Slimming. All Rights Reserved.',
+      group: 'branding',
+    }),
+    defineField({
+      name: 'footerDisclaimer',
+      title: 'Medical Disclaimer',
+      type: 'text',
+      rows: 2,
+      description: '💡 Small text at the very bottom, e.g., "Results may vary from person to person."',
+      group: 'branding',
     }),
   ],
   preview: { prepare: () => ({ title: '⚙️ Clinic Info & Settings' }) },

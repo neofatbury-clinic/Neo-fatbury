@@ -30,6 +30,33 @@ export const structure: StructureResolver = (S) =>
         ),
 
       S.listItem()
+        .title('🏢 About Us Page')
+        .id('aboutPage')
+        .child(
+          S.document()
+            .schemaType('aboutPage')
+            .documentId('aboutPage')
+        ),
+
+      S.listItem()
+        .title('📊 Results Gallery Page')
+        .id('resultsPage')
+        .child(
+          S.document()
+            .schemaType('resultsPage')
+            .documentId('resultsPage')
+        ),
+
+      S.listItem()
+        .title('📬 Contact Us Page')
+        .id('contactPage')
+        .child(
+          S.document()
+            .schemaType('contactPage')
+            .documentId('contactPage')
+        ),
+
+      S.listItem()
         .title('📄 Custom Pages')
         .schemaType('genericPage')
         .child(S.documentTypeList('genericPage').title('Custom Pages')),
@@ -86,13 +113,6 @@ export const structure: StructureResolver = (S) =>
                   S.documentTypeList('blogPost')
                     .title('Published Articles')
                     .filter('_type == "blogPost" && isPublished == true')
-                ),
-              S.listItem()
-                .title('📋 Drafts')
-                .child(
-                  S.documentTypeList('blogPost')
-                    .title('Draft Articles')
-                    .filter('_type == "blogPost" && isPublished != true')
                 ),
             ])
         ),

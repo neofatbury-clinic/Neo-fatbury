@@ -10,6 +10,12 @@ export default function Header({ settings }: { settings?: any }) {
 
   return (
     <header style={wrapperStyle}>
+      {/* ── ANNOUNCEMENT BAR ────────────────────────────────── */}
+      {settings?.headerAnnouncement && (
+        <div style={{ backgroundColor: 'var(--color-primary)', color: 'white', py: 2, textAlign: 'center', fontSize: '0.85rem', fontWeight: '600', padding: '0.5rem' }} className="animate-fade-in">
+          {settings.headerAnnouncement}
+        </div>
+      )}
       {/* ── TOP BAR ─────────────────────────────────────────── */}
       <div style={topBarStyle} className="top-bar-mobile-hide">
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '100%', padding: '0 2rem' }}>

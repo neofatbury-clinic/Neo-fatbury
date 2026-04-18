@@ -112,11 +112,11 @@ export default function Footer({ settings }: { settings?: any }) {
           </div>
           <div style={disclaimerTextWrap}>
             <p style={disclaimerText}>
-              <b>Disclaimer Text:</b> Results may vary from person to person depending on individual body types, genetics, and adherence to post-treatment care. All medical procedures are performed by or under the supervision of certified dermatologists.
+              {settings?.footerDisclaimer || `Results may vary from person to person depending on individual body types, genetics, and adherence to post-treatment care. All medical procedures are performed by or under the supervision of certified dermatologists.`}
             </p>
           </div>
           <div style={copyrightWrap}>
-            <p style={copyrightText}>© {currentYear} NeoFatbury. All Rights Reserved.</p>
+            <p style={copyrightText}>{settings?.footerCopyright || `© ${currentYear} NeoFatbury. All Rights Reserved.`}</p>
           </div>
         </div>
 
