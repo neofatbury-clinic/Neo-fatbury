@@ -7,9 +7,10 @@ import { homepage } from './homepage'
 import { siteSettings } from './siteSettings'
 import { teamMember } from './teamMember'
 import { testimonial } from './testimonial'
+import { genericPage } from './genericPage'
 
 // Named exports for direct import
-export { service, blogPost, gallery, homepage, siteSettings, teamMember, testimonial }
+export { service, blogPost, gallery, homepage, siteSettings, teamMember, testimonial, genericPage }
 
 // Default array export used by sanity.config.ts
-export const schemaTypes = [service, blogPost, gallery, homepage, siteSettings, teamMember, testimonial]
+export const schemaTypes = [service, blogPost, gallery, homepage, siteSettings, teamMember, testimonial, genericPage]

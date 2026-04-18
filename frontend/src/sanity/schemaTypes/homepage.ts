@@ -18,7 +18,17 @@ export const homepage = defineType({
     defineField({ name: 'heroHeadline', title: 'Big Main Headline', type: 'string', description: '💡 The first thing people see. Use powerful words.', group: 'hero' }),
     defineField({ name: 'heroAccentLine', title: 'Highlighted Text (Orange)', type: 'string', description: '💡 Special text that stands out in orange.', group: 'hero' }),
     defineField({ name: 'heroSubtext', title: 'Intro Text / Description', type: 'text', rows: 3, description: '💡 Short paragraph below the headline.', group: 'hero' }),
-    defineField({ name: 'heroImage', title: 'Banner Background Image', type: 'image', options: { hotspot: true }, description: '💡 Large image behind the top text. Recommended: Doctors or Clinic Interior.', group: 'hero' }),
+    defineField({ 
+      name: 'heroImage', 
+      title: 'Banner Background Image', 
+      type: 'image', 
+      options: { hotspot: true }, 
+      description: '💡 Large image behind the top text. Recommended: Doctors or Clinic Interior.', 
+      group: 'hero',
+      fields: [
+        { name: 'alt', title: 'Alt Text (SEO)', type: 'string', description: '💡 Describe the image for Google.' }
+      ],
+    }),
     defineField({ name: 'heroCtaText', title: 'Main Button Label', type: 'string', initialValue: 'Book Free Consultation', group: 'hero' }),
     defineField({
       name: 'heroStats',

@@ -8,14 +8,8 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'cdn.sanity.io' },
     ],
   },
-  // Ensure we don't use turbopack for production build to avoid module resolution issues with Sanity plugins
-  experimental: {
-    turbo: {
-      rules: {
-        // ... any custom rules
-      }
-    }
-  }
+  // We remove the experimental.turbo key as it was invalid for this version
+  // and we want to fallback to the stable webpack build for Sanity Studio compatibility
 };
 
 export default nextConfig;

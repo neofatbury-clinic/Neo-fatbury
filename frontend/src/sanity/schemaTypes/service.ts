@@ -70,6 +70,9 @@ export const service = defineType({
       type: 'image',
       description: '💡 This large image appears at the very top of the page. High-quality landscape photos work best.',
       options: { hotspot: true },
+      fields: [
+        { name: 'alt', title: 'Alt Text (SEO)', type: 'string', description: '💡 Describe the image for Google.' }
+      ],
       group: 'hero',
     }),
     defineField({

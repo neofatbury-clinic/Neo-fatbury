@@ -29,6 +29,11 @@ export const structure: StructureResolver = (S) =>
             .documentId('homepage')
         ),
 
+      S.listItem()
+        .title('📄 Custom Pages')
+        .schemaType('genericPage')
+        .child(S.documentTypeList('genericPage').title('Custom Pages')),
+
       S.divider(),
 
       // ── TREATMENTS ───────────────────────────────

@@ -92,7 +92,7 @@ export const siteSettings = defineType({
         name: 'location',
         fields: [
           defineField({ name: 'name', title: 'Branch Name', type: 'string', description: '💡 Example: "Kukatpally Clinic"' }),
-          defineField({ name: 'address', title: 'Full Address', type: 'text', rows: 3, description: '💡 Complete postal address for this branch' }),
+          defineField({ name: 'address', title: 'Full Address', type: 'text', rows: 3, description: '💡 Complete postal address for this branch. Example: "City plaza Building, 2nd floor, beside fast rack showroom. Himyathnagar circle, Hyderabad"' }),
           defineField({ name: 'phone', title: 'Branch Phone', type: 'string', description: '💡 Phone number specific to this branch' }),
           defineField({ name: 'googleMapsUrl', title: 'Google Maps Link', type: 'url', description: '💡 Go to Google Maps → Search your clinic → Click "Share" → Copy the link and paste here' }),
           defineField({ name: 'photo', title: 'Clinic Photo', type: 'image', options: { hotspot: true }, description: '💡 A photo of the clinic exterior or reception' }),
@@ -184,6 +184,15 @@ export const siteSettings = defineType({
         defineField({ name: 'title', title: 'Default Google Title', type: 'string', description: '💡 What appears in the browser tab and Google search. Example: "NeoFatbury - Best Skin Clinic in Hyderabad"' }),
         defineField({ name: 'description', title: 'Default Google Description', type: 'text', rows: 3, description: '💡 The text snippet Google shows below your page title. Keep it under 155 characters.' }),
         defineField({ name: 'ogImage', title: 'Default Social Share Image', type: 'image', options: { hotspot: true }, description: '💡 The image that appears when someone shares your website on WhatsApp, Facebook, or Twitter' }),
+        defineField({
+          name: 'seoSelfCheck',
+          title: '📋 SEO Health Check (Instructions)',
+          type: 'text',
+          rows: 5,
+          readOnly: true,
+          initialValue: '1. Metadata: Ensure every page has a Title & Description.\n2. Alt Tags: Ensure every image has an "Alt Text" description.\n3. Headings: Use only one H1 per page.\n4. Keywords: Mention your city (Hyderabad) in the main text.\n5. Speed: Keep images under 200KB.',
+          description: '💡 Reference this checklist to ensure your site stays at the top of Google results.'
+        }),
       ],
     }),
     defineField({
