@@ -3,7 +3,6 @@ import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { media } from 'sanity-plugin-media'
-import { assist } from '@sanity/assist'
 import { schemaTypes } from './src/sanity/schemaTypes'
 import { structure } from './src/sanity/structure'
 
@@ -19,7 +18,6 @@ export default defineConfig({
     structureTool({ structure }),
     visionTool(), 
     media(),
-    assist(), // AI Assistant - This is your "Claude" connection for the Studio
   ],
 
   schema: {
