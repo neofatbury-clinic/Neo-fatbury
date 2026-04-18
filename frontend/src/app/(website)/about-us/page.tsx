@@ -25,21 +25,28 @@ const AboutUs = () => {
       </section>
 
       {/* Intro Section */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-20 px-4 bg-white relative overflow-hidden">
+        {/* Decorative Background Element (Fixed Scale) */}
+        <div className="absolute top-0 right-0 w-1/2 h-full opacity-[0.03] pointer-events-none select-none">
+          <svg viewBox="0 0 100 100" className="w-full h-full text-[#1a2b3c] fill-current transform translate-x-1/4">
+             <path d="M50 0 L90 20 L90 70 L50 100 L10 70 L10 20 Z" />
+          </svg>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div className="relative group">
               <div className="absolute -inset-4 bg-teal-100/50 rounded-2xl scale-95 group-hover:scale-100 transition-transform duration-500 -rotate-3" />
               <img 
                 src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80" 
                 alt="Our Clinical Heritage"
-                className="relative rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 z-10"
+                className="relative rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 z-10 w-full object-cover aspect-[4/3]"
               />
             </div>
             
             <div>
               <span className="text-[#e8a317] font-semibold tracking-widest uppercase mb-4 block">Our Story</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#1a2b3c] mb-6 leading-tight">
+              <h2 className="text-3xl md:text-5xl font-bold text-[#1a2b3c] mb-8 leading-tight">
                 About NeoFatbury <br/>Clinical Skin & Hair
               </h2>
               <div className="space-y-6 text-gray-600 leading-relaxed text-lg">
@@ -49,14 +56,14 @@ const AboutUs = () => {
                 <p>
                   With facilities in Kukatpally and Himayatnagar, we specialize in a "Subject-First" approach, ensuring every treatment plan is as unique as the patient we serve.
                 </p>
-                <div className="grid grid-cols-2 gap-8 pt-6 mobile-grid-2">
-                  <div className="p-4 bg-teal-50 rounded-xl border border-teal-100 transform hover:-translate-y-1 transition-all">
-                    <div className="text-3xl font-bold text-[#00acb1] mb-1">10k+</div>
-                    <div className="text-sm text-gray-500 uppercase tracking-wider">Patients Served</div>
+                <div className="grid grid-cols-2 gap-6 pt-8">
+                  <div className="p-6 bg-teal-50 rounded-2xl border border-teal-100 shadow-sm transform hover:-translate-y-1 transition-all">
+                    <div className="text-4xl font-bold text-[#00acb1] mb-2">10k+</div>
+                    <div className="text-xs text-gray-500 uppercase tracking-widest font-semibold">Patients Served</div>
                   </div>
-                  <div className="p-4 bg-teal-50 rounded-xl border border-teal-100 transform hover:-translate-y-1 transition-all">
-                    <div className="text-3xl font-bold text-[#00acb1] mb-1">15+</div>
-                    <div className="text-sm text-gray-500 uppercase tracking-wider">Years Exp</div>
+                  <div className="p-6 bg-teal-50 rounded-2xl border border-teal-100 shadow-sm transform hover:-translate-y-1 transition-all">
+                    <div className="text-4xl font-bold text-[#00acb1] mb-2">15+</div>
+                    <div className="text-xs text-gray-500 uppercase tracking-widest font-semibold">Years Experience</div>
                   </div>
                 </div>
               </div>
@@ -66,10 +73,10 @@ const AboutUs = () => {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-20 bg-[#f0f8f8]">
+      <section className="py-24 bg-[#f0f8f8]">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mobile-grid-2">
-            <div className="bg-white p-10 rounded-3xl shadow-sm border border-teal-50 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white p-10 rounded-3xl shadow-sm border border-teal-50 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
               <div className="w-16 h-16 bg-teal-100 rounded-2xl flex items-center justify-center text-[#00acb1] mb-8 group-hover:bg-[#00acb1] group-hover:text-white transition-colors">
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
               </div>
@@ -79,8 +86,8 @@ const AboutUs = () => {
               </p>
             </div>
 
-            <div className="bg-white p-10 rounded-3xl shadow-sm border border-teal-50 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-              <div className="w-16 h-16 bg-teal-100 rounded-2xl flex items-center justify-center text-[#00acb1] mb-8">
+            <div className="bg-white p-10 rounded-3xl shadow-sm border border-teal-50 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+              <div className="w-16 h-16 bg-teal-100 rounded-2xl flex items-center justify-center text-[#00acb1] mb-8 group-hover:bg-[#00acb1] group-hover:text-white transition-colors">
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
               </div>
               <h3 className="text-2xl font-bold text-[#1a2b3c] mb-4">Our Vision</h3>
@@ -89,8 +96,8 @@ const AboutUs = () => {
               </p>
             </div>
 
-            <div className="md:col-span-1 bg-white p-10 rounded-3xl shadow-sm border border-teal-50 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-              <div className="w-16 h-16 bg-teal-100 rounded-2xl flex items-center justify-center text-[#00acb1] mb-8">
+            <div className="bg-white p-10 rounded-3xl shadow-sm border border-teal-50 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+              <div className="w-16 h-16 bg-teal-100 rounded-2xl flex items-center justify-center text-[#00acb1] mb-8 group-hover:bg-[#00acb1] group-hover:text-white transition-colors">
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
               </div>
               <h3 className="text-2xl font-bold text-[#1a2b3c] mb-4">Core Promise</h3>
@@ -101,6 +108,7 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
+
 
       {/* CTA Section */}
       <section className="py-20 px-4">
