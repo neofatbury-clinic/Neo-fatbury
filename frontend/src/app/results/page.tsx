@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import LeadForm from "@/components/LeadForm";
 
 export const metadata = {
   title: 'Results Gallery | NeoFatbury – Before & After Transformations Hyderabad',
@@ -134,7 +135,27 @@ export default function Results() {
         </div>
       </section>
 
-      {/* 5. CTA */}
+      {/* 5. CONSULTATION FORM */}
+      <section className="section bg-surface" id="book">
+        <div className="container" style={{ display: 'grid', gridTemplateColumns: 'minmax(300px, 1fr) minmax(300px, 1fr)', gap: '4rem', alignItems: 'center' }}>
+          <div>
+            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '1.5rem' }}>Want Results <span className="text-accent">Like These?</span></h2>
+            <p className="text-muted" style={{ fontSize: '1.15rem', lineHeight: 1.8, marginBottom: '2rem' }}>
+              Every transformation starts with a conversation. Meet our experts for a detailed analysis of your skin, hair, or body goals. 
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontWeight: '700', color: 'var(--color-primary)' }}>💎 Advanced US-FDA Equipment</div>
+               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontWeight: '700', color: 'var(--color-primary)' }}>👩‍⚕️ Expert Board-Certified Doctors</div>
+               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontWeight: '700', color: 'var(--color-primary)' }}>📍 Convenient Hyderabad Locations</div>
+            </div>
+          </div>
+          <div>
+            <LeadForm title="Book Your Transformation" />
+          </div>
+        </div>
+      </section>
+
+      {/* 6. FINAL CTA */}
       <section className="section bg-primary text-center" style={{ padding: '6rem 1.5rem' }}>
         <h2 style={{ fontSize: '2.5rem', color: 'white', marginBottom: '1rem' }}>Your Transformation Starts Here</h2>
         <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.15rem', marginBottom: '2rem' }}>Book a free consultation and let our experts design your personal treatment plan.</p>

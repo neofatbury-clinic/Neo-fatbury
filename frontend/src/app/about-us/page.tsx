@@ -12,22 +12,25 @@ export default function AboutUs() {
     <>
       {/* 1. HERO */}
       <section style={{ background: 'linear-gradient(135deg, #f0f7f6 0%, #ffffff 100%)', padding: '5rem 0 4rem' }}>
-        <div className="container" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '3rem' }}>
+        <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 0.8fr', alignItems: 'center', gap: '4rem' }}>
           <div style={{ flex: '1 1 500px' }}>
             <p style={{ color: 'var(--color-accent)', fontWeight: '600', marginBottom: '0.75rem', textTransform: 'uppercase', letterSpacing: '1.5px', fontSize: '0.85rem' }}>About NeoFatbury</p>
             <h1 style={{ fontSize: '3rem', marginBottom: '1.5rem', lineHeight: 1.2 }}>
               Hyderabad's Premier <br/><span className="text-accent">Skin, Hair & Slimming Clinic</span>
             </h1>
-            <p style={{ fontSize: '1.15rem', color: 'var(--color-text-muted)', marginBottom: '2rem', lineHeight: 1.8 }}>
+            <p style={{ fontSize: '1.1rem', color: 'var(--color-text-muted)', marginBottom: '2rem', lineHeight: 1.8 }}>
               NeoFatbury was founded on a single belief: every person deserves access to world-class aesthetic and dermatological care — safe, transparent, and results-driven.
             </p>
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-              <Link href="/contact-us" className="btn btn-primary">Book a Consultation</Link>
-              <a href="tel:9700641000" className="btn btn-outline">📞 9700641000</a>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '3rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: '700', color: 'var(--color-primary)' }}>✅ 10+ Years Expert</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: '700', color: 'var(--color-primary)' }}>✅ US-FDA Tech</div>
+            </div>
+            <div style={{ flex: '1 1 400px', position: 'relative', height: '300px', borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-md)' }}>
+              <Image src="/images/clinic-reception.webp" alt="NeoFatbury Clinic Interior" fill style={{ objectFit: 'cover' }} />
             </div>
           </div>
-          <div style={{ flex: '1 1 400px', position: 'relative', height: '420px', borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-md)' }}>
-            <Image src="/images/clinic-reception.webp" alt="NeoFatbury Clinic Interior" fill style={{ objectFit: 'cover' }} />
+          <div>
+            <LeadForm />
           </div>
         </div>
       </section>

@@ -1,20 +1,7 @@
-"use client";
-import { useState } from 'react';
 import Link from 'next/link';
+import LeadForm from "@/components/LeadForm";
 
 export default function ContactUs() {
-  const [form, setForm] = useState({ name: '', phone: '', service: '', location: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
-
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  }
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    window.location.href = '/thank-you';
-  }
-
   return (
     <>
       {/* 1. HERO */}
@@ -32,116 +19,11 @@ export default function ContactUs() {
 
       {/* 2. FORM + INFO */}
       <section className="section">
-        <div className="container" style={{ display: 'flex', flexWrap: 'wrap', gap: '3rem', alignItems: 'flex-start' }}>
+        <div className="container" style={{ display: 'flex', flexWrap: 'wrap', gap: '3rem', alignItems: 'center' }}>
 
           {/* Contact Form */}
           <div style={{ flex: '1 1 480px' }}>
-            <div className="card" style={{ padding: '2.5rem' }}>
-              <h2 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', color: 'var(--color-primary)' }}>Book a Free Consultation</h2>
-              <p className="text-muted" style={{ marginBottom: '2rem', fontSize: '0.95rem' }}>Fill in your details and our team will call you back within 2 hours.</p>
-
-              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                <div>
-                  <label style={labelStyle}>Your Full Name *</label>
-                  <input
-                    id="contact-name"
-                    name="name"
-                    type="text"
-                    required
-                    placeholder="e.g. Priya Reddy"
-                    value={form.name}
-                    onChange={handleChange}
-                    style={inputStyle}
-                  />
-                </div>
-
-                <div>
-                  <label style={labelStyle}>Mobile Number *</label>
-                  <input
-                    id="contact-phone"
-                    name="phone"
-                    type="tel"
-                    required
-                    placeholder="10-digit mobile number"
-                    value={form.phone}
-                    onChange={handleChange}
-                    style={inputStyle}
-                  />
-                </div>
-
-                <div>
-                  <label style={labelStyle}>Service Interested In *</label>
-                  <select
-                    id="contact-service"
-                    name="service"
-                    required
-                    value={form.service}
-                    onChange={handleChange}
-                    style={inputStyle}
-                  >
-                    <option value="">Select a service...</option>
-                    <optgroup label="Skin Treatments">
-                      <option>Laser Hair Reduction</option>
-                      <option>Acne & Scar Treatment</option>
-                      <option>Skin Brightening</option>
-                    </optgroup>
-                    <optgroup label="Hair Treatments">
-                      <option>Hair Loss Treatment</option>
-                      <option>Hair Transplantation</option>
-                      <option>Anti-Dandruff Treatment</option>
-                    </optgroup>
-                    <optgroup label="Slimming & Contouring">
-                      <option>CoolSculpting (Fat Freezing)</option>
-                      <option>Inch Loss Treatment</option>
-                      <option>Weight Loss Program</option>
-                    </optgroup>
-                    <option>General Consultation</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label style={labelStyle}>Preferred Clinic Location</label>
-                  <select
-                    id="contact-location"
-                    name="location"
-                    value={form.location}
-                    onChange={handleChange}
-                    style={inputStyle}
-                  >
-                    <option value="">Select location...</option>
-                    <option>Kukatpally Clinic</option>
-                    <option>Himayatnagar Clinic</option>
-                    <option>No preference</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label style={labelStyle}>Your Message (Optional)</label>
-                  <textarea
-                    id="contact-message"
-                    name="message"
-                    rows={3}
-                    placeholder="Tell us about your concern or ask a question..."
-                    value={form.message}
-                    onChange={handleChange}
-                    style={{ ...inputStyle, resize: 'vertical' }}
-                  />
-                </div>
-
-                <button
-                  id="contact-submit"
-                  type="submit"
-                  className="btn btn-primary"
-                  style={{ width: '100%', justifyContent: 'center', padding: '1rem', fontSize: '1.05rem' }}
-                >
-                  📅 Get a Call Back
-                </button>
-
-                <p style={{ fontSize: '0.78rem', color: 'var(--color-text-muted)', textAlign: 'center' }}>
-                  By submitting, you agree to our <Link href="/privacy-policy" style={{ color: 'var(--color-accent)' }}>Privacy Policy</Link>.
-                </p>
-              </form>
-            </div>
+            <LeadForm title="Book Your Free Appointment" />
           </div>
 
           {/* Info Panel */}
@@ -232,24 +114,3 @@ export default function ContactUs() {
     </>
   );
 }
-
-const labelStyle: React.CSSProperties = {
-  display: 'block',
-  fontSize: '0.875rem',
-  fontWeight: '600',
-  marginBottom: '0.5rem',
-  color: 'var(--color-text)',
-};
-
-const inputStyle: React.CSSProperties = {
-  width: '100%',
-  padding: '0.75rem 1rem',
-  border: '1.5px solid var(--color-border)',
-  borderRadius: 'var(--radius-sm)',
-  fontSize: '0.95rem',
-  color: 'var(--color-text)',
-  backgroundColor: 'white',
-  outline: 'none',
-  boxSizing: 'border-box',
-  fontFamily: 'inherit',
-};
