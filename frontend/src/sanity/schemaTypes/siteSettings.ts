@@ -11,7 +11,9 @@ export const siteSettings = defineType({
     { name: 'brand', title: '🎨 Brand & Colors' },
     { name: 'contact', title: '📞 Contact & Location' },
     { name: 'navigation', title: '🔗 Header & Footer Navigation' },
-    { name: 'seo', title: '🔍 Default SEO' },
+    { name: 'seo', title: '🔍 SEO & Meta' },
+    { name: 'advancedSeo', title: '⚙️ Advanced SEO (Robots & Sitemap)' },
+    { name: 'contactForm', title: '📝 Contact & Lead Form Settings' },
     { name: 'social', title: '📱 Social Media' },
     { name: 'ads', title: '📊 Ads & Schema' },
   ],
@@ -159,6 +161,42 @@ export const siteSettings = defineType({
       type: 'string',
       description: 'Message shown in the top header bar (leave empty to hide)',
       group: 'seo',
+    }),
+
+    // ── ADVANCED SEO (Robots/Sitemap) ─────────────
+    defineField({
+      name: 'robotsConfig',
+      title: 'Robots Configuration',
+      type: 'object',
+      group: 'advancedSeo',
+      fields: [
+        defineField({ name: 'allowIndexing', title: 'Allow Search Engine Indexing (Default: true)', type: 'boolean', initialValue: true }),
+        defineField({ name: 'customRobotsTxt', title: 'Custom robots.txt Additions', type: 'text', rows: 4, description: 'Optional raw text to append to robots.txt' }),
+      ],
+    }),
+    defineField({
+      name: 'sitemapConfig',
+      title: 'Sitemap Configuration',
+      type: 'object',
+      group: 'advancedSeo',
+      fields: [
+        defineField({ name: 'excludePaths', title: 'Exclude Paths from Sitemap', type: 'array', of: [{type: 'string'}], description: 'e.g., /thank-you, /hidden-promo' }),
+      ],
+    }),
+
+    // ── CONTACT & LEAD FORM ───────────────────────
+    defineField({
+      name: 'leadFormSettings',
+      title: 'Global Lead Form Settings',
+      type: 'object',
+      group: 'contactForm',
+      description: 'Edit the form that appears on all service pages and home page',
+      fields: [
+        defineField({ name: 'formTitle', title: 'Form Title', type: 'string', initialValue: 'Book Your Free Consultation' }),
+        defineField({ name: 'formSubtitle', title: 'Form Subtitle', type: 'string', initialValue: 'Get expert care tailored to your needs.' }),
+        defineField({ name: 'buttonText', title: 'Submit Button Text', type: 'string', initialValue: 'Get Free Consultation' }),
+        defineField({ name: 'enableWhatsApp', title: 'Show WhatsApp floating button?', type: 'boolean', initialValue: true }),
+      ],
     }),
 
     // ── SOCIAL ────────────────────────────────────
