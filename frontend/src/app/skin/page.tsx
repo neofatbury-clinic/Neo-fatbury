@@ -55,7 +55,7 @@ export default function SkinPage() {
           <h2 className="section-title text-center">Skin <span className="text-accent">Treatments</span></h2>
           <p className="section-subtitle text-center">Specialized care for all your skin concerns.</p>
           
-          <div className="grid grid-3" style={{ marginTop: '3rem' }}>
+          <div className="grid grid-3 mobile-grid-2" style={{ marginTop: '3rem' }}>
             {TREATMENTS.map((t) => (
               <div key={t.title} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
                 <div style={{ position: 'relative', height: '240px', marginBottom: '1.5rem', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
@@ -74,7 +74,7 @@ export default function SkinPage() {
       <section className="section bg-surface">
         <div className="container">
           <h2 className="section-title text-center">Why Choose <span className="text-accent">NeoFatbury Skin Clinic?</span></h2>
-          <div className="grid grid-3" style={{ marginTop: '3rem' }}>
+          <div className="grid grid-3 mobile-grid-2" style={{ marginTop: '3rem' }}>
             {[
               { title: 'Expert Dermatologists', desc: 'All treatments are supervised by qualified medical professionals.' },
               { title: 'Advanced Technology', desc: 'US-FDA approved equipment for maximum safety and efficacy.' },

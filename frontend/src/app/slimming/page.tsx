@@ -55,7 +55,7 @@ export default function SlimmingPage() {
           <h2 className="section-title text-center">Slimming & <span className="text-accent">Contouring</span></h2>
           <p className="section-subtitle text-center">Non-surgical procedures for a slimmer, more defined silhouette.</p>
           
-          <div className="grid grid-3" style={{ marginTop: '3rem' }}>
+          <div className="grid grid-3 mobile-grid-2" style={{ marginTop: '3rem' }}>
             {TREATMENTS.map((t) => (
               <div key={t.title} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
                 <div style={{ position: 'relative', height: '240px', marginBottom: '1.5rem', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
@@ -74,7 +74,7 @@ export default function SlimmingPage() {
       <section className="section bg-surface">
         <div className="container">
           <h2 className="section-title text-center">Modern <span className="text-accent">Body Transformation</span></h2>
-          <div className="grid grid-3" style={{ marginTop: '3rem' }}>
+          <div className="grid grid-3 mobile-grid-2" style={{ marginTop: '3rem' }}>
             {[
               { title: 'Safe & Non-Surgical', desc: 'Achieve significant results without the risks of invasive surgery.' },
               { title: 'Medically Supervised', desc: 'Personalized programs guided by doctors for safe weight loss.' },

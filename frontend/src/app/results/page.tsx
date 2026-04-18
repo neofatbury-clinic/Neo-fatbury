@@ -118,7 +118,7 @@ export default function Results() {
       <section className="section text-center">
         <div className="container">
           <h2 className="section-title">Why <span className="text-secondary">15,000+ Clients</span> Trust Us</h2>
-          <div className="grid grid-4" style={{ marginTop: '3.5rem' }}>
+          <div className="grid grid-4 mobile-grid-2" style={{ marginTop: '3.5rem' }}>
             {[
               { title: '10+ Years', desc: 'Clinical expertise in dermatology.', icon: '🏅' },
               { title: 'Certified Doctors', desc: 'Treatments led by medical experts.', icon: '👨‍⚕️' },

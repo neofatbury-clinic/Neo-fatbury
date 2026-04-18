@@ -249,7 +249,7 @@ export default function Home() {
         <div className="container text-center">
           <p style={{ color: '#00acb1', fontWeight: '700', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.75rem' }}>Why NeoFatbury Stands Out</p>
           <h2 className="section-title" style={{ marginBottom: '1rem' }}>Clinical Excellence, <span className="text-accent">Personal Care</span></h2>
-          <div className="grid grid-4" style={{ marginTop: '3.5rem' }}>
+          <div className="grid grid-4 mobile-grid-2" style={{ marginTop: '3.5rem' }}>
             {[
               { title: 'Dermatologist-Led', desc: 'Every treatment is supervised by qualified medical professionals.', icon: '👩‍⚕️' },
               { title: 'Safety First', desc: 'We exclusively use ISO-certified processes and internationally recognized equipment.', icon: '🛡️' },

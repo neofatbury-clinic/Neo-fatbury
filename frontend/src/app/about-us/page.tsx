@@ -38,7 +38,7 @@ export default function AboutUs() {
       {/* 2. STATS */}
       <section className="section bg-surface">
         <div className="container">
-          <div className="grid grid-4">
+          <div className="grid grid-4 mobile-grid-2">
             {[
               { number: '10+', label: 'Years of Expertise' },
               { number: '15,000+', label: 'Success Stories' },
@@ -86,7 +86,7 @@ export default function AboutUs() {
             <h2 className="section-title">Mission <span className="text-secondary">&amp; Values</span></h2>
             <p className="section-subtitle">A patients-first approach built on clinical excellence and ethical care.</p>
           </div>
-          <div className="grid grid-3" style={{ marginTop: '3.5rem' }}>
+          <div className="grid grid-3 mobile-grid-2" style={{ marginTop: '3.5rem' }}>
             {[
               { title: 'Excellence', desc: 'Clinical precision in every skin and hair procedure.', icon: '🏆' },
               { title: 'Integrity', desc: 'Honest clinical advice and transparent pricing.', icon: '🤝' },

@@ -68,7 +68,7 @@ export default function HairPage() {
       <section className="section bg-surface">
         <div className="container">
           <h2 className="section-title text-center">Why NeoFatbury for <span className="text-accent">Hair?</span></h2>
-          <div className="grid grid-3" style={{ marginTop: '3rem' }}>
+          <div className="grid grid-3 mobile-grid-2" style={{ marginTop: '3rem' }}>
             {[
               { title: 'Specialist Trichologists', desc: 'Expert doctors specializing in hair regrowth and restoration.' },
               { title: 'Proven Results', desc: 'Join thousands of happy clients who reclaimed their natural hair.' },
