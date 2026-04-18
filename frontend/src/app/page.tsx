@@ -60,7 +60,7 @@ export default function Home() {
       <section className="hero-section" style={{ 
         position: 'relative', 
         overflow: 'hidden',
-        padding: 'clamp(2rem, 5vw, 4rem) 0'
+        padding: 'clamp(4rem, 8vw, 7rem) 0 4rem'
       }}>
         <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
           <Image 
