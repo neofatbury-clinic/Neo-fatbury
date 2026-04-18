@@ -28,7 +28,7 @@ export default function SkinBrightening() {
       <section className="section bg-surface text-center" style={{ padding: '6rem 0' }}>
         <div className="container" style={{ maxWidth: '1100px' }}>
           <h2 className="section-title" style={{ fontSize: '2.8rem' }}>Is Your Skin Looking <span className="text-accent">Dull or Uneven?</span></h2>
-          <div className="grid grid-4" style={{ marginTop: '4rem', gap: '1.5rem' }}>
+          <div className="grid grid-4 mobile-grid-2" style={{ marginTop: '4rem', gap: '1.5rem' }}>
             {[
               { title: "Dull Skin", desc: "Loss of natural radiance and a tired appearance.", icon: "🌫️" },
               { title: "Uneven Tone", desc: "Patchy skin color or dark spots appearing on face.", icon: "🎨" },
@@ -116,7 +116,7 @@ export default function SkinBrightening() {
       <section className="section text-center">
         <div className="container">
           <h2 className="section-title">Why Choose <span className="text-accent">Neo Clinic?</span></h2>
-          <div className="grid grid-4" style={{ marginTop: '5rem', gap: '1.5rem' }}>
+          <div className="grid grid-4 mobile-grid-2" style={{ marginTop: '5rem', gap: '1.5rem' }}>
             {[
               { t: "Expert doctors", i: "👨‍⚕️" },
               { t: "Advanced tech", i: "🔬" },
