@@ -1,6 +1,4 @@
 // src/sanity/schemaTypes/service.ts
-// COMPLETE SERVICE/TREATMENT PAGE SCHEMA
-// Every field here = one thing a non-technical person can edit in Sanity Studio
 import { defineType, defineField } from 'sanity'
 
 export const service = defineType({
@@ -8,44 +6,45 @@ export const service = defineType({
   title: '💉 Services & Treatments',
   type: 'document',
   groups: [
-    { name: 'hero', title: '🖼️ Hero Section' },
-    { name: 'content', title: '📝 Page Content' },
-    { name: 'seo', title: '🔍 SEO & Meta Tags' },
-    { name: 'schema', title: '📊 Ad Schema (Google/Meta)' },
-    { name: 'settings', title: '⚙️ Settings' },
+    { name: 'settings', title: '⚙️ Basic Info' },
+    { name: 'hero', title: '🖼️ Top Banner' },
+    { name: 'content', title: '📝 Content Sections' },
+    { name: 'seo', title: '🔍 Google/SEO' },
+    { name: 'schema', title: '📊 Ads Data' },
   ],
   fields: [
     // ── BASIC ─────────────────────────────────────
     defineField({
       name: 'name',
-      title: 'Service Name',
+      title: 'Service/Treatment Name',
       type: 'string',
-      description: 'e.g. "Laser Hair Reduction", "Acne Treatment"',
+      description: '💡 Give this treatment a clear name, e.g. "Acne Clearing" or "Laser Hair Removal"',
       validation: (r) => r.required(),
       group: 'settings',
     }),
     defineField({
       name: 'slug',
-      title: 'URL Slug (auto-generated)',
+      title: 'Page Web Address (Slug)',
       type: 'slug',
       options: { source: 'name', maxLength: 96 },
       validation: (r) => r.required(),
-      description: 'This determines the page URL. Auto-generated from name.',
+      description: '💡 Click "Generate" to create a standard web address for this page based on the name.',
       group: 'settings',
     }),
     defineField({
       name: 'category',
-      title: 'Category',
+      title: 'Service Category',
       type: 'string',
       options: {
         list: [
-          { title: 'Skin Treatments', value: 'skin' },
-          { title: 'Hair Treatments', value: 'hair' },
-          { title: 'Slimming & Body', value: 'slimming' },
-          { title: 'Other', value: 'other' },
+          { title: '✨ Skin Treatments', value: 'skin' },
+          { title: '💇 Hair Treatments', value: 'hair' },
+          { title: '⚖️ Slimming & Body', value: 'slimming' },
+          { title: '🩹 Other Treatments', value: 'other' },
         ],
         layout: 'radio',
       },
+      description: '💡 Select which main section this treatment belongs to.',
       group: 'settings',
     }),
     defineField({
@@ -53,56 +52,58 @@ export const service = defineType({
       title: 'Show on Homepage?',
       type: 'boolean',
       initialValue: false,
+      description: '💡 Turn this ON to feature this service in the grid on your homepage.',
       group: 'settings',
     }),
     defineField({
       name: 'order',
-      title: 'Display Order (lower = first)',
+      title: 'Display Sequence Number',
       type: 'number',
+      description: '💡 Optional: Use numbers like 1, 2, 3 to control the order in lists (lower numbers show first).',
       group: 'settings',
     }),
 
     // ── HERO SECTION ──────────────────────────────
     defineField({
       name: 'heroImage',
-      title: 'Hero Background Image',
+      title: 'Top Banner Image',
       type: 'image',
-      description: '⚠️ Upload the clinical/doctor photo here. This becomes the hero background.',
+      description: '💡 This large image appears at the very top of the page. High-quality landscape photos work best.',
       options: { hotspot: true },
       group: 'hero',
     }),
     defineField({
       name: 'heroHeadline',
-      title: 'Hero Main Headline (Line 1)',
+      title: 'Top Heading (Line 1)',
       type: 'string',
-      description: 'e.g. "Smooth Skin."',
+      description: '💡 The main big text, e.g. "Flawless Radiant Skin."',
       group: 'hero',
     }),
     defineField({
       name: 'heroAccentLine',
-      title: 'Hero Accent Headline (Line 2 — shown in orange)',
+      title: 'Accent Heading (Line 2 - Orange)',
       type: 'string',
-      description: 'e.g. "Laser Precision."',
+      description: '💡 Special highlighted text below Line 1, e.g. "Clinical Precision."',
       group: 'hero',
     }),
     defineField({
       name: 'heroSubtext',
-      title: 'Hero Description',
+      title: 'Intro Text (Below Heading)',
       type: 'text',
       rows: 3,
-      description: 'Short description below the headline',
+      description: '💡 A brief summary of why people should choose this treatment.',
       group: 'hero',
     }),
     defineField({
       name: 'heroTrustBadges',
-      title: 'Trust Badges (shown below description)',
+      title: 'Feature Highlights (Icons)',
       type: 'array',
-      description: 'Add up to 4 trust badges (e.g. "FDA APPROVED", "ZERO DOWNTIME")',
+      description: '💡 Add 2-4 key features with icons (e.g. 🛡️ Safe & Proven, ✨ Immediate Glow)',
       of: [{
         type: 'object',
         fields: [
-          defineField({ name: 'icon', title: 'Emoji Icon', type: 'string', description: 'e.g. 🛡️ 💎 ❄️' }),
-          defineField({ name: 'label', title: 'Badge Text', type: 'string', description: 'e.g. "FDA APPROVED"' }),
+          defineField({ name: 'icon', title: 'Emoji Icon', type: 'string', description: '💡 Example: ✨ ✅ 🛡️ 🔬' }),
+          defineField({ name: 'label', title: 'Highlight Text', type: 'string', description: '💡 Example: "FDA APPROVED"' }),
         ],
         preview: { select: { title: 'label', subtitle: 'icon' } },
       }],
@@ -110,71 +111,69 @@ export const service = defineType({
     }),
     defineField({
       name: 'heroCtaText',
-      title: 'Hero CTA Button Text',
+      title: 'Booking Button Text',
       type: 'string',
       initialValue: 'Book Free Consultation',
+      description: '💡 What the main button at the top should say.',
       group: 'hero',
     }),
 
     // ── MAIN CONTENT ──────────────────────────────
     defineField({
       name: 'shortDescription',
-      title: 'Short Description (shown on service cards)',
+      title: 'Menu Card Summary',
       type: 'text',
       rows: 2,
+      description: '💡 A very short one-sentence summary shown on cards throughout the site menu.',
       validation: (r) => r.max(160),
       group: 'content',
     }),
     defineField({
       name: 'contentSections',
-      title: 'Page Content Sections',
-      description: 'Add/remove/reorder content blocks — each block is a section on the page.',
+      title: 'Custom Page Layout',
+      description: '💡 Build your page by adding sections! Click "Add item" to insert a text block, images, or FAQ.',
       type: 'array',
       group: 'content',
       of: [
         {
           type: 'object',
           name: 'textSection',
-          title: 'Text + Image Section',
+          title: 'Section: Text & Image',
           fields: [
-            defineField({ name: 'sectionTitle', title: 'Section Title', type: 'string' }),
-            defineField({ name: 'body', title: 'Content', type: 'array', of: [{ type: 'block' }] }),
-            defineField({ name: 'image', title: 'Image (optional)', type: 'image', options: { hotspot: true } }),
+            defineField({ name: 'sectionTitle', title: 'Heading for this section', type: 'string' }),
+            defineField({ name: 'body', title: 'Main Text Content', type: 'array', of: [{ type: 'block' }] }),
+            defineField({ name: 'image', title: 'Side Image', type: 'image', options: { hotspot: true } }),
             defineField({
               name: 'imagePosition',
-              title: 'Image Position',
+              title: 'Image Placement',
               type: 'string',
-              options: { list: ['left', 'right'], layout: 'radio' },
+              options: { list: [{title: 'Image Left, Text Right', value: 'left'}, {title: 'Text Left, Image Right', value: 'right'}], layout: 'radio' },
               initialValue: 'right',
             }),
             defineField({
-              name: 'columns',
-              title: 'Grid Columns',
+              name: 'backgroundColor',
+              title: 'Section Shade',
               type: 'string',
-              options: { list: ['1 column', '2 columns', '3 columns', '4 columns'], layout: 'radio' },
-              initialValue: '2 columns',
-            }),
-            defineField({ name: 'backgroundColor', title: 'Background Color', type: 'string',
-              options: { list: ['White', 'Light Grey', 'Teal Tint', 'Dark'] }
+              options: { list: ['White', 'Light Grey', 'Teal Tint', 'Dark Overlay'] }
             }),
           ],
-          preview: { select: { title: 'sectionTitle' }, prepare: ({ title }) => ({ title: `📄 ${title || 'Text Section'}` }) },
+          preview: { select: { title: 'sectionTitle' }, prepare: ({ title }) => ({ title: `📄 Text/Image: ${title || 'Untitled'}` }) },
         },
         {
           type: 'object',
           name: 'faqSection',
-          title: 'FAQ Section',
+          title: 'Section: Frequently Asked Questions',
           fields: [
-            defineField({ name: 'sectionTitle', title: 'Section Title', type: 'string', initialValue: 'Frequently Asked Questions' }),
+            defineField({ name: 'sectionTitle', title: 'FAQ Heading', type: 'string', initialValue: 'Frequently Asked Questions' }),
             defineField({
               name: 'faqs',
-              title: 'FAQ Items',
+              title: 'Question & Answer List',
               type: 'array',
               of: [{
                 type: 'object',
                 fields: [
-                  defineField({ name: 'question', title: 'Question', type: 'string', validation: (r) => r.required() }),
-                  defineField({ name: 'answer', title: 'Answer', type: 'text', rows: 3, validation: (r) => r.required() }),
+                  defineField({ name: 'question', title: 'The Question', type: 'string' }),
+                  defineField({ name: 'answer', title: 'The Answer', type: 'text', rows: 3 }),
                 ],
                 preview: { select: { title: 'question' } },
               }],
@@ -185,16 +184,9 @@ export const service = defineType({
         {
           type: 'object',
           name: 'benefitsSection',
-          title: 'Benefits / Features Grid',
+          title: 'Section: Key Benefits Grid',
           fields: [
-            defineField({ name: 'sectionTitle', title: 'Section Title', type: 'string' }),
-            defineField({
-              name: 'columns',
-              title: 'Grid Columns',
-              type: 'string',
-              options: { list: ['2 columns', '3 columns', '4 columns'], layout: 'radio' },
-              initialValue: '3 columns',
-            }),
+            defineField({ name: 'sectionTitle', title: 'Benefits Heading', type: 'string' }),
             defineField({
               name: 'items',
               title: 'Benefit Items',
@@ -202,9 +194,9 @@ export const service = defineType({
               of: [{
                 type: 'object',
                 fields: [
-                  defineField({ name: 'icon', title: 'Emoji Icon', type: 'string' }),
-                  defineField({ name: 'title', title: 'Title', type: 'string' }),
-                  defineField({ name: 'description', title: 'Description', type: 'text', rows: 2 }),
+                  defineField({ name: 'icon', title: 'Emoji Icon', type: 'string', description: '💡 e.g. 💎 ✅ 🔬' }),
+                  defineField({ name: 'title', title: 'Benefit Title', type: 'string' }),
+                  defineField({ name: 'description', title: 'Explain the benefit', type: 'text', rows: 2 }),
                 ],
                 preview: { select: { title: 'title', subtitle: 'icon' } },
               }],
@@ -215,59 +207,34 @@ export const service = defineType({
         {
           type: 'object',
           name: 'gallerySection',
-          title: 'Before/After Results Gallery',
+          title: 'Section: Result Photos',
           fields: [
-            defineField({ name: 'sectionTitle', title: 'Section Title', type: 'string', initialValue: 'Clinical Transformations' }),
+            defineField({ name: 'sectionTitle', title: 'Gallery Heading', type: 'string', initialValue: 'Real Transformations' }),
             defineField({
               name: 'results',
-              title: 'Before/After Images',
+              title: 'Photos',
               type: 'array',
               of: [{
                 type: 'object',
                 fields: [
-                  defineField({ name: 'label', title: 'Label', type: 'string', description: 'e.g. "Laser Hair Reduction"' }),
-                  defineField({ name: 'image', title: 'Before/After Image', type: 'image', options: { hotspot: true } }),
-                  defineField({ name: 'testimonial', title: 'Patient Quote (optional)', type: 'text', rows: 2 }),
+                  defineField({ name: 'label', title: 'Caption', type: 'string' }),
+                  defineField({ name: 'image', title: 'Comparison Photo', type: 'image', options: { hotspot: true } }),
                 ],
-                preview: { select: { title: 'label', media: 'image' } },
               }],
             }),
           ],
-          preview: { prepare: () => ({ title: '📸 Before/After Gallery' }) },
-        },
-        {
-          type: 'object',
-          name: 'processSection',
-          title: 'Treatment Process Steps',
-          fields: [
-            defineField({ name: 'sectionTitle', title: 'Section Title', type: 'string' }),
-            defineField({
-              name: 'steps',
-              title: 'Steps',
-              type: 'array',
-              of: [{
-                type: 'object',
-                fields: [
-                  defineField({ name: 'stepNumber', title: 'Step Number', type: 'number' }),
-                  defineField({ name: 'title', title: 'Step Title', type: 'string' }),
-                  defineField({ name: 'description', title: 'Description', type: 'text', rows: 2 }),
-                ],
-                preview: { select: { title: 'title', subtitle: 'stepNumber' } },
-              }],
-            }),
-          ],
-          preview: { prepare: () => ({ title: '🪜 Process Steps' }) },
+          preview: { prepare: () => ({ title: '📸 Results Gallery' }) },
         },
         {
           type: 'object',
           name: 'ctaSection',
-          title: 'Call-to-Action Banner',
+          title: 'Section: Big Call-to-Action',
           fields: [
-            defineField({ name: 'headline', title: 'CTA Headline', type: 'string' }),
-            defineField({ name: 'subtext', title: 'CTA Subtext', type: 'string' }),
-            defineField({ name: 'buttonText', title: 'Button Text', type: 'string', initialValue: 'Book Free Consultation' }),
+            defineField({ name: 'headline', title: 'Banner Main Text', type: 'string' }),
+            defineField({ name: 'subtext', title: 'Banner Supporting Text', type: 'string' }),
+            defineField({ name: 'buttonText', title: 'Button Label', type: 'string', initialValue: 'Book Free Consultation' }),
           ],
-          preview: { select: { title: 'headline' }, prepare: ({ title }) => ({ title: `📣 CTA: ${title || ''}` }) },
+          preview: { select: { title: 'headline' }, prepare: ({ title }) => ({ title: `📣 Banner: ${title || 'CTA'}` }) },
         },
       ],
     }),
@@ -275,33 +242,29 @@ export const service = defineType({
     // ── SEO ───────────────────────────────────────
     defineField({
       name: 'seo',
-      title: 'SEO & Meta Tags',
+      title: 'Google & SEO Settings',
       type: 'object',
-      description: '✅ Fill this for every page — this is what Google shows in search results',
+      description: '💡 Fill this to help Google find and display this page correctly.',
       group: 'seo',
       fields: [
-        defineField({ name: 'metaTitle', title: 'Page Title (shown in Google)', type: 'string', description: 'Keep under 60 characters', validation: (r) => r.max(60) }),
-        defineField({ name: 'metaDescription', title: 'Meta Description (shown in Google)', type: 'text', rows: 3, description: 'Keep under 155 characters', validation: (r) => r.max(155) }),
-        defineField({ name: 'ogImage', title: 'Social Share Image (OG Image)', type: 'image', description: 'Image shown when page is shared on WhatsApp/Facebook', options: { hotspot: true } }),
-        defineField({ name: 'keywords', title: 'Keywords', type: 'array', of: [{ type: 'string' }], options: { layout: 'tags' } }),
-        defineField({ name: 'noIndex', title: 'Hide from Google (noindex)', type: 'boolean', initialValue: false }),
+        defineField({ name: 'metaTitle', title: 'Google Search Title', type: 'string', description: '💡 What people see as the blue link in Google search results.' }),
+        defineField({ name: 'metaDescription', title: 'Google Search Description', type: 'text', rows: 3, description: '💡 The short summary Google shows under your link.' }),
+        defineField({ name: 'ogImage', title: 'Social Share Image', type: 'image', description: '💡 Image shown when you share this link on WhatsApp/Facebook.' }),
       ],
     }),
 
     // ── AD SCHEMA ─────────────────────────────────
     defineField({
       name: 'adSchema',
-      title: 'Ad Schema Settings',
+      title: 'Google Ads Rich Data',
       type: 'object',
-      description: '✅ Fill this to improve Google Ads quality score and get rich results',
+      description: '💡 Optional: Fill this to improve your ad quality scores.',
       group: 'schema',
       fields: [
-        defineField({ name: 'serviceType', title: 'Service Type for Schema', type: 'string', description: 'e.g. "Laser Hair Removal", "Acne Treatment"' }),
-        defineField({ name: 'priceFrom', title: 'Starting Price (₹)', type: 'number', description: 'Used in Google rich results' }),
-        defineField({ name: 'priceTo', title: 'Max Price (₹)', type: 'number' }),
-        defineField({ name: 'duration', title: 'Treatment Duration', type: 'string', description: 'e.g. "45 minutes"' }),
-        defineField({ name: 'aggregateRating', title: 'Star Rating (1-5)', type: 'number', validation: (r) => r.min(1).max(5) }),
-        defineField({ name: 'reviewCount', title: 'Number of Reviews', type: 'number' }),
+        defineField({ name: 'priceFrom', title: 'Price Starts From (₹)', type: 'number' }),
+        defineField({ name: 'duration', title: 'Timing/Duration', type: 'string', description: 'e.g. "30-45 mins"' }),
+        defineField({ name: 'aggregateRating', title: 'Star Rating (1-5)', type: 'number' }),
+        defineField({ name: 'reviewCount', title: 'Review Count', type: 'number' }),
       ],
     }),
   ],
@@ -309,9 +272,4 @@ export const service = defineType({
   preview: {
     select: { title: 'name', subtitle: 'category', media: 'heroImage' },
   },
-
-  orderings: [
-    { title: 'Display Order', name: 'orderAsc', by: [{ field: 'order', direction: 'asc' }] },
-    { title: 'Category', name: 'categoryAsc', by: [{ field: 'category', direction: 'asc' }] },
-  ],
 })

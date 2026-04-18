@@ -8,37 +8,63 @@ export const siteSettings = defineType({
   title: '⚙️ Clinic Info & Settings',
   type: 'document',
   groups: [
-    { name: 'brand', title: '🎨 Brand & Colors' },
-    { name: 'contact', title: '📞 Contact & Location' },
-    { name: 'navigation', title: '🔗 Header & Footer Navigation' },
-    { name: 'seo', title: '🔍 SEO & Meta' },
-    { name: 'advancedSeo', title: '⚙️ Advanced SEO (Robots & Sitemap)' },
-    { name: 'contactForm', title: '📝 Contact & Lead Form Settings' },
+    { name: 'brand', title: '🎨 Brand & Logo' },
+    { name: 'contact', title: '📞 Phone, Email & Clinics' },
+    { name: 'navigation', title: '🔗 Menu Links' },
+    { name: 'seo', title: '🔍 Google & SEO' },
+    { name: 'advancedSeo', title: '🤖 Robots & Sitemap' },
+    { name: 'contactForm', title: '📝 Lead Form' },
     { name: 'social', title: '📱 Social Media' },
-    { name: 'ads', title: '📊 Ads & Schema' },
+    { name: 'ads', title: '📊 Google Ads & Analytics' },
   ],
   fields: [
     // ── BRAND ─────────────────────────────────────
-    defineField({ name: 'clinicName', title: 'Clinic Name', type: 'string', validation: (r) => r.required(), group: 'brand' }),
-    defineField({ name: 'logo', title: 'Logo', type: 'image', options: { hotspot: true }, group: 'brand' }),
-    defineField({ name: 'tagline', title: 'Tagline / Slogan', type: 'string', group: 'brand' }),
-    defineField({ name: 'favicon', title: 'Favicon (browser tab icon)', type: 'image', group: 'brand' }),
+    defineField({
+      name: 'clinicName',
+      title: 'Clinic Name',
+      type: 'string',
+      description: '💡 Your clinic's official name. Shown in the header and footer.',
+      validation: (r) => r.required(),
+      group: 'brand',
+    }),
+    defineField({
+      name: 'logo',
+      title: 'Logo Image',
+      type: 'image',
+      description: '💡 Upload your clinic logo. Recommended size: 200x60px (PNG with transparent background).',
+      options: { hotspot: true },
+      group: 'brand',
+    }),
+    defineField({
+      name: 'tagline',
+      title: 'Tagline / Slogan',
+      type: 'string',
+      description: '💡 A short catchy phrase, e.g. "Slimming | Skin | Hair | Laser"',
+      group: 'brand',
+    }),
+    defineField({
+      name: 'favicon',
+      title: 'Website Tab Icon (Favicon)',
+      type: 'image',
+      description: '💡 The tiny icon that appears in browser tabs. Upload a square image (32x32 or 64x64).',
+      group: 'brand',
+    }),
 
     // COLORS
     defineField({
       name: 'colors',
-      title: '🎨 Brand Colors',
+      title: '🎨 Website Colors',
       type: 'object',
-      description: 'Change these to update colors across the ENTIRE website',
+      description: '💡 Change these to update colors across the ENTIRE website instantly. Use hex codes like #00acb1.',
       group: 'brand',
       fields: [
-        defineField({ name: 'primary', title: 'Primary Color (Teal)', type: 'string', initialValue: '#00acb1', description: 'Main brand color used for buttons, links, headings' }),
-        defineField({ name: 'accent', title: 'Accent Color (Orange)', type: 'string', initialValue: '#e8a317', description: 'Used for highlighted text and CTAs' }),
-        defineField({ name: 'background', title: 'Page Background', type: 'string', initialValue: '#ffffff' }),
-        defineField({ name: 'surface', title: 'Card/Section Background', type: 'string', initialValue: '#f0f8f8' }),
-        defineField({ name: 'text', title: 'Body Text Color', type: 'string', initialValue: '#1a2b3c' }),
-        defineField({ name: 'ctaButton', title: 'CTA Button Color', type: 'string', initialValue: '#00acb1' }),
-        defineField({ name: 'ctaButtonText', title: 'CTA Button Text Color', type: 'string', initialValue: '#ffffff' }),
+        defineField({ name: 'primary', title: 'Primary Color (Main Teal)', type: 'string', initialValue: '#00acb1', description: '💡 Used for buttons, links, and headings. Default: #00acb1' }),
+        defineField({ name: 'accent', title: 'Accent Color (Orange/Gold)', type: 'string', initialValue: '#e8a317', description: '💡 Used for highlighted text and special buttons. Default: #e8a317' }),
+        defineField({ name: 'background', title: 'Page Background', type: 'string', initialValue: '#ffffff', description: '💡 Main background color. Default: white' }),
+        defineField({ name: 'surface', title: 'Card Background', type: 'string', initialValue: '#f0f8f8', description: '💡 Background of cards and sections. Default: light teal' }),
+        defineField({ name: 'text', title: 'Body Text Color', type: 'string', initialValue: '#1a2b3c', description: '💡 Color of paragraph text' }),
+        defineField({ name: 'ctaButton', title: 'CTA Button Color', type: 'string', initialValue: '#00acb1', description: '💡 "Book Appointment" button color' }),
+        defineField({ name: 'ctaButtonText', title: 'CTA Button Text Color', type: 'string', initialValue: '#ffffff', description: '💡 Text on CTA buttons (usually white)' }),
       ],
     }),
 
@@ -47,37 +73,40 @@ export const siteSettings = defineType({
       name: 'contact',
       title: 'Contact Details',
       type: 'object',
+      description: '💡 These details appear in the header, footer, and contact page.',
       group: 'contact',
       fields: [
-        defineField({ name: 'phone', title: 'Primary Phone Number', type: 'string' }),
-        defineField({ name: 'whatsapp', title: 'WhatsApp Number', type: 'string' }),
-        defineField({ name: 'email', title: 'Email Address', type: 'string' }),
+        defineField({ name: 'phone', title: 'Primary Phone Number', type: 'string', description: '💡 Main clinic number shown in the header. Example: 9700641000' }),
+        defineField({ name: 'whatsapp', title: 'WhatsApp Number', type: 'string', description: '💡 Number for the green WhatsApp button. Include country code, e.g. 919700641000' }),
+        defineField({ name: 'email', title: 'Email Address', type: 'string', description: '💡 Contact email shown on the website' }),
       ],
     }),
     defineField({
       name: 'locations',
-      title: 'Clinic Locations',
+      title: 'Clinic Branches',
       type: 'array',
+      description: '💡 Add all your clinic branches here. Each branch gets its own location page.',
       group: 'contact',
       of: [{
         type: 'object',
         name: 'location',
         fields: [
-          defineField({ name: 'name', title: 'Branch Name', type: 'string', description: 'e.g. "Kukatpally Clinic"' }),
-          defineField({ name: 'address', title: 'Full Address', type: 'text', rows: 3 }),
-          defineField({ name: 'phone', title: 'Branch Phone', type: 'string' }),
-          defineField({ name: 'googleMapsUrl', title: 'Google Maps Link', type: 'url' }),
-          defineField({ name: 'photo', title: 'Clinic Photo', type: 'image', options: { hotspot: true } }),
-          defineField({ name: 'heroImage', title: 'Hero Background Image', type: 'image', options: { hotspot: true } }),
+          defineField({ name: 'name', title: 'Branch Name', type: 'string', description: '💡 Example: "Kukatpally Clinic"' }),
+          defineField({ name: 'address', title: 'Full Address', type: 'text', rows: 3, description: '💡 Complete postal address for this branch' }),
+          defineField({ name: 'phone', title: 'Branch Phone', type: 'string', description: '💡 Phone number specific to this branch' }),
+          defineField({ name: 'googleMapsUrl', title: 'Google Maps Link', type: 'url', description: '💡 Go to Google Maps → Search your clinic → Click "Share" → Copy the link and paste here' }),
+          defineField({ name: 'photo', title: 'Clinic Photo', type: 'image', options: { hotspot: true }, description: '💡 A photo of the clinic exterior or reception' }),
+          defineField({ name: 'heroImage', title: 'Location Page Background', type: 'image', options: { hotspot: true }, description: '💡 Large background image for the location page hero section' }),
           defineField({
             name: 'openingHours',
             title: 'Opening Hours',
             type: 'array',
+            description: '💡 Add each day with its timings',
             of: [{
               type: 'object',
               fields: [
-                defineField({ name: 'day', title: 'Day', type: 'string' }),
-                defineField({ name: 'hours', title: 'Hours', type: 'string' }),
+                defineField({ name: 'day', title: 'Day', type: 'string', description: '💡 Example: "Monday - Saturday"' }),
+                defineField({ name: 'hours', title: 'Hours', type: 'string', description: '💡 Example: "8:00 AM - 10:00 PM"' }),
               ],
               preview: { select: { title: 'day', subtitle: 'hours' } },
             }],
@@ -90,24 +119,25 @@ export const siteSettings = defineType({
     // ── NAVIGATION ────────────────────────────────
     defineField({
       name: 'headerMenu',
-      title: 'Header Navigation Menu',
+      title: 'Top Menu Links',
       type: 'array',
       group: 'navigation',
-      description: 'Add the links that appear at the top of the website',
+      description: '💡 These are the links shown at the top of every page (Home, Skin, Hair, etc.)',
       of: [{
         type: 'object',
         fields: [
-          defineField({ name: 'label', title: 'Link Label (e.g. Home, About Us)', type: 'string' }),
-          defineField({ name: 'url', title: 'URL or Path (e.g. /, /about, /services/laser)', type: 'string' }),
+          defineField({ name: 'label', title: 'Link Name', type: 'string', description: '💡 What visitors see, e.g. "Home", "About Us", "Skin"' }),
+          defineField({ name: 'url', title: 'Link URL', type: 'string', description: '💡 Where it goes, e.g. "/" for Home, "/about-us", "/skin"' }),
           defineField({ 
             name: 'dropdownItems', 
-            title: 'Dropdown Items (Optional)', 
-            type: 'array', 
+            title: 'Dropdown Sub-Links (Optional)', 
+            type: 'array',
+            description: '💡 If this menu item has a dropdown (like Skin → Acne Treatment, Laser, etc.)',
             of: [{
               type: 'object',
               fields: [
-                defineField({ name: 'label', title: 'Label', type: 'string' }),
-                defineField({ name: 'url', title: 'URL', type: 'string' }),
+                defineField({ name: 'label', title: 'Sub-Link Name', type: 'string', description: '💡 Example: "Acne Treatment"' }),
+                defineField({ name: 'url', title: 'Sub-Link URL', type: 'string', description: '💡 Example: "/skin/acne-treatment"' }),
               ]
             }]
           }),
@@ -119,122 +149,126 @@ export const siteSettings = defineType({
       title: 'Footer Quick Links',
       type: 'array',
       group: 'navigation',
-      description: 'Add the links that appear in the footer',
+      description: '💡 Links shown at the bottom of every page (About, Contact, Privacy, etc.)',
       of: [{
         type: 'object',
         fields: [
-          defineField({ name: 'label', title: 'Link Label', type: 'string' }),
-          defineField({ name: 'url', title: 'URL or Path', type: 'string' }),
+          defineField({ name: 'label', title: 'Link Name', type: 'string' }),
+          defineField({ name: 'url', title: 'Link URL', type: 'string' }),
         ]
       }]
     }),
     defineField({
       name: 'footerServices',
-      title: 'Footer Services Links',
+      title: 'Footer Treatment Links',
       type: 'array',
       group: 'navigation',
-      description: 'Add the service links that appear in the footer',
+      description: '💡 Treatment links shown in the footer services column',
       of: [{
         type: 'object',
         fields: [
-          defineField({ name: 'label', title: 'Link Label', type: 'string' }),
-          defineField({ name: 'url', title: 'URL or Path', type: 'string' }),
+          defineField({ name: 'label', title: 'Link Name', type: 'string' }),
+          defineField({ name: 'url', title: 'Link URL', type: 'string' }),
         ]
       }]
     }),
 
-    // ── DEFAULT SEO ───────────────────────────────
+    // ── SEO & META ────────────────────────────────
     defineField({
       name: 'defaultSeo',
-      title: 'Default SEO (used when page has no specific SEO)',
+      title: 'Default Google Settings',
       type: 'object',
       group: 'seo',
+      description: '💡 These are used when a page doesn\'t have its own Google title/description. Think of this as the "fallback" for SEO.',
       fields: [
-        defineField({ name: 'title', title: 'Default Page Title', type: 'string', description: 'Shown in Google if page has no specific title' }),
-        defineField({ name: 'description', title: 'Default Meta Description', type: 'text', rows: 3 }),
-        defineField({ name: 'ogImage', title: 'Default Social Share Image', type: 'image', options: { hotspot: true } }),
+        defineField({ name: 'title', title: 'Default Google Title', type: 'string', description: '💡 What appears in the browser tab and Google search. Example: "NeoFatbury - Best Skin Clinic in Hyderabad"' }),
+        defineField({ name: 'description', title: 'Default Google Description', type: 'text', rows: 3, description: '💡 The text snippet Google shows below your page title. Keep it under 155 characters.' }),
+        defineField({ name: 'ogImage', title: 'Default Social Share Image', type: 'image', options: { hotspot: true }, description: '💡 The image that appears when someone shares your website on WhatsApp, Facebook, or Twitter' }),
       ],
     }),
     defineField({
       name: 'headerAnnouncement',
-      title: 'Top Bar Announcement',
+      title: 'Announcement Bar Message',
       type: 'string',
-      description: 'Message shown in the top header bar (leave empty to hide)',
+      description: '💡 An optional message shown at the very top of the website (e.g. "🎉 Free Consultation This Week!"). Leave empty to hide it.',
       group: 'seo',
     }),
 
-    // ── ADVANCED SEO (Robots/Sitemap) ─────────────
+    // ── ROBOTS & SITEMAP ─────────────────────────
     defineField({
       name: 'robotsConfig',
-      title: 'Robots Configuration',
+      title: 'Search Engine Crawling',
       type: 'object',
       group: 'advancedSeo',
+      description: '💡 Controls whether Google and other search engines can find and show your website.',
       fields: [
-        defineField({ name: 'allowIndexing', title: 'Allow Search Engine Indexing (Default: true)', type: 'boolean', initialValue: true }),
-        defineField({ name: 'customRobotsTxt', title: 'Custom robots.txt Additions', type: 'text', rows: 4, description: 'Optional raw text to append to robots.txt' }),
+        defineField({ name: 'allowIndexing', title: 'Allow Google to show my website in search results?', type: 'boolean', initialValue: true, description: '💡 Turn this ON (default). Only turn OFF if you want to hide the website from Google temporarily.' }),
+        defineField({ name: 'customRobotsTxt', title: 'Custom Rules for Search Engines (Advanced)', type: 'text', rows: 4, description: '⚠️ Only change this if you know what you\'re doing. Leave empty for default settings.' }),
       ],
     }),
     defineField({
       name: 'sitemapConfig',
-      title: 'Sitemap Configuration',
+      title: 'Sitemap Settings',
       type: 'object',
       group: 'advancedSeo',
+      description: '💡 A sitemap helps Google find all pages on your website. Configure what to include/exclude.',
       fields: [
-        defineField({ name: 'excludePaths', title: 'Exclude Paths from Sitemap', type: 'array', of: [{type: 'string'}], description: 'e.g., /thank-you, /hidden-promo' }),
+        defineField({ name: 'excludePaths', title: 'Pages to Hide from Google Sitemap', type: 'array', of: [{type: 'string'}], description: '💡 Add page URLs that should NOT appear in search results. Example: "/thank-you", "/test-page"' }),
       ],
     }),
 
-    // ── CONTACT & LEAD FORM ───────────────────────
+    // ── LEAD FORM ────────────────────────────────
     defineField({
       name: 'leadFormSettings',
-      title: 'Global Lead Form Settings',
+      title: 'Appointment Form Settings',
       type: 'object',
       group: 'contactForm',
-      description: 'Edit the form that appears on all service pages and home page',
+      description: '💡 Customize the consultation booking form that appears on every service page.',
       fields: [
-        defineField({ name: 'formTitle', title: 'Form Title', type: 'string', initialValue: 'Book Your Free Consultation' }),
-        defineField({ name: 'formSubtitle', title: 'Form Subtitle', type: 'string', initialValue: 'Get expert care tailored to your needs.' }),
-        defineField({ name: 'buttonText', title: 'Submit Button Text', type: 'string', initialValue: 'Get Free Consultation' }),
-        defineField({ name: 'enableWhatsApp', title: 'Show WhatsApp floating button?', type: 'boolean', initialValue: true }),
+        defineField({ name: 'formTitle', title: 'Form Heading', type: 'string', initialValue: 'Book Your Free Consultation', description: '💡 The big text at the top of the form' }),
+        defineField({ name: 'formSubtitle', title: 'Form Subheading', type: 'string', initialValue: 'Get expert care tailored to your needs.', description: '💡 Smaller text below the heading' }),
+        defineField({ name: 'buttonText', title: 'Submit Button Text', type: 'string', initialValue: 'Get Free Consultation', description: '💡 What the green button says' }),
+        defineField({ name: 'enableWhatsApp', title: 'Show floating WhatsApp button?', type: 'boolean', initialValue: true, description: '💡 The green WhatsApp circle in the bottom-right corner of every page' }),
       ],
     }),
 
     // ── SOCIAL ────────────────────────────────────
     defineField({
       name: 'socialMedia',
-      title: 'Social Media Links',
+      title: 'Social Media Pages',
       type: 'object',
       group: 'social',
+      description: '💡 Add links to your clinic\'s social media pages. These appear in the footer and schema.',
       fields: [
-        defineField({ name: 'instagram', title: 'Instagram URL', type: 'url' }),
-        defineField({ name: 'facebook', title: 'Facebook URL', type: 'url' }),
-        defineField({ name: 'youtube', title: 'YouTube URL', type: 'url' }),
-        defineField({ name: 'googleBusiness', title: 'Google Business Link', type: 'url' }),
+        defineField({ name: 'instagram', title: 'Instagram Page URL', type: 'url', description: '💡 Example: https://instagram.com/neofatbury' }),
+        defineField({ name: 'facebook', title: 'Facebook Page URL', type: 'url', description: '💡 Example: https://facebook.com/neofatbury' }),
+        defineField({ name: 'youtube', title: 'YouTube Channel URL', type: 'url', description: '💡 Example: https://youtube.com/@neofatbury' }),
+        defineField({ name: 'googleBusiness', title: 'Google Business Profile URL', type: 'url', description: '💡 Your Google Maps business page link' }),
       ],
     }),
 
-    // ── ADS & SCHEMA ──────────────────────────────
+    // ── ADS & ANALYTICS ──────────────────────────
     defineField({
       name: 'schema',
-      title: 'Business Schema for Google Ads',
+      title: 'Google Ads & Analytics Setup',
       type: 'object',
-      description: '✅ Fill this to boost Google Ads quality score',
+      description: '💡 Connect Google Analytics, Ads tracking, and Meta Pixel to track visitors and ad conversions.',
       group: 'ads',
       fields: [
-        defineField({ name: 'googleAnalyticsId', title: 'Google Analytics ID (GA4)', type: 'string', description: 'e.g. G-XXXXXXXXXX' }),
-        defineField({ name: 'googleAdsId', title: 'Google Ads Conversion ID', type: 'string', description: 'e.g. AW-XXXXXXXXXX' }),
-        defineField({ name: 'metaPixelId', title: 'Meta/Facebook Pixel ID', type: 'string' }),
-        defineField({ name: 'googleVerification', title: 'Google Search Console Verification', type: 'string' }),
-        defineField({ name: 'aggregateRating', title: 'Google Business Star Rating', type: 'number', description: 'Your overall clinic rating' }),
-        defineField({ name: 'totalReviews', title: 'Total Number of Reviews', type: 'number' }),
-        defineField({ name: 'priceRange', title: 'Price Range', type: 'string', options: { list: ['₹', '₹₹', '₹₹₹', '₹₹₹₹'] } }),
+        defineField({ name: 'googleAnalyticsId', title: 'Google Analytics ID', type: 'string', description: '💡 Find this in Google Analytics 4 → Admin → Data Streams. Looks like G-XXXXXXXXXX' }),
+        defineField({ name: 'googleAdsId', title: 'Google Ads Conversion ID', type: 'string', description: '💡 Find this in Google Ads → Tools → Conversions. Looks like AW-XXXXXXXXXX' }),
+        defineField({ name: 'metaPixelId', title: 'Facebook/Instagram Pixel ID', type: 'string', description: '💡 Find this in Meta Business Suite → Events Manager → Pixel ID' }),
+        defineField({ name: 'googleVerification', title: 'Google Search Console Code', type: 'string', description: '💡 The verification code from Google Search Console to prove you own this website' }),
+        defineField({ name: 'aggregateRating', title: 'Clinic Star Rating (for Google)', type: 'number', description: '💡 Your overall Google Business rating, e.g. 4.8' }),
+        defineField({ name: 'totalReviews', title: 'Total Google Reviews Count', type: 'number', description: '💡 Total number of Google reviews, e.g. 350' }),
+        defineField({ name: 'priceRange', title: 'Price Range', type: 'string', options: { list: ['₹', '₹₹', '₹₹₹', '₹₹₹₹'] }, description: '💡 Select the price level of your clinic' }),
       ],
     }),
     defineField({
       name: 'zohoWebhookUrl',
-      title: 'Zoho CRM Lead Webhook URL',
+      title: 'Zoho CRM Webhook URL',
       type: 'string',
-      description: 'Auto-populated — do not change unless instructed',
+      description: '⚠️ This is auto-configured. Do NOT change unless instructed by your developer.',
       group: 'ads',
     }),
   ],

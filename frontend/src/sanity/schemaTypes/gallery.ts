@@ -3,21 +3,17 @@ import { defineType, defineField } from 'sanity'
 
 export const gallery = defineType({
   name: 'gallery',
-  title: '📸 Before & After Gallery',
+  title: '📸 Before & After Hub',
   type: 'document',
   fields: [
-    defineField({ name: 'treatment', title: 'Treatment Name', type: 'string', description: 'e.g. "Acne Scar Treatment"', validation: (r) => r.required() }),
-    defineField({ name: 'relatedService', title: 'Related Service', type: 'reference', to: [{ type: 'service' }] }),
-    defineField({ name: 'beforeImage', title: 'Before Image', type: 'image', options: { hotspot: true }, validation: (r) => r.required() }),
-    defineField({ name: 'afterImage', title: 'After Image', type: 'image', options: { hotspot: true } }),
-    defineField({ name: 'combinedImage', title: 'Combined Before/After Image', type: 'image', options: { hotspot: true }, description: 'If you have one image showing both before and after, upload here' }),
-    defineField({ name: 'patientQuote', title: 'Patient Testimonial / Quote', type: 'text', rows: 2 }),
-    defineField({ name: 'description', title: 'Short Description', type: 'text', rows: 2 }),
+    defineField({ name: 'treatment', title: 'Treatment Shown', type: 'string', description: '💡 e.g. "Acne Transformation"', validation: (r) => r.required() }),
+    defineField({ name: 'relatedService', title: 'Link to Service Page', type: 'reference', to: [{ type: 'service' }] }),
+    defineField({ name: 'beforeImage', title: 'Start (Before Image)', type: 'image', options: { hotspot: true } }),
+    defineField({ name: 'afterImage', title: 'Result (After Image)', type: 'image', options: { hotspot: true } }),
+    defineField({ name: 'combinedImage', title: 'Side-by-Side Photo (Optional)', type: 'image', options: { hotspot: true }, description: '💡 Only upload if you already have a single photo showing both Before and After.' }),
+    defineField({ name: 'patientQuote', title: 'Small Testimonial', type: 'text', rows: 2, description: '💡 A short quote from this specific patient (optional).' }),
     defineField({ name: 'isFeatured', title: 'Show on Homepage?', type: 'boolean', initialValue: false }),
-    defineField({ name: 'order', title: 'Display Order (lower = first)', type: 'number' }),
+    defineField({ name: 'order', title: 'Sequence Order', type: 'number' }),
   ],
-  preview: {
-    select: { title: 'treatment', media: 'afterImage' },
-    prepare({ title, media }) { return { title, subtitle: 'Before & After', media } },
-  },
+  preview: { select: { title: 'treatment', media: 'afterImage' } },
 })

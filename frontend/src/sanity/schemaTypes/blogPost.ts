@@ -1,5 +1,4 @@
 // src/sanity/schemaTypes/blogPost.ts
-// FULL BLOG POST SCHEMA — Rich content, SEO, categories, author
 import { defineType, defineField } from 'sanity'
 
 export const blogPost = defineType({
@@ -7,8 +6,8 @@ export const blogPost = defineType({
   title: '📝 Blog & Articles',
   type: 'document',
   groups: [
-    { name: 'content', title: '📝 Content' },
-    { name: 'seo', title: '🔍 SEO & Meta' },
+    { name: 'content', title: '📝 Article Details' },
+    { name: 'seo', title: '🔍 Search Engine Info' },
     { name: 'settings', title: '⚙️ Settings' },
   ],
   fields: [
@@ -16,45 +15,46 @@ export const blogPost = defineType({
       name: 'title',
       title: 'Article Title',
       type: 'string',
+      description: '💡 The main headline of your blog post.',
       validation: (r) => r.required(),
       group: 'content',
     }),
     defineField({
       name: 'slug',
-      title: 'URL Slug',
+      title: 'Web Address (URL)',
       type: 'slug',
       options: { source: 'title', maxLength: 96 },
       validation: (r) => r.required(),
-      description: 'Auto-generated from title. This is the page URL.',
+      description: '💡 Click "Generate" to create the link for this article.',
       group: 'settings',
     }),
     defineField({
       name: 'publishedAt',
-      title: 'Publish Date',
+      title: 'Display Date',
       type: 'datetime',
+      description: '💡 The date shown on the post. You can set this to the past or present.',
       initialValue: () => new Date().toISOString(),
       group: 'settings',
     }),
     defineField({
       name: 'isPublished',
-      title: 'Published (visible on website)',
+      title: 'Ready for Public?',
       type: 'boolean',
       initialValue: false,
-      description: 'Toggle this ON to make the blog post visible to visitors',
+      description: '💡 Turn this ON only when you are ready for people to see this on the website.',
       group: 'settings',
     }),
     defineField({
       name: 'category',
-      title: 'Category',
+      title: 'Blog Category',
       type: 'string',
       options: {
         list: [
-          { title: 'Skin Care', value: 'skin-care' },
-          { title: 'Hair Care', value: 'hair-care' },
-          { title: 'Weight Loss', value: 'weight-loss' },
-          { title: 'Clinical Tips', value: 'clinical-tips' },
-          { title: 'Patient Stories', value: 'patient-stories' },
-          { title: 'News & Updates', value: 'news' },
+          { title: '✨ Skin Care Tips', value: 'skin-care' },
+          { title: '💇 Hair Care Advice', value: 'hair-care' },
+          { title: '⚖️ Weight Loss Secrets', value: 'weight-loss' },
+          { title: '🏥 Clinic Updates', value: 'news' },
+          { title: '📝 Expert Opinions', value: 'clinical-tips' },
         ],
         layout: 'radio',
       },
@@ -62,118 +62,65 @@ export const blogPost = defineType({
     }),
     defineField({
       name: 'author',
-      title: 'Author',
+      title: 'Article Author',
       type: 'reference',
       to: [{ type: 'teamMember' }],
-      description: 'Select the doctor or team member who wrote this',
-      group: 'settings',
-    }),
-    defineField({
-      name: 'relatedService',
-      title: 'Related Treatment',
-      type: 'reference',
-      to: [{ type: 'service' }],
-      description: 'Link to a service page (optional)',
+      description: '💡 Which doctor or team member should be credited for this post?',
       group: 'settings',
     }),
     defineField({
       name: 'coverImage',
-      title: 'Cover Image',
+      title: 'Main Article Photo',
       type: 'image',
+      description: '💡 The image shown at the top of the blog and in the blog list.',
       options: { hotspot: true },
       group: 'content',
     }),
     defineField({
       name: 'excerpt',
-      title: 'Short Summary (shown on blog list)',
+      title: 'Short Summary',
       type: 'text',
-      rows: 3,
-      description: 'Keep under 200 characters',
+      rows: 2,
+      description: '💡 A brief preview sentence (about 15-20 words) to grab attention.',
       validation: (r) => r.max(200),
       group: 'content',
     }),
     defineField({
       name: 'body',
-      title: 'Article Content',
-      description: 'Use this like a Word document — add text, images, bullet lists, headings',
+      title: 'Full Article Content',
+      description: '💡 Type your article here! You can use bold, lists, and insert images like a Word document.',
       type: 'array',
       group: 'content',
       of: [
         {
           type: 'block',
-          styles: [
-            { title: 'Normal', value: 'normal' },
-            { title: 'Heading 1', value: 'h1' },
-            { title: 'Heading 2', value: 'h2' },
-            { title: 'Heading 3', value: 'h3' },
-            { title: 'Quote', value: 'blockquote' },
-          ],
           marks: {
             decorators: [
               { title: 'Bold', value: 'strong' },
               { title: 'Italic', value: 'em' },
-              { title: 'Underline', value: 'underline' },
             ],
           },
         },
         {
           type: 'image',
           options: { hotspot: true },
-          fields: [
-            defineField({ name: 'caption', title: 'Image Caption', type: 'string' }),
-            defineField({ name: 'alt', title: 'Alt Text (for SEO)', type: 'string' }),
-          ],
-        },
-        {
-          type: 'object',
-          name: 'callout',
-          title: 'Callout Box',
-          fields: [
-            defineField({ name: 'type', title: 'Type', type: 'string', options: { list: ['info', 'tip', 'warning', 'success'], layout: 'radio' } }),
-            defineField({ name: 'text', title: 'Callout Text', type: 'text', rows: 2 }),
-          ],
-          preview: { select: { title: 'text', subtitle: 'type' } },
+          fields: [defineField({ name: 'caption', title: 'Image Caption', type: 'string' })]
         },
       ],
     }),
     defineField({
-      name: 'tags',
-      title: 'Tags',
-      type: 'array',
-      of: [{ type: 'string' }],
-      options: { layout: 'tags' },
-      description: 'Press Enter after each tag',
-      group: 'settings',
-    }),
-
-    // ── SEO ───────────────────────────────────────
-    defineField({
       name: 'seo',
-      title: 'SEO & Meta Tags',
+      title: 'How this looks in Google',
       type: 'object',
       group: 'seo',
       fields: [
-        defineField({ name: 'metaTitle', title: 'Google Title', type: 'string', description: 'Keep under 60 chars (leave empty to use article title)', validation: (r) => r.max(60) }),
-        defineField({ name: 'metaDescription', title: 'Google Description', type: 'text', rows: 2, description: 'Keep under 155 chars', validation: (r) => r.max(155) }),
-        defineField({ name: 'ogImage', title: 'Social Share Image', type: 'image', description: 'Shown on WhatsApp/Facebook (leave empty to use cover image)', options: { hotspot: true } }),
-        defineField({ name: 'canonicalUrl', title: 'Canonical URL', type: 'url', description: 'Only fill if this content exists elsewhere' }),
+        defineField({ name: 'metaTitle', title: 'SEO Title', type: 'string' }),
+        defineField({ name: 'metaDescription', title: 'SEO Description', type: 'text', rows: 2 }),
       ],
     }),
   ],
 
   preview: {
-    select: { title: 'title', subtitle: 'publishedAt', media: 'coverImage' },
-    prepare({ title, subtitle, media }) {
-      return {
-        title,
-        subtitle: subtitle ? new Date(subtitle).toLocaleDateString('en-IN') : 'Draft',
-        media,
-      }
-    },
+    select: { title: 'title', subtitle: 'category', media: 'coverImage' },
   },
-
-  orderings: [
-    { title: 'Newest First', name: 'publishedAtDesc', by: [{ field: 'publishedAt', direction: 'desc' }] },
-    { title: 'Category', name: 'categoryAsc', by: [{ field: 'category', direction: 'asc' }] },
-  ],
 })
