@@ -5,7 +5,7 @@ import LeadForm from '@/components/LeadForm';
 import HomeClient from '@/components/HomeClient';
 import { client } from '@/sanity/lib/client';
 
-export const revalidate = 60; // Refresh data every minute
+export const revalidate = 60;
 
 async function getHomeData() {
   const query = `{
@@ -46,8 +46,9 @@ export default async function Home() {
           <div className="home-hero-overlay" />
         </div>
         
-        <div className="container" style={{ position: 'relative', zIndex: 10, display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '3rem' }}>
-          <div className="home-hero-text" style={{ flex: '1 1 500px' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 10, display: 'grid', gridTemplateColumns: '0.8fr 1.2fr 1fr', alignItems: 'center', width: '100%', maxWidth: '1450px', gap: '2rem' }}>
+          <div className="hero-face-gap" />
+          <div className="home-hero-text">
             <h1 className="home-hero-title">
               <span style={{ color: '#00acb1' }}>{hero?.heroTitle || 'Expert Skin, Hair & Slimming'}</span> <br/>
               <span style={{ color: '#F39C12' }}>{hero?.heroSubtitle || 'Clinic in Hyderabad'}</span>
@@ -55,18 +56,14 @@ export default async function Home() {
             <p className="home-hero-sub">
               {hero?.heroDescription || 'Transform your confidence with US-FDA approved treatments and expert clinical care.'}
             </p>
-            
             <div className="home-hero-trust-row">
               <div className="home-trust-item"><span>✅</span> 10+ Years Expert</div>
               <div className="home-trust-item"><span>✅</span> US-FDA Tech</div>
               <div className="home-trust-item"><span>✅</span> 15k+ Success</div>
             </div>
           </div>
-          
-          <div style={{ flex: '0 0 auto', width: '100%', maxWidth: '450px' }}>
-            <div className="bg-white p-6 rounded-3xl shadow-2xl border border-gray-100">
-              <LeadForm />
-            </div>
+          <div className="hero-form-wrap">
+            <LeadForm />
           </div>
         </div>
       </section>
@@ -76,35 +73,90 @@ export default async function Home() {
         <div className="container">
           <h2 className="section-title text-center">Our <span className="text-accent">Treatments</span></h2>
           <p className="section-subtitle text-center">Discover world-class dermatology and aesthetic care tailored to your goals.</p>
-          
           <HomeClient treatments={treatments} results={[]} />
-
-          <div style={{ textAlign: 'center', marginTop: '3rem', padding: '0 1rem' }}>
-            <Link href="/results" className="btn btn-cyan" style={{ width: '100%', maxWidth: '500px', display: 'inline-block', padding: '1.2rem 1rem', borderRadius: '50px', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: '800', backgroundColor: '#00acb1', fontSize: 'clamp(0.8rem, 4vw, 1.1rem)' }}>View our full results gallery</Link>
+          <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+            <Link href="/results" className="btn btn-cyan" style={{ width: '100%', maxWidth: '500px', display: 'inline-block', padding: '1.2rem 1rem', borderRadius: '50px', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: '800', backgroundColor: '#00acb1' }}>View our full results gallery</Link>
           </div>
         </div>
       </section>
 
-      {/* SECTION 6: VISIT OUR CLINICS (DYNAMIC FROM SETTINGS) */}
+      {/* SECTION 3: WHY NEOFATBURY STANDS OUT (RESTORED) */}
+      <section className="section" style={{ backgroundColor: '#fcfcfc', borderTop: '1px solid #f0f0f0', borderBottom: '1px solid #f0f0f0' }}>
+        <div className="container text-center">
+          <p style={{ color: '#00acb1', fontWeight: '700', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.75rem' }}>Why NeoFatbury Stands Out</p>
+          <h2 className="section-title" style={{ marginBottom: '1rem' }}>Clinical Excellence, <span className="text-accent">Personal Care</span></h2>
+          <div className="grid grid-4 mobile-grid-2" style={{ marginTop: '3.5rem' }}>
+            {[
+              { title: 'Dermatologist-Led', desc: 'Every treatment is supervised by qualified medical professionals.', icon: '👩‍⚕️' },
+              { title: 'Safety First', desc: 'We exclusively use ISO-certified processes and internationally recognized equipment.', icon: '🛡️' },
+              { title: 'No Hidden Costs', desc: 'Transparent pricing with detailed pre-treatment counseling.', icon: '💳' },
+              { title: 'Convenient Locations', desc: 'Premium clinics located in the heart of Kukatpally and Himayatnagar.', icon: '📍' },
+            ].map((p, i) => (
+              <div key={i} className="card" style={{ padding: '2.5rem 1.5rem', backgroundColor: 'white', borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)', border: '1px solid #f1f1f1' }}>
+                <div style={{ fontSize: '2.5rem', marginBottom: '1.25rem' }}>{p.icon}</div>
+                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: '#00acb1', fontWeight: '700' }}>{p.title}</h3>
+                <p style={{ fontSize: '0.92rem', color: '#00acb1', opacity: 0.85, lineHeight: 1.6 }}>{p.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: TRANSFORMATIONS (RESTORED) */}
+      <section className="section" style={{ backgroundColor: '#fff', padding: '6rem 0' }}>
+        <div className="container text-center">
+          <p style={{ color: '#00acb1', fontWeight: '700', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.75rem' }}>Real Results</p>
+          <h2 className="section-title">Clinical <span className="text-accent">Transformations</span></h2>
+          <p className="section-subtitle" style={{ color: '#00acb1', fontWeight: '500', maxWidth: '700px', margin: '0 auto' }}>Witness the power of US-FDA approved technology and expert dermatological care.</p>
+          <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+            <Link href="/results" className="btn btn-cta" style={{ padding: '1rem 2.5rem', backgroundColor: '#00acb1', color: 'white', borderRadius: '50px', fontWeight: '700' }}>View Our Full Results Gallery</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 6: VISIT OUR CLINICS (RESTORED MAPS) */}
       <section className="section bg-surface" style={{ padding: '6rem 0', borderTop: '1px solid #f0f0f0' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
             <p style={{ color: '#00acb1', fontWeight: '700', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.75rem' }}>Find Us</p>
             <h2 className="section-title">Visit Our Clinics in <span className="text-accent">Hyderabad</span></h2>
+            <p style={{ color: '#00acb1', fontWeight: '500', marginTop: '1rem' }}>Two premium clinics — conveniently located to serve you better.</p>
           </div>
           
           <div className="grid grid-2" style={{ gap: '3rem' }}>
-            {settings?.branches?.map((branch: any, idx: number) => (
-              <div key={idx} className="card" style={{ padding: 0, overflow: 'hidden', borderRadius: '24px', backgroundColor: 'white', border: '1px solid #f0f0f0', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
-                <div style={{ padding: '2.5rem' }}>
-                  <h3 style={{ fontSize: '1.4rem', color: '#00acb1', fontWeight: '800', marginBottom: '1rem' }}>{branch.name}</h3>
-                  <p style={{ color: '#00898d', lineHeight: 1.6, marginBottom: '1.5rem', fontSize: '0.95rem', minHeight: '3em' }}>{branch.address}</p>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#00acb1', fontWeight: '700' }}>
-                    <span>📞 {branch.phone}</span>
-                  </div>
+            {/* Kukatpally Branch */}
+            <div className="card" style={{ padding: 0, overflow: 'hidden', borderRadius: '24px', backgroundColor: 'white', border: '1px solid #f0f0f0', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
+              <div style={{ padding: '2.5rem' }}>
+                <h3 style={{ fontSize: '1.4rem', color: '#00acb1', fontWeight: '800', marginBottom: '1rem' }}>{settings?.branches?.[0]?.name || 'Kukatpally Branch'}</h3>
+                <p style={{ color: '#00898d', lineHeight: 1.6, marginBottom: '1.5rem', fontSize: '0.95rem' }}>
+                  {settings?.branches?.[0]?.address || '4th Floor, Ganesh Plaza, JNTU - Hitech City Rd, Kukatpally, Hyderabad.'}
+                </p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#00acb1', fontWeight: '700' }}>
+                  <span>📞 Call: </span>
+                  <a href={`tel:${settings?.branches?.[0]?.phone || '9700641000'}`} style={{ color: '#00acb1', textDecoration: 'none' }}>{settings?.branches?.[0]?.phone || '9700641000'}</a>
                 </div>
               </div>
-            ))}
+              <div style={{ width: '100%', height: '350px' }}>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.4200823195633!2d78.39101459999999!3d17.4874492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91ddb45a8f99%3A0x7f1a789fc8a90d2!2sNeo%20Fatbury%20Kukatpally!5e0!3m2!1sen!2sin!4v1775875687552!5m2!1sen!2sin" width="100%" height="100%" style={{ border: 0 }} allowFullScreen={true} loading="lazy"></iframe>
+              </div>
+            </div>
+
+            {/* Himayatnagar Branch */}
+            <div className="card" style={{ padding: 0, overflow: 'hidden', borderRadius: '24px', backgroundColor: 'white', border: '1px solid #f0f0f0', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
+              <div style={{ padding: '2.5rem' }}>
+                <h3 style={{ fontSize: '1.4rem', color: '#00acb1', fontWeight: '800', marginBottom: '1rem' }}>{settings?.branches?.[1]?.name || 'Himayatnagar Branch'}</h3>
+                <p style={{ color: '#00898d', lineHeight: 1.6, marginBottom: '1.5rem', fontSize: '0.95rem' }}>
+                  {settings?.branches?.[1]?.address || '4th Floor, Velma Bhavan, Beside Pantaloons, Himayatnagar, Hyderabad.'}
+                </p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#00acb1', fontWeight: '700' }}>
+                  <span>📞 Call: </span>
+                  <a href={`tel:${settings?.branches?.[1]?.phone || '9700641000'}`} style={{ color: '#00acb1', textDecoration: 'none' }}>{settings?.branches?.[1]?.phone || '9700641000'}</a>
+                </div>
+              </div>
+              <div style={{ width: '100%', height: '350px' }}>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.411634567232!2d78.4835695!3d17.4040055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99da979f4281%3A0x4642220e895ec060!2sNeo%20Fatbury%20Hair%20Skin%20Slimming%20Clinic%20Himayatnagar!5e0!3m2!1sen!2sin!4v1775875842961!5m2!1sen!2sin" width="100%" height="100%" style={{ border: 0 }} allowFullScreen={true} loading="lazy"></iframe>
+              </div>
+            </div>
           </div>
         </div>
       </section>
