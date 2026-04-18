@@ -1,7 +1,6 @@
 // src/sanity/structure.ts
 // Controls what the content editor sees in the Sanity Studio sidebar
-import type { StructureResolver, DefaultDocumentNodeResolver } from 'sanity/structure'
-import { seoPane } from 'sanity-plugin-seo-pane'
+import type { StructureResolver } from 'sanity/structure'
 
 export const structure: StructureResolver = (S) =>
   S.list()
@@ -97,7 +96,7 @@ export const structure: StructureResolver = (S) =>
 
       // ── MEDIA & PROOF ────────────────────────────
       S.listItem()
-        .title('📸 Before & After Gallery')
+        .title('📸 Before & After Hub')
         .schemaType('gallery')
         .child(S.documentTypeList('gallery').title('Gallery')),
 
@@ -114,22 +113,3 @@ export const structure: StructureResolver = (S) =>
         .schemaType('teamMember')
         .child(S.documentTypeList('teamMember').title('Team Members')),
     ])
-
-// ── SEO PREVIEW PANE ─────────────────────────────
-// This adds the "SEO" tab next to "Edit" for Pages/Services
-export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, { schemaType }) => {
-  if (['service', 'blogPost', 'homepage'].includes(schemaType)) {
-    return S.document().views([
-      S.view.form(),
-      S.view
-        .component(seoPane)
-        .options({
-          // Friendly SEO instructions for developers/users
-          keywords: `seo.keywords`,
-          url: (doc: any) => `https://neofatbury.com/${doc?.slug?.current || ''}`,
-        })
-        .title('🔍 SEO Preview'),
-    ])
-  }
-  return S.document().views([S.view.form()])
-}
