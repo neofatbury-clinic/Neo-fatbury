@@ -12,7 +12,13 @@ async function getHomeData() {
     "settings": *[_type == "siteSettings"][0],
     "hero": *[_type == "homepage"][0],
     "services": *[_type == "homepage"][0].featuredTreatments[]-> {
-      title,
+      name,
+      "slug": slug.current,
+      category,
+      "image": heroImage.asset->url
+    },
+    "allServices": *[_type == "service"] | order(order asc) {
+      name,
       "slug": slug.current,
       category,
       "image": heroImage.asset->url
@@ -32,14 +38,38 @@ const RESULTS = [
   { label: 'CoolSculpting', img: '/images/neofatbury-slimming-result.png' },
 ];
 
+// Hardcoded fallback treatments — always shown if CMS data is empty
+const FALLBACK_TREATMENTS: Record<string, { title: string; slug: string; image: string }[]> = {
+  skin: [
+    { title: 'Laser Hair Reduction', slug: 'laser-hair-reduction', image: '/images/laser-machine-banner.webp' },
+    { title: 'Acne Scar Treatment', slug: 'acne-scar-treatment', image: '/images/neofatbury-acne-scar-procedure.png' },
+    { title: 'Skin Brightening', slug: 'skin-brightening', image: '/images/derma-procedure-fixed.webp' },
+    { title: 'Acne Treatment', slug: 'acne-treatment', image: '/images/neofatbury-cheek-banner.webp' },
+    { title: 'Scar Treatment', slug: 'scar-treatment', image: '/images/neofatbury-clinical-standard.png' },
+  ],
+  hair: [
+    { title: 'Hair Loss Treatment', slug: 'hair-loss-treatment', image: '/images/neofatbury-hair2-banner.webp' },
+    { title: 'Anti-Dandruff Treatment', slug: 'anti-dandruff-treatment', image: '/images/neofatbury-dandruff-clinical.png' },
+    { title: 'Hair Transplantation', slug: 'hair-transplantation', image: '/images/neofatbury-hair-standard.png' },
+  ],
+  slimming: [
+    { title: 'CoolSculpting', slug: 'coolsculpting', image: '/images/neofatbury-cooling-tech.png' },
+    { title: 'Weight Loss', slug: 'weight-loss', image: '/images/clinic-reception.webp' },
+    { title: 'Inch Loss', slug: 'inch-loss', image: '/images/neofatbury-slimming-standard.png' },
+  ],
+};
+
 export default async function Home() {
   const data = await getHomeData();
-  const { settings, hero, services } = data;
+  const { settings, hero, services, allServices } = data;
+
+  // Use featuredTreatments first, fall back to allServices, then hardcoded data
+  const serviceList = (services && services.length > 0) ? services : (allServices && allServices.length > 0) ? allServices : null;
 
   const treatments = {
-    skin: services?.filter((s: any) => s.category === 'skin') || [],
-    hair: services?.filter((s: any) => s.category === 'hair') || [],
-    slimming: services?.filter((s: any) => s.category === 'slimming') || []
+    skin: serviceList?.filter((s: any) => s.category === 'skin')?.map((s: any) => ({ title: s.name, slug: s.slug, image: s.image })) || FALLBACK_TREATMENTS.skin,
+    hair: serviceList?.filter((s: any) => s.category === 'hair')?.map((s: any) => ({ title: s.name, slug: s.slug, image: s.image })) || FALLBACK_TREATMENTS.hair,
+    slimming: serviceList?.filter((s: any) => s.category === 'slimming')?.map((s: any) => ({ title: s.name, slug: s.slug, image: s.image })) || FALLBACK_TREATMENTS.slimming,
   };
 
   return (
@@ -68,13 +98,19 @@ export default async function Home() {
               {hero?.heroSubtext || 'Transform your confidence with US-FDA approved treatments and expert clinical care.'}
             </p>
             <div className="home-hero-trust-row">
-              {(hero?.heroStats || [
-                { number: '10+', label: 'Years Expert' },
-                { number: 'US-FDA', label: 'Tech' },
-                { number: '15k+', label: 'Success' }
-              ]).map((stat: any, i: number) => (
-                <div key={i} className="home-trust-item"><span>✅</span> {stat.number} {stat.label}</div>
-              ))}
+              {hero?.heroStats && hero.heroStats.length > 0 ? (
+                hero.heroStats.map((stat: any, i: number) => (
+                  <div key={i} className="home-trust-item"><span>✅</span> {stat.number} {stat.label}</div>
+                ))
+              ) : (
+                [
+                  { number: '10+', label: 'Years Expert' },
+                  { number: 'US-FDA', label: 'Tech' },
+                  { number: '15k+', label: 'Success' }
+                ].map((stat: any, i: number) => (
+                  <div key={i} className="home-trust-item"><span>✅</span> {stat.number} {stat.label}</div>
+                ))
+              )}
             </div>
           </div>
           <div className="hero-form-wrap">
@@ -101,18 +137,28 @@ export default async function Home() {
           <p style={{ color: '#00acb1', fontWeight: '700', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.75rem' }}>Why NeoFatbury Stands Out</p>
           <h2 className="section-title" style={{ marginBottom: '1rem' }}>{hero?.whyUsTitle || 'Clinical Excellence, Personal Care'}</h2>
           <div className="grid grid-4 mobile-grid-2" style={{ marginTop: '3.5rem' }}>
-            {(hero?.whyUsPoints || [
-              { title: 'Dermatologist-Led', description: 'Every treatment is supervised by qualified medical professionals.', icon: '👩‍⚕️' },
-              { title: 'Safety First', description: 'We exclusively use ISO-certified processes and internationally recognized equipment.', icon: '🛡️' },
-              { title: 'No Hidden Costs', description: 'Transparent pricing with detailed pre-treatment counseling.', icon: '💳' },
-              { title: 'Convenient Locations', description: 'Premium clinics located in the heart of Kukatpally and Himayatnagar.', icon: '📍' },
-            ]).map((p: any, i: number) => (
-              <div key={i} className="card" style={{ padding: '2.5rem 1.5rem', backgroundColor: 'white', borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)', border: '1px solid #f1f1f1' }}>
-                <div style={{ fontSize: '2.5rem', marginBottom: '1.25rem' }}>{p.icon}</div>
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: '#00acb1', fontWeight: '700' }}>{p.title}</h3>
-                <p style={{ fontSize: '0.92rem', color: '#00acb1', opacity: 0.85, lineHeight: 1.6 }}>{p.description}</p>
-              </div>
-            ))}
+            {hero?.whyUsPoints && hero.whyUsPoints.length > 0 ? (
+              hero.whyUsPoints.map((p: any, i: number) => (
+                <div key={i} className="card" style={{ padding: '2.5rem 1.5rem', backgroundColor: 'white', borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)', border: '1px solid #f1f1f1' }}>
+                  <div style={{ fontSize: '2.5rem', marginBottom: '1.25rem' }}>{p.icon}</div>
+                  <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: '#00acb1', fontWeight: '700' }}>{p.title}</h3>
+                  <p style={{ fontSize: '0.92rem', color: '#00acb1', opacity: 0.85, lineHeight: 1.6 }}>{p.description}</p>
+                </div>
+              ))
+            ) : (
+              [
+                { title: 'Dermatologist-Led', description: 'Every treatment is supervised by qualified medical professionals.', icon: '👩‍⚕️' },
+                { title: 'Safety First', description: 'We exclusively use ISO-certified processes and internationally recognized equipment.', icon: '🛡️' },
+                { title: 'No Hidden Costs', description: 'Transparent pricing with detailed pre-treatment counseling.', icon: '💳' },
+                { title: 'Convenient Locations', description: 'Premium clinics located in the heart of Kukatpally and Himayatnagar.', icon: '📍' },
+              ].map((p: any, i: number) => (
+                <div key={i} className="card" style={{ padding: '2.5rem 1.5rem', backgroundColor: 'white', borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)', border: '1px solid #f1f1f1' }}>
+                  <div style={{ fontSize: '2.5rem', marginBottom: '1.25rem' }}>{p.icon}</div>
+                  <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: '#00acb1', fontWeight: '700' }}>{p.title}</h3>
+                  <p style={{ fontSize: '0.92rem', color: '#00acb1', opacity: 0.85, lineHeight: 1.6 }}>{p.description}</p>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </section>

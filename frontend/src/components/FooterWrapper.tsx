@@ -4,10 +4,22 @@ import Footer from './Footer';
 
 export default async function FooterWrapper() {
   const query = `*[_type == "siteSettings"][0] {
+    "logo": logo.asset->url,
     branches,
-    "logo": logo.asset->url
+    footerDisclaimer,
+    footerCopyright,
+    contact {
+      phone,
+      email,
+      whatsapp
+    },
+    socialMedia {
+      instagram,
+      facebook,
+      youtube
+    }
   }`;
-  const settings = await client.fetch(query);
+  const settings = await client.fetch(query, {}, { next: { revalidate: 60 } });
   
   return <Footer settings={settings} />;
 }

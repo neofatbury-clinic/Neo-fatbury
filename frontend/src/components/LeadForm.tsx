@@ -64,9 +64,11 @@ import { client } from "@/sanity/lib/client";
 
 export default function LeadForm({ 
   title: initialTitle, 
+  subtitle: initialSubtitle,
   buttonText: initialButtonText 
 }: { 
   title?: string;
+  subtitle?: string;
   buttonText?: string;
 }) {
   const router = useRouter();
@@ -90,7 +92,7 @@ export default function LeadForm({
 
   // Use dynamic settings or fallbacks
   const title = initialTitle || settings?.formTitle || "Book Your Free Consultation";
-  const subtitle = settings?.formSubtitle || "Get expert care tailored to your needs.";
+  const subtitle = initialSubtitle || settings?.formSubtitle || "Get expert care tailored to your needs.";
   const buttonText = initialButtonText || settings?.buttonText || "Get Free Consultation";
   const clinics = settings?.clinics || [
     { id: "kukatpally", label: "Kukatpally Clinic", color: "#00acb1" },

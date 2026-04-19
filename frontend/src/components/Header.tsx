@@ -55,13 +55,15 @@ export default function Header({ settings }: { settings?: any }) {
 
           {/* Dynamic Nav Links */}
           <nav style={{ display: 'flex', alignItems: 'center', gap: 'clamp(0.5rem, 1vw, 1.5rem)', flexWrap: 'nowrap' }} className="nav-desktop">
-            {settings?.headerMenu?.map((item: any, idx: number) => (
-              item.dropdownItems ? (
-                <NavDropdown key={idx} label={item.label} items={item.dropdownItems.map((d: any) => ({ label: d.label, href: d.url }))} />
-              ) : (
-                <Link key={idx} href={item.url || '/'} style={navLinkStyle}>{item.label}</Link>
-              )
-            )) || (
+            {settings?.headerMenu && settings.headerMenu.length > 0 ? (
+              settings.headerMenu.map((item: any, idx: number) => (
+                item.dropdownItems && item.dropdownItems.length > 0 ? (
+                  <NavDropdown key={idx} label={item.label} items={item.dropdownItems.map((d: any) => ({ label: d.label, href: d.url }))} />
+                ) : (
+                  <Link key={idx} href={item.url || '/'} style={navLinkStyle}>{item.label}</Link>
+                )
+              ))
+            ) : (
               <>
                 <Link href="/" style={navLinkStyle}>Home</Link>
                 <Link href="/skin" style={navLinkStyle}>Skin</Link>
@@ -93,13 +95,15 @@ export default function Header({ settings }: { settings?: any }) {
       {mobileOpen && (
         <div style={mobileMenuStyle} className="animate-fade-in">
           <div className="container" style={{ padding: '1.5rem 1rem 4rem' }}>
-             {settings?.headerMenu?.map((item: any, idx: number) => (
-               item.dropdownItems ? (
-                 <MobileAccordion key={idx} label={item.label} items={item.dropdownItems.map((d: any) => ({ label: d.label, href: d.url }))} onClose={() => setMobileOpen(false)} />
-               ) : (
-                 <Link key={idx} href={item.url || '/'} onClick={() => setMobileOpen(false)} style={mobileMainLink}>{item.label}</Link>
-               )
-             )) || (
+            {settings?.headerMenu && settings.headerMenu.length > 0 ? (
+               settings.headerMenu.map((item: any, idx: number) => (
+                 item.dropdownItems && item.dropdownItems.length > 0 ? (
+                   <MobileAccordion key={idx} label={item.label} items={item.dropdownItems.map((d: any) => ({ label: d.label, href: d.url }))} onClose={() => setMobileOpen(false)} />
+                 ) : (
+                   <Link key={idx} href={item.url || '/'} onClick={() => setMobileOpen(false)} style={mobileMainLink}>{item.label}</Link>
+                 )
+               ))
+             ) : (
                <>
                 <Link href="/" onClick={() => setMobileOpen(false)} style={mobileMainLink}>Home</Link>
                 <Link href="/skin" onClick={() => setMobileOpen(false)} style={mobileMainLink}>Skin Treatments</Link>

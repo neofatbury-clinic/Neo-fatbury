@@ -8,6 +8,9 @@ export default function Footer({ settings }: { settings?: any }) {
   const branch1 = settings?.branches?.[0];
   const branch2 = settings?.branches?.[1];
   const logoUrl = settings?.logo || "/images/neofatbury-logo-web.png";
+  const phone = settings?.contact?.phone || '9700641000';
+  const email = settings?.contact?.email || 'info@neofatbury.co.in';
+  const whatsapp = settings?.contact?.whatsapp || '919700641000';
 
   return (
     <footer style={footerWrapper} className="footer-wrapper">
@@ -70,15 +73,18 @@ export default function Footer({ settings }: { settings?: any }) {
             <div style={locationBox}>
               <p style={locationTitle}>{branch1?.name || 'Kukatpally Clinic'}</p>
               <p style={locationAddr}>{branch1?.address || 'Ganesh Plaza, JNTU - Hitech City Rd, Hyderabad.'}</p>
-              <a href="https://maps.google.com" target="_blank" rel="noreferrer" style={mapLink}>View on Maps</a>
+              <a href={branch1?.googleMapsUrl || 'https://maps.google.com'} target="_blank" rel="noreferrer" style={mapLink}>View on Maps</a>
             </div>
             <div style={locationBox}>
               <p style={locationTitle}>{branch2?.name || 'Himayatnagar Clinic'}</p>
               <p style={locationAddr}>{branch2?.address || 'Velma Bhavan, Himayatnagar, Hyderabad.'}</p>
-              <a href="https://maps.google.com" target="_blank" rel="noreferrer" style={mapLink}>View on Maps</a>
+              <a href={branch2?.googleMapsUrl || 'https://maps.google.com'} target="_blank" rel="noreferrer" style={mapLink}>View on Maps</a>
             </div>
-            <p style={contactLink}>📞 9700641000</p>
-            <p style={contactLink}>✉ info@neofatbury.co.in</p>
+            <a href={`tel:${phone}`} style={contactLink}>📞 {phone}</a>
+            <a href={`mailto:${email}`} style={{ ...contactLink, display: 'block', textDecoration: 'none', color: '#2c3e50' }}>✉ {email}</a>
+            {whatsapp && (
+              <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noreferrer" style={{ ...contactLink, display: 'block', textDecoration: 'none', color: '#25D366' }}>💬 WhatsApp Us</a>
+            )}
           </div>
 
           {/* Column 5: Important Links */}
