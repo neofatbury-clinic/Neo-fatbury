@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { client } from '@/sanity/lib/client';
 import { PortableText } from '@portabletext/react';
 
+import LeadForm from "@/components/LeadForm";
+
 export const revalidate = 60;
 
 async function getAboutData() {
@@ -210,33 +212,23 @@ export default async function AboutUs() {
               Contact Us
             </h2>
             <div style={{ 
-              backgroundColor: '#f2fafaf5', 
-              padding: '3rem', 
+              backgroundColor: '#f6fdfd', 
+              padding: '2rem 2.5rem', 
               borderRadius: '8px', 
-              textAlign: 'center',
-              border: '1px solid #cbedf0'
+              border: '1px solid #cbedf0',
+              marginBottom: '2rem'
             }}>
-              <h3 style={{ fontSize: '1.8rem', color: '#1a1a1a', marginBottom: '1rem', fontWeight: 700 }}>
+              <h3 style={{ fontSize: '1.5rem', color: '#1a1a1a', marginBottom: '0.5rem', fontWeight: 700 }}>
                 {data?.ctaTitle || 'Take the First Step Towards Confidence'}
               </h3>
-              <p style={{ color: '#4a4a4a', fontSize: '1.1rem', marginBottom: '2rem' }}>
-                {data?.ctaSubtitle || 'Book your free clinical scalp or skin analysis and experience the difference.'}
+              <p style={{ color: '#4a4a4a', fontSize: '1.05rem', marginBottom: '2rem' }}>
+                {data?.ctaSubtitle || 'Our clinical experts will get back to you within 24 hours to schedule your complimentary skin & hair analysis.'}
               </p>
-              <Link 
-                href="/contact-us"
-                style={{ 
-                  display: 'inline-block',
-                  backgroundColor: 'var(--color-primary)',
-                  color: 'white',
-                  fontSize: '1.05rem', 
-                  padding: '1rem 2.5rem', 
-                  borderRadius: '4px',
-                  textDecoration: 'none',
-                  fontWeight: 600
-                }}
-              >
-                {data?.ctaButton || 'Book Appointment'}
-              </Link>
+              
+              {/* Actual Lead Form embedded inside About Us! */}
+              <div style={{ backgroundColor: '#ffffff', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 4px 15px rgba(0,0,0,0.05)' }}>
+                <LeadForm />
+              </div>
             </div>
           </div>
 

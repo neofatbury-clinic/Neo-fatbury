@@ -6,7 +6,10 @@ export const revalidate = 60;
 
 async function getContactData() {
   const query = `{
-    "page": *[_type == "contactPage"][0],
+    "page": *[_type == "contactPage"][0] {
+      ...,
+      "heroImage": heroImage.asset->url
+    },
     "settings": *[_type == "siteSettings"][0]
   }`;
   return await client.fetch(query);
@@ -15,11 +18,15 @@ async function getContactData() {
 export default async function ContactUs() {
   const { page, settings } = await getContactData();
   const branches = settings?.branches || [];
+  
+  const heroStyle = page?.heroImage 
+    ? { background: `linear-gradient(rgba(240, 247, 246, 0.9), rgba(255, 255, 255, 0.9)), url(${page.heroImage})`, backgroundSize: 'cover', backgroundPosition: 'center', padding: '5rem 0 4rem', textAlign: 'center' as const }
+    : { background: 'linear-gradient(135deg, #f0f7f6 0%, #ffffff 100%)', padding: '5rem 0 4rem', textAlign: 'center' as const };
 
   return (
     <>
       {/* 1. HERO */}
-      <section style={{ background: 'linear-gradient(135deg, #f0f7f6 0%, #ffffff 100%)', padding: '5rem 0 4rem', textAlign: 'center' }}>
+      <section style={heroStyle}>
         <div className="container">
           <p style={{ color: 'var(--color-accent)', fontWeight: '600', marginBottom: '0.75rem', textTransform: 'uppercase', letterSpacing: '1.5px', fontSize: '0.85rem' }}>Get in Touch</p>
           <h1 style={{ fontSize: '3rem', marginBottom: '1.25rem' }}>
