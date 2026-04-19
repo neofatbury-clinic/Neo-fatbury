@@ -12,7 +12,7 @@ async function getResultsData() {
       ...,
       "heroImage": heroImage.asset->url
     },
-    "items": *[_type == "gallery"] | order(_createdAt desc) {
+    "items": *[_type == "resultsPage"][0].galleryItems[]-> {
       "title": treatment,
       "category": relatedService->category,
       "description": patientQuote,

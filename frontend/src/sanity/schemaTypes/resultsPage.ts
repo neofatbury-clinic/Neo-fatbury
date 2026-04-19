@@ -23,6 +23,13 @@ export const resultsPage = defineType({
       title: 'Hero Background Image',
       type: 'image',
       options: { hotspot: true },
+    }),
+    defineField({
+      name: 'galleryItems',
+      title: 'Gallery Transformations',
+      description: '💡 Add and reorder the before/after results you want to show on this page.',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'gallery' }] }],
     })
   ]
 })
