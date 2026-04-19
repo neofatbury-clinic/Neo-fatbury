@@ -83,6 +83,10 @@ export const structure: StructureResolver = (S) =>
                 .title('🩺 All Services')
                 .child(S.documentTypeList('service').title('All Services')),
               S.listItem()
+                .title('📂 Manage Categories')
+                .schemaType('category')
+                .child(S.documentTypeList('category').title('Service Categories')),
+              S.listItem()
                 .title('✨ Skin Treatments')
                 .child(
                   S.documentTypeList('service')

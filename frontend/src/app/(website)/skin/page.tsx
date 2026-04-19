@@ -1,50 +1,41 @@
 import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
+import { client } from "@/sanity/lib/client";
 
 export const metadata = {
-  title: 'Skin Clinic in Hyderabad | Best Dermatologist for Acne, Scar & Brightening - NeoFatbury',
-  description: 'NeoFatbury is the leading skin clinic in Hyderabad (Kukatpally & Himayatnagar) for Laser Hair Reduction, Acne Scar Treatment, and Skin Brightening. Consult our expert dermatologists today.',
+  title: 'Best Skin Clinic in Hyderabad | Dermatology & Aesthetics - NeoFatbury',
+  description: 'Expert dermatology in Hyderabad (Kukatpally & Himayatnagar). Specialized in Laser Hair Reduction, Acne Treatment, Skin Brightening, and Scar Care.',
 };
 
-const TREATMENTS = [
-  {
-    title: 'Laser Hair Reduction',
-    desc: 'Permanent reduction of unwanted hair using advanced, US-FDA approved laser technology.',
-    href: '/skin/laser-hair-reduction',
-    img: '/images/before-after-laser.webp',
-  },
-  {
-    title: 'Acne & Scar Treatment',
-    desc: 'Advanced solutions for active acne and deep scars using chemical peels, microneedling, and lasers.',
-    href: '/skin/acne-scar-treatment',
-    img: '/images/acne-before-after.webp',
-  },
-  {
-    title: 'Skin Brightening',
-    desc: 'Remove pigmentation, tan, and dark spots with our clinically proven skin lightening treatments.',
-    href: '/skin/skin-brightening',
-    img: '/images/neofatbury-cheek-banner.webp',
-  },
-];
+export default async function SkinPage() {
+  // Fetch skin services dynamically
+  const query = `*[_type == "service" && category->slug.current == "skin"] | order(order asc) {
+    name,
+    shortDescription,
+    "slug": slug.current,
+    "image": heroImage.asset->url
+  }`;
+  const services = await client.fetch(query);
 
-export default function SkinPage() {
   return (
     <>
-      {/* 1. HERO SECTION - TRIPLE PILLAR */}
-      <section className="service-hero" style={{ backgroundImage: 'url(/images/skin-brightening-bg.png)', backgroundPosition: 'left center' }}>
+      {/* 1. HERO SECTION */}
+      <section className="service-hero" style={{ backgroundImage: 'url(/images/neofatbury-acne-scar-banner.png)', backgroundPosition: 'center' }}>
         <div className="container">
           <div className="service-hero-grid">
-            {/* Visual Subject migrated to background */}
             <div className="service-hero-text">
-              <h1>Dermatologist-Led<br/><span className="accent">Advanced Skin Clinic</span></h1>
-              <p>Restore your natural glow with Hyderabad's most trusted skin experts. US-FDA approved technology for safe and effective results.</p>
+              <p className="hero-label">CLINICAL SKIN CARE</p>
+              <h1>Expert Hands,<br/><span className="accent">Glowing Skin</span></h1>
+              <p>US-FDA approved treatments for acne, pigmentation, and skin aging. Experience clinical luxury with NeoFatbury.</p>
               <div className="hero-trust-badges">
-                <div className="hero-trust-badge"><span>🏥</span><span>EXPERT DOCTORS</span></div>
-                <div className="hero-trust-badge"><span>🛡️</span><span>FDA APPROVED</span></div>
+                <div className="hero-trust-badge"><span>👨‍⚕️</span><span>TOP DERMATOLOGISTS</span></div>
+                <div className="hero-trust-badge"><span>✨</span><span>FDA APPROVED</span></div>
               </div>
             </div>
-            <div className="service-hero-form"><LeadForm title="Book Free Skin Analysis" /></div>
+            <div className="service-hero-form">
+              <LeadForm title="Book Skin Analysis" />
+            </div>
           </div>
         </div>
       </section>
@@ -52,35 +43,34 @@ export default function SkinPage() {
       {/* TREATMENTS GRID */}
       <section className="section" id="treatments">
         <div className="container">
-          <h2 className="section-title text-center">Skin <span className="text-accent">Treatments</span></h2>
-          <p className="section-subtitle text-center">Specialized care for all your skin concerns.</p>
+          <h2 className="section-title text-center">Skin <span className="text-accent">Aesthetics</span></h2>
+          <p className="section-subtitle text-center">Comprehensive clinical solutions for every skin concern.</p>
           
-          <div className="grid grid-3 mobile-grid-2" style={{ marginTop: '3rem' }}>
-            {TREATMENTS.map((t) => (
-              <div key={t.title} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
-                <div style={{ position: 'relative', height: '240px', marginBottom: '1.5rem', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
-                  <Image src={t.img} alt={t.title} fill style={{ objectFit: 'cover' }} />
+          <div className="grid grid-2" style={{ marginTop: '3rem', maxWidth: '1000px', margin: '3rem auto 0' }}>
+            {services.map((s: any) => (
+              <div key={s.name} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
+                <div style={{ position: 'relative', height: '260px', marginBottom: '1.5rem', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
+                  <Image src={s.image || '/images/neofatbury-clinical-standard.png'} alt={s.name} fill style={{ objectFit: 'cover' }} />
                 </div>
-                <h3 style={{ fontSize: '1.35rem', marginBottom: '0.5rem' }}>{t.title}</h3>
-                <p className="text-muted" style={{ marginBottom: '1.25rem', flexGrow: 1 }}>{t.desc}</p>
-                <Link href={t.href} className="btn btn-outline" style={{ width: 'fit-content' }}>Learn More</Link>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '0.75rem' }}>{s.name}</h3>
+                <p className="text-muted" style={{ marginBottom: '1.5rem', flexGrow: 1, lineHeight: 1.6 }}>{s.shortDescription}</p>
+                <Link href={`/skin/${s.slug}`} className="btn btn-outline" style={{ width: 'fit-content' }}>View Details</Link>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* WHY CHOOSE US */}
       <section className="section bg-surface">
         <div className="container">
-          <h2 className="section-title text-center">Why Choose <span className="text-accent">NeoFatbury Skin Clinic?</span></h2>
-          <div className="grid grid-3 mobile-grid-2" style={{ marginTop: '3rem' }}>
+          <h2 className="section-title text-center">Why Our <span className="text-accent">Skin Care?</span></h2>
+          <div className="grid grid-3 mobile-grid-1" style={{ marginTop: '3rem' }}>
             {[
-              { title: 'Expert Dermatologists', desc: 'All treatments are supervised by qualified medical professionals.' },
-              { title: 'Advanced Technology', desc: 'US-FDA approved equipment for maximum safety and efficacy.' },
-              { title: 'Personalized Care', desc: 'Tailored treatment plans based on your unique skin type.' },
+              { title: 'Advanced Technology', desc: 'We use the world’s most advanced lasers and clinical equipment.' },
+              { title: 'Personalized Plans', desc: 'No two skins are the same. We tailor every treatment to your skin type.' },
+              { title: 'Safe & Clinical', desc: 'Every procedure is performed in a 100% sterile environment.' },
             ].map((p) => (
-              <div key={p.title} className="card text-center" style={{ padding: '2rem' }}>
+              <div key={p.title} className="card text-center" style={{ padding: '2.5rem' }}>
                 <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: 'var(--color-primary)' }}>{p.title}</h3>
                 <p className="text-muted">{p.desc}</p>
               </div>
@@ -89,12 +79,11 @@ export default function SkinPage() {
         </div>
       </section>
 
-      {/* FINAL CTA */}
       <section className="section bg-primary text-center">
         <div className="container">
-          <h3 style={{ color: 'white', fontSize: '2.2rem', marginBottom: '1rem' }}>Reveal Your Best Skin Today</h3>
-          <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.15rem', marginBottom: '1.5rem' }}>Consult with our experts at Kukatpally or Himayatnagar.</p>
-          <Link href="/contact-us" className="btn" style={{ backgroundColor: 'white', color: 'var(--color-primary)' }}>Book Free Consultation</Link>
+          <h3 style={{ color: 'white', fontSize: '2.5rem', marginBottom: '1.5rem' }}>Ready for Flawless Skin?</h3>
+          <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.25rem', marginBottom: '2.5rem' }}>Book your clinical analysis with our expert dermatologists today.</p>
+          <Link href="/contact-us" className="btn" style={{ backgroundColor: 'white', color: 'var(--color-primary)', fontWeight: '700' }}>Schedule Appointment</Link>
         </div>
       </section>
     </>

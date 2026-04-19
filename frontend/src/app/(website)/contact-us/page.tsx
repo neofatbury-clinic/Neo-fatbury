@@ -50,7 +50,10 @@ export default async function ContactUs() {
                   <p style={{ color: '#666' }}>{page?.leadFormDescription || 'Our clinical experts will get back to you within 24 hours.'}</p>
                </div>
                <div style={{ padding: '2rem' }}>
-                  <LeadForm />
+                  <LeadForm 
+                    title={page?.leadFormTitle} 
+                    subtitle={page?.leadFormDescription}
+                  />
                </div>
             </div>
           </div>

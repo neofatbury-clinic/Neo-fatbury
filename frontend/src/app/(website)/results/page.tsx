@@ -14,7 +14,7 @@ async function getResultsData() {
     },
     "items": *[_type == "resultsPage"][0].galleryItems[]-> {
       "title": treatment,
-      "category": relatedService->category,
+      "category": relatedService->category->slug.current,
       "description": patientQuote,
       "beforeImg": beforeImage.asset->url,
       "afterImg": afterImage.asset->url,
@@ -91,7 +91,7 @@ export default async function Results() {
                   </div>
                   <p className="text-muted" style={{ fontSize: '0.95rem', marginBottom: '1.5rem', lineHeight: 1.6 }}>{r.description}</p>
                   {r.slug && (
-                    <Link href={`/skin/${r.slug}`} style={{ color: 'var(--color-primary)', fontWeight: '700', fontSize: '0.9rem', textDecoration: 'underline' }}>
+                    <Link href={`/${r.category || 'skin'}/${r.slug}`} style={{ color: 'var(--color-primary)', fontWeight: '700', fontSize: '0.9rem', textDecoration: 'underline' }}>
                       View Treatment Details
                     </Link>
                   )}

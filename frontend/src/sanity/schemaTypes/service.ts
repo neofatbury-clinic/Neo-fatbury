@@ -35,12 +35,12 @@ export const service = defineType({
       validation: r => r.required(), group: 'settings',
     }),
     defineField({
-      name: 'category', title: 'Category', type: 'string',
-      options: { list: [
-        { title: '✨ Skin',    value: 'skin' },
-        { title: '💇 Hair',   value: 'hair' },
-        { title: '⚖️ Slimming', value: 'slimming' },
-      ], layout: 'radio' }, group: 'settings',
+      name: 'category', 
+      title: 'Service Category', 
+      type: 'reference',
+      to: [{ type: 'category' }],
+      description: '💡 Select the category (Skin, Hair, Slimming, etc.). You can add new ones in the Categories menu.',
+      group: 'settings',
     }),
     defineField({ name: 'isFeatured', title: 'Show on Homepage?', type: 'boolean', initialValue: false, group: 'settings' }),
     defineField({ name: 'order', title: 'Display Order', type: 'number', group: 'settings' }),

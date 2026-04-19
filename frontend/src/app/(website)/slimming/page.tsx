@@ -1,47 +1,35 @@
 import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
+import { client } from "@/sanity/lib/client";
 
 export const metadata = {
-  title: 'Slimming Clinic in Hyderabad | Weight Loss & Body Contouring - NeoFatbury',
-  description: 'Lose weight and shape your body at NeoFatbury Hyderabad. Advanced treatments like CoolSculpting, medical Weight Loss, and Inch Loss. Safe, non-surgical results.',
+  title: 'Slimming & Weight Loss Clinic in Hyderabad - NeoFatbury',
+  description: 'Top-rated body contouring and weight loss in Hyderabad. Offering US-FDA approved CoolSculpting, Cryolipolysis, and clinical weight loss programs.',
 };
 
-const TREATMENTS = [
-  {
-    title: 'CoolSculpting (Fat Freezing)',
-    desc: 'Non-surgical fat reduction that freezes and eliminates stubborn fat cells permanently.',
-    href: '/slimming/coolsculpting-fat-freezing',
-    img: '/images/neofatbury-slimming-banner.webp',
-  },
-  {
-    title: 'Medical Weight Loss',
-    desc: 'Doctor-guided personalized programs for safe, effective, and sustainable weight management.',
-    href: '/slimming/weight-loss-treatment',
-    img: '/images/derma-procedure-fixed.webp',
-  },
-  {
-    title: 'Inch Loss Treatment',
-    desc: 'Targeted body contouring to reduce measurements in stubborn areas like belly, thighs, and arms.',
-    href: '/slimming/inch-loss-treatment',
-    img: '/images/neofatbury-slimming-banner.webp',
-  },
-];
+export default async function SlimmingPage() {
+  // Fetch slimming services dynamically
+  const query = `*[_type == "service" && category->slug.current == "slimming"] | order(order asc) {
+    name,
+    shortDescription,
+    "slug": slug.current,
+    "image": heroImage.asset->url
+  }`;
+  const services = await client.fetch(query);
 
-export default function SlimmingPage() {
   return (
     <>
-      {/* 1. HERO SECTION - TRIPLE PILLAR */}
-      <section className="service-hero" style={{ backgroundImage: 'url(/images/coolsculpting-bg.png)', backgroundPosition: 'left center' }}>
+      <section className="service-hero" style={{ backgroundImage: 'url(/images/weight-loss-bg.png)', backgroundPosition: 'center' }}>
         <div className="container">
           <div className="service-hero-grid">
-            {/* Visual Subject migrated to background */}
             <div className="service-hero-text">
-              <h1>Get the Body You<br/><span className="accent">Always Desired</span></h1>
-              <p>Safe, scientific, and medically supervised slimming solutions. From fat freezing to holistic weight management, achieve your goals gracefully.</p>
+              <p className="hero-label">BODY REDEFINED</p>
+              <h1>Shape Your Body,<br/><span className="accent">Without Surgery</span></h1>
+              <p>Non-invasive lipolysis and personalized metabolic programs. Achieve your target weight with medical supervision.</p>
               <div className="hero-trust-badges">
-                <div className="hero-trust-badge"><span>❄️</span><span>NON-SURGICAL</span></div>
-                <div className="hero-trust-badge"><span>🛡️</span><span>MEDICALLY SAFE</span></div>
+                <div className="hero-trust-badge"><span>❄️</span><span>COOLSCULPTING</span></div>
+                <div className="hero-trust-badge"><span>⚖️</span><span>SAFE WEIGHT LOSS</span></div>
               </div>
             </div>
             <div className="service-hero-form"><LeadForm title="Book Body Analysis" /></div>
@@ -49,52 +37,49 @@ export default function SlimmingPage() {
         </div>
       </section>
 
-      {/* TREATMENTS GRID */}
       <section className="section" id="treatments">
         <div className="container">
-          <h2 className="section-title text-center">Slimming & <span className="text-accent">Contouring</span></h2>
-          <p className="section-subtitle text-center">Non-surgical procedures for a slimmer, more defined silhouette.</p>
+          <h2 className="section-title text-center">Body & <span className="text-accent">Slimming</span></h2>
+          <p className="section-subtitle text-center">Targeted fat reduction and comprehensive inch-loss programs.</p>
           
-          <div className="grid grid-3 mobile-grid-2" style={{ marginTop: '3rem' }}>
-            {TREATMENTS.map((t) => (
-              <div key={t.title} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
-                <div style={{ position: 'relative', height: '240px', marginBottom: '1.5rem', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
-                  <Image src={t.img} alt={t.title} fill style={{ objectFit: 'cover' }} />
+          <div className="grid grid-2" style={{ marginTop: '3rem', maxWidth: '1000px', margin: '3rem auto 0' }}>
+            {services.map((s: any) => (
+              <div key={s.name} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
+                <div style={{ position: 'relative', height: '260px', marginBottom: '1.5rem', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
+                  <Image src={s.image || '/images/neofatbury-clinical-standard.png'} alt={s.name} fill style={{ objectFit: 'cover' }} />
                 </div>
-                <h3 style={{ fontSize: '1.5rem', marginBottom: '0.75rem' }}>{t.title}</h3>
-                <p className="text-muted" style={{ marginBottom: '1.5rem', flexGrow: 1 }}>{t.desc}</p>
-                <Link href={t.href} className="btn btn-outline" style={{ width: 'fit-content' }}>Learn More</Link>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '0.75rem' }}>{s.name}</h3>
+                <p className="text-muted" style={{ marginBottom: '1.5rem', flexGrow: 1, lineHeight: 1.6 }}>{s.shortDescription}</p>
+                <Link href={`/slimming/${s.slug}`} className="btn btn-outline" style={{ width: 'fit-content' }}>Learn More</Link>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* WHY CHOOSE US */}
-      <section className="section bg-surface">
+      <section className="section bg-surface text-center">
         <div className="container">
-          <h2 className="section-title text-center">Modern <span className="text-accent">Body Transformation</span></h2>
-          <div className="grid grid-3 mobile-grid-2" style={{ marginTop: '3rem' }}>
-            {[
-              { title: 'Safe & Non-Surgical', desc: 'Achieve significant results without the risks of invasive surgery.' },
-              { title: 'Medically Supervised', desc: 'Personalized programs guided by doctors for safe weight loss.' },
-              { title: 'No Weight-Loss Stigma', desc: 'Supportive, private environment focused on your health and goals.' },
-            ].map((p) => (
-              <div key={p.title} className="card text-center" style={{ padding: '2rem' }}>
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: 'var(--color-primary)' }}>{p.title}</h3>
-                <p className="text-muted">{p.desc}</p>
-              </div>
-            ))}
+          <h2 className="section-title">Why NeoFatbury <span className="text-accent">Slimming?</span></h2>
+          <div className="grid grid-3 mobile-grid-1" style={{ marginTop: '3rem' }}>
+             {[
+               { title: 'US-FDA Approved', desc: 'We only use clinically validated technologies like CoolSculpting.' },
+               { title: 'Medical Supervision', desc: 'All weight loss plans are designed by certified clinical nutritionists.' },
+               { title: 'Sustainable Results', desc: 'Focus on healthy metabolism for results that last long-term.' },
+             ].map(p => (
+               <div key={p.title} className="card" style={{ padding: '2.5rem' }}>
+                  <h4 style={{ color: 'var(--color-primary)', fontSize: '1.2rem', marginBottom: '0.75rem' }}>{p.title}</h4>
+                  <p className="text-muted" style={{ fontSize: '0.95rem' }}>{p.desc}</p>
+               </div>
+             ))}
           </div>
         </div>
       </section>
 
-      {/* FINAL CTA */}
       <section className="section bg-primary text-center">
         <div className="container">
-          <h3 style={{ color: 'white', fontSize: '2.5rem', marginBottom: '1.5rem' }}>Ready to Shape Your Future?</h3>
-          <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.25rem', marginBottom: '2rem' }}>Schedule your body composition analysis today.</p>
-          <Link href="/contact-us" className="btn" style={{ backgroundColor: 'white', color: 'var(--color-primary)' }}>Book Consultation</Link>
+          <h3 style={{ color: 'white', fontSize: '2.5rem', marginBottom: '1.5rem' }}>Start Your Body Transformation</h3>
+          <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.25rem', marginBottom: '2.5rem' }}>Reach your weight goals with expert medical guidance.</p>
+          <Link href="/contact-us" className="btn" style={{ backgroundColor: 'white', color: 'var(--color-primary)', fontWeight: '700' }}>Book Body Analysis</Link>
         </div>
       </section>
     </>
