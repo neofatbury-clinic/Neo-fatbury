@@ -84,7 +84,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 .service-hero {
   position: relative;
   min-height: auto;
-  padding: 6rem 0 4rem;
+  padding: 8rem 0 4rem;
   background-color: #fdfdfd;
   background-size: auto 100%;
   background-position: -10% center;
@@ -504,7 +504,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 .home-hero {
   position: relative;
   overflow: hidden;
-  padding: clamp(4rem, 8vw, 7rem) 0 4rem;
+  padding: 8rem 0 4rem;
 }
 .home-hero-overlay {
   position: absolute;

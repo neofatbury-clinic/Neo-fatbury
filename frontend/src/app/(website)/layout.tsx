@@ -29,7 +29,7 @@ export default function WebsiteLayout({
   return (
     <>
       <Header />
-      <main style={{ minHeight: '80vh', paddingTop: 'var(--header-height)' }}>
+      <main style={{ minHeight: '80vh' }}>
         {children}
       </main>
       <Footer />
