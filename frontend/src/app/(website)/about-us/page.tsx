@@ -9,12 +9,15 @@ export const revalidate = 60;
 
 async function getAboutData() {
   const query = `*[_type == "aboutPage"][0] {
-    title,
-    "heroImage": heroImage.asset->url,
-    storyTitle,
-    storyText,
+    mainHeading,
+    subHeading,
+    "floatingImage": floatingImage.asset->url,
+    aboutTextTop,
+    highlightText,
+    aboutTextBottom,
+    visionText,
+    missionText,
     stats,
-    pillars,
     ctaTitle,
     ctaSubtitle,
     ctaButton
@@ -24,13 +27,6 @@ async function getAboutData() {
 
 export default async function AboutUs() {
   const data = await getAboutData();
-  
-  // Extract Mission and Vision from pillars if they exist
-  const visionDef = { title: 'Our Vision', description: 'To be the most trusted name in clinical dermatology and aesthetics across India, setting the gold standard for patient safety, technological innovation, and sustainable results.' };
-  const missionDef = { title: 'Our Mission', description: 'To provide safe, effective, and scientifically backed aesthetic solutions that enhance natural beauty and restore confidence—all delivered with uncompromising clinical excellence.' };
-  
-  const vision = data?.pillars?.find((p: any) => p.title.toLowerCase().includes('vision')) || visionDef;
-  const mission = data?.pillars?.find((p: any) => p.title.toLowerCase().includes('mission')) || missionDef;
 
   return (
     <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', padding: '3rem 0', fontFamily: 'var(--font-body)' }}>
@@ -95,7 +91,7 @@ export default async function AboutUs() {
               marginBottom: '0.5rem',
               lineHeight: 1.2
             }}>
-              Welcome to NeoFatbury Clinic!
+              {data?.mainHeading || 'Welcome to NeoFatbury Clinic!'}
             </h1>
             <h2 style={{ 
               fontSize: '1.4rem', 
@@ -103,7 +99,7 @@ export default async function AboutUs() {
               fontWeight: 600, 
               marginBottom: '2rem' 
             }}>
-              {data?.storyTitle || 'Celebrating the science of transformation!'}
+              {data?.subHeading || 'Celebrating the science of transformation!'}
             </h2>
 
             {/* Content with floating image */}
@@ -115,7 +111,7 @@ export default async function AboutUs() {
                 width: '350px'
               }}>
                 <Image 
-                  src="/images/neofatbury-clinical-standard.png"
+                  src={data?.floatingImage || "/images/neofatbury-clinical-standard.png"}
                   alt="NeoFatbury Clinic Experts"
                   width={350}
                   height={250}
@@ -123,8 +119,8 @@ export default async function AboutUs() {
                 />
               </div>
 
-              {data?.storyText ? (
-                <PortableText value={data.storyText} />
+              {data?.aboutTextTop ? (
+                <PortableText value={data.aboutTextTop} />
               ) : (
                 <>
                   <p style={{ marginBottom: '1rem' }}>
@@ -145,13 +141,19 @@ export default async function AboutUs() {
               marginBottom: '2rem'
             }}>
               <h3 style={{ fontSize: '1.25rem', color: '#1a1a1a', fontWeight: 600, margin: 0 }}>
-                {data?.title || "Hyderabad's No. 1 Dermatology, Skin & Hair Clinic"}
+                {data?.highlightText || "Hyderabad's No. 1 Dermatology, Skin & Hair Clinic"}
               </h3>
             </div>
 
-            <p style={{ color: '#4a4a4a', fontSize: '1rem', lineHeight: 1.8 }}>
-              Powered by a leading team of medical professionals and the latest USFDA-approved technology, NeoFatbury offers customised and cost-effective treatments clinically proven for safety and efficacy. Our holistic approach helps us deliver optimal results and long-lasting satisfaction to our valuable clients! NeoFatbury specialises in treating your acne, scars, hair loss, hair thinning, premature ageing, wrinkles, saggy skin, cellulite, and stubborn fat.
-            </p>
+            <div style={{ color: '#4a4a4a', fontSize: '1rem', lineHeight: 1.8 }}>
+              {data?.aboutTextBottom ? (
+                <PortableText value={data.aboutTextBottom} />
+              ) : (
+                <p>
+                  Powered by a leading team of medical professionals and the latest USFDA-approved technology, NeoFatbury offers customised and cost-effective treatments clinically proven for safety and efficacy. Our holistic approach helps us deliver optimal results and long-lasting satisfaction to our valuable clients! NeoFatbury specialises in treating your acne, scars, hair loss, hair thinning, premature ageing, wrinkles, saggy skin, cellulite, and stubborn fat.
+                </p>
+              )}
+            </div>
           </div>
 
           <hr style={{ border: 'none', borderTop: '1px solid #eaeaea', margin: '3rem 0' }} />
@@ -162,7 +164,7 @@ export default async function AboutUs() {
               Our Vision
             </h2>
             <p style={{ color: '#4a4a4a', fontSize: '1rem', lineHeight: 1.8 }}>
-              {vision.description}
+              {data?.visionText || 'To be the most trusted name in clinical dermatology and aesthetics across India, setting the gold standard for patient safety, technological innovation, and sustainable results.'}
             </p>
           </div>
 
@@ -174,7 +176,7 @@ export default async function AboutUs() {
               Our Mission
             </h2>
             <p style={{ color: '#4a4a4a', fontSize: '1rem', lineHeight: 1.8 }}>
-              {mission.description}
+              {data?.missionText || 'To provide safe, effective, and scientifically backed aesthetic solutions that enhance natural beauty and restore confidence—all delivered with uncompromising clinical excellence.'}
             </p>
           </div>
 
