@@ -13,11 +13,13 @@ async function getResultsData() {
       "heroImage": heroImage.asset->url
     },
     "items": *[_type == "gallery"] | order(_createdAt desc) {
-      title,
-      category,
-      description,
-      "img": image.asset->url,
-      "slug": treatmentReference->slug.current
+      "title": treatment,
+      "category": relatedService->category,
+      "description": patientQuote,
+      "beforeImg": beforeImage.asset->url,
+      "afterImg": afterImage.asset->url,
+      "combinedImg": combinedImage.asset->url,
+      "slug": relatedService->slug.current
     }
   }`;
   return await client.fetch(query);
@@ -51,26 +53,46 @@ export default async function Results() {
       {/* 2. RESULTS GRID */}
       <section className="section">
         <div className="container">
-          <div className="grid grid-3" style={{ gap: '2rem' }}>
+          <div className="grid grid-2" style={{ gap: '3rem' }}>
             {items?.map((r: any, i: number) => (
-              <div key={i} className="card" style={{ overflow: 'hidden', padding: 0 }}>
-                <div style={{ position: 'relative', height: '280px' }}>
-                  <Image src={r.img || '/images/neofatbury-clinical-standard.png'} alt={`${r.title} results`} fill style={{ objectFit: 'cover' }} />
-                  <div style={{
-                    position: 'absolute', top: '1rem', left: '1rem',
-                    backgroundColor: 'var(--color-accent)', color: 'white',
-                    fontSize: '0.75rem', fontWeight: '700', padding: '0.25rem 0.75rem',
-                    borderRadius: '999px', textTransform: 'uppercase', letterSpacing: '1px',
-                  }}>
-                    {r.category || 'Clinical'}
-                  </div>
+              <div key={i} className="card" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                
+                {/* Image Container */}
+                <div style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden', backgroundColor: '#f9f9f9' }}>
+                  {r.combinedImg ? (
+                    <div style={{ position: 'relative', height: '320px', width: '100%' }}>
+                      <Image src={r.combinedImg} alt={r.title} fill style={{ objectFit: 'cover' }} />
+                    </div>
+                  ) : (
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px', height: '320px' }}>
+                      <div style={{ position: 'relative' }}>
+                        <Image src={r.beforeImg || '/images/neofatbury-clinical-standard.png'} alt="Before" fill style={{ objectFit: 'cover' }} />
+                        <span style={{ position: 'absolute', bottom: '10px', left: '10px', background: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '0.7rem', padding: '2px 8px', borderRadius: '4px', fontWeight: 700 }}>BEFORE</span>
+                      </div>
+                      <div style={{ position: 'relative' }}>
+                        <Image src={r.afterImg || '/images/neofatbury-clinical-standard.png'} alt="After" fill style={{ objectFit: 'cover' }} />
+                        <span style={{ position: 'absolute', bottom: '10px', right: '10px', background: 'var(--color-accent)', color: 'white', fontSize: '0.7rem', padding: '2px 8px', borderRadius: '4px', fontWeight: 700 }}>AFTER</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
-                <div style={{ padding: '1.5rem' }}>
-                  <h3 style={{ fontSize: '1.1rem', marginBottom: '0.5rem', color: 'var(--color-primary)' }}>{r.title}</h3>
-                  <p className="text-muted" style={{ fontSize: '0.9rem', marginBottom: '1.25rem', lineHeight: 1.6 }}>{r.description}</p>
+
+                {/* Text Content */}
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--color-primary)' }}>{r.title}</h3>
+                    <span style={{
+                      backgroundColor: '#e6f6f6', color: 'var(--color-accent)',
+                      fontSize: '0.7rem', fontWeight: '800', padding: '0.25rem 0.75rem',
+                      borderRadius: '4px', textTransform: 'uppercase',
+                    }}>
+                      {r.category || 'Clinical Treatment'}
+                    </span>
+                  </div>
+                  <p className="text-muted" style={{ fontSize: '0.95rem', marginBottom: '1.5rem', lineHeight: 1.6 }}>{r.description}</p>
                   {r.slug && (
-                    <Link href={`/skin/${r.slug}`} style={{ color: 'var(--color-accent)', fontWeight: '600', fontSize: '0.9rem' }}>
-                      Learn about this treatment →
+                    <Link href={`/skin/${r.slug}`} style={{ color: 'var(--color-primary)', fontWeight: '700', fontSize: '0.9rem', textDecoration: 'underline' }}>
+                      View Treatment Details
                     </Link>
                   )}
                 </div>

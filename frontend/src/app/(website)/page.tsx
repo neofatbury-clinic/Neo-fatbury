@@ -15,7 +15,12 @@ async function getHomeData() {
       title,
       "slug": slug.current,
       category,
-      "image": mainImage.asset->url
+      "image": heroImage.asset->url
+    },
+    "results": *[_type == "homepage"][0].resultsSlider[] {
+      label,
+      "image": image.asset->url,
+      quote
     }
   }`;
   return await client.fetch(query);
