@@ -4,8 +4,23 @@ import Header from './Header';
 
 export default async function HeaderWrapper() {
   const query = `*[_type == "siteSettings"][0] {
-    branches,
-    "logo": logo.asset->url
+    clinicName,
+    tagline,
+    "logo": logo.asset->url,
+    headerAnnouncementText,
+    headerMenu[] {
+      label,
+      url,
+      dropdownItems[] {
+        label,
+        url
+      }
+    },
+    contact {
+      phone,
+      whatsapp,
+      email
+    }
   }`;
   const settings = await client.fetch(query);
   

@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 export default function Header({ settings }: { settings?: any }) {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const mainPhone = settings?.branches?.[0]?.phone || '9700641000';
+  const mainPhone = settings?.contact?.phone || '9700641000';
   const logoUrl = settings?.logo || "/images/neofatbury-logo-web.png";
 
   return (
@@ -24,8 +24,8 @@ export default function Header({ settings }: { settings?: any }) {
             <span>🌐 English</span>
           </div>
 
-          {/* Right: Quick-Links shifted to the right edge */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', fontSize: '0.82rem' }}>
+          {/* Right: Quick-Links */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', fontSize: '0.82rem' }}>
             <Link href="/about-us" style={topLinkStyle}>About Us</Link>
             <Link href="/results" style={topLinkStyle}>Results</Link>
             <Link href="/contact-us" style={topLinkStyle}>Contact</Link>
@@ -40,11 +40,11 @@ export default function Header({ settings }: { settings?: any }) {
       {/* ── MAIN NAV ────────────────────────────────────────── */}
       <div style={mainNavStyle} className="main-nav-mobile">
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '100%', padding: '0 2rem', width: '100%' }}>
-          {/* Logo - Anchored Left */}
+          {/* Logo */}
           <Link href="/" style={logoStyle}>
             <Image
               src={logoUrl}
-              alt="NeoFatbury Logo"
+              alt={settings?.clinicName ? `${settings.clinicName} Logo` : "NeoFatbury Logo"}
               width={180}
               height={72}
               priority
@@ -53,43 +53,31 @@ export default function Header({ settings }: { settings?: any }) {
             />
           </Link>
 
-          {/* Nav Links - Center/Right Spaced */}
-          <nav style={{ display: 'flex', alignItems: 'center', gap: 'clamp(0.75rem, 1.25vw, 2rem)', flexWrap: 'nowrap' }} className="nav-desktop">
-            <Link href="/" style={navLinkStyle}>Home</Link>
-            <NavDropdown label="Skin" items={[
-              { label: 'All Skin Treatments', href: '/skin' },
-              { label: 'Laser Hair Reduction', href: '/skin/laser-hair-reduction' },
-              { label: 'Acne Treatment', href: '/skin/acne-treatment' },
-              { label: 'Acne Scar Treatment', href: '/skin/acne-scar-treatment' },
-              { label: 'Skin Brightening', href: '/skin/skin-brightening' },
-            ]} />
-            <NavDropdown label="Hair" items={[
-              { label: 'All Hair Treatments', href: '/hair' },
-              { label: 'Hair Loss Treatment', href: '/hair/hair-loss-treatment' },
-              { label: 'Hair Transplantation', href: '/hair/hair-transplantation' },
-            ]} />
-            <NavDropdown label="Slimming" items={[
-              { label: 'All Slimming Treatments', href: '/slimming' },
-              { label: 'CoolSculpting (Fat Freezing)', href: '/slimming/coolsculpting' },
-              { label: 'Weight Loss', href: '/slimming/weight-loss' },
-              { label: 'Inch Loss', href: '/slimming/inch-loss' },
-            ]} />
-            <NavDropdown label="Results" items={[
-              { label: 'Results Gallery', href: '/results' },
-            ]} />
-            <NavDropdown label="Locations" items={[
-              { label: 'Kukatpally Branch', href: '/location/kukatpally-hyderabad' },
-              { label: 'Himayatnagar Branch', href: '/location/himayatnagar-hyderabad' },
-            ]} />
+          {/* Dynamic Nav Links */}
+          <nav style={{ display: 'flex', alignItems: 'center', gap: 'clamp(0.5rem, 1vw, 1.5rem)', flexWrap: 'nowrap' }} className="nav-desktop">
+            {settings?.headerMenu?.map((item: any, idx: number) => (
+              item.dropdownItems ? (
+                <NavDropdown key={idx} label={item.label} items={item.dropdownItems.map((d: any) => ({ label: d.label, href: d.url }))} />
+              ) : (
+                <Link key={idx} href={item.url || '/'} style={navLinkStyle}>{item.label}</Link>
+              )
+            )) || (
+              <>
+                <Link href="/" style={navLinkStyle}>Home</Link>
+                <Link href="/skin" style={navLinkStyle}>Skin</Link>
+                <Link href="/hair" style={navLinkStyle}>Hair</Link>
+                <Link href="/slimming" style={navLinkStyle}>Slimming</Link>
+                <Link href="/results" style={navLinkStyle}>Results</Link>
+              </>
+            )}
           </nav>
 
-          {/* Actions - Right */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 'calc(var(--spacing-md) / 2)' }}>
+          {/* Actions */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <Link href="/contact-us" className="btn btn-book header-cta">
               <span className="cta-full">📅 Book Appointment</span>
               <span className="cta-short">Book Now</span>
             </Link>
-            {/* Mobile hamburger */}
             <button
               className="nav-mobile-toggle"
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -104,40 +92,26 @@ export default function Header({ settings }: { settings?: any }) {
       {/* ── MOBILE MENU ─────────────────────────────────────── */}
       {mobileOpen && (
         <div style={mobileMenuStyle} className="animate-fade-in">
-          <div className="container" style={{ padding: '1rem 1rem 3rem' }}>
-            <Link href="/" onClick={() => setMobileOpen(false)} style={mobileMainLink}>Home</Link>
-            
-            <MobileAccordion label="Skin Treatments" items={[
-              { label: 'All Skin Treatments', href: '/skin' },
-              { label: 'Laser Hair Reduction', href: '/skin/laser-hair-reduction' },
-              { label: 'Acne Treatment', href: '/skin/acne-treatment' },
-              { label: 'Scar Treatment', href: '/skin/scar-treatment' },
-              { label: 'Skin Brightening', href: '/skin/skin-brightening' },
-            ]} onClose={() => setMobileOpen(false)} />
+          <div className="container" style={{ padding: '1.5rem 1rem 4rem' }}>
+             {settings?.headerMenu?.map((item: any, idx: number) => (
+               item.dropdownItems ? (
+                 <MobileAccordion key={idx} label={item.label} items={item.dropdownItems.map((d: any) => ({ label: d.label, href: d.url }))} onClose={() => setMobileOpen(false)} />
+               ) : (
+                 <Link key={idx} href={item.url || '/'} onClick={() => setMobileOpen(false)} style={mobileMainLink}>{item.label}</Link>
+               )
+             )) || (
+               <>
+                <Link href="/" onClick={() => setMobileOpen(false)} style={mobileMainLink}>Home</Link>
+                <Link href="/skin" onClick={() => setMobileOpen(false)} style={mobileMainLink}>Skin Treatments</Link>
+                <Link href="/hair" onClick={() => setMobileOpen(false)} style={mobileMainLink}>Hair Treatments</Link>
+                <Link href="/slimming" onClick={() => setMobileOpen(false)} style={mobileMainLink}>Slimming & Body</Link>
+               </>
+             )}
 
-            <MobileAccordion label="Hair Treatments" items={[
-              { label: 'All Hair Treatments', href: '/hair' },
-              { label: 'Hair Loss Treatment', href: '/hair/hair-loss-treatment' },
-              { label: 'Hair Transplantation', href: '/hair/hair-transplantation' },
-            ]} onClose={() => setMobileOpen(false)} />
-
-            <MobileAccordion label="Slimming & Body" items={[
-              { label: 'All Slimming Treatments', href: '/slimming' },
-              { label: 'CoolSculpting', href: '/slimming/coolsculpting' },
-              { label: 'Weight Loss', href: '/slimming/weight-loss' },
-              { label: 'Inch Loss', href: '/slimming/inch-loss' },
-            ]} onClose={() => setMobileOpen(false)} />
-
-            {[
-              ['Results Gallery', '/results'],
-              ['Our Doctors', '/our-doctors'],
-              ['About Us', '/about-us'],
-              ['Contact Us', '/contact-us'],
-            ].map(([label, href]) => (
-              <Link key={href} href={href} onClick={() => setMobileOpen(false)} style={mobileMainLink}>
-                {label}
-              </Link>
-            ))}
+            <div style={{ marginTop: '2rem', padding: '1.5rem', backgroundColor: '#f9f9f9', borderRadius: '12px' }}>
+               <p style={{ fontSize: '0.9rem', color: '#666', marginBottom: '0.5rem' }}>Need help? Call us at:</p>
+               <a href={`tel:${mainPhone}`} style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--color-primary)', textDecoration: 'none' }}>📞 {mainPhone}</a>
+            </div>
           </div>
         </div>
       )}

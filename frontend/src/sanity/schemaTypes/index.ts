@@ -12,16 +12,18 @@ import { aboutPage } from './aboutPage'
 import { contactPage } from './contactPage'
 import { resultsPage } from './resultsPage'
 
+import { contactFormSettings } from './contactFormSettings'
+
 // Named exports for direct import
 export { 
   service, blogPost, gallery, homepage, siteSettings, 
   teamMember, testimonial, genericPage, aboutPage,
-  contactPage, resultsPage 
+  contactPage, resultsPage, contactFormSettings
 }
 
 // Default array export used by sanity.config.ts
 export const schemaTypes = [
   service, blogPost, gallery, homepage, siteSettings, 
   teamMember, testimonial, genericPage, aboutPage,
-  contactPage, resultsPage
+  contactPage, resultsPage, contactFormSettings
 ]

@@ -17,6 +17,15 @@ export const structure: StructureResolver = (S) =>
             .documentId('siteSettings')
         ),
 
+      S.listItem()
+        .title('📝 Lead Form Settings')
+        .id('contactFormSettings')
+        .child(
+          S.document()
+            .schemaType('contactFormSettings')
+            .documentId('contactFormSettings')
+        ),
+
       S.divider(),
 
       // ── PAGES ────────────────────────────────────

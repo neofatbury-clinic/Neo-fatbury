@@ -59,9 +59,12 @@ function getConcernLabel(category: string) {
   return "Select Your Skin Concerns";
 }
 
+import { useEffect } from "react";
+import { client } from "@/sanity/lib/client";
+
 export default function LeadForm({ 
-  title = "Book Your Free Consultation", 
-  buttonText = "Get Free Consultation" 
+  title: initialTitle, 
+  buttonText: initialButtonText 
 }: { 
   title?: string;
   buttonText?: string;
@@ -70,10 +73,31 @@ export default function LeadForm({
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
+  
+  // NEW: Dynamic settings from Sanity
+  const [settings, setSettings] = useState<any>(null);
+
+  useEffect(() => {
+    client.fetch(`*[_type == "contactFormSettings"][0]`)
+      .then(setSettings)
+      .catch(console.error);
+  }, []);
+
   const [selectedClinic, setSelectedClinic] = useState<string>("kukatpally");
   const [selectedCategory, setSelectedCategory] = useState<string>("Skin");
   const [selectedConcerns, setSelectedConcerns] = useState<string[]>([]);
   const [showMore, setShowMore] = useState(false);
+
+  // Use dynamic settings or fallbacks
+  const title = initialTitle || settings?.formTitle || "Book Your Free Consultation";
+  const subtitle = settings?.formSubtitle || "Get expert care tailored to your needs.";
+  const buttonText = initialButtonText || settings?.buttonText || "Get Free Consultation";
+  const clinics = settings?.clinics || [
+    { id: "kukatpally", label: "Kukatpally Clinic", color: "#00acb1" },
+    { id: "himayatnagar", label: "Himayatnagar Clinic", color: "#df8385" },
+  ];
+  const namePlaceholder = settings?.placeholders?.name || "Your Name";
+  const phonePlaceholder = settings?.placeholders?.phone || "Mobile Number";
 
   const MAX_CONCERNS = 2;
   const { defaults, more } = getConcerns(selectedCategory);
@@ -97,7 +121,6 @@ export default function LeadForm({
     e.preventDefault();
     setLoading(true);
     try {
-      // Send lead to Zoho CRM via our API
       const res = await fetch('/api/lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -105,17 +128,15 @@ export default function LeadForm({
           name,
           phone: mobile,
           service: selectedCategory,
-          location: selectedClinic === 'kukatpally' ? 'Kukatpally Clinic' : 'Himayatnagar Clinic',
+          location: clinics.find((c: any) => c.id === selectedClinic)?.label || 'Clinic',
           concerns: selectedConcerns,
           pageUrl: typeof window !== 'undefined' ? window.location.href : '',
         }),
       });
-      // Whether CRM succeeds or fails, redirect to thank-you (don't block user)
       const data = await res.json().catch(() => ({}));
       if (!res.ok) console.warn('CRM lead warning:', data);
     } catch (err) {
       console.warn('CRM submission warning:', err);
-      // Never block the user from reaching thank-you
     } finally {
       router.push('/thank-you');
     }
@@ -126,13 +147,13 @@ export default function LeadForm({
       <div className="lf-wrapper animate-fade-in">
         {/* Header */}
         <h2 className="lf-title">{title}</h2>
-        <p className="lf-subtitle">Get expert care tailored to your needs.</p>
+        <p className="lf-subtitle">{subtitle}</p>
 
         <form onSubmit={handleSubmit} className="lf-form">
           {/* Name */}
           <input
             type="text"
-            placeholder="Your Name"
+            placeholder={namePlaceholder}
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
@@ -142,11 +163,11 @@ export default function LeadForm({
           {/* Mobile */}
           <input
             type="tel"
-            placeholder="Mobile Number"
+            placeholder={phonePlaceholder}
             value={mobile}
             onChange={(e) => setMobile(e.target.value)}
             required
-            pattern="[0-9]{10}"
+            pattern="[1-9]{1}[0-9]{9}"
             title="Please enter a valid 10-digit number"
             className="lf-input"
           />
@@ -159,7 +180,7 @@ export default function LeadForm({
               <span className="lf-divider-line" />
             </div>
             <div className="lf-clinic-row">
-              {CLINICS.map((clinic) => (
+              {clinics.map((clinic: any) => (
                 <button
                   key={clinic.id}
                   type="button"

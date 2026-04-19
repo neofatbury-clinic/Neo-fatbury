@@ -3,11 +3,23 @@ import Header from "@/components/HeaderWrapper";
 import Footer from "@/components/FooterWrapper";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
 
-export const metadata: Metadata = {
-  title: "Best Skin, Hair & Slimming Clinic in Hyderabad | NeoFatbury",
-  description: "NeoFatbury is Hyderabad's top clinical destination for US-FDA approved Skin Brightening, Laser Hair Reduction, Hair Transplantation, and CoolSculpting. Located in Kukatpally & Himayatnagar. Book your free clinical analysis today.",
-  keywords: "Skin Clinic Hyderabad, Hair Clinic Hyderabad, Best Dermatologist Kukatpally, Slimming Clinic Himayatnagar, Laser Hair Reduction Hyderabad, CoolSculpting Hyderabad Price",
-};
+import { client } from "@/sanity/lib/client";
+
+export async function generateMetadata() {
+  const query = `*[_type == "siteSettings"][0] {
+    defaultSeo {
+      title,
+      description
+    }
+  }`;
+  const settings = await client.fetch(query);
+  const seo = settings?.defaultSeo;
+
+  return {
+    title: seo?.title || "Best Skin, Hair & Slimming Clinic in Hyderabad | NeoFatbury",
+    description: seo?.description || "NeoFatbury is Hyderabad's top clinical destination for US-FDA approved Skin Brightening, Laser Hair Reduction, Hair Transplantation, and CoolSculpting.",
+  };
+}
 
 export default function WebsiteLayout({
   children,
