@@ -56,39 +56,31 @@ export async function getAllServices() {
 
 export async function getServiceBySlug(slug: string) {
   return client.fetch(`*[_type == "service" && slug.current == $slug][0]{
-    name,
-    slug,
-    category,
-    heroHeadline,
-    heroAccentLine,
-    heroSubtext,
-    heroImage,
+    name, slug, category, isFeatured, order, shortDescription,
+    heroImage, heroHeadline, heroAccentLine, heroSubtext, heroCtaText,
     heroTrustBadges[]{ icon, label },
-    heroCtaText,
-    shortDescription,
-    contentSections[]{
-      ...,
-      image,
-      faqs[]{ question, answer },
-      items[]{ icon, title, description },
-      results[]{ label, image, testimonial },
-      steps[]{ stepNumber, title, description }
-    },
-    seo {
-      metaTitle,
-      metaDescription,
-      ogImage,
-      keywords,
-      noIndex
-    },
-    adSchema {
-      serviceType,
-      priceFrom,
-      priceTo,
-      duration,
-      aggregateRating,
-      reviewCount
-    }
+    problemHeading, problemAccentText, problemBottomText, problemBottomAccent,
+    problemCards[]{ _key, icon, title, desc },
+    whatIsLabel, whatIsHeading, whatIsAccentWord, whatIsBody,
+    whatIsListHeading, whatIsImageBadge,
+    whatIsImage, whatIsAuthorityNote{ label, text },
+    whatIsPoints[]{ _key, icon, text },
+    baHeading, baAccentWord, baSubtext, baCtaText, baCtaBtnText, baImage,
+    benefitsHeading, benefitsAccentWord,
+    benefitItems[]{ _key, icon, text },
+    processHeading, processAccentWord,
+    processSteps[]{ _key, icon, title, desc },
+    techHeading, techAccentWord, techBody, techImage,
+    techFeatures[]{ _key, icon, text },
+    causesSection{ heading, accentWord, items[]{ _key, icon, title } },
+    whoIsItFor{ heading, accentWord, items[]{ _key, icon, text } },
+    targetAreas{ heading, accentWord, items[]{ _key, icon, text } },
+    trustHeading, trustAccentWord,
+    trustItems[]{ _key, icon, text },
+    faqHeading, faqItems[]{ _key, question, answer },
+    finalCtaHeading, finalCtaSubtext, finalCtaPrimaryBtn, finalCtaSecondaryBtn,
+    seo{ metaTitle, metaDescription, canonicalUrl, ogImage },
+    adSchema{ priceFrom, duration, aggregateRating, reviewCount }
   }`, { slug })
 }
 
@@ -169,7 +161,7 @@ export async function getSiteSettings() {
       openingHours[]{ day, hours }
     },
     defaultSeo,
-    headerAnnouncement,
+    headerAnnouncementText,
     socialMedia,
     schema,
     zohoWebhookUrl

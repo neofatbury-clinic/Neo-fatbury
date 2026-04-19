@@ -14,7 +14,10 @@ async function getAboutData() {
     storyTitle,
     storyText,
     stats,
-    pillars
+    pillars,
+    ctaTitle,
+    ctaSubtitle,
+    ctaButton
   }`;
   return await client.fetch(query);
 }
@@ -118,16 +121,16 @@ export default async function AboutUs() {
       <section className="py-20 px-4">
         <div className="max-w-5xl mx-auto bg-gradient-to-br from-[#00acb1] to-[#008c91] rounded-[40px] p-12 text-center text-white relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl opacity-20" />
-          <h2 className="text-3xl md:text-5xl font-bold mb-8 relative z-10">Start Your Journey Today</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-8 relative z-10">{data?.ctaTitle || 'Start Your Journey Today'}</h2>
           <p className="text-xl text-teal-50 mb-10 max-w-2xl mx-auto relative z-10">
-            Book your free clinical scalp or skin analysis and experience the difference.
+            {data?.ctaSubtitle || 'Book your free clinical scalp or skin analysis and experience the difference.'}
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center relative z-10">
             <Link 
               href="/contact-us"
               className="px-10 py-5 bg-[#e8a317] text-white rounded-full font-bold text-lg hover:bg-white hover:text-[#00acb1] transition-all duration-300 shadow-lg hover:shadow-2xl"
             >
-              Book Complimentary Analysis
+              {data?.ctaButton || 'Book Complimentary Analysis'}
             </Link>
           </div>
         </div>

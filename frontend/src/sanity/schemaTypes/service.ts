@@ -1,4 +1,5 @@
 // src/sanity/schemaTypes/service.ts
+// Full schema — mirrors every editable field on every service page
 import { defineType, defineField } from 'sanity'
 
 export const service = defineType({
@@ -6,269 +7,244 @@ export const service = defineType({
   title: '💉 Services & Treatments',
   type: 'document',
   groups: [
-    { name: 'settings', title: '⚙️ Basic Info' },
-    { name: 'hero', title: '🖼️ Top Banner' },
-    { name: 'content', title: '📝 Content Sections' },
-    { name: 'seo', title: '🔍 Google/SEO' },
-    { name: 'schema', title: '📊 Ads Data' },
+    { name: 'settings',     title: '⚙️ Basic Info' },
+    { name: 'hero',         title: '🖼️ Hero Banner' },
+    { name: 'problem',      title: '❗ Problem Section' },
+    { name: 'whatis',       title: '📖 What Is Section' },
+    { name: 'before_after', title: '📸 Before & After' },
+    { name: 'benefits',     title: '✅ Benefits Grid' },
+    { name: 'process',      title: '🔄 How It Works' },
+    { name: 'technology',   title: '🔬 Technology Section' },
+    { name: 'trust',        title: '🏆 Why Choose Us' },
+    { name: 'faq',          title: '❓ FAQ' },
+    { name: 'cta',          title: '📣 Final CTA' },
+    { name: 'extras',       title: '➕ Extra Sections' },
+    { name: 'seo',          title: '🔍 SEO' },
+    { name: 'schema',       title: '📊 Ads Data' },
   ],
   fields: [
-    // ── BASIC ─────────────────────────────────────
+
+    // ── BASIC ─────────────────────────────────────────────────────────────────
     defineField({
-      name: 'name',
-      title: 'Service/Treatment Name',
-      type: 'string',
-      description: '💡 Give this treatment a clear name, e.g. "Acne Clearing" or "Laser Hair Removal"',
-      validation: (r) => r.required(),
-      group: 'settings',
+      name: 'name', title: 'Service / Treatment Name', type: 'string',
+      validation: r => r.required(), group: 'settings',
     }),
     defineField({
-      name: 'slug',
-      title: 'Page Web Address (Slug)',
-      type: 'slug',
+      name: 'slug', title: 'Page URL Slug', type: 'slug',
       options: { source: 'name', maxLength: 96 },
-      validation: (r) => r.required(),
-      description: '💡 Click "Generate" to create a standard web address for this page based on the name.',
-      group: 'settings',
+      validation: r => r.required(), group: 'settings',
     }),
     defineField({
-      name: 'category',
-      title: 'Service Category',
-      type: 'string',
-      options: {
-        list: [
-          { title: '✨ Skin Treatments', value: 'skin' },
-          { title: '💇 Hair Treatments', value: 'hair' },
-          { title: '⚖️ Slimming & Body', value: 'slimming' },
-          { title: '🩹 Other Treatments', value: 'other' },
-        ],
-        layout: 'radio',
-      },
-      description: '💡 Select which main section this treatment belongs to.',
-      group: 'settings',
+      name: 'category', title: 'Category', type: 'string',
+      options: { list: [
+        { title: '✨ Skin',    value: 'skin' },
+        { title: '💇 Hair',   value: 'hair' },
+        { title: '⚖️ Slimming', value: 'slimming' },
+      ], layout: 'radio' }, group: 'settings',
     }),
-    defineField({
-      name: 'isFeatured',
-      title: 'Show on Homepage?',
-      type: 'boolean',
-      initialValue: false,
-      description: '💡 Turn this ON to feature this service in the grid on your homepage.',
-      group: 'settings',
-    }),
-    defineField({
-      name: 'order',
-      title: 'Display Sequence Number',
-      type: 'number',
-      description: '💡 Optional: Use numbers like 1, 2, 3 to control the order in lists (lower numbers show first).',
-      group: 'settings',
-    }),
+    defineField({ name: 'isFeatured', title: 'Show on Homepage?', type: 'boolean', initialValue: false, group: 'settings' }),
+    defineField({ name: 'order', title: 'Display Order', type: 'number', group: 'settings' }),
+    defineField({ name: 'shortDescription', title: 'Short Description (Menu Cards)', type: 'text', rows: 2, group: 'settings' }),
 
-    // ── HERO SECTION ──────────────────────────────
+    // ── HERO ─────────────────────────────────────────────────────────────────
     defineField({
-      name: 'heroImage',
-      title: 'Top Banner Image',
-      type: 'image',
-      description: '💡 This large image appears at the very top of the page. High-quality landscape photos work best.',
-      options: { hotspot: true },
+      name: 'heroImage', title: 'Hero Background Image', type: 'image',
+      description: '💡 The large background image shown behind the hero section. Upload the image from /public/images/ here.',
+      options: { hotspot: true }, group: 'hero',
+    }),
+    defineField({ name: 'heroHeadline',   title: 'Hero Headline (Line 1)', type: 'string', group: 'hero' }),
+    defineField({ name: 'heroAccentLine', title: 'Hero Accent (Line 2 — Orange)', type: 'string', group: 'hero' }),
+    defineField({ name: 'heroSubtext',    title: 'Hero Description', type: 'text', rows: 3, group: 'hero' }),
+    defineField({
+      name: 'heroTrustBadges', title: 'Hero Trust Badges', type: 'array', group: 'hero',
+      of: [{ type: 'object', fields: [
+        defineField({ name: 'icon',  title: 'Emoji', type: 'string' }),
+        defineField({ name: 'label', title: 'Badge Text', type: 'string' }),
+      ], preview: { select: { title: 'label', subtitle: 'icon' } } }],
+    }),
+    defineField({ name: 'heroCtaText', title: 'Hero CTA Button Text', type: 'string', initialValue: 'Book Free Consultation', group: 'hero' }),
+
+    // ── PROBLEM SECTION ───────────────────────────────────────────────────────
+    defineField({ name: 'problemHeading',     title: 'Problem Section Heading', type: 'string', group: 'problem' }),
+    defineField({ name: 'problemAccentText',  title: 'Problem Heading Accent (Orange Part)', type: 'string', group: 'problem' }),
+    defineField({
+      name: 'problemCards', title: 'Problem Cards (4-Grid)', type: 'array', group: 'problem',
+      of: [{ type: 'object', fields: [
+        defineField({ name: 'icon',  title: 'Emoji Icon', type: 'string' }),
+        defineField({ name: 'title', title: 'Card Title', type: 'string' }),
+        defineField({ name: 'desc',  title: 'Card Description', type: 'text', rows: 2 }),
+      ], preview: { select: { title: 'title', subtitle: 'icon' } } }],
+    }),
+    defineField({ name: 'problemBottomText',   title: 'Problem Section Bottom Text', type: 'string', group: 'problem' }),
+    defineField({ name: 'problemBottomAccent', title: 'Bottom Text Accent (Orange)', type: 'string', group: 'problem' }),
+
+    // ── WHAT IS SECTION ───────────────────────────────────────────────────────
+    defineField({ name: 'whatIsLabel',        title: 'Section Label (Small Uppercase)', type: 'string', group: 'whatis' }),
+    defineField({ name: 'whatIsHeading',      title: 'What Is — Heading', type: 'string', group: 'whatis' }),
+    defineField({ name: 'whatIsAccentWord',   title: 'What Is — Accent Part (Orange)', type: 'string', group: 'whatis' }),
+    defineField({ name: 'whatIsBody',         title: 'Description Paragraph', type: 'text', rows: 4, group: 'whatis' }),
+    defineField({ name: 'whatIsListHeading',  title: '"Our Treatments Include" Sub-Heading', type: 'string', group: 'whatis' }),
+    defineField({
+      name: 'whatIsPoints', title: 'Treatment/Feature List', type: 'array', group: 'whatis',
+      of: [{ type: 'object', fields: [
+        defineField({ name: 'icon', title: 'Emoji', type: 'string' }),
+        defineField({ name: 'text', title: 'Point Text', type: 'string' }),
+      ], preview: { select: { title: 'text', subtitle: 'icon' } } }],
+    }),
+    defineField({
+      name: 'whatIsImage', title: 'What Is — Side Image', type: 'image',
+      options: { hotspot: true }, group: 'whatis',
+    }),
+    defineField({ name: 'whatIsImageBadge', title: 'Image Badge Text (e.g. NEOFATBURY LASER STANDARD)', type: 'string', group: 'whatis' }),
+    defineField({
+      name: 'whatIsAuthorityNote', title: 'Clinical Authority Note (Highlighted Box) — Optional', type: 'object', group: 'whatis',
       fields: [
-        { name: 'alt', title: 'Alt Text (SEO)', type: 'string', description: '💡 Describe the image for Google.' }
-      ],
-      group: 'hero',
-    }),
-    defineField({
-      name: 'heroHeadline',
-      title: 'Top Heading (Line 1)',
-      type: 'string',
-      description: '💡 The main big text, e.g. "Flawless Radiant Skin."',
-      group: 'hero',
-    }),
-    defineField({
-      name: 'heroAccentLine',
-      title: 'Accent Heading (Line 2 - Orange)',
-      type: 'string',
-      description: '💡 Special highlighted text below Line 1, e.g. "Clinical Precision."',
-      group: 'hero',
-    }),
-    defineField({
-      name: 'heroSubtext',
-      title: 'Intro Text (Below Heading)',
-      type: 'text',
-      rows: 3,
-      description: '💡 A brief summary of why people should choose this treatment.',
-      group: 'hero',
-    }),
-    defineField({
-      name: 'heroTrustBadges',
-      title: 'Feature Highlights (Icons)',
-      type: 'array',
-      description: '💡 Add 2-4 key features with icons (e.g. 🛡️ Safe & Proven, ✨ Immediate Glow)',
-      of: [{
-        type: 'object',
-        fields: [
-          defineField({ name: 'icon', title: 'Emoji Icon', type: 'string', description: '💡 Example: ✨ ✅ 🛡️ 🔬' }),
-          defineField({ name: 'label', title: 'Highlight Text', type: 'string', description: '💡 Example: "FDA APPROVED"' }),
-        ],
-        preview: { select: { title: 'label', subtitle: 'icon' } },
-      }],
-      group: 'hero',
-    }),
-    defineField({
-      name: 'heroCtaText',
-      title: 'Booking Button Text',
-      type: 'string',
-      initialValue: 'Book Free Consultation',
-      description: '💡 What the main button at the top should say.',
-      group: 'hero',
-    }),
-
-    // ── MAIN CONTENT ──────────────────────────────
-    defineField({
-      name: 'shortDescription',
-      title: 'Menu Card Summary',
-      type: 'text',
-      rows: 2,
-      description: '💡 A very short one-sentence summary shown on cards throughout the site menu.',
-      validation: (r) => r.max(160),
-      group: 'content',
-    }),
-    defineField({
-      name: 'contentSections',
-      title: 'Custom Page Layout',
-      description: '💡 Build your page by adding sections! Click "Add item" to insert a text block, images, or FAQ.',
-      type: 'array',
-      group: 'content',
-      of: [
-        {
-          type: 'object',
-          name: 'textSection',
-          title: 'Section: Text & Image',
-          fields: [
-            defineField({ name: 'sectionTitle', title: 'Heading for this section', type: 'string' }),
-            defineField({ name: 'body', title: 'Main Text Content', type: 'array', of: [{ type: 'block' }] }),
-            defineField({ name: 'image', title: 'Side Image', type: 'image', options: { hotspot: true } }),
-            defineField({
-              name: 'imagePosition',
-              title: 'Image Placement',
-              type: 'string',
-              options: { list: [{title: 'Image Left, Text Right', value: 'left'}, {title: 'Text Left, Image Right', value: 'right'}], layout: 'radio' },
-              initialValue: 'right',
-            }),
-            defineField({
-              name: 'backgroundColor',
-              title: 'Section Shade',
-              type: 'string',
-              options: { list: ['White', 'Light Grey', 'Teal Tint', 'Dark Overlay'] }
-            }),
-          ],
-          preview: { select: { title: 'sectionTitle' }, prepare: ({ title }) => ({ title: `📄 Text/Image: ${title || 'Untitled'}` }) },
-        },
-        {
-          type: 'object',
-          name: 'faqSection',
-          title: 'Section: Frequently Asked Questions',
-          fields: [
-            defineField({ name: 'sectionTitle', title: 'FAQ Heading', type: 'string', initialValue: 'Frequently Asked Questions' }),
-            defineField({
-              name: 'faqs',
-              title: 'Question & Answer List',
-              type: 'array',
-              of: [{
-                type: 'object',
-                fields: [
-                  defineField({ name: 'question', title: 'The Question', type: 'string' }),
-                  defineField({ name: 'answer', title: 'The Answer', type: 'text', rows: 3 }),
-                ],
-                preview: { select: { title: 'question' } },
-              }],
-            }),
-          ],
-          preview: { prepare: () => ({ title: '❓ FAQ Section' }) },
-        },
-        {
-          type: 'object',
-          name: 'benefitsSection',
-          title: 'Section: Key Benefits Grid',
-          fields: [
-            defineField({ name: 'sectionTitle', title: 'Benefits Heading', type: 'string' }),
-            defineField({
-              name: 'items',
-              title: 'Benefit Items',
-              type: 'array',
-              of: [{
-                type: 'object',
-                fields: [
-                  defineField({ name: 'icon', title: 'Emoji Icon', type: 'string', description: '💡 e.g. 💎 ✅ 🔬' }),
-                  defineField({ name: 'title', title: 'Benefit Title', type: 'string' }),
-                  defineField({ name: 'description', title: 'Explain the benefit', type: 'text', rows: 2 }),
-                ],
-                preview: { select: { title: 'title', subtitle: 'icon' } },
-              }],
-            }),
-          ],
-          preview: { prepare: () => ({ title: '✨ Benefits Grid' }) },
-        },
-        {
-          type: 'object',
-          name: 'gallerySection',
-          title: 'Section: Result Photos',
-          fields: [
-            defineField({ name: 'sectionTitle', title: 'Gallery Heading', type: 'string', initialValue: 'Real Transformations' }),
-            defineField({
-              name: 'results',
-              title: 'Photos',
-              type: 'array',
-              of: [{
-                type: 'object',
-                fields: [
-                  defineField({ name: 'label', title: 'Caption', type: 'string' }),
-                  defineField({ name: 'image', title: 'Comparison Photo', type: 'image', options: { hotspot: true } }),
-                ],
-              }],
-            }),
-          ],
-          preview: { prepare: () => ({ title: '📸 Results Gallery' }) },
-        },
-        {
-          type: 'object',
-          name: 'ctaSection',
-          title: 'Section: Big Call-to-Action',
-          fields: [
-            defineField({ name: 'headline', title: 'Banner Main Text', type: 'string' }),
-            defineField({ name: 'subtext', title: 'Banner Supporting Text', type: 'string' }),
-            defineField({ name: 'buttonText', title: 'Button Label', type: 'string', initialValue: 'Book Free Consultation' }),
-          ],
-          preview: { select: { title: 'headline' }, prepare: ({ title }) => ({ title: `📣 Banner: ${title || 'CTA'}` }) },
-        },
+        defineField({ name: 'label', title: 'Note Label', type: 'string' }),
+        defineField({ name: 'text',  title: 'Note Text',  type: 'text', rows: 2 }),
       ],
     }),
 
-    // ── SEO ───────────────────────────────────────
+    // ── BEFORE & AFTER ────────────────────────────────────────────────────────
+    defineField({ name: 'baHeading',    title: 'Before/After Heading',       type: 'string', group: 'before_after' }),
+    defineField({ name: 'baAccentWord', title: 'Before/After Accent (Orange)', type: 'string', group: 'before_after' }),
+    defineField({ name: 'baSubtext',    title: 'Before/After Subtext',       type: 'string', group: 'before_after' }),
     defineField({
-      name: 'seo',
-      title: 'Google & SEO Settings',
-      type: 'object',
-      description: '💡 Fill this to help Google find and display this page correctly.',
-      group: 'seo',
+      name: 'baImage', title: 'Before & After Photo', type: 'image',
+      options: { hotspot: true }, group: 'before_after',
+      description: '16:6 aspect ratio recommended',
+    }),
+    defineField({ name: 'baCtaText', title: 'Bottom Call-to-Action Text', type: 'string', group: 'before_after' }),
+    defineField({ name: 'baCtaBtnText', title: 'Button Text', type: 'string', group: 'before_after' }),
+
+    // ── BENEFITS GRID ─────────────────────────────────────────────────────────
+    defineField({ name: 'benefitsHeading',    title: 'Benefits Section Heading', type: 'string', group: 'benefits' }),
+    defineField({ name: 'benefitsAccentWord', title: 'Benefits Heading Accent (Orange)', type: 'string', group: 'benefits' }),
+    defineField({
+      name: 'benefitItems', title: 'Benefit Items (5-Grid)', type: 'array', group: 'benefits',
+      of: [{ type: 'object', fields: [
+        defineField({ name: 'icon', title: 'Emoji', type: 'string' }),
+        defineField({ name: 'text', title: 'Benefit Text', type: 'string' }),
+      ], preview: { select: { title: 'text', subtitle: 'icon' } } }],
+    }),
+
+    // ── HOW IT WORKS / PROCESS ────────────────────────────────────────────────
+    defineField({ name: 'processHeading',    title: 'Process Section Heading', type: 'string', group: 'process' }),
+    defineField({ name: 'processAccentWord', title: 'Process Heading Accent (Orange)', type: 'string', group: 'process' }),
+    defineField({
+      name: 'processSteps', title: 'Process Steps (4-Grid)', type: 'array', group: 'process',
+      of: [{ type: 'object', fields: [
+        defineField({ name: 'icon',  title: 'Step Emoji/Number', type: 'string' }),
+        defineField({ name: 'title', title: 'Step Title', type: 'string' }),
+        defineField({ name: 'desc',  title: 'Step Description', type: 'text', rows: 2 }),
+      ], preview: { select: { title: 'title', subtitle: 'icon' } } }],
+    }),
+
+    // ── TECHNOLOGY SECTION ────────────────────────────────────────────────────
+    defineField({ name: 'techHeading',    title: 'Technology Section Heading', type: 'string', group: 'technology' }),
+    defineField({ name: 'techAccentWord', title: 'Technology Heading Accent (Orange)', type: 'string', group: 'technology' }),
+    defineField({ name: 'techBody',       title: 'Technology Description', type: 'text', rows: 3, group: 'technology' }),
+    defineField({
+      name: 'techFeatures', title: 'Technology Feature Points', type: 'array', group: 'technology',
+      of: [{ type: 'object', fields: [
+        defineField({ name: 'icon', title: 'Emoji', type: 'string' }),
+        defineField({ name: 'text', title: 'Feature Text', type: 'string' }),
+      ], preview: { select: { title: 'text', subtitle: 'icon' } } }],
+    }),
+    defineField({
+      name: 'techImage', title: 'Technology Section Image', type: 'image',
+      options: { hotspot: true }, group: 'technology',
+    }),
+
+    // ── EXTRA SECTIONS (page-specific) ───────────────────────────────────────
+    defineField({
+      name: 'causesSection', title: 'Causes Grid (Hair Loss page)', type: 'object', group: 'extras',
       fields: [
-        defineField({ name: 'metaTitle', title: 'Google Search Title', type: 'string', description: '💡 What people see as the blue link in Google search results.' }),
-        defineField({ name: 'metaDescription', title: 'Google Search Description', type: 'text', rows: 3, description: '💡 The short summary Google shows under your link.' }),
-        defineField({ name: 'canonicalUrl', title: 'Canonical URL', type: 'url', description: '💡 Optional: Use this if you want search engines to point to a different preferred version of this page.' }),
-        defineField({ name: 'ogImage', title: 'Social Share Image', type: 'image', description: '💡 Image shown when you share this link on WhatsApp/Facebook.' }),
+        defineField({ name: 'heading',    title: 'Heading',       type: 'string' }),
+        defineField({ name: 'accentWord', title: 'Accent (Orange)', type: 'string' }),
+        defineField({
+          name: 'items', title: 'Cause Items', type: 'array',
+          of: [{ type: 'object', fields: [
+            defineField({ name: 'icon',  title: 'Emoji', type: 'string' }),
+            defineField({ name: 'title', title: 'Title', type: 'string' }),
+          ], preview: { select: { title: 'title', subtitle: 'icon' } } }],
+        }),
+      ],
+    }),
+    defineField({
+      name: 'whoIsItFor', title: '"Who Can Benefit?" Chips', type: 'object', group: 'extras',
+      fields: [
+        defineField({ name: 'heading',    title: 'Heading',       type: 'string' }),
+        defineField({ name: 'accentWord', title: 'Accent (Orange)', type: 'string' }),
+        defineField({
+          name: 'items', title: 'Audience Items', type: 'array',
+          of: [{ type: 'object', fields: [
+            defineField({ name: 'icon', title: 'Emoji', type: 'string' }),
+            defineField({ name: 'text', title: 'Text',  type: 'string' }),
+          ], preview: { select: { title: 'text', subtitle: 'icon' } } }],
+        }),
+      ],
+    }),
+    defineField({
+      name: 'targetAreas', title: '"Target Areas" Chips (CoolSculpting)', type: 'object', group: 'extras',
+      fields: [
+        defineField({ name: 'heading',    title: 'Heading',       type: 'string' }),
+        defineField({ name: 'accentWord', title: 'Accent (Orange)', type: 'string' }),
+        defineField({
+          name: 'items', title: 'Area Items', type: 'array',
+          of: [{ type: 'object', fields: [
+            defineField({ name: 'icon', title: 'Emoji', type: 'string' }),
+            defineField({ name: 'text', title: 'Area Name', type: 'string' }),
+          ], preview: { select: { title: 'text', subtitle: 'icon' } } }],
+        }),
       ],
     }),
 
-    // ── AD SCHEMA ─────────────────────────────────
+    // ── TRUST / WHY CHOOSE US ─────────────────────────────────────────────────
+    defineField({ name: 'trustHeading',    title: '"Why Choose Us" Heading', type: 'string', group: 'trust' }),
+    defineField({ name: 'trustAccentWord', title: '"Why Choose Us" Accent (Orange)', type: 'string', group: 'trust' }),
     defineField({
-      name: 'adSchema',
-      title: 'Google Ads Rich Data',
-      type: 'object',
-      description: '💡 Optional: Fill this to improve your ad quality scores.',
-      group: 'schema',
+      name: 'trustItems', title: 'Trust Items (4-Grid)', type: 'array', group: 'trust',
+      of: [{ type: 'object', fields: [
+        defineField({ name: 'icon', title: 'Emoji', type: 'string' }),
+        defineField({ name: 'text', title: 'Item Text', type: 'string' }),
+      ], preview: { select: { title: 'text', subtitle: 'icon' } } }],
+    }),
+
+    // ── FAQ ───────────────────────────────────────────────────────────────────
+    defineField({ name: 'faqHeading', title: 'FAQ Section Heading', type: 'string', group: 'faq' }),
+    defineField({
+      name: 'faqItems', title: 'FAQ Questions & Answers', type: 'array', group: 'faq',
+      of: [{ type: 'object', fields: [
+        defineField({ name: 'question', title: 'Question', type: 'string' }),
+        defineField({ name: 'answer',   title: 'Answer',   type: 'text', rows: 3 }),
+      ], preview: { select: { title: 'question' } } }],
+    }),
+
+    // ── FINAL CTA ─────────────────────────────────────────────────────────────
+    defineField({ name: 'finalCtaHeading',      title: 'Final CTA Heading',     type: 'string', group: 'cta' }),
+    defineField({ name: 'finalCtaSubtext',       title: 'Final CTA Subtext',     type: 'string', group: 'cta' }),
+    defineField({ name: 'finalCtaPrimaryBtn',    title: 'Primary Button Text',   type: 'string', initialValue: 'Book Appointment', group: 'cta' }),
+    defineField({ name: 'finalCtaSecondaryBtn',  title: 'Secondary Button Text', type: 'string', initialValue: 'Get Free Consultation', group: 'cta' }),
+
+    // ── SEO ───────────────────────────────────────────────────────────────────
+    defineField({
+      name: 'seo', title: 'SEO Settings', type: 'object', group: 'seo',
       fields: [
-        defineField({ name: 'priceFrom', title: 'Price Starts From (₹)', type: 'number' }),
-        defineField({ name: 'duration', title: 'Timing/Duration', type: 'string', description: 'e.g. "30-45 mins"' }),
-        defineField({ name: 'aggregateRating', title: 'Star Rating (1-5)', type: 'number' }),
-        defineField({ name: 'reviewCount', title: 'Review Count', type: 'number' }),
+        defineField({ name: 'metaTitle',       title: 'Meta Title',       type: 'string' }),
+        defineField({ name: 'metaDescription', title: 'Meta Description', type: 'text', rows: 3 }),
+        defineField({ name: 'canonicalUrl',    title: 'Canonical URL',    type: 'url' }),
+        defineField({ name: 'ogImage',         title: 'Social Share Image', type: 'image' }),
+      ],
+    }),
+
+    // ── AD SCHEMA ─────────────────────────────────────────────────────────────
+    defineField({
+      name: 'adSchema', title: 'Ads Rich Data', type: 'object', group: 'schema',
+      fields: [
+        defineField({ name: 'priceFrom',        title: 'Price From (₹)',    type: 'number' }),
+        defineField({ name: 'duration',         title: 'Session Duration',  type: 'string' }),
+        defineField({ name: 'aggregateRating',  title: 'Star Rating (1-5)', type: 'number' }),
+        defineField({ name: 'reviewCount',      title: 'Review Count',      type: 'number' }),
       ],
     }),
   ],

@@ -56,16 +56,20 @@ export default async function Home() {
           <div className="hero-face-gap" />
           <div className="home-hero-text">
             <h1 className="home-hero-title">
-              <span style={{ color: '#00acb1' }}>{hero?.heroTitle || 'Expert Skin, Hair & Slimming'}</span> <br/>
-              <span style={{ color: '#F39C12' }}>{hero?.heroSubtitle || 'Clinic in Hyderabad'}</span>
+              <span style={{ color: '#00acb1' }}>{hero?.heroHeadline || 'Expert Skin, Hair & Slimming'}</span> <br/>
+              <span style={{ color: '#F39C12' }}>{hero?.heroAccentLine || 'Clinic in Hyderabad'}</span>
             </h1>
             <p className="home-hero-sub">
-              {hero?.heroDescription || 'Transform your confidence with US-FDA approved treatments and expert clinical care.'}
+              {hero?.heroSubtext || 'Transform your confidence with US-FDA approved treatments and expert clinical care.'}
             </p>
             <div className="home-hero-trust-row">
-              <div className="home-trust-item"><span>✅</span> 10+ Years Expert</div>
-              <div className="home-trust-item"><span>✅</span> US-FDA Tech</div>
-              <div className="home-trust-item"><span>✅</span> 15k+ Success</div>
+              {(hero?.heroStats || [
+                { number: '10+', label: 'Years Expert' },
+                { number: 'US-FDA', label: 'Tech' },
+                { number: '15k+', label: 'Success' }
+              ]).map((stat: any, i: number) => (
+                <div key={i} className="home-trust-item"><span>✅</span> {stat.number} {stat.label}</div>
+              ))}
             </div>
           </div>
           <div className="hero-form-wrap">
@@ -77,8 +81,8 @@ export default async function Home() {
       {/* SECTION 2: OUR TREATMENTS (FIXED IMAGES) */}
       <section className="section bg-white">
         <div className="container">
-          <h2 className="section-title text-center">Our <span className="text-accent">Treatments</span></h2>
-          <p className="section-subtitle text-center">Discover world-class dermatology and aesthetic care tailored to your goals.</p>
+          <h2 className="section-title text-center">{hero?.treatmentsSectionTitle || 'Our Premier Treatments'}</h2>
+          <p className="section-subtitle text-center">{hero?.treatmentsSectionSubtitle || 'Discover world-class dermatology and aesthetic care tailored to your goals.'}</p>
           <HomeClient treatments={treatments} />
           <div style={{ textAlign: 'center', marginTop: '3rem' }}>
             <Link href="/results" className="btn btn-cyan" style={{ width: '100%', maxWidth: '500px', display: 'inline-block', padding: '1.2rem 1rem', borderRadius: '50px', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: '800', backgroundColor: '#00acb1' }}>View our full results gallery</Link>
@@ -90,18 +94,18 @@ export default async function Home() {
       <section className="section" style={{ backgroundColor: '#fcfcfc', borderTop: '1px solid #f0f0f0', borderBottom: '1px solid #f0f0f0' }}>
         <div className="container text-center">
           <p style={{ color: '#00acb1', fontWeight: '700', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.75rem' }}>Why NeoFatbury Stands Out</p>
-          <h2 className="section-title" style={{ marginBottom: '1rem' }}>Clinical Excellence, <span className="text-accent">Personal Care</span></h2>
+          <h2 className="section-title" style={{ marginBottom: '1rem' }}>{hero?.whyUsTitle || 'Clinical Excellence, Personal Care'}</h2>
           <div className="grid grid-4 mobile-grid-2" style={{ marginTop: '3.5rem' }}>
-            {[
-              { title: 'Dermatologist-Led', desc: 'Every treatment is supervised by qualified medical professionals.', icon: '👩‍⚕️' },
-              { title: 'Safety First', desc: 'We exclusively use ISO-certified processes and internationally recognized equipment.', icon: '🛡️' },
-              { title: 'No Hidden Costs', desc: 'Transparent pricing with detailed pre-treatment counseling.', icon: '💳' },
-              { title: 'Convenient Locations', desc: 'Premium clinics located in the heart of Kukatpally and Himayatnagar.', icon: '📍' },
-            ].map((p, i) => (
+            {(hero?.whyUsPoints || [
+              { title: 'Dermatologist-Led', description: 'Every treatment is supervised by qualified medical professionals.', icon: '👩‍⚕️' },
+              { title: 'Safety First', description: 'We exclusively use ISO-certified processes and internationally recognized equipment.', icon: '🛡️' },
+              { title: 'No Hidden Costs', description: 'Transparent pricing with detailed pre-treatment counseling.', icon: '💳' },
+              { title: 'Convenient Locations', description: 'Premium clinics located in the heart of Kukatpally and Himayatnagar.', icon: '📍' },
+            ]).map((p: any, i: number) => (
               <div key={i} className="card" style={{ padding: '2.5rem 1.5rem', backgroundColor: 'white', borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)', border: '1px solid #f1f1f1' }}>
                 <div style={{ fontSize: '2.5rem', marginBottom: '1.25rem' }}>{p.icon}</div>
                 <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: '#00acb1', fontWeight: '700' }}>{p.title}</h3>
-                <p style={{ fontSize: '0.92rem', color: '#00acb1', opacity: 0.85, lineHeight: 1.6 }}>{p.desc}</p>
+                <p style={{ fontSize: '0.92rem', color: '#00acb1', opacity: 0.85, lineHeight: 1.6 }}>{p.description}</p>
               </div>
             ))}
           </div>

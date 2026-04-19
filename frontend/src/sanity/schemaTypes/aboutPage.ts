@@ -56,6 +56,21 @@ export const aboutPage = defineType({
           ]
         }
       ]
+    }),
+    defineField({
+      name: 'ctaTitle',
+      title: 'CTA Title',
+      type: 'string',
+    }),
+    defineField({
+      name: 'ctaSubtitle',
+      title: 'CTA Subtitle',
+      type: 'string',
+    }),
+    defineField({
+      name: 'ctaButton',
+      title: 'CTA Button Text',
+      type: 'string',
     })
   ]
 })

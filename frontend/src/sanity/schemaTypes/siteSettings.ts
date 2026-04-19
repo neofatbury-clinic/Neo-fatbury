@@ -277,7 +277,7 @@ export const siteSettings = defineType({
 
     // ── BRANDING ──────────────────────────────────
     defineField({
-      name: 'headerAnnouncement',
+      name: 'headerAnnouncementText',
       title: 'Top Bar News Message',
       type: 'string',
       description: '💡 e.g., "🎉 Free Clinical Analysis for first 50 patients!". Leave empty to hide.',

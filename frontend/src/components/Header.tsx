@@ -11,9 +11,9 @@ export default function Header({ settings }: { settings?: any }) {
   return (
     <header style={wrapperStyle}>
       {/* ── ANNOUNCEMENT BAR ────────────────────────────────── */}
-      {settings?.headerAnnouncement && (
+      {settings?.headerAnnouncementText && (
         <div style={{ backgroundColor: 'var(--color-primary)', color: 'white', textAlign: 'center', fontSize: '0.85rem', fontWeight: '600', padding: '0.5rem' }} className="animate-fade-in">
-          {settings.headerAnnouncement}
+          {settings.headerAnnouncementText}
         </div>
       )}
       {/* ── TOP BAR ─────────────────────────────────────────── */}

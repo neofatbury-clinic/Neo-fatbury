@@ -171,7 +171,7 @@ export default async function ServicePage({ params }: { params: { category: stri
         </div>
 
       </div>
-
+    </article>
   );
 }
 
