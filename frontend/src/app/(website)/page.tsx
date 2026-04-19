@@ -11,7 +11,7 @@ async function getHomeData() {
   const query = `{
     "settings": *[_type == "siteSettings"][0],
     "hero": *[_type == "homepage"][0],
-    "services": *[_type == "service"] {
+    "services": *[_type == "homepage"][0].featuredTreatments[]-> {
       title,
       "slug": slug.current,
       category,
