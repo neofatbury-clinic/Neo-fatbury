@@ -9,6 +9,8 @@ import { teamMember } from './teamMember'
 import { testimonial } from './testimonial'
 import { genericPage } from './genericPage'
 import { aboutPage } from './aboutPage'
+import { contactPage } from './contactPage'
+import { resultsPage } from './resultsPage'
 import { contactFormSettings } from './contactFormSettings'
 import { category } from './category'
 
