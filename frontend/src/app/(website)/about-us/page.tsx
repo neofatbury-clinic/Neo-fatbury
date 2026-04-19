@@ -24,311 +24,222 @@ async function getAboutData() {
 
 export default async function AboutUs() {
   const data = await getAboutData();
-  // We use a high quality clinic/aesthetic fallback image
-  const heroImage = data?.heroImage || '/images/neofatbury-hero-banner.webp';
+  
+  // Extract Mission and Vision from pillars if they exist
+  const visionDef = { title: 'Our Vision', description: 'To be the most trusted name in clinical dermatology and aesthetics across India, setting the gold standard for patient safety, technological innovation, and sustainable results.' };
+  const missionDef = { title: 'Our Mission', description: 'To provide safe, effective, and scientifically backed aesthetic solutions that enhance natural beauty and restore confidence—all delivered with uncompromising clinical excellence.' };
+  
+  const vision = data?.pillars?.find((p: any) => p.title.toLowerCase().includes('vision')) || visionDef;
+  const mission = data?.pillars?.find((p: any) => p.title.toLowerCase().includes('mission')) || missionDef;
 
   return (
-    <div style={{ backgroundColor: '#ffffff', overflow: 'hidden' }}>
-      
-      {/* ─────────────────────────────────────────────────────────
-          1. LUXURY HERO BANNER & GLASSMORPHISM LEAD
-          ───────────────────────────────────────────────────────── */}
-      <section style={{ 
-        position: 'relative', 
-        minHeight: '75vh', 
-        display: 'flex',
-        alignItems: 'center',
-        padding: '6rem 0',
-      }}>
-        {/* Background Image with Parallax-feel overlay */}
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
-          <Image 
-            src={heroImage}
-            alt="About NeoFatbury"
-            fill
-            priority
-            style={{ objectFit: 'cover', objectPosition: 'center 30%' }}
-          />
-          <div style={{ 
-            position: 'absolute', inset: 0, 
-            background: 'linear-gradient(100deg, rgba(0,0,0,0.85) 0%, rgba(0,70,75,0.6) 50%, rgba(0,0,0,0.1) 100%)' 
-          }} />
-        </div>
-
-        <div className="container fade-up" style={{ position: 'relative', zIndex: 10, maxWidth: '1400px' }}>
-          <div style={{ maxWidth: '750px' }}>
-            <div style={{ 
-              display: 'inline-block',
-              background: 'rgba(255,255,255,0.15)',
-              backdropFilter: 'blur(12px)',
-              WebkitBackdropFilter: 'blur(12px)',
-              border: '1px solid rgba(255,255,255,0.2)',
-              borderRadius: '50px',
-              padding: '0.6rem 1.5rem',
-              color: 'var(--color-cta)',
-              fontWeight: 700,
-              letterSpacing: '2px',
-              textTransform: 'uppercase',
-              fontSize: '0.85rem',
-              marginBottom: '2.5rem'
-            }}>
-              Discover Our Aesthetic Heritage
-            </div>
-
-            <h1 style={{ 
-              fontSize: 'clamp(3rem, 6vw, 4.8rem)', 
-              fontWeight: 800, 
-              color: 'white', 
-              lineHeight: 1.1,
-              marginBottom: '2rem',
-              textShadow: '0 10px 30px rgba(0,0,0,0.3)'
-            }}>
-              {data?.title || 'Clinical Excellence in Skin & Hair'}
-            </h1>
-            
-            <p style={{ 
-              fontSize: '1.25rem', 
-              color: '#e8f6f7', 
-              lineHeight: 1.8, 
-              marginBottom: '3rem',
-              maxWidth: '650px',
-              fontWeight: 400
-            }}>
-              Founded on the pillars of absolute precision, uncompromising safety, and undeniable results. NeoFatbury is Hyderabad's most trusted sanctuary for aesthetic medicine.
-            </p>
-
-            <Link href="#our-story" className="btn" style={{
-              backgroundColor: 'white',
-              color: 'var(--color-primary)',
-              padding: '1.2rem 2.5rem',
-              borderRadius: '50px',
-              fontSize: '1rem',
-              fontWeight: 700,
-              boxShadow: '0 15px 35px rgba(0,0,0,0.2)',
-              transition: 'transform 0.3s ease'
-            }}>
-              Read Our Story ↓
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────
-          2. THE 'OUR STORY' ASYMMETRICAL GRID
-          ───────────────────────────────────────────────────────── */}
-      <section id="our-story" className="section" style={{ padding: '8rem 0', position: 'relative' }}>
-        {/* Subtle background decoration */}
-        <div style={{ position: 'absolute', right: 0, top: '10%', width: '30%', height: '80%', background: 'var(--color-surface)', borderTopLeftRadius: '100px', borderBottomLeftRadius: '100px', zIndex: 0 }} />
+    <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', padding: '3rem 0', fontFamily: 'var(--font-body)' }}>
+      <div className="container" style={{ maxWidth: '1200px', display: 'flex', flexWrap: 'wrap', gap: '3rem', alignItems: 'flex-start' }}>
         
-        <div className="container grid grid-2" style={{ gap: '6rem', alignItems: 'center', position: 'relative', zIndex: 10 }}>
-          
-          <div style={{ position: 'relative', height: '100%' }}>
-            {/* Main Clinical Image */}
-            <div style={{ 
-              position: 'relative', 
-              borderRadius: '24px', 
-              overflow: 'hidden', 
-              boxShadow: 'var(--shadow-lg)',
-              border: '8px solid white',
-              aspectRatio: '4/5'
-            }}>
-              <Image 
-                src="/images/neofatbury-clinical-standard.png"
-                alt="Clinic Interior"
-                fill
-                style={{ objectFit: 'cover' }}
-              />
-            </div>
-            
-            {/* Floating Glass Statistic */}
-            <div style={{
-              position: 'absolute',
-              bottom: '-30px',
-              right: '-30px',
-              background: 'rgba(255,255,255,0.9)',
-              backdropFilter: 'blur(10px)',
-              padding: '2rem',
-              borderRadius: '20px',
-              boxShadow: '0 20px 40px rgba(0,0,0,0.08)',
-              border: '1px solid var(--color-surface)',
-              maxWidth: '220px',
-              textAlign: 'center'
-            }}>
-              <div style={{ fontSize: '3rem', fontWeight: 800, color: 'var(--color-primary)', lineHeight: 1 }}>US-FDA</div>
-              <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginTop: '0.5rem' }}>Approved Technology</div>
-            </div>
-          </div>
+        {/* ─────────────────────────────────────────────────────────
+            LEFT SIDEBAR (Table of Contents)
+            ───────────────────────────────────────────────────────── */}
+        <aside style={{ 
+          flex: '0 0 280px', 
+          backgroundColor: '#f6fdfd', 
+          border: '1px solid #cbedf0', 
+          borderRadius: '8px',
+          padding: '2rem 0',
+          position: 'sticky',
+          top: '120px'
+        }}>
+          <h3 style={{ 
+            fontSize: '1.25rem', 
+            color: '#1a1a1a', 
+            padding: '0 2rem', 
+            marginBottom: '1rem',
+            fontWeight: 700
+          }}>
+            Table of Contents
+          </h3>
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+            {[
+              { label: 'About NeoFatbury', id: '#about' },
+              { label: 'Our Vision', id: '#vision' },
+              { label: 'Our Mission', id: '#mission' },
+              { label: 'Our Milestones', id: '#milestones' },
+              { label: 'Contact Us', id: '#contact' }
+            ].map((link, i) => (
+              <li key={i} style={{ borderBottom: i !== 4 ? '1px solid #dce8e8' : 'none', margin: '0 2rem' }}>
+                <a href={link.id} style={{ 
+                  display: 'block', 
+                  padding: '1rem 0', 
+                  color: 'var(--color-primary)', 
+                  fontWeight: 500,
+                  fontSize: '0.95rem',
+                  textDecoration: 'none',
+                  transition: 'color 0.2s'
+                }}>
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </aside>
 
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
-              <div style={{ width: '40px', height: '2px', background: 'var(--color-cta)' }} />
-              <span style={{ color: 'var(--color-cta)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '3px', fontSize: '0.85rem' }}>
-                Our Heritage
-              </span>
-            </div>
-            
-            <h2 style={{ fontSize: 'clamp(2.2rem, 4vw, 3.5rem)', color: 'var(--color-text)', fontWeight: 800, lineHeight: 1.15, marginBottom: '2rem' }}>
-              {data?.storyTitle || 'Pioneering Clinical Skin & Hair Aesthetics'}
-            </h2>
-            
-            <div style={{ 
-              color: '#555', 
-              fontSize: '1.1rem', 
-              lineHeight: 1.9, 
-              marginBottom: '3rem' 
+        {/* ─────────────────────────────────────────────────────────
+            RIGHT CONTENT AREA
+            ───────────────────────────────────────────────────────── */}
+        <main style={{ flex: '1 1 600px', paddingBottom: '5rem' }}>
+          
+          <div id="about" style={{ paddingTop: '1rem', marginBottom: '3rem' }}>
+            <h1 style={{ 
+              fontSize: '2.5rem', 
+              color: '#1a1a1a', 
+              fontWeight: 700, 
+              marginBottom: '0.5rem',
+              lineHeight: 1.2
             }}>
+              Welcome to NeoFatbury Clinic!
+            </h1>
+            <h2 style={{ 
+              fontSize: '1.4rem', 
+              color: '#1a1a1a', 
+              fontWeight: 600, 
+              marginBottom: '2rem' 
+            }}>
+              {data?.storyTitle || 'Celebrating the science of transformation!'}
+            </h2>
+
+            {/* Content with floating image */}
+            <div style={{ color: '#4a4a4a', fontSize: '1rem', lineHeight: 1.8, marginBottom: '2rem' }}>
+              <div style={{ 
+                float: 'right', 
+                marginLeft: '2rem', 
+                marginBottom: '1rem',
+                width: '350px'
+              }}>
+                <Image 
+                  src="/images/neofatbury-clinical-standard.png"
+                  alt="NeoFatbury Clinic Experts"
+                  width={350}
+                  height={250}
+                  style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
+                />
+              </div>
+
               {data?.storyText ? (
                 <PortableText value={data.storyText} />
               ) : (
                 <>
-                  <p style={{ marginBottom: '1.25rem' }}>At NeoFatbury, we believe that true beauty is deeply rooted in physiological health and personal confidence. Our facilities were established to bring the world's most advanced, heavily vetted technologies directly to India, delivered by a hand-picked team of highly qualified dermatologists.</p>
-                  <p>Operating out of premium clinics in Kukatpally and Himayatnagar, we strictly adhere to a "Subject-First" protocol—ensuring every treatment plan is precisely configured to the patient's unique biological and aesthetic profile.</p>
+                  <p style={{ marginBottom: '1rem' }}>
+                    Established with a commitment to clinical excellence, NeoFatbury is the epitome of excellence in the realm of dermatological and slimming care, offering avant-garde medico-aesthetic treatments designed to meet the diverse needs of our esteemed clientele. With state-of-the-art clinics in Kukatpally and Himayatnagar, we proudly serve patients across Hyderabad.
+                  </p>
+                  <p>
+                    Powered by a dedicated team of clinical dermatologists and cutting-edge USFDA-approved technologies, NeoFatbury is the premier destination for skin, hair, and body transformations. Our meticulously crafted bespoke treatments ensure absolute safety and efficacy, delivering unparalleled results and enduring client satisfaction. At NeoFatbury, we specialise in addressing an extensive array of concerns, ranging from acne and scars to hair loss, pigmentation, premature ageing, and weight management.
+                  </p>
                 </>
               )}
             </div>
 
-            <Link href="/contact-us" className="btn btn-primary" style={{
-              background: 'var(--color-primary)', 
-              color: 'white', 
-              padding: '1.2rem 2.5rem', 
-              borderRadius: '5px',
-              fontSize: '0.95rem'
+            {/* Highlight Box perfectly matching the Oliva example */}
+            <div style={{ 
+              backgroundColor: '#f2fafaf5', 
+              padding: '1.5rem 2rem', 
+              borderLeft: '4px solid var(--color-primary)',
+              marginBottom: '2rem'
             }}>
-              Consult A Dermatologist
-            </Link>
+              <h3 style={{ fontSize: '1.25rem', color: '#1a1a1a', fontWeight: 600, margin: 0 }}>
+                {data?.title || "Hyderabad's No. 1 Dermatology, Skin & Hair Clinic"}
+              </h3>
+            </div>
+
+            <p style={{ color: '#4a4a4a', fontSize: '1rem', lineHeight: 1.8 }}>
+              Powered by a leading team of medical professionals and the latest USFDA-approved technology, NeoFatbury offers customised and cost-effective treatments clinically proven for safety and efficacy. Our holistic approach helps us deliver optimal results and long-lasting satisfaction to our valuable clients! NeoFatbury specialises in treating your acne, scars, hair loss, hair thinning, premature ageing, wrinkles, saggy skin, cellulite, and stubborn fat.
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* ─────────────────────────────────────────────────────────
-          3. DYNAMIC STATS STRIP (DEEP TEAL)
-          ───────────────────────────────────────────────────────── */}
-      <section style={{ background: '#003a3b', color: 'white', padding: '5rem 0' }}>
-        <div className="container">
-          <div className="grid grid-4 mobile-grid-2" style={{ gap: '2rem', textAlign: 'center' }}>
-            {(data?.stats || [
-              { value: '15,000+', label: 'Patients Treated' },
-              { value: '10+', label: 'Years Experience' },
-              { value: '12', label: 'Clinical Awards' },
-              { value: '100%', label: 'Safety Record' }
-            ]).map((stat: any, i: number) => (
-              <div key={i} style={{ padding: '1rem' }}>
-                <div style={{ 
-                  fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', 
-                  fontWeight: 800, 
-                  color: 'var(--color-cta)', 
-                  marginBottom: '0.5rem',
-                  fontFamily: 'var(--font-heading)'
-                }}>
-                  {stat.value}
-                </div>
-                <div style={{ 
-                  fontSize: '0.9rem', 
-                  color: '#e8f6f7', 
-                  textTransform: 'uppercase', 
-                  letterSpacing: '2px', 
-                  fontWeight: 500 
-                }}>
-                  {stat.label}
-                </div>
-              </div>
-            ))}
+          <hr style={{ border: 'none', borderTop: '1px solid #eaeaea', margin: '3rem 0' }} />
+
+          {/* Section: Our Vision */}
+          <div id="vision" style={{ paddingTop: '2rem', marginBottom: '3rem' }}>
+            <h2 style={{ fontSize: '2rem', color: '#1a1a1a', fontWeight: 700, marginBottom: '1.5rem' }}>
+              Our Vision
+            </h2>
+            <p style={{ color: '#4a4a4a', fontSize: '1rem', lineHeight: 1.8 }}>
+              {vision.description}
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* ─────────────────────────────────────────────────────────
-          4. VISION & MISSION CARDS
-          ───────────────────────────────────────────────────────── */}
-      <section className="section bg-surface" style={{ padding: '7rem 0' }}>
-        <div className="container text-center mb-12">
-          <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, color: 'var(--color-primary)', marginBottom: '1rem' }}>
-            The Foundation of Our Care
-          </h2>
-          <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', maxWidth: '600px', margin: '0 auto' }}>
-            Everything we do is guided by a steadfast dedication to our patients, clinical integrity, and long-term aesthetic outcomes.
-          </p>
-        </div>
+          <hr style={{ border: 'none', borderTop: '1px solid #eaeaea', margin: '3rem 0' }} />
 
-        <div className="container">
-          <div className="grid grid-3" style={{ gap: '2.5rem' }}>
-            {(data?.pillars || [
-              { title: 'Our Mission', description: 'To provide safe, effective, and scientifically backed aesthetic solutions that help our patients look and feel their absolute best.' },
-              { title: 'Our Vision', description: 'To be the most trusted name in clinical dermatology and slimming across India, known for integrity and excellence.' },
-              { title: 'Core Promise', description: 'Safe clinical procedures, transparent pricing, and results that speak for themselves. You are in profoundly safe hands.' }
-            ]).map((pillar: any, i: number) => (
-              <div key={i} className="card" style={{ 
-                padding: '3rem 2rem', 
-                borderTop: '4px solid var(--color-cta)',
-                position: 'relative',
-                overflow: 'hidden'
-              }}>
-                <div style={{ position: 'absolute', top: '-20px', right: '-20px', fontSize: '8rem', color: 'var(--color-surface)', opacity: 0.5, fontWeight: 900, lineHeight: 1, zIndex: 0 }}>
-                  0{i + 1}
-                </div>
-                <div style={{ position: 'relative', zIndex: 10 }}>
-                  <h3 style={{ fontSize: '1.5rem', color: 'var(--color-primary)', marginBottom: '1.25rem', fontWeight: 800 }}>{pillar.title}</h3>
-                  <p style={{ color: 'var(--color-text-muted)', lineHeight: 1.7, fontSize: '1.05rem' }}>{pillar.description}</p>
-                </div>
-              </div>
-            ))}
+          {/* Section: Our Mission */}
+          <div id="mission" style={{ paddingTop: '2rem', marginBottom: '3rem' }}>
+            <h2 style={{ fontSize: '2rem', color: '#1a1a1a', fontWeight: 700, marginBottom: '1.5rem' }}>
+              Our Mission
+            </h2>
+            <p style={{ color: '#4a4a4a', fontSize: '1rem', lineHeight: 1.8 }}>
+              {mission.description}
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* ─────────────────────────────────────────────────────────
-          5. WOW CTA BLOCK
-          ───────────────────────────────────────────────────────── */}
-      <section style={{ padding: '8rem 0' }}>
-        <div className="container" style={{ maxWidth: '1100px' }}>
-          <div style={{ 
-            background: 'linear-gradient(135deg, var(--color-primary) 0%, #007073 100%)', 
-            padding: '5rem 3rem', 
-            borderRadius: '40px', 
-            color: 'white', 
-            boxShadow: '0 25px 50px rgba(0,172,177,0.2)',
-            textAlign: 'center',
-            position: 'relative',
-            overflow: 'hidden'
-          }}>
-            {/* Decorative Glass Circles */}
-            <div style={{ position: 'absolute', top: '-100px', left: '-100px', width: '300px', height: '300px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)' }} />
-            <div style={{ position: 'absolute', bottom: '-50px', right: '-100px', width: '250px', height: '250px', borderRadius: '50%', background: 'rgba(255,255,255,0.08)' }} />
-            
-            <div style={{ position: 'relative', zIndex: 10, maxWidth: '700px', margin: '0 auto' }}>
-              <span style={{ display: 'block', color: 'var(--color-cta)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '1rem', fontSize: '0.9rem' }}>
-                Your Transformation Awaits
-              </span>
-              <h2 style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', fontWeight: 800, marginBottom: '1.5rem', color: 'white', lineHeight: 1.1 }}>
+          <hr style={{ border: 'none', borderTop: '1px solid #eaeaea', margin: '3rem 0' }} />
+
+          {/* Section: Our Milestones */}
+          <div id="milestones" style={{ paddingTop: '2rem', marginBottom: '3rem' }}>
+            <h2 style={{ fontSize: '2rem', color: '#1a1a1a', fontWeight: 700, marginBottom: '1.5rem' }}>
+              Our Milestones
+            </h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem' }}>
+              {(data?.stats || [
+                { value: '10,000+', label: 'Happy Clients' },
+                { value: '15+', label: 'Years Experience' },
+                { value: '2', label: 'Premium Clinics' },
+                { value: '100%', label: 'Safety Record' }
+              ]).map((stat: any, i: number) => (
+                <div key={i} style={{ padding: '2rem', backgroundColor: '#f9fbfb', borderRadius: '8px', textAlign: 'center', border: '1px solid #eaeaea' }}>
+                  <div style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--color-primary)', marginBottom: '0.5rem' }}>{stat.value}</div>
+                  <div style={{ fontSize: '0.9rem', color: '#666', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <hr style={{ border: 'none', borderTop: '1px solid #eaeaea', margin: '3rem 0' }} />
+
+          {/* Section: Contact Us (Booking) */}
+          <div id="contact" style={{ paddingTop: '2rem' }}>
+            <h2 style={{ fontSize: '2rem', color: '#1a1a1a', fontWeight: 700, marginBottom: '1.5rem' }}>
+              Contact Us
+            </h2>
+            <div style={{ 
+              backgroundColor: '#f2fafaf5', 
+              padding: '3rem', 
+              borderRadius: '8px', 
+              textAlign: 'center',
+              border: '1px solid #cbedf0'
+            }}>
+              <h3 style={{ fontSize: '1.8rem', color: '#1a1a1a', marginBottom: '1rem', fontWeight: 700 }}>
                 {data?.ctaTitle || 'Take the First Step Towards Confidence'}
-              </h2>
-              <p style={{ fontSize: '1.15rem', marginBottom: '3rem', color: '#e8f6f7', lineHeight: 1.7 }}>
-                {data?.ctaSubtitle || 'Experience the NeoFatbury difference with a complimentary clinical analysis across any of our state-of-the-art facilities.'}
+              </h3>
+              <p style={{ color: '#4a4a4a', fontSize: '1.1rem', marginBottom: '2rem' }}>
+                {data?.ctaSubtitle || 'Book your free clinical scalp or skin analysis and experience the difference.'}
               </p>
-              
               <Link 
                 href="/contact-us"
-                className="btn"
                 style={{ 
-                  backgroundColor: 'var(--color-cta)',
+                  display: 'inline-block',
+                  backgroundColor: 'var(--color-primary)',
                   color: 'white',
-                  fontSize: '1.15rem', 
-                  padding: '1.2rem 3rem', 
-                  borderRadius: '50px',
-                  boxShadow: '0 10px 25px rgba(232, 163, 23, 0.4)',
-                  border: 'none',
-                  textTransform: 'uppercase',
-                  fontWeight: 800,
-                  letterSpacing: '1px'
+                  fontSize: '1.05rem', 
+                  padding: '1rem 2.5rem', 
+                  borderRadius: '4px',
+                  textDecoration: 'none',
+                  fontWeight: 600
                 }}
               >
-                {data?.ctaButton || 'Book Your Free Analysis'}
+                {data?.ctaButton || 'Book Appointment'}
               </Link>
             </div>
           </div>
-        </div>
-      </section>
-      
+
+        </main>
+      </div>
     </div>
   );
 }
