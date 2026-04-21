@@ -57,20 +57,20 @@ export async function getAllServices() {
 export async function getServiceBySlug(slug: string) {
   return client.fetch(`*[_type == "service" && slug.current == $slug][0]{
     name, slug, category, isFeatured, order, shortDescription,
-    heroImage, heroHeadline, heroAccentLine, heroSubtext, heroCtaText,
+    "image": heroImage.asset->url, heroHeadline, heroAccentLine, heroSubtext, heroCtaText,
     heroTrustBadges[]{ icon, label },
     problemHeading, problemAccentText, problemBottomText, problemBottomAccent,
     problemCards[]{ _key, icon, title, desc },
     whatIsLabel, whatIsHeading, whatIsAccentWord, whatIsBody,
     whatIsListHeading, whatIsImageBadge,
-    whatIsImage, whatIsAuthorityNote{ label, text },
+    "whatIsImage": whatIsImage.asset->url, whatIsAuthorityNote{ label, text },
     whatIsPoints[]{ _key, icon, text },
-    baHeading, baAccentWord, baSubtext, baCtaText, baCtaBtnText, baImage,
+    baHeading, baAccentWord, baSubtext, baCtaText, baCtaBtnText, "baImage": baImage.asset->url,
     benefitsHeading, benefitsAccentWord,
     benefitItems[]{ _key, icon, text },
     processHeading, processAccentWord,
     processSteps[]{ _key, icon, title, desc },
-    techHeading, techAccentWord, techBody, techImage,
+    techHeading, techAccentWord, techBody, "techImage": techImage.asset->url,
     techFeatures[]{ _key, icon, text },
     causesSection{ heading, accentWord, items[]{ _key, icon, title } },
     whoIsItFor{ heading, accentWord, items[]{ _key, icon, text } },
@@ -141,30 +141,26 @@ export async function getSiteSettings() {
     logo,
     tagline,
     favicon,
-    colors {
-      primary,
-      accent,
-      background,
-      surface,
-      text,
-      ctaButton,
-      ctaButtonText
-    },
     contact,
-    locations[]{
+    clinicLocations[]{
       name,
       address,
       phone,
+      whatsapp,
       googleMapsUrl,
-      photo,
-      heroImage,
-      openingHours[]{ day, hours }
+      embedUrl,
+      photo
     },
-    defaultSeo,
     headerAnnouncementText,
     socialMedia,
-    schema,
-    zohoWebhookUrl
+    headerMenu[] {
+      label,
+      url,
+      dropdownItems[] {
+        label,
+        url
+      }
+    }
   }`)
 }
 

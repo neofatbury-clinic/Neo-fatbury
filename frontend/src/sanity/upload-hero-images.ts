@@ -14,15 +14,12 @@ import { createReadStream, existsSync } from 'fs';
 import { join } from 'path';
 
 const MAPPING: Record<string, string> = {
-  'laser-hair-reduction': 'laser-hair-bg.png',
-  'acne-treatment': 'acne-scar-bg.png',
-  'acne-scar-treatment': 'acne-scar-bg.png',
-  'skin-brightening': 'skin-brightening-bg.png',
-  'hair-loss-treatment': 'hair-loss-bg.png',
-  'hair-transplantation': 'hair-loss-hero.png', // fallback
-  'coolsculpting': 'coolsculpting-bg.png',
-  'weight-loss': 'slimming-hero.png',        // fallback
-  'inch-loss': 'slimming-hero.png',          // fallback
+  'laser-hair-reduction': 'Laser Hair Reduction.png',
+  'acne-treatment': 'Acne & Pimple Treatment.png',
+  'skin-brightening': 'Skin Brightening.png',
+  'hair-loss-treatment': 'Hair Loss Treatment.png',
+  'hair-transplantation': 'Hair Transplantation.png',
+  'anti-dandruff-treatment': 'Anti-Dandruff Treatment.png',
 };
 
 async function uploadImages() {

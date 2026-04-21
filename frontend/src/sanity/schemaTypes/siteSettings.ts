@@ -17,6 +17,7 @@ export const siteSettings = defineType({
     { name: 'social', title: '📱 Social Media' },
     { name: 'ads', title: '📊 Google Ads & Analytics' },
     { name: 'branding', title: '🖍️ Header & Footer Branding' },
+    { name: 'legal', title: '⚖️ Legal & Compliance' },
   ],
   fields: [
     // ── BRAND ─────────────────────────────────────
@@ -146,6 +147,37 @@ export const siteSettings = defineType({
       }]
     }),
     defineField({
+      name: 'topHeaderMenu',
+      title: 'Navigation: Top Bar Links',
+      type: 'array',
+      group: 'navigation',
+      description: '💡 Secondary links shown in the skinny top bar (e.g. FAQ, About, etc.)',
+      of: [{
+        type: 'object',
+        fields: [
+          defineField({ name: 'label', title: 'Link Name', type: 'string' }),
+          defineField({ name: 'url', title: 'Link URL', type: 'string' }),
+        ]
+      }]
+    }),
+    defineField({
+      name: 'clinicLocations',
+      title: 'Clinic Locations',
+      type: 'array',
+      group: 'navigation',
+      description: '💡 Add your clinic addresses and Google Maps links here. They will show in the Footer and Contact page.',
+      of: [{
+        type: 'object',
+        fields: [
+          defineField({ name: 'name', title: 'Clinic Name', type: 'string' }),
+          defineField({ name: 'address', title: 'Address', type: 'text', rows: 2 }),
+          defineField({ name: 'phone', title: 'Phone Number', type: 'string' }),
+          defineField({ name: 'mapsUrl', title: 'Google Maps (Navigation) Link', type: 'string' }),
+          defineField({ name: 'gbpUrl', title: 'Google Business Profile (Reviews) Link', type: 'string', description: '💡 The link to your Google Business page/reviews.' }),
+        ]
+      }]
+    }),
+    defineField({
       name: 'footerMenu',
       title: 'Footer Quick Links',
       type: 'array',
@@ -246,7 +278,7 @@ export const siteSettings = defineType({
         defineField({ name: 'instagram', title: 'Instagram Page URL', type: 'url', description: '💡 Example: https://instagram.com/neofatbury' }),
         defineField({ name: 'facebook', title: 'Facebook Page URL', type: 'url', description: '💡 Example: https://facebook.com/neofatbury' }),
         defineField({ name: 'youtube', title: 'YouTube Channel URL', type: 'url', description: '💡 Example: https://youtube.com/@neofatbury' }),
-        defineField({ name: 'googleBusiness', title: 'Google Business Profile URL', type: 'url', description: '💡 Your Google Maps business page link' }),
+        defineField({ name: 'googleBusiness', title: 'Main Google Business Profile (Fallback)', type: 'url', description: '💡 Your primary Google Maps page. Note: You can set individual links for Himayatnagar and Kukatpally in the "Locations" section above.' }),
       ],
     }),
 
@@ -258,8 +290,9 @@ export const siteSettings = defineType({
       description: '💡 Connect Google Analytics, Ads tracking, and Meta Pixel to track visitors and ad conversions.',
       group: 'ads',
       fields: [
-        defineField({ name: 'googleAnalyticsId', title: 'Google Analytics ID', type: 'string', description: '💡 Find this in Google Analytics 4 → Admin → Data Streams. Looks like G-XXXXXXXXXX' }),
-        defineField({ name: 'googleAdsId', title: 'Google Ads Conversion ID', type: 'string', description: '💡 Find this in Google Ads → Tools → Conversions. Looks like AW-XXXXXXXXXX' }),
+        defineField({ name: 'googleTagManagerId', title: 'Google Tag Manager ID', type: 'string', description: '💡 The main ID from Google Tag Manager. Looks like GTM-XXXXXXX. Once set, GTM will be active on all pages.' }),
+        defineField({ name: 'googleAnalyticsId', title: 'Google Analytics ID (Optional)', type: 'string', description: '💡 Find this in Google Analytics 4. Looks like G-XXXXXXXXXX. (Usually tracked via GTM)' }),
+        defineField({ name: 'googleAdsId', title: 'Google Ads Conversion ID (Optional)', type: 'string', description: '💡 Find this in Google Ads. Looks like AW-XXXXXXXXXX. (Usually tracked via GTM)' }),
         defineField({ name: 'metaPixelId', title: 'Facebook/Instagram Pixel ID', type: 'string', description: '💡 Find this in Meta Business Suite → Events Manager → Pixel ID' }),
         defineField({ name: 'googleVerification', title: 'Google Search Console Code', type: 'string', description: '💡 The verification code from Google Search Console to prove you own this website' }),
         defineField({ name: 'aggregateRating', title: 'Clinic Star Rating (for Google)', type: 'number', description: '💡 Your overall Google Business rating, e.g. 4.8' }),
@@ -273,6 +306,18 @@ export const siteSettings = defineType({
       type: 'string',
       description: '⚠️ This is auto-configured. Do NOT change unless instructed by your developer.',
       group: 'ads',
+    }),
+    defineField({
+      name: 'zohoConfig',
+      title: 'Zoho CRM Status',
+      type: 'object',
+      group: 'ads',
+      description: 'ℹ️ Real-time status of your Zoho CRM integration.',
+      readOnly: true,
+      fields: [
+        defineField({ name: 'status', title: 'Sync Status', type: 'string' }),
+        defineField({ name: 'lastSync', title: 'Last Successful Lead Sync', type: 'string' }),
+      ]
     }),
 
     // ── BRANDING ──────────────────────────────────
@@ -297,6 +342,31 @@ export const siteSettings = defineType({
       rows: 2,
       description: '💡 Small text at the very bottom, e.g., "Results may vary from person to person."',
       group: 'branding',
+    }),
+    // ── LEGAL ─────────────────────────────────────
+    defineField({
+      name: 'privacyPolicy',
+      title: 'Privacy Policy Content',
+      type: 'array',
+      group: 'legal',
+      of: [{ type: 'block' }],
+      description: '💡 Full text for your Privacy Policy page.'
+    }),
+    defineField({
+      name: 'termsConditions',
+      title: 'Terms & Conditions Content',
+      type: 'array',
+      group: 'legal',
+      of: [{ type: 'block' }],
+      description: '💡 Full text for your Terms & Conditions page.'
+    }),
+    defineField({
+      name: 'medicalDisclaimerContent',
+      title: 'Medical Disclaimer Content',
+      type: 'array',
+      group: 'legal',
+      of: [{ type: 'block' }],
+      description: '💡 Full text for your Medical Disclaimer page.'
     }),
   ],
   preview: { prepare: () => ({ title: '⚙️ Clinic Info & Settings' }) },

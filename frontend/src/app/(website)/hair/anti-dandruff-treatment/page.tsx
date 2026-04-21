@@ -1,28 +1,25 @@
-"use client";
+import { getServicePageData } from "@/sanity/fetchers/services";
+import ReplicaHero from "@/components/ReplicaHero";
 import Image from "next/image";
 import Link from "next/link";
-import LeadForm from "@/components/LeadForm";
 
-export default function AntiDandruffTreatment() {
+export default async function AntiDandruffTreatment() {
+  const d = await getServicePageData('anti-dandruff-treatment') as Record<string, unknown>;
+
+  const heroH1     = (d.heroHeadline   as string) || 'Dandruff-Free.';
+  const heroAccent = (d.heroAccentLine as string) || 'Healthy Scalp.';
+  const heroDesc   = (d.heroSubtext    as string) || 'Clinical scalp treatments to eliminate dandruff, reduce flaking, and restore scalp health. Expert dermatologist-guided protocols for lasting relief.';
+
   return (
     <>
-      {/* 1. HERO SECTION - TRIPLE PILLAR */}
-      <section className="service-hero" style={{ backgroundImage: 'url(/images/hair-loss-bg.png)', backgroundPosition: 'left center' }}>
-        <div className="container">
-          <div className="service-hero-grid">
-            {/* Visual Subject migrated to background */}
-            <div className="service-hero-text">
-              <h1>Dandruff-Free.<br/><span className="accent">Healthy Scalp.</span></h1>
-              <p>Clinical scalp treatments to eliminate dandruff, reduce flaking, and restore scalp health. Expert dermatologist-guided protocols for lasting relief.</p>
-              <div className="hero-trust-badges">
-                <div className="hero-trust-badge"><span>🛡️</span><span>SAFE & EFFECTIVE</span></div>
-                <div className="hero-trust-badge"><span>✨</span><span>LASTING RELIEF</span></div>
-              </div>
-            </div>
-            <div className="service-hero-form"><LeadForm /></div>
-          </div>
-        </div>
-      </section>
+      <ReplicaHero 
+        titleTeal1={heroH1}
+        titleTeal2={heroAccent}
+        titleOrange1="CLINICAL"
+        titleOrange2="SOLUTIONS"
+        subtext={heroDesc}
+        imageSrc={(d.image as string) || "/images/Anti-Dandruff Treatment.png"}
+      />
 
       {/* 2. PROBLEM SECTION */}
       <section className="section bg-surface text-center" style={{ padding: '3.5rem 0' }}>
@@ -130,7 +127,7 @@ export default function AntiDandruffTreatment() {
         </div>
       </section>
 
-      <style jsx>{`
+      <style dangerouslySetInnerHTML={{__html:`
         .service-hero {
           position: relative;
           overflow: hidden;
@@ -211,7 +208,7 @@ export default function AntiDandruffTreatment() {
           transition: all 0.3s ease;
         }
         .card-trust:hover { transform: translateY(-8px); border-color: var(--color-accent); }
-      `}</style>
+      ` }} />
     </>
   );
 }

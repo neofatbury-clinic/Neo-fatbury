@@ -1,45 +1,42 @@
 // src/sanity/final-cleanup.ts
 import { createClient } from '@sanity/client';
-import * as dotenv from 'dotenv';
-dotenv.config({ path: '.env.local' });
 
 const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'p8ddtj8e',
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
-  token: process.env.SANITY_API_TOKEN,
+  projectId: 'p8ddtj8e', 
+  dataset: 'production',
   useCdn: false,
-  apiVersion: '2024-01-01',
+  token: 'skCI7MW9ZFcFji6s08u3bKe05EY7Bni99cDzVqYerfb2vtW12S4jbEaPQ43nhrOr8JQL79A18BF32LRFAVJXiDdJMhgn7ID2eKnA67vgumdeD17mokZSkSDia6YcfqfyUOlBgKtFArC1CSTPUZNKWs93ExnulZMza8WhXKHdSRX2ESzZCkYy',
+  apiVersion: '2023-05-03',
 });
 
 async function cleanup() {
-  console.log('🧹 Performing Universal Clinical Cleanup...');
-
-  // 1. Find every service document
-  const allServices = await client.fetch(`*[_type == "service"]`);
+  console.log('Cleanup started...');
   
-  for (const s of allServices) {
-    // If it has NO name, and NO slug, it's a ghost. Delete it.
-    if (!s.name && !s.slug) {
-      console.log(`🗑️ Deleting pure ghost: ${s._id}`);
-      await client.delete(s._id);
-      continue;
-    }
-
-    // If it has a title but NO name, move title to name
-    if (s.title && !s.name) {
-      console.log(`📝 Fixed Naming for: ${s.title}`);
-      await client.patch(s._id).set({ name: s.title }).unset(['title']).commit();
-    }
+  // 1. Delete the draft settings that has 0 locations
+  try {
+    await client.delete('drafts.siteSettings');
+    console.log('✅ Deleted drafts.siteSettings');
+  } catch (err) {
+    console.log('ℹ️ No drafts.siteSettings found or already deleted.');
   }
 
-  // 2. Final purge of anything named "Untitled"
-  const untitled = await client.fetch(`*[_type == "service" && (name == "Untitled" || !defined(name))]`);
-  for (const u of untitled) {
-    console.log(`🗑️ Deleting untitled ghost: ${u._id}`);
-    await client.delete(u._id);
+  // 2. Ensure the main siteSettings has the correct name and other defaults
+  try {
+    await client.patch('siteSettings')
+      .set({
+        clinicName: 'NeoFatbury',
+        tagline: 'Leading Skin, Hair & Slimming Clinic',
+        contact: {
+          phone: '9700641000',
+          whatsapp: '919700641000',
+          email: 'info@neofatbury.com'
+        }
+      })
+      .commit();
+    console.log('✅ Updated main siteSettings with correct metadata.');
+  } catch (err) {
+    console.error('❌ Failed to update siteSettings:', err);
   }
-
-  console.log('\n✅ YOUR CLINICAL DATABASE IS NOW 100% CLEAN AND NAMED!');
 }
 
-cleanup().catch(console.error);
+cleanup();

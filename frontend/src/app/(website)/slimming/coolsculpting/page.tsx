@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
+import ReplicaHero from "@/components/ReplicaHero";
 import { getServicePageData } from "@/sanity/fetchers/services";
 
 export default async function CoolSculpting() {
@@ -43,16 +44,15 @@ export default async function CoolSculpting() {
 
   return (
     <>
-      <section className="service-hero" style={{ backgroundImage: 'url(/images/coolsculpting-bg.png)', backgroundPosition: 'left center' }}>
-        <div className="container"><div className="service-hero-grid">
-          <div className="service-hero-text">
-            <h1>{heroH1}<br/><span className="accent">{heroAccent}</span></h1>
-            <p>{heroDesc}</p>
-            <div className="hero-trust-badges">{heroBadges.map((b,i)=>(<div key={i} className="hero-trust-badge"><span>{b.icon}</span><span>{b.label}</span></div>))}</div>
-          </div>
-          <div className="service-hero-form"><LeadForm /></div>
-        </div></div>
-      </section>
+      {/* 1. HERO SECTION */}
+      <ReplicaHero 
+        titleTeal1={heroH1}
+        titleTeal2={heroAccent}
+        titleOrange1="ZERO"
+        titleOrange2="SURGERY"
+        subtext={heroDesc}
+        imageSrc={(d.image as string) || "/images/neofatbury-slimming-hero.png"}
+      />
 
       <section className="section bg-surface text-center" style={{ padding: '6rem 0' }}>
         <div className="container" style={{ maxWidth: '1100px' }}>
@@ -69,7 +69,7 @@ export default async function CoolSculpting() {
       <section className="section">
         <div className="container grid grid-2 items-center gap-6">
           <div style={{ position: 'relative', height: '550px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 25px 55px rgba(0,0,0,0.1)' }}>
-            <Image src="/images/neofatbury-slimming-standard.png" alt="CoolSculpting Technology" fill style={{ objectFit: 'cover' }} />
+            <Image src={(d.whatIsImage as string) || "/images/neofatbury-slimming-standard.png"} alt="CoolSculpting Technology" fill style={{ objectFit: 'cover' }} />
             <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', background: 'white', padding: '0.75rem 1.5rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: '800', color: 'var(--color-primary)', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}>{wiBadge}</div>
           </div>
           <div style={{ paddingLeft: '3.5rem' }}>
@@ -98,7 +98,7 @@ export default async function CoolSculpting() {
           <h2 className="section-title" style={{ fontSize: '2.8rem' }}>{baHead} <span className="text-accent">{baAccent}</span></h2>
           <p className="section-subtitle">{baSub}</p>
           <div style={{ maxWidth: '480px', margin: '4.5rem auto', position: 'relative', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 15px 45px rgba(0,0,0,0.1)' }}>
-            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/6' }}><Image src="/images/neofatbury-body-ba.png" alt="CoolSculpting Results" fill style={{ objectFit: 'cover' }} /></div>
+            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/6' }}><Image src={(d.baImage as string) || "/images/neofatbury-body-ba.png"} alt="CoolSculpting Results" fill style={{ objectFit: 'cover' }} /></div>
             <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)', padding: '3rem', display: 'flex', justifyContent: 'center', gap: '25vw' }}>
               <span style={{ color:'white', fontWeight:'900', letterSpacing:'5px', fontSize:'1.3rem', textShadow:'0 2px 4px rgba(0,0,0,0.5)' }}>BEFORE</span>
               <span style={{ color:'white', fontWeight:'900', letterSpacing:'5px', fontSize:'1.3rem', textShadow:'0 2px 4px rgba(0,0,0,0.5)' }}>AFTER</span>

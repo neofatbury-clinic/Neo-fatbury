@@ -1,24 +1,17 @@
 // src/sanity/audit-services.ts
 import { createClient } from '@sanity/client';
-import * as dotenv from 'dotenv';
-dotenv.config({ path: '.env.local' });
 
 const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'p8ddtj8e',
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
-  token: process.env.SANITY_API_TOKEN,
+  projectId: 'p8ddtj8e', 
+  dataset: 'production',
   useCdn: false,
-  apiVersion: '2024-01-01',
+  token: 'skCI7MW9ZFcFji6s08u3bKe05EY7Bni99cDzVqYerfb2vtW12S4jbEaPQ43nhrOr8JQL79A18BF32LRFAVJXiDdJMhgn7ID2eKnA67vgumdeD17mokZSkSDia6YcfqfyUOlBgKtFArC1CSTPUZNKWs93ExnulZMza8WhXKHdSRX2ESzZCkYy',
+  apiVersion: '2023-05-03',
 });
 
 async function audit() {
-  console.log('📊 Auditing Clinical Services...');
-  const all = await client.fetch(`*[_type == "service"]{ _id, name, category, slug }`);
-  
-  console.log(`Total Services: ${all.length}`);
-  all.forEach((s: any) => {
-    console.log(`- [${s._id}] Name: "${s.name}" | Category: "${s.category}" | Slug: "${s.slug?.current}"`);
-  });
+  const data = await client.fetch('*[_type == "service"]{name, "slug": slug.current}');
+  console.log(JSON.stringify(data, null, 2));
 }
 
-audit().catch(console.error);
+audit();

@@ -3,7 +3,7 @@ import { defineType, defineField } from 'sanity'
 
 export const contactPage = defineType({
   name: 'contactPage',
-  title: '📬 Contact Page',
+  title: '📬 NEW Contact Us Page',
   type: 'document',
   fields: [
     defineField({
@@ -36,6 +36,24 @@ export const contactPage = defineType({
       type: 'text',
       rows: 2,
       initialValue: 'Our clinical experts will get back to you within 24 hours.',
+    }),
+    defineField({
+      name: 'email',
+      title: 'General Contact Email',
+      type: 'string',
+      initialValue: 'info@neofatbury.com',
+    }),
+    defineField({
+      name: 'businessHours',
+      title: 'Working Hours',
+      type: 'string',
+      initialValue: 'Mon - Sat: 10:00 AM - 08:00 PM, Sun: Closed',
+    }),
+    defineField({
+      name: 'emergencyContact',
+      title: 'Emergency/Direct Number',
+      type: 'string',
+      placeholder: '+91 97006 41000'
     })
   ]
 })

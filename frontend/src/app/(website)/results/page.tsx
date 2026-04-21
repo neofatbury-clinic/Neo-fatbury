@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
+import ReplicaHero from "@/components/ReplicaHero";
 import { client } from '@/sanity/lib/client';
 
 export const revalidate = 60;
@@ -35,20 +36,14 @@ export default async function Results() {
   return (
     <>
       {/* 1. HERO */}
-      <section style={heroStyle}>
-        <div className="container">
-          <p style={{ color: 'var(--color-accent)', fontWeight: '600', marginBottom: '0.75rem', textTransform: 'uppercase', letterSpacing: '1.5px', fontSize: '0.85rem' }}>Real Client Transformations</p>
-          <h1 style={{ fontSize: '3rem', marginBottom: '1.25rem' }}>
-            {page?.title || 'Our Results Gallery'}
-          </h1>
-          <p style={{ fontSize: '1.15rem', color: 'var(--color-text-muted)', maxWidth: '650px', margin: '0 auto 2rem', lineHeight: 1.8 }}>
-            {page?.subtitle || 'Real transformations from real NeoFatbury clients. Every result here was achieved under the direct supervision of our certified dermatologists.'}
-          </p>
-          <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', fontStyle: 'italic' }}>
-            * Results may vary from person to person depending on individual body types, genetics, and treatment adherence.
-          </p>
-        </div>
-      </section>
+      <ReplicaHero 
+        titleTeal1={page?.title || 'Our Results'}
+        titleTeal2="Gallery"
+        titleOrange1="Real Client"
+        titleOrange2="Transformations"
+        subtext={page?.subtitle || 'Real transformations from real NeoFatbury clients. Every result here was achieved under the direct supervision of our certified dermatologists.'}
+        imageSrc={page?.heroImage || "/images/neofatbury-home-hero.png"}
+      />
 
       {/* 2. RESULTS GRID */}
       <section className="section">

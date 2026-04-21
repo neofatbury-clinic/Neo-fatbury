@@ -2,14 +2,19 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import LeadForm from '@/components/LeadForm';
+import ReplicaHero from '@/components/ReplicaHero';
 import HomeClient from '@/components/HomeClient';
 import { client } from '@/sanity/lib/client';
 
-export const revalidate = 60;
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 async function getHomeData() {
   const query = `{
-    "settings": *[_type == "siteSettings"][0],
+    "settings": *[_type == "siteSettings"][0] {
+      ...,
+      clinicLocations[] { ... }
+    },
     "hero": *[_type == "homepage"][0],
     "services": *[_type == "homepage"][0].featuredTreatments[]-> {
       name,
@@ -20,7 +25,7 @@ async function getHomeData() {
     "allServices": *[_type == "service"] | order(order asc) {
       name,
       "slug": slug.current,
-      category,
+      "category": category->slug.current,
       "image": heroImage.asset->url
     },
     "results": *[_type == "homepage"][0].resultsSlider[] {
@@ -59,6 +64,7 @@ const FALLBACK_TREATMENTS: Record<string, { title: string; slug: string; image: 
   ],
 };
 
+
 export default async function Home() {
   const data = await getHomeData();
   const { settings, hero, services, allServices } = data;
@@ -66,58 +72,37 @@ export default async function Home() {
   // Use featuredTreatments first, fall back to allServices, then hardcoded data
   const serviceList = (services && services.length > 0) ? services : (allServices && allServices.length > 0) ? allServices : null;
 
+  // Safe filter helper to identify treatments by category
+  const getByCategory = (cat: string) => {
+    const filtered = serviceList?.filter((s: any) => {
+      const sCat = typeof s.category === 'string' ? s.category.toLowerCase() : '';
+      return sCat === cat.toLowerCase();
+    }).map((s: any) => ({ 
+      title: s.name, 
+      slug: s.slug, 
+      image: s.image 
+    })) || [];
+    return filtered.length > 0 ? filtered : FALLBACK_TREATMENTS[cat.toLowerCase()];
+  };
+
   const treatments = {
-    skin: serviceList?.filter((s: any) => s.category === 'skin')?.map((s: any) => ({ title: s.name, slug: s.slug, image: s.image })) || FALLBACK_TREATMENTS.skin,
-    hair: serviceList?.filter((s: any) => s.category === 'hair')?.map((s: any) => ({ title: s.name, slug: s.slug, image: s.image })) || FALLBACK_TREATMENTS.hair,
-    slimming: serviceList?.filter((s: any) => s.category === 'slimming')?.map((s: any) => ({ title: s.name, slug: s.slug, image: s.image })) || FALLBACK_TREATMENTS.slimming,
+    skin: getByCategory('skin'),
+    hair: getByCategory('hair'),
+    slimming: getByCategory('slimming'),
   };
 
   return (
     <>
       {/* SECTION 1: HERO */}
-      <section className="home-hero">
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
-          <Image 
-            src={hero?.heroImage?.asset?.url || "/images/neofatbury-hero-banner.webp"} 
-            alt="NeoFatbury Clinic" 
-            fill 
-            priority 
-            style={{ objectFit: 'cover', objectPosition: '25% center' }} 
-          />
-          <div className="home-hero-overlay" />
-        </div>
-        
-        <div className="container" style={{ position: 'relative', zIndex: 10, display: 'grid', gridTemplateColumns: '0.8fr 1.2fr 1fr', alignItems: 'center', width: '100%', maxWidth: '1450px', gap: '2rem' }}>
-          <div className="hero-face-gap" />
-          <div className="home-hero-text">
-            <h1 className="home-hero-title">
-              <span style={{ color: '#00acb1' }}>{hero?.heroHeadline || 'Expert Skin, Hair & Slimming'}</span> <br/>
-              <span style={{ color: '#F39C12' }}>{hero?.heroAccentLine || 'Clinic in Hyderabad'}</span>
-            </h1>
-            <p className="home-hero-sub">
-              {hero?.heroSubtext || 'Transform your confidence with US-FDA approved treatments and expert clinical care.'}
-            </p>
-            <div className="home-hero-trust-row">
-              {hero?.heroStats && hero.heroStats.length > 0 ? (
-                hero.heroStats.map((stat: any, i: number) => (
-                  <div key={i} className="home-trust-item"><span>✅</span> {stat.number} {stat.label}</div>
-                ))
-              ) : (
-                [
-                  { number: '10+', label: 'Years Expert' },
-                  { number: 'US-FDA', label: 'Tech' },
-                  { number: '15k+', label: 'Success' }
-                ].map((stat: any, i: number) => (
-                  <div key={i} className="home-trust-item"><span>✅</span> {stat.number} {stat.label}</div>
-                ))
-              )}
-            </div>
-          </div>
-          <div className="hero-form-wrap">
-            <LeadForm />
-          </div>
-        </div>
-      </section>
+      {/* MASTER HERO: EXACT REPLICA ARCHITECTURE */}
+      <ReplicaHero 
+        titleTeal1="Expert Skin, Hair"
+        titleTeal2="& Slimming"
+        titleOrange1="Clinic in"
+        titleOrange2="Hyderabad"
+        subtext="Transform your confidence with US-FDA approved treatments and expert dermatological care at NeoFatbury."
+        imageSrc="/images/neofatbury-hero-banner.webp"
+      />
 
       {/* SECTION 2: OUR TREATMENTS (FIXED IMAGES) */}
       <section className="section bg-white">
@@ -136,7 +121,7 @@ export default async function Home() {
         <div className="container text-center">
           <p style={{ color: '#00acb1', fontWeight: '700', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.75rem' }}>Why NeoFatbury Stands Out</p>
           <h2 className="section-title" style={{ marginBottom: '1rem' }}>{hero?.whyUsTitle || 'Clinical Excellence, Personal Care'}</h2>
-          <div className="grid grid-4 mobile-grid-2" style={{ marginTop: '3.5rem' }}>
+          <div className="grid grid-4" style={{ marginTop: '3.5rem' }}>
             {hero?.whyUsPoints && hero.whyUsPoints.length > 0 ? (
               hero.whyUsPoints.map((p: any, i: number) => (
                 <div key={i} className="card" style={{ padding: '2.5rem 1.5rem', backgroundColor: 'white', borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)', border: '1px solid #f1f1f1' }}>
@@ -166,7 +151,7 @@ export default async function Home() {
       {/* SECTION 4: TRANSFORMATIONS (RESTORED SLIDER IMAGES) */}
       <section className="section" style={{ backgroundColor: '#fff', padding: '6rem 0' }}>
         <div className="container text-center">
-          <p style={{ color: '#00acb1', fontWeight: '700', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.75rem' }}>Real Results</p>
+          <p style={{ color: '#00acb1', fontWeight: '700', fontSize: '1.1rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.75rem' }}>Real Results</p>
           <h2 className="section-title">Clinical <span className="text-accent">Transformations</span></h2>
           <p className="section-subtitle" style={{ color: '#00acb1', fontWeight: '500', maxWidth: '700px', margin: '0 auto' }}>Witness the power of US-FDA approved technology and expert dermatological care.</p>
           
@@ -202,29 +187,36 @@ export default async function Home() {
           </div>
           
           <div className="grid grid-2" style={{ gap: '3rem' }}>
-            <div className="card" style={{ padding: 0, overflow: 'hidden', borderRadius: '24px', backgroundColor: 'white', border: '1px solid #f0f0f0', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
-              <div style={{ padding: '2.5rem' }}>
-                <h3 style={{ fontSize: '1.4rem', color: '#00acb1', fontWeight: '800', marginBottom: '1rem' }}>{settings?.branches?.[0]?.name || 'Kukatpally Branch'}</h3>
-                <p style={{ color: '#00898d', lineHeight: 1.6, marginBottom: '1.5rem', fontSize: '0.95rem' }}>
-                  {settings?.branches?.[0]?.address || '4th Floor, Ganesh Plaza, JNTU - Hitech City Rd, Kukatpally, Hyderabad.'}
-                </p>
+            {(settings?.clinicLocations || []).slice(0, 2).map((loc: any, i: number) => (
+              <div key={i} className="card" style={{ padding: 0, overflow: 'hidden', borderRadius: '24px', backgroundColor: 'white', border: '1px solid #f0f0f0', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
+                <div style={{ padding: '2.5rem' }}>
+                  <h3 style={{ fontSize: '1.4rem', color: '#00acb1', fontWeight: '800', marginBottom: '1rem' }}>{loc.name}</h3>
+                  <p style={{ color: '#00898d', lineHeight: 1.6, marginBottom: '1.5rem', fontSize: '0.95rem' }}>
+                    {loc.address}
+                  </p>
+                </div>
+                <div style={{ width: '100%', height: '350px' }}>
+                  <iframe 
+                    src={loc.embedUrl || (loc.name.toLowerCase().includes('kukatpally') ? "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.4200823195633!2d78.39101459999999!3d17.4874492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91ddb45a8f99%3A0x7f1a789fc8a90d2!2sNeo%20Fatbury%20Kukatpally!5e0!3m2!1sen!2sin!4v1775875687552!5m2!1sen!2sin" : "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.411634567232!2d78.4835695!3d17.4040055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99da979f4281%3A0x4642220e895ec060!2sNeo%20Fatbury%20Hair%20Skin%20Slimming%20Clinic%20Himayatnagar!5e0!3m2!1sen!2sin!4v1775875842961!5m2!1sen!2sin" )} 
+                    width="100%" 
+                    height="100%" 
+                    style={{ border: 0 }} 
+                    allowFullScreen={true} 
+                    loading="lazy"
+                  ></iframe>
+                </div>
+                <div style={{ padding: '1.25rem', textAlign: 'center', backgroundColor: '#fafcfc' }}>
+                  <a 
+                    href={loc.mapsUrl || (loc.name.toLowerCase().includes('kukatpally') ? 'https://share.google/Ee1WRgIrFAtqcNU05' : 'https://share.google/FFcx19nq8NyLJP9YJ')} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    style={{ color: '#00acb1', fontWeight: '800', fontSize: '0.95rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+                  >
+                    📍 Get Directions to {loc.name}
+                  </a>
+                </div>
               </div>
-              <div style={{ width: '100%', height: '350px' }}>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.4200823195633!2d78.39101459999999!3d17.4874492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91ddb45a8f99%3A0x7f1a789fc8a90d2!2sNeo%20Fatbury%20Kukatpally!5e0!3m2!1sen!2sin!4v1775875687552!5m2!1sen!2sin" width="100%" height="100%" style={{ border: 0 }} allowFullScreen={true} loading="lazy"></iframe>
-              </div>
-            </div>
-
-            <div className="card" style={{ padding: 0, overflow: 'hidden', borderRadius: '24px', backgroundColor: 'white', border: '1px solid #f0f0f0', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
-              <div style={{ padding: '2.5rem' }}>
-                <h3 style={{ fontSize: '1.4rem', color: '#00acb1', fontWeight: '800', marginBottom: '1rem' }}>{settings?.branches?.[1]?.name || 'Himayatnagar Branch'}</h3>
-                <p style={{ color: '#00898d', lineHeight: 1.6, marginBottom: '1.5rem', fontSize: '0.95rem' }}>
-                  {settings?.branches?.[1]?.address || '4th Floor, Velma Bhavan, Beside Pantaloons, Himayatnagar, Hyderabad.'}
-                </p>
-              </div>
-              <div style={{ width: '100%', height: '350px' }}>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.411634567232!2d78.4835695!3d17.4040055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99da979f4281%3A0x4642220e895ec060!2sNeo%20Fatbury%20Hair%20Skin%20Slimming%20Clinic%20Himayatnagar!5e0!3m2!1sen!2sin!4v1775875842961!5m2!1sen!2sin" width="100%" height="100%" style={{ border: 0 }} allowFullScreen={true} loading="lazy"></iframe>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

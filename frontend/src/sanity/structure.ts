@@ -57,7 +57,7 @@ export const structure: StructureResolver = (S) =>
         ),
 
       S.listItem()
-        .title('📬 Contact Us Page')
+        .title('📬 NEW Contact Page v2')
         .id('contactPage')
         .child(
           S.document()
@@ -91,21 +91,21 @@ export const structure: StructureResolver = (S) =>
                 .child(
                   S.documentTypeList('service')
                     .title('Skin Treatments')
-                    .filter('_type == "service" && category == "skin"')
+                    .filter('_type == "service" && category._ref == "cat-skin"')
                 ),
               S.listItem()
                 .title('💆 Hair Treatments')
                 .child(
                   S.documentTypeList('service')
                     .title('Hair Treatments')
-                    .filter('_type == "service" && category == "hair"')
+                    .filter('_type == "service" && category._ref == "cat-hair"')
                 ),
               S.listItem()
                 .title('⚖️ Slimming & Body')
                 .child(
                   S.documentTypeList('service')
                     .title('Slimming Treatments')
-                    .filter('_type == "service" && category == "slimming"')
+                    .filter('_type == "service" && category._ref == "cat-slimming"')
                 ),
             ])
         ),
@@ -121,11 +121,11 @@ export const structure: StructureResolver = (S) =>
                 .title('📄 All Articles')
                 .child(S.documentTypeList('blogPost').title('All Articles')),
               S.listItem()
-                .title('✅ Published')
+                .title('✅ Published Articles')
                 .child(
                   S.documentTypeList('blogPost')
                     .title('Published Articles')
-                    .filter('_type == "blogPost" && isPublished == true')
+                    .filter('_type == "blogPost" && !(_id in path("drafts.**"))')
                 ),
             ])
         ),

@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
       }]
     }
 
-    const zohoRes = await fetch('https://www.zohoapis.in/crm/v3/Leads', {
+    const zohoRes = await fetch('https://zohoapis.in/crm/v3/Leads', {
       method: 'POST',
       headers: {
         'Authorization': `Zoho-oauthtoken ${accessToken}`,

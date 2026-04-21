@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
+import ReplicaHero from "@/components/ReplicaHero";
 import { client } from "@/sanity/lib/client";
 
 export const metadata = {
@@ -20,22 +21,15 @@ export default async function HairPage() {
 
   return (
     <>
-      <section className="service-hero" style={{ backgroundImage: 'url(/images/hair-loss-bg.png)', backgroundPosition: 'left center' }}>
-        <div className="container">
-          <div className="service-hero-grid">
-            <div className="service-hero-text">
-              <p className="hero-label">ADVANCED TRICHOLOGY</p>
-              <h1>Reclaim Your Hair,<br/><span className="accent">Restore Confidence</span></h1>
-              <p>Specialized treatments for thinning, balding, and scalp rejuvenation. Regrow your natural hair with clinical precision.</p>
-              <div className="hero-trust-badges">
-                <div className="hero-trust-badge"><span>👨‍⚕️</span><span>HAIR SPECIALISTS</span></div>
-                <div className="hero-trust-badge"><span>💎</span><span>NATURAL RESULTS</span></div>
-              </div>
-            </div>
-            <div className="service-hero-form"><LeadForm title="Book Hair Analysis" /></div>
-          </div>
-        </div>
-      </section>
+      <ReplicaHero 
+        titleTeal1="Reclaim Your Hair,"
+        titleTeal2="Restore Confidence"
+        titleOrange1="ADVANCED"
+        titleOrange2="TRICHOLOGY"
+        subtext="Specialized treatments for thinning, balding, and scalp rejuvenation. Regrow your natural hair with clinical precision."
+        imageSrc="/images/All Hair Treatments.png"
+        leadFormTitle="Book Hair Analysis"
+      />
 
       <section className="section" id="treatments">
         <div className="container">

@@ -5,7 +5,7 @@ import Footer from './Footer';
 export default async function FooterWrapper() {
   const query = `*[_type == "siteSettings"][0] {
     "logo": logo.asset->url,
-    branches,
+    clinicLocations,
     footerDisclaimer,
     footerCopyright,
     contact {
@@ -19,7 +19,7 @@ export default async function FooterWrapper() {
       youtube
     }
   }`;
-  const settings = await client.fetch(query, {}, { next: { revalidate: 60 } });
+  const settings = await client.fetch(query, {}, { next: { revalidate: 0 } });
   
   return <Footer settings={settings} />;
 }

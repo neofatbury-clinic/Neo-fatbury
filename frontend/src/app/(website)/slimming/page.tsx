@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
+import ReplicaHero from "@/components/ReplicaHero";
 import { client } from "@/sanity/lib/client";
 
 export const metadata = {
@@ -20,22 +21,15 @@ export default async function SlimmingPage() {
 
   return (
     <>
-      <section className="service-hero" style={{ backgroundImage: 'url(/images/weight-loss-bg.png)', backgroundPosition: 'center' }}>
-        <div className="container">
-          <div className="service-hero-grid">
-            <div className="service-hero-text">
-              <p className="hero-label">BODY REDEFINED</p>
-              <h1>Shape Your Body,<br/><span className="accent">Without Surgery</span></h1>
-              <p>Non-invasive lipolysis and personalized metabolic programs. Achieve your target weight with medical supervision.</p>
-              <div className="hero-trust-badges">
-                <div className="hero-trust-badge"><span>❄️</span><span>COOLSCULPTING</span></div>
-                <div className="hero-trust-badge"><span>⚖️</span><span>SAFE WEIGHT LOSS</span></div>
-              </div>
-            </div>
-            <div className="service-hero-form"><LeadForm title="Book Body Analysis" /></div>
-          </div>
-        </div>
-      </section>
+      <ReplicaHero 
+        titleTeal1="Shape Your Body,"
+        titleTeal2="Without Surgery"
+        titleOrange1="BODY"
+        titleOrange2="REDEFINED"
+        subtext="Non-invasive lipolysis and personalized metabolic programs. Achieve your target weight with medical supervision."
+        imageSrc="/images/neofatbury-slimming-hero.png"
+        leadFormTitle="Book Body Analysis"
+      />
 
       <section className="section" id="treatments">
         <div className="container">

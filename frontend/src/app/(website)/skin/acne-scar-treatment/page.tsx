@@ -1,4 +1,5 @@
 // /skin/acne-scar-treatment/page.tsx — CMS-driven, layout unchanged
+import ReplicaHero from "@/components/ReplicaHero";
 import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
@@ -50,16 +51,14 @@ export default async function AcneScarTreatment() {
 
   return (
     <>
-      <section className="service-hero" style={{ backgroundImage: 'url(/images/acne-scar-bg.png)', backgroundPosition: 'left center' }}>
-        <div className="container"><div className="service-hero-grid">
-          <div className="service-hero-text">
-            <h1>{heroH1}<br/><span className="accent">{heroAccent}</span></h1>
-            <p>{heroDesc}</p>
-            <div className="hero-trust-badges">{heroBadges.map((b,i)=>(<div key={i} className="hero-trust-badge"><span>{b.icon}</span><span>{b.label}</span></div>))}</div>
-          </div>
-          <div className="service-hero-form"><LeadForm /></div>
-        </div></div>
-      </section>
+      <ReplicaHero 
+        titleTeal1={heroH1}
+        titleTeal2={heroAccent}
+        titleOrange1="PRECISION"
+        titleOrange2="RESTORE"
+        subtext={heroDesc}
+        imageSrc="/images/neofatbury-acne-hero.png"
+      />
 
       <section className="section bg-surface text-center" style={{ padding: '4rem 0' }}>
         <div className="container" style={{ maxWidth: '1100px' }}>

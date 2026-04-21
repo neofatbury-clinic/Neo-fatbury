@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
+import ReplicaHero from "@/components/ReplicaHero";
 import { client } from "@/sanity/lib/client";
 
 export const metadata = {
@@ -21,24 +22,15 @@ export default async function SkinPage() {
   return (
     <>
       {/* 1. HERO SECTION */}
-      <section className="service-hero" style={{ backgroundImage: 'url(/images/neofatbury-acne-scar-banner.png)', backgroundPosition: 'center' }}>
-        <div className="container">
-          <div className="service-hero-grid">
-            <div className="service-hero-text">
-              <p className="hero-label">CLINICAL SKIN CARE</p>
-              <h1>Expert Hands,<br/><span className="accent">Glowing Skin</span></h1>
-              <p>US-FDA approved treatments for acne, pigmentation, and skin aging. Experience clinical luxury with NeoFatbury.</p>
-              <div className="hero-trust-badges">
-                <div className="hero-trust-badge"><span>👨‍⚕️</span><span>TOP DERMATOLOGISTS</span></div>
-                <div className="hero-trust-badge"><span>✨</span><span>FDA APPROVED</span></div>
-              </div>
-            </div>
-            <div className="service-hero-form">
-              <LeadForm title="Book Skin Analysis" />
-            </div>
-          </div>
-        </div>
-      </section>
+      <ReplicaHero 
+        titleTeal1="Expert Hands,"
+        titleTeal2="Glowing Skin"
+        titleOrange1="CLINICAL"
+        titleOrange2="SKIN CARE"
+        subtext="US-FDA approved treatments for acne, pigmentation, and skin aging. Experience clinical luxury with NeoFatbury."
+        imageSrc="/images/All Skin Treatments.png"
+        leadFormTitle="Book Skin Analysis"
+      />
 
       {/* TREATMENTS GRID */}
       <section className="section" id="treatments">

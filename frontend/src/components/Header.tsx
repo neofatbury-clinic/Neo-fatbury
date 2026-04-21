@@ -66,10 +66,37 @@ export default function Header({ settings }: { settings?: any }) {
             ) : (
               <>
                 <Link href="/" style={navLinkStyle}>Home</Link>
-                <Link href="/skin" style={navLinkStyle}>Skin</Link>
-                <Link href="/hair" style={navLinkStyle}>Hair</Link>
-                <Link href="/slimming" style={navLinkStyle}>Slimming</Link>
+                <NavDropdown 
+                  label="Skin" 
+                  items={[
+                    { label: 'All Skin Treatments', href: '/skin' },
+                    { label: 'Acne Treatment', href: '/skin/acne-treatment' },
+                    { label: 'Acne Scar Treatment', href: '/skin/acne-scar-treatment' },
+                    { label: 'Laser Hair Reduction', href: '/skin/laser-hair-reduction' },
+                    { label: 'Skin Brightening', href: '/skin/skin-brightening' },
+                    { label: 'Scar Treatment', href: '/skin/scar-treatment' }
+                  ]} 
+                />
+                <NavDropdown 
+                  label="Hair" 
+                  items={[
+                    { label: 'All Hair Treatments', href: '/hair' },
+                    { label: 'Hair Loss Treatment', href: '/hair/hair-loss-treatment' },
+                    { label: 'Anti-Dandruff Treatment', href: '/hair/anti-dandruff-treatment' },
+                    { label: 'Hair Transplantation', href: '/hair/hair-transplantation' }
+                  ]} 
+                />
+                <NavDropdown 
+                  label="Slimming" 
+                  items={[
+                    { label: 'All Slimming Treatments', href: '/slimming' },
+                    { label: 'CoolSculpting', href: '/slimming/coolsculpting' },
+                    { label: 'Weight Loss', href: '/slimming/weight-loss' },
+                    { label: 'Inch Loss', href: '/slimming/inch-loss' }
+                  ]} 
+                />
                 <Link href="/results" style={navLinkStyle}>Results</Link>
+                <Link href="/blog" style={navLinkStyle}>Blog</Link>
               </>
             )}
           </nav>
@@ -104,12 +131,43 @@ export default function Header({ settings }: { settings?: any }) {
                  )
                ))
              ) : (
-               <>
-                <Link href="/" onClick={() => setMobileOpen(false)} style={mobileMainLink}>Home</Link>
-                <Link href="/skin" onClick={() => setMobileOpen(false)} style={mobileMainLink}>Skin Treatments</Link>
-                <Link href="/hair" onClick={() => setMobileOpen(false)} style={mobileMainLink}>Hair Treatments</Link>
-                <Link href="/slimming" onClick={() => setMobileOpen(false)} style={mobileMainLink}>Slimming & Body</Link>
-               </>
+                <>
+                 <Link href="/" onClick={() => setMobileOpen(false)} style={mobileMainLink}>Home</Link>
+                 <MobileAccordion 
+                    label="Skin Treatments" 
+                    items={[
+                      { label: 'All Skin Treatments', href: '/skin' },
+                      { label: 'Acne Treatment', href: '/skin/acne-treatment' },
+                      { label: 'Acne Scar Treatment', href: '/skin/acne-scar-treatment' },
+                      { label: 'Laser Hair Reduction', href: '/skin/laser-hair-reduction' },
+                      { label: 'Skin Brightening', href: '/skin/skin-brightening' },
+                      { label: 'Scar Treatment', href: '/skin/scar-treatment' }
+                    ]} 
+                    onClose={() => setMobileOpen(false)} 
+                 />
+                 <MobileAccordion 
+                    label="Hair Treatments" 
+                    items={[
+                      { label: 'All Hair Treatments', href: '/hair' },
+                      { label: 'Hair Loss Treatment', href: '/hair/hair-loss-treatment' },
+                      { label: 'Anti-Dandruff Treatment', href: '/hair/anti-dandruff-treatment' },
+                      { label: 'Hair Transplantation', href: '/hair/hair-transplantation' }
+                    ]} 
+                    onClose={() => setMobileOpen(false)} 
+                 />
+                 <MobileAccordion 
+                    label="Slimming & Body" 
+                    items={[
+                      { label: 'All Slimming Treatments', href: '/slimming' },
+                      { label: 'CoolSculpting', href: '/slimming/coolsculpting' },
+                      { label: 'Weight Loss', href: '/slimming/weight-loss' },
+                      { label: 'Inch Loss', href: '/slimming/inch-loss' }
+                    ]} 
+                    onClose={() => setMobileOpen(false)} 
+                 />
+                 <Link href="/results" onClick={() => setMobileOpen(false)} style={mobileMainLink}>Results Gallery</Link>
+                 <Link href="/blog" onClick={() => setMobileOpen(false)} style={mobileMainLink}>Blog & Tips</Link>
+                </>
              )}
 
             <div style={{ marginTop: '2rem', padding: '1.5rem', backgroundColor: '#f9f9f9', borderRadius: '12px' }}>

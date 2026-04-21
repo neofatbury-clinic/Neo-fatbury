@@ -32,29 +32,13 @@ export default async function AboutUs() {
 
   return (
     <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', padding: '3rem 0', fontFamily: 'var(--font-body)' }}>
-      <div className="container" style={{ maxWidth: '1200px', display: 'flex', flexWrap: 'wrap', gap: '3rem', alignItems: 'flex-start' }}>
+      <div className="container about-us-grid" style={{ maxWidth: '1200px' }}>
         
         {/* ─────────────────────────────────────────────────────────
             LEFT SIDEBAR (Table of Contents)
             ───────────────────────────────────────────────────────── */}
-        <aside style={{ 
-          flex: '0 0 280px', 
-          backgroundColor: '#f6fdfd', 
-          border: '1px solid #cbedf0', 
-          borderRadius: '8px',
-          padding: '2rem 0',
-          position: 'sticky',
-          top: '120px'
-        }}>
-          <h3 style={{ 
-            fontSize: '1.25rem', 
-            color: '#1a1a1a', 
-            padding: '0 2rem', 
-            marginBottom: '1rem',
-            fontWeight: 700
-          }}>
-            Table of Contents
-          </h3>
+        <aside className="about-sidebar">
+          <h3>Table of Contents</h3>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
             {[
               { label: 'About NeoFatbury', id: '#about' },
@@ -64,15 +48,7 @@ export default async function AboutUs() {
               { label: 'Contact Us', id: '#contact' }
             ].map((link, i) => (
               <li key={i} style={{ borderBottom: i !== 4 ? '1px solid #dce8e8' : 'none', margin: '0 2rem' }}>
-                <a href={link.id} style={{ 
-                  display: 'block', 
-                  padding: '1rem 0', 
-                  color: 'var(--color-primary)', 
-                  fontWeight: 500,
-                  fontSize: '0.95rem',
-                  textDecoration: 'none',
-                  transition: 'color 0.2s'
-                }}>
+                <a href={link.id} className="about-toc-link">
                   {link.label}
                 </a>
               </li>
@@ -83,7 +59,7 @@ export default async function AboutUs() {
         {/* ─────────────────────────────────────────────────────────
             RIGHT CONTENT AREA
             ───────────────────────────────────────────────────────── */}
-        <main style={{ flex: '1 1 600px', paddingBottom: '5rem' }}>
+        <main className="about-main">
           
           <div id="about" style={{ paddingTop: '1rem', marginBottom: '3rem' }}>
             <h1 style={{ 
@@ -106,18 +82,13 @@ export default async function AboutUs() {
 
             {/* Content with floating image */}
             <div style={{ color: '#4a4a4a', fontSize: '1rem', lineHeight: 1.8, marginBottom: '2rem' }}>
-              <div style={{ 
-                float: 'right', 
-                marginLeft: '2rem', 
-                marginBottom: '1rem',
-                width: '350px'
-              }}>
+              <div className="about-floating-img">
                 <Image 
                   src={data?.floatingImage || "/images/neofatbury-clinical-standard.png"}
                   alt="NeoFatbury Clinic Experts"
                   width={350}
                   height={250}
-                  style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
+                  style={{ width: '100%', height: 'auto', borderRadius: '8px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}
                 />
               </div>
 

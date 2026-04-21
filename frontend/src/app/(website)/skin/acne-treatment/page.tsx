@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
+import ReplicaHero from "@/components/ReplicaHero";
 import { getServicePageData } from "@/sanity/fetchers/services";
 
 export default async function AcneTreatment() {
@@ -50,16 +51,14 @@ export default async function AcneTreatment() {
 
   return (
     <>
-      <section className="service-hero" style={{ backgroundImage: 'url(/images/acne-scar-bg.png)', backgroundPosition: 'left center' }}>
-        <div className="container"><div className="service-hero-grid">
-          <div className="service-hero-text">
-            <h1>{heroH1}<br/><span className="accent">{heroAccent}</span></h1>
-            <p>{heroDesc}</p>
-            <div className="hero-trust-badges">{heroBadges.map((b,i)=>(<div key={i} className="hero-trust-badge"><span>{b.icon}</span><span>{b.label}</span></div>))}</div>
-          </div>
-          <div className="service-hero-form"><LeadForm /></div>
-        </div></div>
-      </section>
+      <ReplicaHero 
+        titleTeal1={heroH1}
+        titleTeal2=""
+        titleOrange1={heroAccent}
+        titleOrange2=""
+        subtext={heroDesc}
+        imageSrc={(d.image as string) || "/images/Acne & Pimple Treatment.png"}
+      />
 
       <section className="section bg-surface text-center" style={{ padding: '3rem 0' }}>
         <div className="container" style={{ maxWidth: '1100px' }}>
@@ -96,7 +95,7 @@ export default async function AcneTreatment() {
           <h2 className="section-title" style={{ fontSize: '2.8rem' }}>{baHead} <span className="text-accent">{baAccent}</span></h2>
           <p className="section-subtitle">{baSub}</p>
           <div style={{ maxWidth: '480px', margin: '2rem auto', position: 'relative', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 15px 40px rgba(0,0,0,0.1)' }}>
-            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/6' }}><Image src="/images/neofatbury-acne-scar-ba.png" alt="Acne Treatment Results" fill style={{ objectFit: 'cover' }} /></div>
+            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/6' }}><Image src={(d.baImage as string) || "/images/neofatbury-acne-scar-ba.png"} alt="Acne Treatment Results" fill style={{ objectFit: 'cover' }} /></div>
             <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)', padding: '1rem', display: 'flex', justifyContent: 'center', gap: '15vw' }}>
               <span style={{ color: 'white', fontWeight: '900', letterSpacing: '3px', fontSize: '0.85rem', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>BEFORE</span>
               <span style={{ color: 'white', fontWeight: '900', letterSpacing: '3px', fontSize: '0.85rem', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>AFTER</span>

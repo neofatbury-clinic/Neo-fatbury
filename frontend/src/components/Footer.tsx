@@ -70,17 +70,21 @@ export default function Footer({ settings }: { settings?: any }) {
           {/* Column 4: Quick Access & Locations */}
           <div className="footer-col">
             <h4 style={colTitleStyle}>Clinics & Contact</h4>
-            <div style={locationBox}>
-              <p style={locationTitle}>{branch1?.name || 'Kukatpally Clinic'}</p>
-              <p style={locationAddr}>{branch1?.address || 'Ganesh Plaza, JNTU - Hitech City Rd, Hyderabad.'}</p>
-              <a href={branch1?.googleMapsUrl || 'https://maps.google.com'} target="_blank" rel="noreferrer" style={mapLink}>View on Maps</a>
-            </div>
-            <div style={locationBox}>
-              <p style={locationTitle}>{branch2?.name || 'Himayatnagar Clinic'}</p>
-              <p style={locationAddr}>{branch2?.address || 'Velma Bhavan, Himayatnagar, Hyderabad.'}</p>
-              <a href={branch2?.googleMapsUrl || 'https://maps.google.com'} target="_blank" rel="noreferrer" style={mapLink}>View on Maps</a>
-            </div>
-            <a href={`tel:${phone}`} style={contactLink}>📞 {phone}</a>
+            {settings?.clinicLocations?.map((loc: any, i: number) => (
+              <div key={i} style={locationBox}>
+                <p style={locationTitle}>{loc.name}</p>
+                <p style={locationAddr}>{loc.address}</p>
+                {loc.mapsUrl && (
+                  <a href={loc.mapsUrl} target="_blank" rel="noreferrer" style={mapLink}>View on Maps</a>
+                )}
+                {loc.phone && (
+                  <div style={{ marginTop: '0.25rem' }}>
+                    <a href={`tel:${loc.phone}`} style={{ ...mapLink, textDecoration: 'none', fontWeight: '600' }}>📞 {loc.phone}</a>
+                  </div>
+                )}
+              </div>
+            ))}
+            
             <a href={`mailto:${email}`} style={{ ...contactLink, display: 'block', textDecoration: 'none', color: '#2c3e50' }}>✉ {email}</a>
             {whatsapp && (
               <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noreferrer" style={{ ...contactLink, display: 'block', textDecoration: 'none', color: '#25D366' }}>💬 WhatsApp Us</a>

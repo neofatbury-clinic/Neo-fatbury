@@ -1,30 +1,24 @@
-"use client";
+import { getServicePageData } from "@/sanity/fetchers/services";
+import ReplicaHero from "@/components/ReplicaHero";
 import Image from "next/image";
 import Link from "next/link";
-import LeadForm from "@/components/LeadForm";
 
-export default function ScarTreatment() {
+export default async function ScarTreatment() {
+  const d = await getServicePageData('scar-treatment') as Record<string, any>;
+  const trustHead = (d.trustHeading as string);
+  const trustAccent = (d.trustAccentWord as string);
+
   return (
     <>
-      {/* 1. HERO SECTION - TRIPLE PILLAR */}
-      <section className="service-hero" style={{ backgroundImage: 'url(/images/acne-scar-bg.png)', backgroundPosition: 'left center' }}>
-        <div className="container">
-          <div className="service-hero-grid">
-            {/* Visual Subject migrated to background */}
-            <div className="service-hero-text">
-              <h1>Restore Skin.<br/><span className="accent">Zero Scars.</span></h1>
-              <p>Advanced clinical scar restoration using surgical-grade technology. Regain your smooth complexion with Hyderabad's leading skin experts.</p>
-              <div className="hero-trust-badges">
-                <div className="hero-trust-badge"><span>💎</span><span>PRECISION TECH</span></div>
-                <div className="hero-trust-badge"><span>🛡️</span><span>FDA APPROVED</span></div>
-              </div>
-            </div>
-            <div className="service-hero-form"><LeadForm /></div>
-          </div>
-        </div>
-      </section>
+      <ReplicaHero 
+        titleTeal1="Restore Skin."
+        titleTeal2="Zero Scars."
+        titleOrange1="CLINICAL"
+        titleOrange2="RESTORATION"
+        subtext="Advanced clinical scar restoration using surgical-grade technology. Regain your smooth complexion with Hyderabad's leading skin experts."
+        imageSrc={(d.image as string) || "/images/neofatbury-acne-hero.png"}
+      />
 
-      {/* 2. PROBLEM SECTION WITH ICONS */}
       <section className="section bg-surface text-center" style={{ padding: '6rem 0' }}>
         <div className="container" style={{ maxWidth: '1100px' }}>
           <h2 className="section-title" style={{ fontSize: '2.8rem' }}>Are Scars Affecting <span className="text-accent">Your Confidence?</span></h2>
@@ -48,11 +42,10 @@ export default function ScarTreatment() {
         </div>
       </section>
 
-      {/* 3. WHAT IS SCAR TREATMENT */}
       <section className="section">
         <div className="container grid grid-2 items-center gap-6">
           <div style={{ position: 'relative', height: '550px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 25px 55px rgba(0,0,0,0.1)' }}>
-            <Image src="/images/neofatbury-acne-scar-procedure.png" alt="Scar Treatment Procedure" fill style={{ objectFit: 'cover' }} />
+            <Image src={(d.whatIsImage as string) || "/images/neofatbury-acne-scar-procedure.png"} alt="Scar Treatment Procedure" fill style={{ objectFit: 'cover' }} />
             <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', background: 'white', padding: '0.75rem 1.5rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: '800', color: 'var(--color-primary)', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}>NEOFATBURY SURGICAL STANDARD</div>
           </div>
           <div style={{ paddingLeft: '3.5rem' }}>
@@ -78,14 +71,13 @@ export default function ScarTreatment() {
         </div>
       </section>
 
-      {/* 5. BEFORE / AFTER SECTION */}
       <section className="section text-center">
         <div className="container">
           <h2 className="section-title" style={{ fontSize: '2.8rem' }}>Real Results. <span className="text-accent">Visible Improvement.</span></h2>
           <p className="section-subtitle">See natural-looking skin refining results from our elite sessions.</p>
           <div style={{ maxWidth: '480px', margin: '3.5rem auto', position: 'relative', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 15px 45px rgba(0,0,0,0.1)' }}>
             <div style={{ position: 'relative', width: '100%', aspectRatio: '16/6' }}>
-              <Image src="/images/neofatbury-acne-scar-ba.png" alt="Scar Treatment Results" fill style={{ objectFit: 'cover' }} />
+              <Image src={(d.baImage as string) || "/images/neofatbury-acne-scar-ba.png"} alt="Scar Treatment Results" fill style={{ objectFit: 'cover' }} />
             </div>
             <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)', padding: '3rem', display: 'flex', justifyContent: 'center', gap: '25vw' }}>
               <span style={{ color: 'white', fontWeight: '900', letterSpacing: '5px', fontSize: '1.3rem', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>BEFORE</span>
@@ -97,7 +89,6 @@ export default function ScarTreatment() {
         </div>
       </section>
 
-      {/* 6. BENEFITS SECTION WITH ICONS */}
       <section className="section bg-surface">
         <div className="container">
           <h2 className="section-title text-center">Benefits of <span className="text-accent">Scar Treatment</span></h2>
@@ -127,15 +118,14 @@ export default function ScarTreatment() {
             </p>
           </div>
           <div style={{ position: 'relative', height: '480px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 25px 55px rgba(0,0,0,0.1)' }}>
-            <Image src="/images/neofatbury-acne-scar-banner.png" alt="Clinical Precision" fill style={{ objectFit: 'cover' }} />
+            <Image src={(d.techImage as string) || "/images/neofatbury-acne-scar-banner.png"} alt="Clinical Precision" fill style={{ objectFit: 'cover' }} />
           </div>
         </div>
       </section>
 
-      {/* 11. TRUST SECTION */}
       <section className="section text-center">
         <div className="container">
-          <h2 className="section-title">Why Choose <span className="text-accent">Neo Clinic?</span></h2>
+          <h2 className="section-title">{trustHead || "Why Choose"} <span className="text-accent">{trustAccent || "Neo Clinic?"}</span></h2>
           <div className="grid grid-4" style={{ marginTop: '5rem', gap: '1.5rem' }}>
             {[
               { t: "Expert doctors", i: "👨‍⚕️" },
@@ -152,7 +142,6 @@ export default function ScarTreatment() {
         </div>
       </section>
 
-      {/* 12. FINAL CTA */}
       <section className="section bg-primary text-white text-center" style={{ padding: '10rem 0' }} id="book">
         <div className="container" style={{ maxWidth: '900px' }}>
           <h2 style={{ fontSize: 'clamp(2.5rem, 8vw, 4.2rem)', color: 'white', marginBottom: '2rem', fontWeight: '900' }}>Ready for Smooth Skin?</h2>
@@ -164,88 +153,14 @@ export default function ScarTreatment() {
         </div>
       </section>
 
-      <style jsx>{`
-        .service-hero {
-          position: relative;
-          overflow: hidden;
-          min-height: 600px;
-          display: flex;
-          align-items: center;
-          padding: 3rem 0;
-        }
-        .hero-bg-img {
-          position: absolute;
-          inset: 0;
-          z-index: 0;
-        }
-        .hero-bg-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to right, rgba(255,255,255,0.97) 45%, rgba(255,255,255,0.5) 70%, transparent 100%);
-        }
-        .service-hero-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 3rem;
-          align-items: center;
-          width: 100%;
-        }
-        @media (max-width: 1024px) {
-          .service-hero-grid { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
-          .service-hero-text { display: flex; flex-direction: column; align-items: center; }
-          .hero-bg-overlay { background: rgba(255,255,255,0.88); }
-        }
-        .service-hero-container {
-          position: relative;
-          z-index: 2;
-          width: 100%;
-          animation: fadeInUp 0.8s ease-out forwards;
-        }
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .trust-item-sleek {
-          background: #f0ffff;
-          padding: 0.75rem 1.5rem;
-          border-radius: 60px;
-          font-weight: 800;
-          font-size: 0.95rem;
-          color: #1a1a1a;
-          border: 1px solid rgba(39, 166, 156, 0.25);
-          box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-        }
-        .card-sleek {
-          background: white;
-          padding: 3rem 2rem;
-          border-radius: 16px;
-          border: 1px solid #f2f2f2;
-          box-shadow: 0 6px 25px rgba(0,0,0,0.04);
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+      <style dangerouslySetInnerHTML={{__html:`
+        .card-sleek { background: white; padding: 3rem 2rem; border-radius: 16px; border: 1px solid #f2f2f2; box-shadow: 0 6px 25px rgba(0,0,0,0.04); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .card-sleek:hover { transform: translateY(-10px); box-shadow: 0 15px 45px rgba(0,0,0,0.08); border-color: var(--color-accent); }
-        .card-benefit {
-          background: white;
-          padding: 2.5rem;
-          border-radius: 20px;
-          border: 1px solid #f2f2f2;
-          transition: all 0.3s ease;
-        }
+        .card-benefit { background: white; padding: 2.5rem; border-radius: 20px; border: 1px solid #f2f2f2; transition: all 0.3s ease; }
         .card-benefit:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.06); }
-        .card-trust {
-          background: white;
-          padding: 3.5rem 2rem;
-          border-radius: 16px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-          gap: 1.5rem;
-          border: 1px solid #f2f2f2;
-          transition: all 0.3s ease;
-        }
+        .card-trust { background: white; padding: 3.5rem 2rem; border-radius: 16px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; border: 1px solid #f2f2f2; transition: all 0.3s ease; }
         .card-trust:hover { transform: translateY(-8px); border-color: var(--color-accent); }
-      `}</style>
+      ` }} />
     </>
   );
 }

@@ -5,6 +5,8 @@ import WhatsAppWidget from "@/components/WhatsAppWidget";
 
 import { client } from "@/sanity/lib/client";
 
+export const revalidate = 0;
+
 export async function generateMetadata() {
   const query = `*[_type == "siteSettings"][0] {
     defaultSeo {

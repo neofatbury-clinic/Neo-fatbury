@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
+import ReplicaHero from "@/components/ReplicaHero";
 import { getServicePageData } from "@/sanity/fetchers/services";
 
 export default async function HairTransplantation() {
@@ -55,16 +56,15 @@ export default async function HairTransplantation() {
 
   return (
     <>
-      <section className="service-hero" style={{ backgroundImage: 'url(/images/hair-transplant-bg.png)', backgroundPosition: 'left center' }}>
-        <div className="container"><div className="service-hero-grid">
-          <div className="service-hero-text">
-            <h1>{heroH1}<br/><span className="accent">{heroAccent}</span></h1>
-            <p>{heroDesc}</p>
-            <div className="hero-trust-badges">{heroBadges.map((b,i)=>(<div key={i} className="hero-trust-badge"><span>{b.icon}</span><span>{b.label}</span></div>))}</div>
-          </div>
-          <div className="service-hero-form"><LeadForm /></div>
-        </div></div>
-      </section>
+      {/* 1. HERO SECTION */}
+      <ReplicaHero 
+        titleTeal1={heroH1}
+        titleTeal2={heroAccent}
+        titleOrange1="PERMANENT"
+        titleOrange2="HAIR"
+        subtext={heroDesc}
+        imageSrc={(d.image as string) || "/images/Hair Transplantation.png"}
+      />
 
       <section className="section bg-surface text-center" style={{ padding: '4rem 0' }}>
         <div className="container" style={{ maxWidth: '1000px' }}>
@@ -81,7 +81,7 @@ export default async function HairTransplantation() {
       <section className="section">
         <div className="container grid grid-2 items-center gap-4">
           <div style={{ position: 'relative', height: '500px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 50px rgba(0,0,0,0.1)' }}>
-            <Image src="/images/neofatbury-hair-standard.png" alt="Hair Transplant Tech" fill style={{ objectFit: 'cover' }} />
+            <Image src={(d.whatIsImage as string) || "/images/neofatbury-hair-standard.png"} alt="Hair Transplant Tech" fill style={{ objectFit: 'cover' }} />
             <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', background: 'white', padding: '0.5rem 1rem', borderRadius: '8px', fontSize: '0.8rem', fontWeight: '800', color: 'var(--color-primary)' }}>{wiBadge}</div>
           </div>
           <div style={{ paddingLeft: '3rem' }}>
@@ -100,8 +100,10 @@ export default async function HairTransplantation() {
         <div className="container">
           <h2 className="section-title" style={{ fontSize: '2.6rem' }}>{baHead} <span className="text-accent">{baAccent}</span></h2>
           <p className="section-subtitle">{baSub}</p>
-          <div style={{ maxWidth: '500px', margin: '3rem auto', position: 'relative', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 15px 40px rgba(0,0,0,0.1)' }}>
-            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/6' }}><Image src="/images/before-after-laser.webp" alt="Hair Transplant Results" fill style={{ objectFit: 'cover' }} /></div>
+          <div style={{ maxWidth: '700px', margin: '3rem auto', position: 'relative', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 15px 40px rgba(0,0,0,0.1)' }}>
+            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/7' }}>
+              <Image src={(d.baImage as string) || "/images/before-after-laser.webp"} alt="Hair Transplant Results" fill style={{ objectFit: 'cover' }} />
+            </div>
             <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)', padding: '1rem', display: 'flex', justifyContent: 'center', gap: '15vw' }}>
               <span style={{ color:'white', fontWeight:'900', letterSpacing:'3px', fontSize:'0.85rem' }}>BEFORE</span>
               <span style={{ color:'white', fontWeight:'900', letterSpacing:'3px', fontSize:'0.85rem' }}>AFTER</span>
@@ -140,7 +142,7 @@ export default async function HairTransplantation() {
             </div>
           </div>
           <div style={{ position: 'relative', height: '400px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 50px rgba(0,0,0,0.1)' }}>
-            <Image src="/images/neofatbury-hair2-banner.webp" alt="FUE Hair Transplant" fill style={{ objectFit: 'cover' }} />
+            <Image src={(d.techImage as string) || "/images/neofatbury-hair2-banner.webp"} alt="FUE Hair Transplant" fill style={{ objectFit: 'cover' }} />
           </div>
         </div>
       </section>

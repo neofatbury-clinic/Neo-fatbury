@@ -22,7 +22,7 @@ export default async function HeaderWrapper() {
       email
     }
   }`;
-  const settings = await client.fetch(query, {}, { next: { revalidate: 60 } });
+  const settings = await client.fetch(query, {}, { next: { revalidate: 0 } });
   
   return <Header settings={settings} />;
 }
