@@ -739,9 +739,9 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   align-items: center;
   /* Brand Split: Teal on left, Dark Green on right. Split at mid-leadform. */
   background: linear-gradient(to right, #00aeb5 0%, #00aeb5 calc(100% - 240px), #004d4f calc(100% - 240px), #004d4f 100%);
-  padding-top: 60px; /* Reduced to provide more headroom */
+  padding-top: 40px; /* Minimized to provide maximum vertical space */
   overflow: hidden;
-  height: 720px; /* Perfectly balanced for no-clipping */
+  height: 800px; /* Restored for 1:1 image match at 100% zoom */
   box-sizing: border-box;
 }
 
