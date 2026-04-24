@@ -739,9 +739,10 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   align-items: center;
   /* Brand Split: Teal on left, Dark Green on right. Split at mid-leadform. */
   background: linear-gradient(to right, #00aeb5 0%, #00aeb5 calc(100% - 240px), #004d4f calc(100% - 240px), #004d4f 100%);
-  padding-top: 120px; /* Increased for taller hero */
+  padding-top: 120px; 
   overflow: hidden;
-  min-height: 800px; /* Matched to 2560x800 image ratio */
+  height: 800px; /* Force total height to match image height exactly */
+  box-sizing: border-box;
 }
 
 .replica-hero-container {
