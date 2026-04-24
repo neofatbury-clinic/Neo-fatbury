@@ -737,11 +737,11 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   position: relative;
   display: flex;
   align-items: center;
-  /* Brand Split: Teal on left, Dark Green starting at mid-point of Lead Form on right */
+  /* Brand Split: Teal on left, Dark Green on right. Split at mid-leadform. */
   background: linear-gradient(to right, #00aeb5 0%, #00aeb5 calc(100% - 240px), #004d4f calc(100% - 240px), #004d4f 100%);
-  padding-top: 80px;
+  padding-top: 120px; /* Increased for taller hero */
   overflow: hidden;
-  min-height: 580px;
+  min-height: 800px; /* Matched to 2560x800 image ratio */
 }
 
 .replica-hero-container {
@@ -753,8 +753,9 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   padding: 0;
   display: grid;
   grid-template-columns: 1fr 480px;
-  align-items: stretch;
+  align-items: center; /* Leadform stays vertically centered */
   gap: 0;
+  height: 100%;
 }
 
 .replica-primary-box {
