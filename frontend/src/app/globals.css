@@ -737,7 +737,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   position: relative;
   display: flex;
   align-items: center;
-  background-color: #fbfaf2; /* Light Cream Background to match image */
+  background-color: #004d4f; /* Full Dark Green Background */
   padding-top: 0;
   overflow: hidden;
 }
@@ -746,11 +746,11 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   position: relative;
   z-index: 10;
   width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
+  max-width: 100%; /* Go Full Width */
+  margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: 1fr 440px; /* Primary Box + Lead Form */
+  grid-template-columns: 1fr 480px; /* Adjusting proportions for full width */
   align-items: stretch;
   gap: 0;
 }
