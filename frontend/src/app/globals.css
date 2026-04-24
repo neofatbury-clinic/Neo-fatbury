@@ -764,7 +764,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   display: block;
   position: relative;
   margin-left: 0;
-  overflow: hidden;
+  /* overflow: hidden removed to prevent cutting text */
 }
 
 .replica-primary-bg {
@@ -785,7 +785,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   position: relative;
   z-index: 10;
   display: grid;
-  grid-template-columns: 45% 1fr;
+  grid-template-columns: 35% 1fr; /* Further reduced left zone for maximum text room */
   align-items: stretch;
   height: 100%;
 }
@@ -807,11 +807,11 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 3rem 4rem 3rem 3rem;
+  padding: 3rem 6rem 3rem 2rem; /* Extreme safety room on right side */
 }
 
 .replica-title {
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-size: clamp(1.6rem, 3.8vw, 2.3rem); /* Slightly optimized to prevent clipping on wrap */
   font-weight: 800;
   line-height: 1.05;
   margin-bottom: 0.75rem;
