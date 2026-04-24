@@ -737,7 +737,8 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   position: relative;
   display: flex;
   align-items: center;
-  background-color: #004d4f; /* Full Dark Green Background */
+  /* Dark green stops exactly at the mid-point of the 480px lead form column on the right */
+  background: linear-gradient(to right, #004d4f 0%, #004d4f calc(100% - 240px), #fbfaf2 calc(100% - 240px), #fbfaf2 100%);
   padding-top: 80px;
   overflow: hidden;
 }
@@ -756,7 +757,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 }
 
 .replica-primary-box {
-  background-color: #004d4f; /* Fallback solid color */
+  background-color: transparent;
   display: block; /* Content handled by relative child */
   position: relative;
   margin-left: 0;
@@ -772,7 +773,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 .replica-primary-overlay {
   position: absolute;
   inset: 0;
-  /* Sharp clinical split to remove all 'green haze/hover' from the subject area */
+  /* Sharp clinical split to hide image background and provide high-contrast for text */
   background: linear-gradient(to right, transparent 48%, #004d4f 48%);
   z-index: 2;
 }
