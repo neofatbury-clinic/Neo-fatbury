@@ -1,3 +1,4 @@
+export const revalidate = 0;
 import { getServicePageData } from "@/sanity/fetchers/services";
 import ReplicaHero from "@/components/ReplicaHero";
 import Image from "next/image";
@@ -14,9 +15,9 @@ export default async function AntiDandruffTreatment() {
     <>
       <ReplicaHero 
         titleTeal1={heroH1}
-        titleTeal2={heroAccent}
-        titleOrange1="CLINICAL"
-        titleOrange2="SOLUTIONS"
+        titleTeal2=""
+        titleOrange1={d.heroAccentLine as string || "CLINICAL SOLUTIONS"}
+        titleOrange2=""
         subtext={heroDesc}
         imageSrc={(d.image as string) || "/images/Anti-Dandruff Treatment.png"}
       />

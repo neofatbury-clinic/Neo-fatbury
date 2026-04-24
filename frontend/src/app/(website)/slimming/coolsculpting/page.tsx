@@ -1,4 +1,5 @@
 // /slimming/coolsculpting/page.tsx — CMS-driven, layout unchanged
+export const revalidate = 0;
 import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
@@ -47,9 +48,9 @@ export default async function CoolSculpting() {
       {/* 1. HERO SECTION */}
       <ReplicaHero 
         titleTeal1={heroH1}
-        titleTeal2={heroAccent}
-        titleOrange1="ZERO"
-        titleOrange2="SURGERY"
+        titleTeal2=""
+        titleOrange1={d.heroAccentLine as string || "ZERO SURGERY"}
+        titleOrange2=""
         subtext={heroDesc}
         imageSrc={(d.image as string) || "/images/neofatbury-slimming-hero.png"}
       />

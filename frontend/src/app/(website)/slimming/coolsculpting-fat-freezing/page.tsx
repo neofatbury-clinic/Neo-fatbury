@@ -1,3 +1,4 @@
+export const revalidate = 0;
 import { getServicePageData } from "@/sanity/fetchers/services";
 import Image from "next/image";
 import Link from "next/link";

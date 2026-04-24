@@ -1,3 +1,4 @@
+export const revalidate = 0;
 import { getServicePageData } from "@/sanity/fetchers/services";
 import ReplicaHero from "@/components/ReplicaHero";
 import Image from "next/image";
@@ -11,11 +12,11 @@ export default async function ScarTreatment() {
   return (
     <>
       <ReplicaHero 
-        titleTeal1="Restore Skin."
-        titleTeal2="Zero Scars."
-        titleOrange1="CLINICAL"
-        titleOrange2="RESTORATION"
-        subtext="Advanced clinical scar restoration using surgical-grade technology. Regain your smooth complexion with Hyderabad's leading skin experts."
+        titleTeal1={(d.heroHeadline as string) || "Restore Skin."}
+        titleTeal2=""
+        titleOrange1={(d.heroAccentLine as string) || "CLINICAL RESTORATION"}
+        titleOrange2=""
+        subtext={(d.heroSubtext as string) || "Advanced clinical scar restoration using surgical-grade technology. Regain your smooth complexion with Hyderabad's leading skin experts."}
         imageSrc={(d.image as string) || "/images/neofatbury-acne-hero.png"}
       />
 

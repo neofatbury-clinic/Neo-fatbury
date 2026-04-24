@@ -1,4 +1,5 @@
 // /slimming/weight-loss/page.tsx — CMS-driven, layout unchanged
+export const revalidate = 0;
 import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
@@ -52,9 +53,9 @@ export default async function WeightLoss() {
       {/* 1. HERO SECTION */}
       <ReplicaHero 
         titleTeal1={heroH1}
-        titleTeal2={heroAccent}
-        titleOrange1="MEDICAL"
-        titleOrange2="WEIGHT LOSS"
+        titleTeal2=""
+        titleOrange1={d.heroAccentLine as string || "MEDICAL WEIGHT LOSS"}
+        titleOrange2=""
         subtext={heroDesc}
         imageSrc={(d.image as string) || "/images/neofatbury-slimming-hero.png"}
       />
