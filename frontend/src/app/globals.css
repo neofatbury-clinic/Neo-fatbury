@@ -737,7 +737,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   position: relative;
   display: flex;
   align-items: center;
-  background-color: #004d4f; /* Full Dark Green Background */
+  background-color: #fbfaf2; /* Light Cream Background to match image */
   padding-top: 0;
   overflow: hidden;
 }
