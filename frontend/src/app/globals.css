@@ -785,7 +785,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   position: relative;
   z-index: 10;
   display: grid;
-  grid-template-columns: 35% 1fr; /* Further reduced left zone for maximum text room */
+  grid-template-columns: 25% 1fr; /* Shifted woman far left to maximize space for headlines */
   align-items: stretch;
   height: 100%;
 }
