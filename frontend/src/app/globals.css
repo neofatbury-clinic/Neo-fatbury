@@ -737,7 +737,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   position: relative;
   display: flex;
   align-items: center;
-  background-color: #fbfaf2; /* Light Cream Background */
+  background-color: #004d4f; /* Full Dark Green Background */
   padding-top: var(--header-height);
   overflow: hidden;
 }
@@ -759,9 +759,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   background-color: #004d4f; /* Fallback solid color */
   display: block; /* Content handled by relative child */
   position: relative;
-  /* Chevron Clip Path (Points Left) */
-  clip-path: polygon(100% 0, 100% 100%, 5% 100%, 0% 50%, 5% 0);
-  margin-left: 2rem;
+  margin-left: 0;
   overflow: hidden;
 }
 
