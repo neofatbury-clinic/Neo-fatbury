@@ -10,11 +10,11 @@ export default async function InchLossTreatment() {
   return (
     <>
       <ReplicaHero 
-        titleTeal1="Sculpt Your Body."
-        titleTeal2="Lose Inches."
-        titleOrange1="PRECISION"
-        titleOrange2="CONTOURING"
-        subtext={(d.heroSubtext as string) || "Advanced clinical inch loss treatments using non-surgical body contouring technology. Target stubborn fat zones and achieve a redefined, slimmer profile in weeks."}
+        titleTeal1={(d.heroHeadline as string) || ""}
+        titleTeal2=""
+        titleOrange1={(d.heroAccentLine as string) || ""}
+        titleOrange2=""
+        subtext={(d.heroSubtext as string) || ""}
         imageSrc={(d.image as string) || "/images/neofatbury-slimming-hero.png"}
         leadFormTitle="Book Inch Loss Analysis"
       />

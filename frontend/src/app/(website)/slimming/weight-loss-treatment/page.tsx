@@ -11,11 +11,11 @@ export default async function WeightLossTreatment() {
   return (
     <>
       <ReplicaHero 
-        titleTeal1="Lose Weight."
-        titleTeal2="Gain Confidence."
-        titleOrange1="MEDICAL"
-        titleOrange2="METABOLISM"
-        subtext={(d.heroSubtext as string) || "Doctor-guided weight loss programs designed for safe, effective, and lasting results. Sustainable fat loss tailored to your unique metabolism."}
+        titleTeal1={(d.heroHeadline as string) || ""}
+        titleTeal2=""
+        titleOrange1={(d.heroAccentLine as string) || ""}
+        titleOrange2=""
+        subtext={(d.heroSubtext as string) || ""}
         imageSrc={(d.image as string) || "/images/neofatbury-slimming-hero.png"}
         leadFormTitle="Book Metabolism Analysis"
       />

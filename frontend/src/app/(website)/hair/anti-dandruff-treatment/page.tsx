@@ -7,16 +7,16 @@ import Link from "next/link";
 export default async function AntiDandruffTreatment() {
   const d = await getServicePageData('anti-dandruff-treatment') as Record<string, unknown>;
 
-  const heroH1     = (d.heroHeadline   as string) || 'Dandruff-Free.';
-  const heroAccent = (d.heroAccentLine as string) || 'Healthy Scalp.';
-  const heroDesc   = (d.heroSubtext    as string) || 'Clinical scalp treatments to eliminate dandruff, reduce flaking, and restore scalp health. Expert dermatologist-guided protocols for lasting relief.';
+  const heroH1     = (d.heroHeadline   as string) || '';
+  const heroAccent = (d.heroAccentLine as string) || '';
+  const heroDesc   = (d.heroSubtext    as string) || '';
 
   return (
     <>
       <ReplicaHero 
         titleTeal1={heroH1}
         titleTeal2=""
-        titleOrange1={d.heroAccentLine as string || "CLINICAL SOLUTIONS"}
+        titleOrange1={heroAccent}
         titleOrange2=""
         subtext={heroDesc}
         imageSrc={(d.image as string) || "/images/Anti-Dandruff Treatment.png"}

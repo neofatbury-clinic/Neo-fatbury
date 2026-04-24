@@ -22,11 +22,11 @@ export default async function HairPage() {
   return (
     <>
       <ReplicaHero 
-        titleTeal1="Reclaim Your Hair,"
-        titleTeal2="Restore Confidence"
-        titleOrange1="ADVANCED"
-        titleOrange2="TRICHOLOGY"
-        subtext="Specialized treatments for thinning, balding, and scalp rejuvenation. Regrow your natural hair with clinical precision."
+        titleTeal1=""
+        titleTeal2=""
+        titleOrange1=""
+        titleOrange2=""
+        subtext=""
         imageSrc="/images/All Hair Treatments.png"
         leadFormTitle="Book Hair Analysis"
       />

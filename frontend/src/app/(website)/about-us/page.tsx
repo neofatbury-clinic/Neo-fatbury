@@ -69,7 +69,7 @@ export default async function AboutUs() {
               marginBottom: '0.5rem',
               lineHeight: 1.2
             }}>
-              {data?.mainHeading || 'Welcome to NeoFatbury Clinic!'}
+              {data?.mainHeading || ''}
             </h1>
             <h2 style={{ 
               fontSize: '1.4rem', 
@@ -77,7 +77,7 @@ export default async function AboutUs() {
               fontWeight: 600, 
               marginBottom: '2rem' 
             }}>
-              {data?.subHeading || 'Celebrating the science of transformation!'}
+              {data?.subHeading || ''}
             </h2>
 
             {/* Content with floating image */}

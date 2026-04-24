@@ -9,10 +9,10 @@ import { getServicePageData } from "@/sanity/fetchers/services";
 export default async function CoolSculpting() {
   const d = await getServicePageData('coolsculpting') as Record<string, unknown>;
 
-  const heroH1     = (d.heroHeadline   as string) || 'Freeze Fat.';
-  const heroAccent = (d.heroAccentLine as string) || 'Shape Your Body.';
-  const heroDesc   = (d.heroSubtext    as string) || 'Non-surgical fat reduction with advanced body contouring technology. Achieve your desired shape with zero surgery and zero downtime.';
-  const heroBadges = (d.heroTrustBadges as {icon:string;label:string}[]) || [{ icon:'❄️', label:'ZERO DOWNTIME' }, { icon:'🛡️', label:'FDA APPROVED' }];
+  const heroH1     = (d.heroHeadline   as string) || '';
+  const heroAccent = (d.heroAccentLine as string) || '';
+  const heroDesc   = (d.heroSubtext    as string) || '';
+  const heroBadges = (d.heroTrustBadges as {icon:string;label:string}[]) || [];
   const probCards  = (d.problemCards as {icon:string;title:string;desc:string}[]) || [
     { icon:'🧥', title:'Belly Fat',    desc:'Target persistent fat around the abdomen area for a flatter profile.' },
     { icon:'⌛', title:'Love Handles', desc:'Eliminate stubborn fat on the flanks and waist permanently.' },
@@ -49,10 +49,11 @@ export default async function CoolSculpting() {
       <ReplicaHero 
         titleTeal1={heroH1}
         titleTeal2=""
-        titleOrange1={d.heroAccentLine as string || "ZERO SURGERY"}
+        titleOrange1={heroAccent}
         titleOrange2=""
         subtext={heroDesc}
-        imageSrc={(d.image as string) || "/images/neofatbury-slimming-hero.png"}
+        imageSrc={(d.image as string) || "/images/neofatbury-cooling-tech.png"}
+        trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
       />
 
       <section className="section bg-surface text-center" style={{ padding: '6rem 0' }}>

@@ -37,11 +37,11 @@ export default async function Results() {
     <>
       {/* 1. HERO */}
       <ReplicaHero 
-        titleTeal1={page?.title || 'Our Results'}
-        titleTeal2="Gallery"
-        titleOrange1="Real Client"
-        titleOrange2="Transformations"
-        subtext={page?.subtitle || 'Real transformations from real NeoFatbury clients. Every result here was achieved under the direct supervision of our certified dermatologists.'}
+        titleTeal1={page?.title || ''}
+        titleTeal2=""
+        titleOrange1=""
+        titleOrange2=""
+        subtext={page?.subtitle || ''}
         imageSrc={page?.heroImage || "/images/neofatbury-home-hero.png"}
       />
 

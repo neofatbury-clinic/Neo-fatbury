@@ -10,10 +10,10 @@ export default async function LaserHairReduction() {
   const d = await getServicePageData('laser-hair-reduction') as Record<string, unknown>;
 
   // Hero
-  const heroH1     = (d.heroHeadline   as string) || 'Smooth Skin.';
-  const heroAccent = (d.heroAccentLine as string) || 'Laser Precision.';
-  const heroDesc   = (d.heroSubtext    as string) || 'Advanced clinical hair reduction for permanent, smooth results. Experience US-FDA approved technology designed for surgical precision and lasting confidence.';
-  const heroBadges = (d.heroTrustBadges as {icon:string;label:string}[]) || [{ icon:'🛡️', label:'US-FDA APPROVED' }, { icon:'💎', label:'GOLD STANDARD' }];
+  const heroH1     = (d.heroHeadline   as string) || '';
+  const heroAccent = (d.heroAccentLine as string) || '';
+  const heroDesc   = (d.heroSubtext    as string) || '';
+  const heroBadges = (d.heroTrustBadges as {icon:string;label:string}[]) || [];
 
   // Problem
   const probHead   = (d.problemHeading    as string) || 'Tired of Constant';
@@ -70,10 +70,11 @@ export default async function LaserHairReduction() {
       <ReplicaHero 
         titleTeal1={heroH1}
         titleTeal2=""
-        titleOrange1={d.heroAccentLine as string || "LASER FREEDOM"}
+        titleOrange1={heroAccent}
         titleOrange2=""
         subtext={heroDesc}
         imageSrc={(d.image as string) || "/images/Laser Hair Reduction.png"}
+        trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
       />
 
       {/* 2. PROBLEM */}

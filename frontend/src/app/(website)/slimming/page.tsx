@@ -22,11 +22,11 @@ export default async function SlimmingPage() {
   return (
     <>
       <ReplicaHero 
-        titleTeal1="Shape Your Body,"
-        titleTeal2="Without Surgery"
-        titleOrange1="BODY"
-        titleOrange2="REDEFINED"
-        subtext="Non-invasive lipolysis and personalized metabolic programs. Achieve your target weight with medical supervision."
+        titleTeal1=""
+        titleTeal2=""
+        titleOrange1=""
+        titleOrange2=""
+        subtext=""
         imageSrc="/images/neofatbury-slimming-hero.png"
         leadFormTitle="Book Body Analysis"
       />

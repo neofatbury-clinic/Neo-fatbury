@@ -9,10 +9,10 @@ import { getServicePageData } from "@/sanity/fetchers/services";
 export default async function AcneScarTreatment() {
   const d = await getServicePageData('acne-scar-treatment') as Record<string, unknown>;
 
-  const heroH1     = (d.heroHeadline   as string) || 'Smooth Skin.';
-  const heroAccent = (d.heroAccentLine as string) || 'Zero Acne Scars.';
-  const heroDesc   = (d.heroSubtext    as string) || 'Advanced clinical scar restoration using surgical-grade technology.';
-  const heroBadges = (d.heroTrustBadges as {icon:string;label:string}[]) || [{ icon:'💎', label:'PRECISION TECH' }, { icon:'🛡️', label:'FDA APPROVED' }];
+  const heroH1     = (d.heroHeadline   as string) || '';
+  const heroAccent = (d.heroAccentLine as string) || '';
+  const heroDesc   = (d.heroSubtext    as string) || '';
+  const heroBadges = (d.heroTrustBadges as {icon:string;label:string}[]) || [];
   const probHead   = (d.problemHeading    as string) || 'Are Acne Scars Affecting';
   const probAccent = (d.problemAccentText as string) || 'Your Confidence?';
   const probCards  = (d.problemCards as {icon:string;title:string;desc:string}[]) || [
@@ -55,10 +55,11 @@ export default async function AcneScarTreatment() {
       <ReplicaHero 
         titleTeal1={heroH1}
         titleTeal2=""
-        titleOrange1={d.heroAccentLine as string || "PRECISION RESTORE"}
+        titleOrange1={heroAccent}
         titleOrange2=""
         subtext={heroDesc}
-        imageSrc={(d.image as string) || "/images/neofatbury-acne-hero.png"}
+        imageSrc={(d.image as string) || "/images/Acne Scar Treatment.png"}
+        trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
       />
 
       <section className="section bg-surface text-center" style={{ padding: '4rem 0' }}>

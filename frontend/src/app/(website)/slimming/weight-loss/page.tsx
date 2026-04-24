@@ -9,10 +9,10 @@ import { getServicePageData } from "@/sanity/fetchers/services";
 export default async function WeightLoss() {
   const d = await getServicePageData('weight-loss') as Record<string, unknown>;
 
-  const heroH1     = (d.heroHeadline   as string) || 'Medical Weight Loss.';
-  const heroAccent = (d.heroAccentLine as string) || 'Sustainable Results.';
-  const heroDesc   = (d.heroSubtext    as string) || 'MD-certified clinical weight management programs that combine nutritional science, metabolic testing, and medical interventions for healthy, lasting weight loss.';
-  const heroBadges = (d.heroTrustBadges as {icon:string;label:string}[]) || [{ icon:'🏥', label:'MD-CERTIFIED' }, { icon:'✅', label:'NO CRASH DIETS' }];
+  const heroH1     = (d.heroHeadline   as string) || '';
+  const heroAccent = (d.heroAccentLine as string) || '';
+  const heroDesc   = (d.heroSubtext    as string) || '';
+  const heroBadges = (d.heroTrustBadges as {icon:string;label:string}[]) || [];
   const probHead   = (d.problemHeading    as string) || 'Why Diets';
   const probAccent = (d.problemAccentText as string) || 'Keep Failing You?';
   const probCards  = (d.problemCards as {icon:string;title:string;desc:string}[]) || [
@@ -54,10 +54,11 @@ export default async function WeightLoss() {
       <ReplicaHero 
         titleTeal1={heroH1}
         titleTeal2=""
-        titleOrange1={d.heroAccentLine as string || "MEDICAL WEIGHT LOSS"}
+        titleOrange1={heroAccent}
         titleOrange2=""
         subtext={heroDesc}
         imageSrc={(d.image as string) || "/images/neofatbury-slimming-hero.png"}
+        trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
       />
 
       <section className="section bg-surface text-center" style={{ padding: '4.5rem 0' }}>

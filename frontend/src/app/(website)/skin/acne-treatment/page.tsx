@@ -9,10 +9,10 @@ import { getServicePageData } from "@/sanity/fetchers/services";
 export default async function AcneTreatment() {
   const d = await getServicePageData('acne-treatment') as Record<string, unknown>;
 
-  const heroH1     = (d.heroHeadline   as string) || 'Clear Skin.';
-  const heroAccent = (d.heroAccentLine as string) || 'Beat Acne Forever.';
-  const heroDesc   = (d.heroSubtext    as string) || 'Advanced clinical acne solutions designed to eliminate breakouts and prevent future scarring. Customized protocols for permanent skin health.';
-  const heroBadges = (d.heroTrustBadges as {icon:string;label:string}[]) || [{ icon:'🛡️', label:'CLINICALLY SAFE' }, { icon:'✨', label:'CLEAR RESULTS' }];
+  const heroH1     = (d.heroHeadline   as string) || '';
+  const heroAccent = (d.heroAccentLine as string) || '';
+  const heroDesc   = (d.heroSubtext    as string) || '';
+  const heroBadges = (d.heroTrustBadges as {icon:string;label:string}[]) || [];
   const probHead   = (d.problemHeading    as string) || 'Stubborn Acne';
   const probAccent = (d.problemAccentText as string) || "Won't Go Away?";
   const probCards  = (d.problemCards as {icon:string;title:string;desc:string}[]) || [
@@ -58,7 +58,8 @@ export default async function AcneTreatment() {
         titleOrange1={heroAccent}
         titleOrange2=""
         subtext={heroDesc}
-        imageSrc={(d.image as string) || "/images/Acne & Pimple Treatment.png"}
+        imageSrc={(d.image as string) || "/images/Acne Treatment.png"}
+        trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
       />
 
       <section className="section bg-surface text-center" style={{ padding: '3rem 0' }}>

@@ -19,11 +19,7 @@ export default function ReplicaHero({
   titleOrange2,
   subtext,
   imageSrc,
-  trustPoints = [
-    { icon: '✅', text: '10+ Years Expert' },
-    { icon: '✅', text: 'US-FDA Tech' },
-    { icon: '✅', text: '15k+ Success' }
-  ],
+  trustPoints = [],
   leadFormTitle
 }: ReplicaHeroProps) {
   return (
@@ -58,22 +54,28 @@ export default function ReplicaHero({
 
         {/* Zone 2: Typography (Middle) */}
         <div className="replica-zone-middle">
-          <h1 className="replica-title">
-            <span className="text-teal">{titleTeal1}</span> {titleTeal2 && <br/>}
-            {titleTeal2 && <span className="text-teal">{titleTeal2}</span>} {titleTeal2 && <br/>}
-            <span className="text-orange">{titleOrange1}</span> {titleOrange2 && <br/>}
-            {titleOrange2 && <span className="text-orange">{titleOrange2}</span>}
-          </h1>
-          <p className="replica-subtext">
-            {subtext}
-          </p>
-          <div className="replica-trust-row">
-            {trustPoints.map((point, index) => (
-              <div key={index} className="replica-trust-item">
-                <span>{point.icon}</span> {point.text}
-              </div>
-            ))}
-          </div>
+          {titleTeal1 && (
+            <h1 className="replica-title">
+              <span className="text-teal">{titleTeal1}</span> {titleTeal2 && <br/>}
+              {titleTeal2 && <span className="text-teal">{titleTeal2}</span>} {titleTeal2 && <br/>}
+              <span className="text-orange">{titleOrange1}</span> {titleOrange2 && <br/>}
+              {titleOrange2 && <span className="text-orange">{titleOrange2}</span>}
+            </h1>
+          )}
+          {subtext && (
+            <p className="replica-subtext">
+              {subtext}
+            </p>
+          )}
+          {trustPoints.length > 0 && (
+            <div className="replica-trust-row">
+              {trustPoints.map((point, index) => (
+                <div key={index} className="replica-trust-item">
+                  <span>{point.icon}</span> {point.text}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Zone 3: Lead Form (Right) */}

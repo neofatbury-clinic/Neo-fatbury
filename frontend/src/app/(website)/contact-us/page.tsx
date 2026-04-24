@@ -24,11 +24,11 @@ export default async function ContactUs() {
     <>
       {/* 1. HERO (Now correctly using CMS image) */}
       <ReplicaHero 
-        titleTeal1={page?.title || 'Contact'}
-        titleTeal2="NeoFatbury Clinic"
-        titleOrange1="Professional Care."
-        titleOrange2="Visible Results."
-        subtext={page?.subtitle || 'Expert-led clinical consultation for Skin, Hair, and Slimming treatments.'}
+        titleTeal1={page?.title || ''}
+        titleTeal2=""
+        titleOrange1=""
+        titleOrange2=""
+        subtext={page?.subtitle || ''}
         imageSrc={page?.heroImage || "/images/neofatbury-home-hero.png"}
       />
 

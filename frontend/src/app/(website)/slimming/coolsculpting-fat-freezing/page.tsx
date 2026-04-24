@@ -3,28 +3,22 @@ import { getServicePageData } from "@/sanity/fetchers/services";
 import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
+import ReplicaHero from "@/components/ReplicaHero";
 
 export default async function CoolSculpting() {
   const d = await getServicePageData('coolsculpting-fat-freezing') as Record<string, any>;
 
   return (
     <>
-      {/* 1. HERO SECTION - TRIPLE PILLAR */}
-      <section className="service-hero" style={{ backgroundImage: `url(${(d.image as string) || "/images/coolsculpting-bg.png"})`, backgroundPosition: 'left center' }}>
-        <div className="container">
-          <div className="service-hero-grid">
-            <div className="service-hero-text">
-              <h1>{(d.heroHeadline as string) || "Freeze Fat."}<br/><span className="accent">{(d.heroAccentLine as string) || "Shape Your Body."}</span></h1>
-              <p>{(d.heroSubtext as string) || "Non-surgical fat reduction with advanced body contouring technology. Achieve your desired shape with zero surgery and zero downtime."}</p>
-              <div className="hero-trust-badges">
-                <div className="hero-trust-badge"><span>❄️</span><span>ZERO DOWNTIME</span></div>
-                <div className="hero-trust-badge"><span>🛡️</span><span>FDA APPROVED</span></div>
-              </div>
-            </div>
-            <div className="service-hero-form"><LeadForm /></div>
-          </div>
-        </div>
-      </section>
+      {/* 1. HERO SECTION */}
+      <ReplicaHero 
+        titleTeal1={(d.heroHeadline as string) || ''}
+        titleTeal2=""
+        titleOrange1={(d.heroAccentLine as string) || ''}
+        titleOrange2=""
+        subtext={(d.heroSubtext as string) || ''}
+        imageSrc={(d.image as string) || "/images/neofatbury-cooling-tech.png"}
+      />
 
       {/* 2. PROBLEM SECTION */}
       <section className="section bg-surface text-center" style={{ padding: '3.5rem 0' }}>

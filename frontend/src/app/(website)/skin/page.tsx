@@ -23,11 +23,11 @@ export default async function SkinPage() {
     <>
       {/* 1. HERO SECTION */}
       <ReplicaHero 
-        titleTeal1="Expert Hands,"
-        titleTeal2="Glowing Skin"
-        titleOrange1="CLINICAL"
-        titleOrange2="SKIN CARE"
-        subtext="US-FDA approved treatments for acne, pigmentation, and skin aging. Experience clinical luxury with NeoFatbury."
+        titleTeal1=""
+        titleTeal2=""
+        titleOrange1=""
+        titleOrange2=""
+        subtext=""
         imageSrc="/images/All Skin Treatments.png"
         leadFormTitle="Book Skin Analysis"
       />

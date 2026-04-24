@@ -9,10 +9,10 @@ import { getServicePageData } from "@/sanity/fetchers/services";
 export default async function InchLoss() {
   const d = await getServicePageData('inch-loss') as Record<string, unknown>;
 
-  const heroH1     = (d.heroHeadline   as string) || 'Lose Inches.';
-  const heroAccent = (d.heroAccentLine as string) || 'Sculpt Your Body.';
-  const heroDesc   = (d.heroSubtext    as string) || 'Advanced non-surgical HIFU and radiofrequency body contouring to tighten loose skin, reduce inches, and reshape your body — zero downtime.';
-  const heroBadges = (d.heroTrustBadges as {icon:string;label:string}[]) || [{ icon:'✅', label:'HIFU TECHNOLOGY' }, { icon:'🛡️', label:'ZERO DOWNTIME' }];
+  const heroH1     = (d.heroHeadline   as string) || '';
+  const heroAccent = (d.heroAccentLine as string) || '';
+  const heroDesc   = (d.heroSubtext    as string) || '';
+  const heroBadges = (d.heroTrustBadges as {icon:string;label:string}[]) || [];
   const probHead   = (d.problemHeading    as string) || 'Stubborn Fat &';
   const probAccent = (d.problemAccentText as string) || 'Loose Skin?';
   const probCards  = (d.problemCards as {icon:string;title:string;desc:string}[]) || [
@@ -55,10 +55,11 @@ export default async function InchLoss() {
       <ReplicaHero 
         titleTeal1={heroH1}
         titleTeal2=""
-        titleOrange1={d.heroAccentLine as string || "INCH LOSS"}
+        titleOrange1={heroAccent}
         titleOrange2=""
         subtext={heroDesc}
         imageSrc={(d.image as string) || "/images/neofatbury-slimming-hero.png"}
+        trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
       />
 
       <section className="section bg-surface text-center" style={{ padding: '4.5rem 0' }}>

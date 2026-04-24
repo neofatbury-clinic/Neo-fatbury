@@ -9,10 +9,10 @@ import { getServicePageData } from "@/sanity/fetchers/services";
 export default async function HairLossTreatment() {
   const d = await getServicePageData('hair-loss-treatment') as Record<string, unknown>;
 
-  const heroH1     = (d.heroHeadline   as string) || 'Full Hair.';
-  const heroAccent = (d.heroAccentLine as string) || 'Beat Thinning.';
-  const heroDesc   = (d.heroSubtext    as string) || 'Advanced clinical hair restoration protocols for effective, long-lasting results. Regain your density and confidence with expert trichology care.';
-  const heroBadges = (d.heroTrustBadges as {icon:string;label:string}[]) || [{ icon:'💎', label:'CLINICALLY PROVEN' }, { icon:'👨‍⚕️', label:'EXPERT CARE' }];
+  const heroH1     = (d.heroHeadline   as string) || '';
+  const heroAccent = (d.heroAccentLine as string) || '';
+  const heroDesc   = (d.heroSubtext    as string) || '';
+  const heroBadges = (d.heroTrustBadges as {icon:string;label:string}[]) || [];
   const probCards  = (d.problemCards as {icon:string;title:string;desc:string}[]) || [
     { icon:'📉', title:'Excessive Hair Fall', desc:'Significant hair loss during washing or brushing.' },
     { icon:'🔍', title:'Thinning Hair',        desc:'Visible reduction in density and widening partitions.' },
@@ -57,10 +57,11 @@ export default async function HairLossTreatment() {
       <ReplicaHero 
         titleTeal1={heroH1}
         titleTeal2=""
-        titleOrange1={d.heroAccentLine as string || "HAIR SOLUTIONS"}
+        titleOrange1={heroAccent}
         titleOrange2=""
         subtext={heroDesc}
         imageSrc={(d.image as string) || "/images/Hair Loss Treatment.png"}
+        trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
       />
 
       <section className="section bg-surface text-center" style={{ padding: '3.5rem 0' }}>

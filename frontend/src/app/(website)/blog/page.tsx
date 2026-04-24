@@ -27,11 +27,11 @@ export default async function BlogListingPage() {
   return (
     <>
       <ReplicaHero 
-        titleTeal1="Medical Wellness"
-        titleTeal2="& Skin Care Blog"
-        titleOrange1="EXPERT"
-        titleOrange2="ADVICE"
-        subtext="Expert tips on skin care, hair restoration, and weight management from our certified medical team."
+        titleTeal1=""
+        titleTeal2=""
+        titleOrange1=""
+        titleOrange2=""
+        subtext=""
         imageSrc="/images/neofatbury-home-hero.png"
       />
 

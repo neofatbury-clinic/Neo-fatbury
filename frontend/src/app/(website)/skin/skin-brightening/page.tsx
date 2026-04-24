@@ -9,10 +9,10 @@ import { getServicePageData } from "@/sanity/fetchers/services";
 export default async function SkinBrightening() {
   const d = await getServicePageData('skin-brightening') as Record<string, unknown>;
 
-  const heroH1     = (d.heroHeadline   as string) || 'Radiant Skin.';
-  const heroAccent = (d.heroAccentLine as string) || 'Visible Brightening.';
-  const heroDesc   = (d.heroSubtext    as string) || "Professional clinical brightening treatments designed to restore your skin's natural luminance. Achieve an even tone with expert-led protocols.";
-  const heroBadges = (d.heroTrustBadges as {icon:string;label:string}[]) || [{ icon:'✨', label:'GLOWING RESULTS' }, { icon:'🛡️', label:'SAFE & PROVEN' }];
+  const heroH1     = (d.heroHeadline   as string) || '';
+  const heroAccent = (d.heroAccentLine as string) || '';
+  const heroDesc   = (d.heroSubtext    as string) || '';
+  const heroBadges = (d.heroTrustBadges as {icon:string;label:string}[]) || [];
   const probHead   = (d.problemHeading    as string) || 'Is Your Skin Looking';
   const probAccent = (d.problemAccentText as string) || 'Dull or Uneven?';
   const probCards  = (d.problemCards as {icon:string;title:string;desc:string}[]) || [
@@ -58,6 +58,7 @@ export default async function SkinBrightening() {
         titleOrange2=""
         subtext={heroDesc}
         imageSrc={(d.image as string) || "/images/Skin Brightening.png"}
+        trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
       />
 
       <section className="section bg-surface text-center" style={{ padding: '6rem 0' }}>

@@ -98,11 +98,11 @@ export default async function Home() {
     <>
       {/* SECTION 1: HERO */}
       <ReplicaHero 
-        titleTeal1={hero?.heroHeadline || "Expert Skin, Hair"}
+        titleTeal1={hero?.heroHeadline || ""}
         titleTeal2=""
-        titleOrange1={hero?.heroAccentLine || "Clinic in Hyderabad"}
+        titleOrange1={hero?.heroAccentLine || ""}
         titleOrange2=""
-        subtext={hero?.heroSubtext || "Transform your confidence with US-FDA approved treatments and expert dermatological care at NeoFatbury."}
+        subtext={hero?.heroSubtext || ""}
         imageSrc={hero?.heroImage || "/images/neofatbury-hero-banner.webp"}
       />
 

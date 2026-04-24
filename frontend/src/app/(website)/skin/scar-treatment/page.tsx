@@ -12,11 +12,11 @@ export default async function ScarTreatment() {
   return (
     <>
       <ReplicaHero 
-        titleTeal1={(d.heroHeadline as string) || "Restore Skin."}
+        titleTeal1={(d.heroHeadline as string) || ""}
         titleTeal2=""
-        titleOrange1={(d.heroAccentLine as string) || "CLINICAL RESTORATION"}
+        titleOrange1={(d.heroAccentLine as string) || ""}
         titleOrange2=""
-        subtext={(d.heroSubtext as string) || "Advanced clinical scar restoration using surgical-grade technology. Regain your smooth complexion with Hyderabad's leading skin experts."}
+        subtext={(d.heroSubtext as string) || ""}
         imageSrc={(d.image as string) || "/images/neofatbury-acne-hero.png"}
       />
 

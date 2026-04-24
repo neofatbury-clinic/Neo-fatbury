@@ -107,9 +107,9 @@ export default async function ServicePage({ params }: { params: Promise<{ catego
     <article className="min-h-screen bg-white">
       {/* ── HERO BANNER ────────────────────────────────── */}
       <ReplicaHero 
-        titleTeal1={service.heroHeadline || service.name}
+        titleTeal1={service.heroHeadline || ''}
         titleTeal2=""
-        titleOrange1={service.heroAccentLine || category.toUpperCase()}
+        titleOrange1={service.heroAccentLine || ''}
         titleOrange2=""
         subtext={service.heroSubtext || ''}
         imageSrc={service.image || '/images/neofatbury-clinical-standard.png'}
