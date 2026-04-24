@@ -22,9 +22,9 @@ export default async function SlimmingPage() {
   return (
     <>
       <ReplicaHero 
-        titleTeal1=""
+        titleTeal1="All Slimming"
         titleTeal2=""
-        titleOrange1=""
+        titleOrange1="Treatments"
         titleOrange2=""
         subtext=""
         imageSrc="/images/neofatbury-slimming-hero.png"

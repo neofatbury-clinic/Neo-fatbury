@@ -45,12 +45,12 @@ export default function Footer({ settings }: { settings?: any }) {
           <div className="footer-col">
             <h4 style={colTitleStyle}>Skin Care Solutions</h4>
             <ul style={linkListStyle}>
-              <li><Link href="/skin" style={linkStyle}>Advanced Skin Clinic in Hyderabad</Link></li>
-              <li><Link href="/skin/laser-hair-reduction" style={linkStyle}>Laser Hair Reduction for Men & Women</Link></li>
-              <li><Link href="/skin/acne-scar-treatment" style={linkStyle}>Acne Scar & Pimple Treatment</Link></li>
-              <li><Link href="/skin/skin-brightening" style={linkStyle}>Skin Brightening & Pigmentation</Link></li>
-              <li><Link href="/skin" style={linkStyle}>Anti-Aging & Rejuvenation</Link></li>
-              <li><Link href="/skin" style={linkStyle}>Chemical Peels & Hydra-Facials</Link></li>
+              <li><Link href="/skin/" style={linkStyle}>Advanced Skin Clinic in Hyderabad</Link></li>
+              <li><Link href="/skin/laser-hair-reduction/" style={linkStyle}>Laser Hair Reduction for Men & Women</Link></li>
+              <li><Link href="/skin/acne-scar-treatment/" style={linkStyle}>Acne Scar & Pimple Treatment</Link></li>
+              <li><Link href="/skin/skin-brightening/" style={linkStyle}>Skin Brightening & Pigmentation</Link></li>
+              <li><Link href="/skin/" style={linkStyle}>Anti-Aging & Rejuvenation</Link></li>
+              <li><Link href="/skin/" style={linkStyle}>Chemical Peels & Hydra-Facials</Link></li>
             </ul>
           </div>
 
@@ -58,12 +58,12 @@ export default function Footer({ settings }: { settings?: any }) {
           <div className="footer-col">
             <h4 style={colTitleStyle}>Hair & Slimming</h4>
             <ul style={linkListStyle}>
-              <li><Link href="/hair/hair-loss-treatment" style={linkStyle}>Professional Hair Loss Treatment</Link></li>
-              <li><Link href="/hair/anti-dandruff-treatment" style={linkStyle}>Anti-Dandruff Clinical Solutions</Link></li>
-              <li><Link href="/hair" style={linkStyle}>Hair Regrowth Therapies</Link></li>
-              <li><Link href="/slimming/coolsculpting" style={linkStyle}>CoolSculpting Fat Freezing</Link></li>
-              <li><Link href="/slimming/inch-loss" style={linkStyle}>Non-Surgical Inch Loss Treatment</Link></li>
-              <li><Link href="/slimming/weight-loss" style={linkStyle}>Physician-Led Weight Loss</Link></li>
+              <li><Link href="/hair/hair-loss-treatment/" style={linkStyle}>Professional Hair Loss Treatment</Link></li>
+              <li><Link href="/hair/anti-dandruff-treatment/" style={linkStyle}>Anti-Dandruff Clinical Solutions</Link></li>
+              <li><Link href="/hair/" style={linkStyle}>Hair Regrowth Therapies</Link></li>
+              <li><Link href="/slimming/coolsculpting-fat-freezing/" style={linkStyle}>CoolSculpting Fat Freezing</Link></li>
+              <li><Link href="/slimming/inch-loss-treatment/" style={linkStyle}>Non-Surgical Inch Loss Treatment</Link></li>
+              <li><Link href="/slimming/" style={linkStyle}>Body Contouring & Shaping</Link></li>
             </ul>
           </div>
 

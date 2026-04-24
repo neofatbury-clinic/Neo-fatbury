@@ -23,9 +23,9 @@ export default async function SkinPage() {
     <>
       {/* 1. HERO SECTION */}
       <ReplicaHero 
-        titleTeal1=""
+        titleTeal1="All Skin"
         titleTeal2=""
-        titleOrange1=""
+        titleOrange1="Treatments"
         titleOrange2=""
         subtext=""
         imageSrc="/images/All Skin Treatments.png"

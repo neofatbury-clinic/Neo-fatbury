@@ -22,9 +22,9 @@ export default async function HairPage() {
   return (
     <>
       <ReplicaHero 
-        titleTeal1=""
+        titleTeal1="All Hair"
         titleTeal2=""
-        titleOrange1=""
+        titleOrange1="Treatments"
         titleOrange2=""
         subtext=""
         imageSrc="/images/All Hair Treatments.png"
