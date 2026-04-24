@@ -738,7 +738,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   display: flex;
   align-items: center;
   background-color: #004d4f; /* Full Dark Green Background */
-  padding-top: 0;
+  padding-top: 25px;
   overflow: hidden;
 }
 
