@@ -737,11 +737,11 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   position: relative;
   display: flex;
   align-items: center;
-  /* Brand Split: 75% Image area (Teal base), 25% Brand Green on right */
-  background: linear-gradient(to right, #00aeb5 0%, #00aeb5 75%, #004d4f 75%, #004d4f 100%);
-  padding-top: 40px; /* Minimized to provide maximum vertical space */
+  /* Brand Split: Image/Text zone on left, fixed 480px Brand Green zone on right */
+  background: linear-gradient(to right, #00aeb5 0%, #00aeb5 calc(100% - 480px), #004d4f calc(100% - 480px), #004d4f 100%);
+  padding-top: 40px; 
   overflow: hidden;
-  height: 800px; /* Restored for 1:1 image match at 100% zoom */
+  height: 750px; /* Refined 'Goldilocks' height */
   box-sizing: border-box;
 }
 
@@ -753,8 +753,8 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: 75% 25%; /* 75% Image/Text zone, 25% Form/Brand zone */
-  align-items: center; /* Leadform stays vertically centered */
+  grid-template-columns: 1fr 480px; /* Fixed form zone for stability on all screens */
+  align-items: center; 
   gap: 0;
   height: 100%;
 }
@@ -785,7 +785,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   position: relative;
   z-index: 10;
   display: grid;
-  grid-template-columns: 25% 1fr; /* Shifted woman far left to maximize space for headlines */
+  grid-template-columns: 30% 1fr; /* Optimized split for un-cut text */
   align-items: stretch;
   height: 100%;
 }

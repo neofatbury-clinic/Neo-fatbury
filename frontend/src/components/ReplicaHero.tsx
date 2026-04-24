@@ -53,7 +53,7 @@ export default function ReplicaHero({
         <div className="replica-primary-box">
           <div className="replica-primary-content">
             {/* Zone 1: Portrait Space (Desktop) */}
-            <div className="replica-zone-left desktop-only" style={{ minHeight: '800px' }}></div>
+            <div className="replica-zone-left desktop-only" style={{ minHeight: '750px' }}></div>
 
             {/* Zone 2: Typography (Middle) */}
             <div className="replica-zone-middle">
