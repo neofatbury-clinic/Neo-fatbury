@@ -15,7 +15,10 @@ async function getHomeData() {
       ...,
       clinicLocations[] { ... }
     },
-    "hero": *[_type == "homepage"][0],
+    "hero": *[_type == "homepage"][0] {
+      ...,
+      "heroImage": heroImage.asset->url
+    },
     "services": *[_type == "homepage"][0].featuredTreatments[]-> {
       name,
       "slug": slug.current,
@@ -94,14 +97,13 @@ export default async function Home() {
   return (
     <>
       {/* SECTION 1: HERO */}
-      {/* MASTER HERO: EXACT REPLICA ARCHITECTURE */}
       <ReplicaHero 
-        titleTeal1="Expert Skin, Hair"
-        titleTeal2="& Slimming"
-        titleOrange1="Clinic in"
-        titleOrange2="Hyderabad"
-        subtext="Transform your confidence with US-FDA approved treatments and expert dermatological care at NeoFatbury."
-        imageSrc="/images/neofatbury-hero-banner.webp"
+        titleTeal1={hero?.heroHeadline || "Expert Skin, Hair"}
+        titleTeal2=""
+        titleOrange1={hero?.heroAccentLine || "Clinic in Hyderabad"}
+        titleOrange2=""
+        subtext={hero?.heroSubtext || "Transform your confidence with US-FDA approved treatments and expert dermatological care at NeoFatbury."}
+        imageSrc={hero?.heroImage || "/images/neofatbury-hero-banner.webp"}
       />
 
       {/* SECTION 2: OUR TREATMENTS (FIXED IMAGES) */}

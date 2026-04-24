@@ -5,35 +5,74 @@ import LeadForm from '@/components/LeadForm';
 import ReplicaHero from '@/components/ReplicaHero';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-import { PortableText } from '@portabletext/react';
+import Link from 'next/link';
 
 export const revalidate = 0;
 
-const BASE_URL = 'https://neofatbury.com';
+const BASE_URL = 'https://neofatbury.co.in';
 
 async function getService(category: string, slug: string) {
+  // We use the flat schema fields as defined in src/sanity/schemaTypes/service.ts
   const query = `*[_type == "service" && category->slug.current == $category && slug.current == $slug][0] {
     name,
     "slug": slug.current,
+    "categorySlug": category->slug.current,
     "image": heroImage.asset->url,
     heroHeadline,
     heroAccentLine,
     heroSubtext,
+    heroCtaText,
     heroTrustBadges,
-    contentSections[] {
-      _type,
-      sectionTitle,
-      body,
-      "image": image.asset->url,
-      imagePosition,
-      backgroundColor,
-      faqs[] { question, answer },
-      items[] { title, description, icon },
-      headline,
-      subtext,
-      buttonText,
-      results[] { label, "image": image.asset->url }
-    },
+    
+    problemHeading,
+    problemAccentText,
+    problemCards,
+    problemBottomText,
+    problemBottomAccent,
+    
+    whatIsLabel,
+    whatIsHeading,
+    whatIsAccentWord,
+    whatIsBody,
+    whatIsListHeading,
+    whatIsPoints,
+    "whatIsImage": whatIsImage.asset->url,
+    whatIsImageBadge,
+    whatIsAuthorityNote,
+    
+    baHeading,
+    baAccentWord,
+    baSubtext,
+    "baImage": baImage.asset->url,
+    baCtaText,
+    baCtaBtnText,
+    
+    benefitsHeading,
+    benefitsAccentWord,
+    benefitItems,
+    
+    processHeading,
+    processAccentWord,
+    processSteps,
+    
+    techHeading,
+    techAccentWord,
+    techBody,
+    "techImage": techImage.asset->url,
+    techFeatures,
+    
+    trustHeading,
+    trustAccentWord,
+    trustItems,
+    
+    faqHeading,
+    faqItems,
+    
+    finalCtaHeading,
+    finalCtaSubtext,
+    finalCtaPrimaryBtn,
+    finalCtaSecondaryBtn,
+    
     seo {
       metaTitle,
       metaDescription,
@@ -48,8 +87,8 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
   const service = await getService(category, slug);
   if (!service) return { title: 'Not Found' };
 
-  const finalTitle = service.seo?.metaTitle || `${service.name} | Best Skin, Hair & Slimming Clinic Hyderabad | NeoFatbury`;
-  const finalDesc = service.seo?.metaDescription || service.heroSubtext || `Advanced clinical ${service.name} at NeoFatbury Clinic. Expert dermatologists, US-FDA approved technology, and visible results.`;
+  const finalTitle = service.seo?.metaTitle || `${service.name} | Best Clinic in Hyderabad | NeoFatbury`;
+  const finalDesc = service.seo?.metaDescription || service.heroSubtext || `Professional ${service.name} at NeoFatbury Clinic.`;
   const canonical = service.seo?.canonicalUrl || `${BASE_URL}/${category}/${slug}`;
 
   return {
@@ -70,81 +109,153 @@ export default async function ServicePage({ params }: { params: Promise<{ catego
       <ReplicaHero 
         titleTeal1={service.heroHeadline || service.name}
         titleTeal2=""
-        titleOrange1={category.toUpperCase()}
-        titleOrange2="EXCELLENCE"
+        titleOrange1={service.heroAccentLine || category.toUpperCase()}
+        titleOrange2=""
         subtext={service.heroSubtext || ''}
         imageSrc={service.image || '/images/neofatbury-clinical-standard.png'}
       />
 
-      {/* ── CONTENT SECTIONS ───────────────────────────── */}
-      <div style={containerStyle} className="py-16">
-        <div className="max-w-[850px] mx-auto">
-           {service.contentSections?.map((section: any, idx: number) => {
-              switch (section._type) {
-                case 'textSection':
-                  return (
-                    <section key={idx} className="mb-24">
-                       <h2 className="text-4xl font-black text-cyan-900 mb-8 leading-tight">{section.sectionTitle}</h2>
-                       <div className="flex flex-col gap-10">
-                          <div className="prose prose-xl text-gray-700 max-w-none">
-                             <PortableText value={section.body} />
-                          </div>
-                          {section.image && (
-                            <div className="relative h-[480px] w-full rounded-[2.5rem] overflow-hidden shadow-2xl">
-                               <Image src={section.image} alt={section.sectionTitle} fill className="object-cover" />
-                            </div>
-                          )}
-                       </div>
-                    </section>
-                  );
+      {/* ── PROBLEM SECTION ───────────────────────────── */}
+      {service.problemHeading && (
+        <section className="py-20 bg-gray-50 text-center">
+          <div className="max-w-[1100px] mx-auto px-6">
+            <h2 className="text-4xl md:text-5xl font-black text-cyan-950 mb-16">
+              {service.problemHeading} <span className="text-orange-500">{service.problemAccentText}</span>
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+              {service.problemCards?.map((item: any, i: number) => (
+                <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                  <div className="text-4xl mb-4">{item.icon}</div>
+                  <h3 className="text-lg font-bold text-cyan-900 mb-2">{item.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+            {service.problemBottomText && (
+              <p className="text-xl md:text-2xl mt-16 font-bold text-cyan-900">
+                {service.problemBottomText} <span className="text-orange-500">{service.problemBottomAccent}</span>
+              </p>
+            )}
+          </div>
+        </section>
+      )}
 
-                case 'benefitsSection':
-                  return (
-                    <section key={idx} className="mb-24 bg-cyan-50/40 p-12 rounded-[3.5rem] border border-cyan-50">
-                       <h3 className="text-3xl font-black text-cyan-950 mb-10 text-center">{section.sectionTitle}</h3>
-                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                          {section.items?.map((item: any, i: number) => (
-                            <div key={i} className="bg-white p-8 rounded-3xl shadow-sm border border-cyan-100/50">
-                               <div className="text-4xl mb-4">{item.icon}</div>
-                               <h4 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h4>
-                               <p className="text-gray-600 leading-relaxed">{item.description}</p>
-                            </div>
-                          ))}
-                       </div>
-                    </section>
-                  );
+      {/* ── WHAT IS SECTION ───────────────────────────── */}
+      {service.whatIsHeading && (
+        <section className="py-24">
+          <div className="max-w-[1200px] mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div className="relative h-[550px] rounded-3xl overflow-hidden shadow-2xl">
+              <Image 
+                src={service.whatIsImage || '/images/neofatbury-clinical-standard.png'} 
+                alt={service.name} 
+                fill 
+                className="object-cover" 
+              />
+              {service.whatIsImageBadge && (
+                <div className="absolute bottom-8 left-8 bg-white px-6 py-3 rounded-xl font-black text-cyan-900 text-sm shadow-xl uppercase tracking-widest">
+                  {service.whatIsImageBadge}
+                </div>
+              )}
+            </div>
+            <div>
+              <span className="text-orange-500 font-black tracking-[4px] uppercase text-sm block mb-4">{service.whatIsLabel}</span>
+              <h2 className="text-4xl md:text-5xl font-black text-cyan-950 mb-8">
+                {service.whatIsHeading} <span className="text-orange-500">{service.whatIsAccentWord}</span>
+              </h2>
+              <p className="text-lg text-gray-600 leading-loose mb-10">{service.whatIsBody}</p>
+              {service.whatIsListHeading && <h4 className="text-xl font-bold mb-6">{service.whatIsListHeading}</h4>}
+              <div className="grid grid-cols-2 gap-6">
+                {service.whatIsPoints?.map((p: any, i: number) => (
+                  <div key={i} className="flex items-center gap-4 text-cyan-900 font-bold">
+                    <span className="text-2xl">{p.icon}</span> {p.text}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
-                case 'faqSection':
-                  return (
-                    <section key={idx} className="mb-24">
-                       <h3 className="text-3xl font-black text-cyan-900 mb-8 text-center">{section.sectionTitle}</h3>
-                       <div className="space-y-4 max-w-[700px] mx-auto">
-                          {section.faqs?.map((q: any, i: number) => (
-                            <details key={i} className="group bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm">
-                               <summary className="flex justify-between items-center p-8 font-bold text-lg cursor-pointer hover:bg-gray-50 list-none">
-                                  {q.question}
-                                  <span className="transition-transform group-open:rotate-45 text-cyan-500 text-2xl">＋</span>
-                               </summary>
-                               <div className="p-8 pt-0 text-gray-600 leading-loose border-t border-gray-50 bg-gray-50/30">
-                                  {q.answer}
-                                </div>
-                            </details>
-                          ))}
-                       </div>
-                    </section>
-                  );
+      {/* ── BEFORE & AFTER ───────────────────────────── */}
+      {service.baImage && (
+        <section className="py-24 bg-gray-50 text-center">
+          <div className="max-w-[900px] mx-auto px-6">
+            <h2 className="text-4xl font-black text-cyan-950 mb-4">
+              {service.baHeading} <span className="text-orange-500">{service.baAccentWord}</span>
+            </h2>
+            <p className="text-gray-600 mb-12">{service.baSubtext}</p>
+            <div className="relative aspect-[16/7] rounded-3xl overflow-hidden shadow-xl mb-12">
+              <Image src={service.baImage} alt="Results" fill className="object-cover" />
+              <div className="absolute inset-x-0 bottom-0 py-4 bg-black/40 backdrop-blur-sm flex justify-around text-white font-black tracking-widest text-sm italic">
+                <span>BEFORE</span>
+                <span>AFTER</span>
+              </div>
+            </div>
+            <Link href="/contact-us" className="inline-block bg-cyan-800 text-white px-12 py-4 rounded-full font-bold hover:bg-cyan-900 transition-colors">
+              {service.baCtaBtnText || 'Book Your Analysis'}
+            </Link>
+          </div>
+        </section>
+      )}
 
-                default: return null;
-              }
-           })}
+      {/* ── BENEFITS SECTION ──────────────────────────── */}
+      {service.benefitItems && (
+        <section className="py-24">
+          <div className="max-w-[1200px] mx-auto px-6">
+            <h2 className="text-4xl font-black text-cyan-950 text-center mb-16">
+              {service.benefitsHeading} <span className="text-orange-500">{service.benefitsAccentWord}</span>
+            </h2>
+            <div className="flex flex-wrap justify-center gap-6">
+              {service.benefitItems?.map((item: any, i: number) => (
+                <div key={i} className="bg-white border border-gray-100 p-8 rounded-3xl text-center min-w-[200px] shadow-sm hover:shadow-md transition-shadow">
+                  <div className="text-4xl mb-4">{item.icon}</div>
+                  <p className="font-bold text-cyan-900">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── FAQ SECTION ──────────────────────────────── */}
+      {service.faqItems && (
+        <section className="py-24 bg-gray-50">
+          <div className="max-w-[800px] mx-auto px-6">
+            <h2 className="text-4xl font-black text-cyan-950 text-center mb-16">
+              {service.faqHeading || 'Frequently Asked Questions'}
+            </h2>
+            <div className="space-y-4">
+              {service.faqItems?.map((faq: any, i: number) => (
+                <details key={i} className="group bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
+                  <summary className="p-6 font-bold text-cyan-900 cursor-pointer flex justify-between items-center list-none">
+                    {faq.question}
+                    <span className="text-orange-500 text-xl group-open:rotate-45 transition-transform">+</span>
+                  </summary>
+                  <div className="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-50 pt-4">
+                    {faq.answer}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── FINAL CTA ────────────────────────────────── */}
+      <section className="py-24 bg-cyan-900 text-white text-center">
+        <div className="max-w-[800px] mx-auto px-6">
+          <h2 className="text-4xl md:text-5xl font-black mb-8">{service.finalCtaHeading || `Ready for ${service.name}?`}</h2>
+          <p className="text-lg text-cyan-100 mb-12">{service.finalCtaSubtext}</p>
+          <div className="flex flex-wrap justify-center gap-6">
+            <Link href="/contact-us" className="bg-orange-500 hover:bg-orange-600 text-white px-10 py-4 rounded-full font-black transition-colors uppercase tracking-widest text-sm shadow-xl">
+              {service.finalCtaPrimaryBtn || 'Book Free Consultation'}
+            </Link>
+            <a href="tel:9700641000" className="bg-white hover:bg-gray-100 text-cyan-900 px-10 py-4 rounded-full font-black transition-colors uppercase tracking-widest text-sm shadow-xl">
+              {service.finalCtaSecondaryBtn || 'Call Now'}
+            </a>
+          </div>
         </div>
-      </div>
+      </section>
     </article>
   );
 }
-
-const containerStyle: React.CSSProperties = {
-  maxWidth: '1280px',
-  margin: '0 auto',
-  padding: '0 1.5rem',
-};

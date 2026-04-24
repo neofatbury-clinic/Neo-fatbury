@@ -1,4 +1,5 @@
 // /hair/hair-loss-treatment/page.tsx — CMS-driven, layout unchanged
+export const revalidate = 0;
 import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
@@ -55,9 +56,9 @@ export default async function HairLossTreatment() {
       {/* 1. HERO SECTION */}
       <ReplicaHero 
         titleTeal1={heroH1}
-        titleTeal2={heroAccent}
-        titleOrange1="HAIR"
-        titleOrange2="SOLUTIONS"
+        titleTeal2=""
+        titleOrange1={d.heroAccentLine as string || "HAIR SOLUTIONS"}
+        titleOrange2=""
         subtext={heroDesc}
         imageSrc={(d.image as string) || "/images/Hair Loss Treatment.png"}
       />

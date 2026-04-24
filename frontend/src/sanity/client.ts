@@ -11,7 +11,7 @@ export const client = createClient({
   projectId:  PROJECT_ID,
   dataset:    DATASET,
   apiVersion: API_VERSION,
-  useCdn: true,
+  useCdn: false,
 })
 
 const builder = imageUrlBuilder(client)

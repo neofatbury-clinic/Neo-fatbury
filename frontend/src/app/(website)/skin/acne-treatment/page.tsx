@@ -1,4 +1,5 @@
 // /skin/acne-treatment/page.tsx — CMS-driven, layout unchanged
+export const revalidate = 0;
 import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";

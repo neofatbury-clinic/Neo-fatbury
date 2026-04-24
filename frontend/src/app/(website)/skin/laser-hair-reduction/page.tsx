@@ -1,4 +1,5 @@
 // /skin/laser-hair-reduction/page.tsx — CMS-driven, layout unchanged
+export const revalidate = 0;
 import ReplicaHero from "@/components/ReplicaHero";
 import Image from "next/image";
 import Link from "next/link";
@@ -68,9 +69,9 @@ export default async function LaserHairReduction() {
     <>
       <ReplicaHero 
         titleTeal1={heroH1}
-        titleTeal2={heroAccent}
-        titleOrange1="LASER"
-        titleOrange2="FREEDOM"
+        titleTeal2=""
+        titleOrange1={d.heroAccentLine as string || "LASER FREEDOM"}
+        titleOrange2=""
         subtext={heroDesc}
         imageSrc={(d.image as string) || "/images/Laser Hair Reduction.png"}
       />

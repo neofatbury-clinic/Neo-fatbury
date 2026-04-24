@@ -1,4 +1,5 @@
 // /skin/acne-scar-treatment/page.tsx — CMS-driven, layout unchanged
+export const revalidate = 0;
 import ReplicaHero from "@/components/ReplicaHero";
 import Image from "next/image";
 import Link from "next/link";
@@ -53,11 +54,11 @@ export default async function AcneScarTreatment() {
     <>
       <ReplicaHero 
         titleTeal1={heroH1}
-        titleTeal2={heroAccent}
-        titleOrange1="PRECISION"
-        titleOrange2="RESTORE"
+        titleTeal2=""
+        titleOrange1={d.heroAccentLine as string || "PRECISION RESTORE"}
+        titleOrange2=""
         subtext={heroDesc}
-        imageSrc="/images/neofatbury-acne-hero.png"
+        imageSrc={(d.image as string) || "/images/neofatbury-acne-hero.png"}
       />
 
       <section className="section bg-surface text-center" style={{ padding: '4rem 0' }}>
