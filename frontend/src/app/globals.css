@@ -824,7 +824,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 }
 
 .replica-title .text-orange {
-  color: #e8a317;
+  color: #ff9500; /* Vibrant high-conversion orange */
 }
 
 .replica-subtext {
