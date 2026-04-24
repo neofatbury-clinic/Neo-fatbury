@@ -760,7 +760,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   margin: 0;
   padding: 1.5rem 0;
   display: grid;
-  grid-template-columns: 42% 1fr 440px; /* Pushed subject clearance to 42% */
+  grid-template-columns: 34% 1fr 440px; /* Reduced image column to give text more horizontal space */
   align-items: center;
   gap: 0;
 }
@@ -780,7 +780,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 }
 
 .replica-title {
-  font-size: clamp(1.8rem, 4vw, 2.6rem); /* Reduced from 3rem for more compact feel */
+  font-size: clamp(1.8rem, 4vw, 2.4rem); /* Slightly more compact */
   font-weight: 800;
   line-height: 1.05;
   margin-bottom: 0.75rem; /* Tighter spacing */
@@ -800,7 +800,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   color: #444;
   line-height: 1.5;
   margin-bottom: 1.25rem; /* Tighter spacing */
-  max-width: 460px;
+  max-width: 520px; /* Increased to allow more horizontal flow */
   font-weight: 600;
 }
 
