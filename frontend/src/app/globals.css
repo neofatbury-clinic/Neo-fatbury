@@ -737,8 +737,8 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   position: relative;
   display: flex;
   align-items: center;
-  /* Dark green band stretches from the far left up to the midpoint of the leadform */
-  background: linear-gradient(to right, #004d4f 0%, #004d4f calc(100% - 240px), #fbfaf2 calc(100% - 240px), #fbfaf2 100%);
+  /* Dark green background starts ONLY from the right edge and goes to the mid-point of the leadform */
+  background: linear-gradient(to left, #004d4f 0%, #004d4f 240px, #fbfaf2 240px, #fbfaf2 100%);
   padding-top: 80px;
   overflow: hidden;
 }
@@ -773,8 +773,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 .replica-primary-overlay {
   position: absolute;
   inset: 0;
-  /* Sharp split to clear the image and provide high-contrast background for text */
-  background: linear-gradient(to right, transparent 48%, #004d4f 48%);
+  background: transparent; /* Seamless transparency to show cream background */
   z-index: 2;
 }
 
@@ -813,11 +812,11 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   line-height: 1.05;
   margin-bottom: 0.75rem;
   letter-spacing: -0.01em;
-  color: #ffffff;
+  color: #004d4f; /* Dark green for light background */
 }
 
 .replica-title .text-teal {
-  color: #ffffff !important;
+  color: #004d4f !important;
 }
 
 .replica-title .text-orange {
@@ -826,7 +825,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 
 .replica-subtext {
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: #1a2b3c;
   line-height: 1.5;
   margin-bottom: 1.5rem;
   max-width: 500px;
@@ -844,9 +843,9 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   align-items: center;
   gap: 0.5rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #004d4f;
   font-size: 0.82rem;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 77, 79, 0.05);
   padding: 4px 10px;
   border-radius: 6px;
 }
