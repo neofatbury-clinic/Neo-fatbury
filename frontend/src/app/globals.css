@@ -737,58 +737,56 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   position: relative;
   display: flex;
   align-items: center;
-  background-color: #f7f9f9;
+  background-color: #004d4f; /* New Dark Green Background */
   padding-top: var(--header-height); /* Dynamic offset for fixed header */
-}
-
-.replica-hero-bg img {
-  object-fit: cover;
-  object-position: left center !important; /* Forces subject (left) to be visible */
-}
-
-.replica-hero-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
+  overflow: hidden;
 }
 
 .replica-hero-container {
   position: relative;
   z-index: 10;
   width: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: 1.5rem 0;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0;
   display: grid;
-  grid-template-columns: 34% 1fr 440px; /* Reduced image column to give text more horizontal space */
-  align-items: center;
+  grid-template-columns: 34% 1fr 440px;
+  align-items: stretch; /* Stretch to fill height */
   gap: 0;
 }
 
 .replica-zone-left {
-  /* Reserved for portrait visibility to avoid overlap with text */
+  position: relative;
+  height: 100%;
+  min-height: 500px;
+}
+
+.replica-image-box {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .replica-zone-middle {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* No pill box — text sits directly on the gradient band */
   background: transparent;
-  padding: 1.75rem 2rem;
+  padding: 2.5rem 3rem;
   margin: 0;
 }
 
 .replica-title {
-  font-size: clamp(1.8rem, 4vw, 2.4rem); /* Slightly more compact */
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
   font-weight: 800;
   line-height: 1.05;
-  margin-bottom: 0.75rem; /* Tighter spacing */
+  margin-bottom: 0.75rem;
   letter-spacing: -0.01em;
 }
 
 .replica-title .text-teal {
-  color: #00acb1;
+  color: #ffffff; /* White against dark green */
 }
 
 .replica-title .text-orange {
@@ -796,11 +794,11 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 }
 
 .replica-subtext {
-  font-size: 0.95rem; /* Slightly smaller for compactness */
-  color: #444;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9); /* Light white for contrast */
   line-height: 1.5;
-  margin-bottom: 1.25rem; /* Tighter spacing */
-  max-width: 520px; /* Increased to allow more horizontal flow */
+  margin-bottom: 1.25rem;
+  max-width: 520px;
   font-weight: 600;
 }
 

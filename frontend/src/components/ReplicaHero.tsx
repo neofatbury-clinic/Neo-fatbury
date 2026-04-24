@@ -24,18 +24,6 @@ export default function ReplicaHero({
 }: ReplicaHeroProps) {
   return (
     <section className="replica-hero">
-      {/* ── Desktop Background ── */}
-      <div className="replica-hero-bg desktop-only">
-        <Image 
-          src={imageSrc} 
-          alt="Hero Background" 
-          fill 
-          priority 
-          quality={90}
-          style={{ objectFit: 'cover', objectPosition: 'left center' }} 
-        />
-      </div>
-
       <div className="replica-hero-container" style={{ position: 'relative', zIndex: 10 }}>
         {/* ── Mobile-Only Visual (Appears ABOVE text on small screens) ── */}
         <div className="replica-hero-visual-mobile mobile-only">
@@ -49,8 +37,19 @@ export default function ReplicaHero({
           />
         </div>
 
-        {/* Zone 1: Empty (Reserved for Portrait on Left in Desktop) */}
-        <div className="replica-zone-left desktop-only"></div>
+        {/* Zone 1: Visual Subject (Now contained on Left) */}
+        <div className="replica-zone-left desktop-only">
+          <div className="replica-image-box">
+             <Image 
+                src={imageSrc} 
+                alt="Hero Subject" 
+                fill
+                priority 
+                quality={90}
+                style={{ objectFit: 'contain', objectPosition: 'bottom center' }} 
+              />
+          </div>
+        </div>
 
         {/* Zone 2: Typography (Middle) */}
         <div className="replica-zone-middle">
