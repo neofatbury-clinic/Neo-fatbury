@@ -11,7 +11,7 @@ export const metadata = {
 
 export default async function HairPage() {
   // Fetch hair services dynamically
-  const query = `*[_type == "service" && category->slug.current == "hair"] | order(order asc) {
+  const query = `*[_type == "service" && (category->slug.current == "hair" || slug.current in ["hair-loss-treatment", "anti-dandruff-treatment", "hair-transplantation"])] | order(order asc) {
     name,
     shortDescription,
     "slug": slug.current,

@@ -77,15 +77,40 @@ export default async function Home() {
 
   // Safe filter helper to identify treatments by category
   const getByCategory = (cat: string) => {
+    const skinSlugs = ['laser-hair-reduction', 'scar-treatment', 'acne-treatment', 'acne-scar-treatment', 'skin-brightening', 'acne-scar-pimple-treatment'];
+    const hairSlugs = ['hair-loss-treatment', 'anti-dandruff-treatment', 'hair-transplantation'];
+    const slimmingSlugs = ['coolsculpting', 'weight-loss', 'inch-loss', 'coolsculpting-fat-freezing', 'inch-loss-treatment'];
+
     const filtered = serviceList?.filter((s: any) => {
       const sCat = typeof s.category === 'string' ? s.category.toLowerCase() : '';
-      return sCat === cat.toLowerCase();
+      const sSlug = s.slug;
+      
+      if (sCat === cat.toLowerCase()) return true;
+      
+      // Fallback matching by slug
+      if (cat.toLowerCase() === 'skin' && skinSlugs.includes(sSlug)) return true;
+      if (cat.toLowerCase() === 'hair' && hairSlugs.includes(sSlug)) return true;
+      if (cat.toLowerCase() === 'slimming' && slimmingSlugs.includes(sSlug)) return true;
+      
+      return false;
     }).map((s: any) => ({ 
       title: s.name, 
       slug: s.slug, 
       image: s.image 
     })) || [];
-    return filtered.length > 0 ? filtered : FALLBACK_TREATMENTS[cat.toLowerCase()];
+
+    // If still empty or incomplete, merge with fallbacks to ensure a rich list
+    const fallbacks = FALLBACK_TREATMENTS[cat.toLowerCase()] || [];
+    const merged = [...filtered];
+    
+    // Add fallbacks that are not already in the filtered list (by slug)
+    fallbacks.forEach(fb => {
+      if (!merged.some(m => m.slug === fb.slug)) {
+        merged.push(fb);
+      }
+    });
+
+    return merged;
   };
 
   const treatments = {

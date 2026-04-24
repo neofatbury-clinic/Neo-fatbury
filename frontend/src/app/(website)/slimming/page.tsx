@@ -11,7 +11,7 @@ export const metadata = {
 
 export default async function SlimmingPage() {
   // Fetch slimming services dynamically
-  const query = `*[_type == "service" && category->slug.current == "slimming"] | order(order asc) {
+  const query = `*[_type == "service" && (category->slug.current == "slimming" || slug.current in ["coolsculpting", "weight-loss", "inch-loss", "coolsculpting-fat-freezing", "inch-loss-treatment"])] | order(order asc) {
     name,
     shortDescription,
     "slug": slug.current,

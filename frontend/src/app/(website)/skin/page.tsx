@@ -11,7 +11,7 @@ export const metadata = {
 
 export default async function SkinPage() {
   // Fetch skin services dynamically
-  const query = `*[_type == "service" && category->slug.current == "skin"] | order(order asc) {
+  const query = `*[_type == "service" && (category->slug.current == "skin" || slug.current in ["laser-hair-reduction", "scar-treatment", "acne-treatment", "acne-scar-treatment", "skin-brightening"])] | order(order asc) {
     name,
     shortDescription,
     "slug": slug.current,
