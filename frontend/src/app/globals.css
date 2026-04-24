@@ -739,9 +739,9 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   align-items: center;
   /* Brand Split: Image/Text zone on left, fixed 480px Brand Green zone on right */
   background: linear-gradient(to right, #faf8f6 0%, #faf8f6 calc(100% - 480px), #004d4f calc(100% - 480px), #004d4f 100%);
-  padding-top: 60px; /* Pushed form down a little bit as requested */
+  padding-top: 25px; /* Fine-tuned vertical position: shifted slightly up */
   overflow: hidden;
-  height: 800px; /* Restored for ample vertical space */
+  height: 800px; 
   box-sizing: border-box;
 }
 
