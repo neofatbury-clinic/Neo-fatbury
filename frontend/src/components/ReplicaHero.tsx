@@ -32,7 +32,7 @@ export default function ReplicaHero({
             fill
             priority 
             quality={90}
-            style={{ objectFit: 'cover', objectPosition: 'left center' }} 
+            style={{ objectFit: 'contain', objectPosition: 'left center' }} 
           />
         <div className="replica-primary-overlay"></div>
       </div>
