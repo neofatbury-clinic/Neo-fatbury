@@ -24,8 +24,21 @@ export default function ReplicaHero({
 }: ReplicaHeroProps) {
   return (
     <section className="replica-hero">
+      {/* Absolute Background Image (Sole source of background visual) */}
+      <div className="replica-primary-bg">
+        <Image 
+            src={imageSrc} 
+            alt="Hero Background" 
+            fill
+            priority 
+            quality={90}
+            style={{ objectFit: 'cover', objectPosition: 'center center' }} 
+          />
+        <div className="replica-primary-overlay"></div>
+      </div>
+
       <div className="replica-hero-container" style={{ position: 'relative', zIndex: 10 }}>
-        {/* ── Mobile-Only Visual (Appears ABOVE text on small screens) ── */}
+        {/* ── Mobile-Only Visual ── */}
         <div className="replica-hero-visual-mobile mobile-only">
           <Image 
             src={imageSrc} 
@@ -38,22 +51,8 @@ export default function ReplicaHero({
         </div>
 
         <div className="replica-primary-box">
-          {/* Background Image Wrapper */}
-          <div className="replica-primary-bg">
-            <Image 
-                src={imageSrc} 
-                alt="Hero Background" 
-                fill
-                priority 
-                quality={90}
-                style={{ objectFit: 'cover', objectPosition: 'left center' }} 
-              />
-            {/* Dark Green Gradient Overlay to ensure text readability */}
-            <div className="replica-primary-overlay"></div>
-          </div>
-
           <div className="replica-primary-content">
-            {/* Zone 1: Empty space to let portrait show (Desktop) */}
+            {/* Zone 1: Portrait Space (Desktop) */}
             <div className="replica-zone-left desktop-only"></div>
 
             {/* Zone 2: Typography (Middle) */}
