@@ -758,7 +758,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 .replica-primary-box {
   background-color: #004d4f; /* Dark Green Box */
   display: grid;
-  grid-template-columns: 42% 1fr; /* Image + Text */
+  grid-template-columns: 45% 1fr; /* Enlarged image column */
   align-items: stretch;
   position: relative;
   /* Chevron Clip Path (Points Left) */
@@ -769,7 +769,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 .replica-zone-left {
   position: relative;
   height: 100%;
-  min-height: 520px;
+  min-height: 580px; /* Increased height for bigger subject feel */
 }
 
 .replica-image-box {

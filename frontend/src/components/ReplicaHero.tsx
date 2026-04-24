@@ -47,7 +47,7 @@ export default function ReplicaHero({
                   fill
                   priority 
                   quality={90}
-                  style={{ objectFit: 'contain', objectPosition: 'bottom center' }} 
+                  style={{ objectFit: 'cover', objectPosition: 'top center' }} 
                 />
             </div>
           </div>
