@@ -52,7 +52,6 @@ const FALLBACK_TREATMENTS: Record<string, { title: string; slug: string; image: 
     { title: 'Laser Hair Reduction', slug: 'laser-hair-reduction', image: '/images/laser-machine-banner.webp' },
     { title: 'Acne Scar Treatment', slug: 'acne-scar-treatment', image: '/images/neofatbury-acne-scar-procedure.png' },
     { title: 'Skin Brightening', slug: 'skin-brightening', image: '/images/derma-procedure-fixed.webp' },
-    { title: 'Acne Treatment', slug: 'acne-treatment', image: '/images/neofatbury-cheek-banner.webp' },
     { title: 'Scar Treatment', slug: 'scar-treatment', image: '/images/neofatbury-clinical-standard.png' },
   ],
   hair: [
@@ -76,8 +75,7 @@ export default async function Home() {
   const serviceList = (services && services.length > 0) ? services : (allServices && allServices.length > 0) ? allServices : null;
 
   // Safe filter helper to identify treatments by category
-  const getByCategory = (cat: string) => {
-    const skinSlugs = ['laser-hair-reduction', 'scar-treatment', 'acne-treatment', 'acne-scar-treatment', 'skin-brightening', 'acne-scar-pimple-treatment'];
+    const skinSlugs = ['laser-hair-reduction', 'scar-treatment', 'acne-scar-treatment', 'skin-brightening', 'acne-scar-pimple-treatment'];
     const hairSlugs = ['hair-loss-treatment', 'anti-dandruff-treatment', 'hair-transplantation'];
     const slimmingSlugs = ['coolsculpting', 'weight-loss', 'inch-loss', 'coolsculpting-fat-freezing', 'inch-loss-treatment'];
 

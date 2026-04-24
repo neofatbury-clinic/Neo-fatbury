@@ -70,7 +70,6 @@ export default function Header({ settings }: { settings?: any }) {
                   label="Skin" 
                   items={[
                     { label: 'All Skin Treatments', href: '/skin' },
-                    { label: 'Acne Treatment', href: '/skin/acne-treatment' },
                     { label: 'Acne Scar Treatment', href: '/skin/acne-scar-treatment' },
                     { label: 'Laser Hair Reduction', href: '/skin/laser-hair-reduction' },
                     { label: 'Skin Brightening', href: '/skin/skin-brightening' },
@@ -137,7 +136,6 @@ export default function Header({ settings }: { settings?: any }) {
                     label="Skin Treatments" 
                     items={[
                       { label: 'All Skin Treatments', href: '/skin' },
-                      { label: 'Acne Treatment', href: '/skin/acne-treatment' },
                       { label: 'Acne Scar Treatment', href: '/skin/acne-scar-treatment' },
                       { label: 'Laser Hair Reduction', href: '/skin/laser-hair-reduction' },
                       { label: 'Skin Brightening', href: '/skin/skin-brightening' },
