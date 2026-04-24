@@ -738,10 +738,10 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   display: flex;
   align-items: center;
   /* Brand Split: Image/Text zone on left, fixed 480px Brand Green zone on right */
-  background: linear-gradient(to right, #00aeb5 0%, #00aeb5 calc(100% - 480px), #004d4f calc(100% - 480px), #004d4f 100%);
-  padding-top: 40px; 
+  background: linear-gradient(to right, #faf8f6 0%, #faf8f6 calc(100% - 480px), #004d4f calc(100% - 480px), #004d4f 100%);
+  padding-top: 0; 
   overflow: hidden;
-  height: 750px; /* Refined 'Goldilocks' height */
+  height: 680px; /* Reduced for natural zoom-out feel */
   box-sizing: border-box;
 }
 

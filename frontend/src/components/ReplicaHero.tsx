@@ -31,8 +31,8 @@ export default function ReplicaHero({
             alt="Hero Background" 
             fill
             priority 
-            quality={90}
-            style={{ objectFit: 'cover', objectPosition: 'left top' }} 
+            quality={95}
+            style={{ objectFit: 'contain', objectPosition: 'left top' }} 
           />
         <div className="replica-primary-overlay"></div>
       </div>
@@ -53,7 +53,7 @@ export default function ReplicaHero({
         <div className="replica-primary-box">
           <div className="replica-primary-content">
             {/* Zone 1: Portrait Space (Desktop) */}
-            <div className="replica-zone-left desktop-only" style={{ minHeight: '750px' }}></div>
+            <div className="replica-zone-left desktop-only" style={{ minHeight: '680px' }}></div>
 
             {/* Zone 2: Typography (Middle) */}
             <div className="replica-zone-middle">
