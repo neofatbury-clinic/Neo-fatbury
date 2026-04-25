@@ -741,7 +741,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   background: linear-gradient(to right, #faf8f6 0%, #faf8f6 calc(100% - 480px), #004d4f calc(100% - 480px), #004d4f 100%);
   padding-top: 25px; 
   overflow: hidden;
-  height: 720px; /* Snug fit to eliminate bottom gap */
+  height: 680px; /* Ultra-snug fit to completely remove bottom dead space */
   box-sizing: border-box;
 }
 
