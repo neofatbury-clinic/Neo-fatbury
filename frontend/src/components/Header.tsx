@@ -189,8 +189,8 @@ export default function Header({ settings }: { settings?: any }) {
           .nav-desktop { display: none !important; }
           .nav-mobile-toggle { display: block !important; }
           .top-bar-mobile-hide { display: none !important; }
-          .main-nav-mobile { height: 64px !important; }
-          .logo-img-mobile { height: 38px !important; }
+          .main-nav-mobile { height: 64px !important; padding: 0 1rem !important; }
+          .logo-img-mobile { height: 44px !important; }
           ${mobileOpen ? '.header-cta { display: none !important; }' : ''}
         }
         @media (max-width: 480px) {
