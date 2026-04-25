@@ -1,6 +1,7 @@
 // src/app/(website)/contact-us/page.tsx
 import LeadForm from "@/components/LeadForm";
 import ReplicaHero from "@/components/ReplicaHero";
+import Image from "next/image";
 import { client } from '@/sanity/lib/client';
 
 export const revalidate = 60;
@@ -22,11 +23,34 @@ export default async function ContactUs() {
   
   return (
     <>
-      {/* 1. CONTACT INTRO SECTION (Replaced redundant Hero) */}
-      <section className="section" style={{ backgroundColor: '#e8f6f7', padding: '4rem 0', textAlign: 'center' }}>
-         <div className="container">
-            <h1 style={{ fontSize: '2.8rem', color: 'var(--color-primary)', fontWeight: '900', marginBottom: '1rem' }}>{page?.title || 'Contact NeoFatbury'}</h1>
-            <p style={{ fontSize: '1.2rem', color: '#555', maxWidth: '700px', margin: '0 auto' }}>{page?.subtitle || 'Our expert clinical team is here to assist you with your skin, hair, and slimming goals.'}</p>
+      {/* 1. PREMIUM CONTACT HERO BANNER (Full-width Image) */}
+      <section className="section" style={{ 
+        position: 'relative', 
+        height: '400px', 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        overflow: 'hidden',
+        color: 'white',
+        textAlign: 'center'
+      }}>
+         <Image 
+           src="/contact_hero_clinical_interior_1777087729906.png" 
+           alt="Contact Hero" 
+           fill 
+           style={{ objectFit: 'cover', zIndex: 1 }} 
+           priority
+         />
+         <div style={{ 
+           position: 'absolute', 
+           inset: 0, 
+           background: 'linear-gradient(to bottom, rgba(0,77,79,0.7), rgba(0,77,79,0.4))', 
+           zIndex: 2 
+         }}></div>
+         
+         <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+            <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', color: '#fff', fontWeight: '900', marginBottom: '1rem', textShadow: '0 2px 10px rgba(0,0,0,0.3)' }}>{page?.title || 'Contact NeoFatbury'}</h1>
+            <p style={{ fontSize: '1.2rem', color: 'rgba(255,255,255,0.9)', maxWidth: '700px', margin: '0 auto', fontWeight: '600' }}>{page?.subtitle || 'Experience Elite Clinical Care'}</p>
          </div>
       </section>
 
