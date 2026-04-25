@@ -946,6 +946,35 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
     padding: 2rem 1.25rem !important;
     background: #ffffff !important;
   }
+
+  /* CENTRALIZED MOBILE LAYOUT */
+  .section,
+  .section-title,
+  .section-subtitle,
+  .grid,
+  .card,
+  p,
+  h2,
+  h3,
+  h4,
+  li {
+    text-align: center !important;
+  }
+
+  .grid-2, .grid-3, .grid-4 {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .btn {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .replica-trust-row {
+    justify-content: center !important;
+  }
 }
   .replica-zone-middle {
     align-items: center;
