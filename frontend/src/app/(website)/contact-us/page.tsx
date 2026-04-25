@@ -22,15 +22,13 @@ export default async function ContactUs() {
   
   return (
     <>
-      {/* 1. HERO (Now correctly using CMS image) */}
-      <ReplicaHero 
-        titleTeal1={page?.title || ''}
-        titleTeal2=""
-        titleOrange1=""
-        titleOrange2=""
-        subtext={page?.subtitle || ''}
-        imageSrc={page?.heroImage || "/images/neofatbury-home-hero.png"}
-      />
+      {/* 1. CONTACT INTRO SECTION (Replaced redundant Hero) */}
+      <section className="section" style={{ backgroundColor: '#e8f6f7', padding: '4rem 0', textAlign: 'center' }}>
+         <div className="container">
+            <h1 style={{ fontSize: '2.8rem', color: 'var(--color-primary)', fontWeight: '900', marginBottom: '1rem' }}>{page?.title || 'Contact NeoFatbury'}</h1>
+            <p style={{ fontSize: '1.2rem', color: '#555', maxWidth: '700px', margin: '0 auto' }}>{page?.subtitle || 'Our expert clinical team is here to assist you with your skin, hair, and slimming goals.'}</p>
+         </div>
+      </section>
 
       {/* 2. FORM + INFO */}
       <section className="section" style={{ backgroundColor: '#fff', padding: '6rem 0' }}>
