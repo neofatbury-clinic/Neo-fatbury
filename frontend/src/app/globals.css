@@ -863,7 +863,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 2.5rem 2rem 2.5rem 0;
+  padding: 3.5rem 2rem 1.5rem 0; /* Pushed form down a very little bit as requested */
   background-color: transparent;
 }
 
