@@ -908,7 +908,10 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 }
 
 @media (max-width: 900px) {
-  .replica-primary-bg {
+  /* AGGRESSIVE MOBILE FIX: NO REPEATING, BIGGER SCALE */
+  .replica-primary-bg,
+  .replica-zone-left,
+  .replica-zone-middle {
     display: none !important;
   }
   .replica-hero {
@@ -916,22 +919,34 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
     min-height: auto !important;
     max-height: none !important;
     overflow: visible !important;
-    padding-top: 20px;
-    padding-bottom: 40px;
-    display: block;
+    padding: 20px 0 60px !important; /* Increased padding to make it 'big' */
+    display: block !important;
+    background: #ffffff !important;
   }
-  .replica-primary-box {
-    display: block;
-    clip-path: none;
-    margin: 0;
-    background-color: #00acb1;
+  .replica-hero-visual-mobile {
+    transform: scale(1.02); /* Slight scale for more impact */
+    margin-bottom: 1rem;
   }
   .replica-hero-container {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 0;
-    padding: 0;
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    width: 100% !important;
+    padding: 0 !important;
   }
+  .replica-primary-box {
+    display: block !important;
+    background-color: #00acb1 !important;
+    clip-path: none !important;
+    margin: 0 !important;
+  }
+  .replica-zone-right {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 2rem 1.25rem !important;
+    background: #ffffff !important;
+  }
+}
   .replica-zone-middle {
     align-items: center;
     padding: 2.5rem 1.25rem 1.5rem;
