@@ -17,9 +17,34 @@ export const siteSettings = defineType({
     { name: 'social', title: '📱 Social Media' },
     { name: 'ads', title: '📊 Google Ads & Analytics' },
     { name: 'branding', title: '🖍️ Header & Footer Branding' },
+    { name: 'homeHero', title: '🏠 Homepage Hero Text' },
     { name: 'legal', title: '⚖️ Legal & Compliance' },
   ],
   fields: [
+    // ── HOMEPAGE HERO ───────────────────────────
+    defineField({
+      name: 'heroTitle',
+      title: 'Hero Heading (Main Title)',
+      type: 'string',
+      group: 'homeHero',
+      description: '💡 e.g. "Expert Skin, Hair & Slimming"'
+    }),
+    defineField({
+      name: 'heroSubtitle',
+      title: 'Hero Subtext (Green Text)',
+      type: 'string',
+      group: 'homeHero',
+      description: '💡 e.g. "Clinic in Hyderabad"'
+    }),
+    defineField({
+      name: 'heroDescription',
+      title: 'Hero Description (Paragraph)',
+      type: 'text',
+      rows: 3,
+      group: 'homeHero',
+      description: '💡 The longer text describing your clinic.'
+    }),
+
     // ── BRAND ─────────────────────────────────────
     defineField({
       name: 'clinicName',

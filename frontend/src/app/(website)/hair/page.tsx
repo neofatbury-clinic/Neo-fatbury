@@ -9,15 +9,27 @@ export const metadata = {
   description: 'Expert hair care in Hyderabad (Kukatpally & Himayatnagar). Specializing in Hair Loss Treatment and Hair Transplantation. Regrow your confidence with NeoFatbury.',
 };
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function HairPage() {
-  // Fetch hair services dynamically
-  const query = `*[_type == "service" && (category->slug.current == "hair" || slug.current in ["hair-loss-treatment", "anti-dandruff-treatment", "hair-transplantation"])] | order(order asc) {
+  // Fetch hair services dynamically from Sanity
+  const query = `*[_type == "service" && category->slug.current == "hair"] | order(order asc) {
     name,
     shortDescription,
     "slug": slug.current,
     "image": heroImage.asset->url
   }`;
-  const services = await client.fetch(query);
+  const servicesData = await client.fetch(query);
+
+  // Fallback list of treatments
+  const FALLBACK_HAIR = [
+    { name: 'Hair Loss Treatment', slug: 'hair-loss-treatment', image: '/images/neofatbury-hair2-banner.webp', shortDescription: 'Targeted clinical solutions to stop hair fall and trigger regrowth.' },
+    { name: 'Anti-Dandruff Treatment', slug: 'anti-dandruff-treatment', image: '/images/neofatbury-dandruff-clinical.png', shortDescription: 'Deep scalp cleansing and medical-grade dandruff solutions.' },
+    { name: 'Hair Transplantation', slug: 'hair-transplantation', image: '/images/neofatbury-hair-standard.png', shortDescription: 'Elite FUE & DHI procedures for natural, long-lasting hair restoration.' },
+  ];
+
+  const services = (servicesData && servicesData.length > 0) ? servicesData : FALLBACK_HAIR;
 
   return (
     <>

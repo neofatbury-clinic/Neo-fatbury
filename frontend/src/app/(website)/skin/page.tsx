@@ -9,15 +9,28 @@ export const metadata = {
   description: 'Expert dermatology in Hyderabad (Kukatpally & Himayatnagar). Specialized in Laser Hair Reduction, Acne Treatment, Skin Brightening, and Scar Care.',
 };
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function SkinPage() {
-  // Fetch skin services dynamically
-  const query = `*[_type == "service" && (category->slug.current == "skin" || slug.current in ["laser-hair-reduction", "scar-treatment", "acne-treatment", "acne-scar-treatment", "skin-brightening"])] | order(order asc) {
+  // Fetch skin services dynamically from Sanity
+  const query = `*[_type == "service" && category->slug.current == "skin"] | order(order asc) {
     name,
     shortDescription,
     "slug": slug.current,
     "image": heroImage.asset->url
   }`;
-  const services = await client.fetch(query);
+  const servicesData = await client.fetch(query);
+
+  // Fallback list of treatments to ensure the page is never empty
+  const FALLBACK_SKIN = [
+    { name: 'Laser Hair Reduction', slug: 'laser-hair-reduction', image: '/images/laser-machine-banner.webp', shortDescription: 'Safe and permanent hair reduction using world-class laser technology.' },
+    { name: 'Acne Scar Treatment', slug: 'acne-scar-treatment', image: '/images/neofatbury-acne-scar-procedure.png', shortDescription: 'Advanced clinical solutions for smooth, scar-free skin.' },
+    { name: 'Skin Brightening', slug: 'skin-brightening', image: '/images/derma-procedure-fixed.webp', shortDescription: 'Target pigmentation and uneven skin tone for a radiant glow.' },
+    { name: 'Scar Treatment', slug: 'scar-treatment', image: '/images/neofatbury-clinical-standard.png', shortDescription: 'Specialized clinical care for restoring skin texture and clinical perfection.' },
+  ];
+
+  const services = (servicesData && servicesData.length > 0) ? servicesData : FALLBACK_SKIN;
 
   return (
     <>

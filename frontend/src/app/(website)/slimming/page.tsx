@@ -9,15 +9,27 @@ export const metadata = {
   description: 'Top-rated body contouring and weight loss in Hyderabad. Offering US-FDA approved CoolSculpting, Cryolipolysis, and clinical weight loss programs.',
 };
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function SlimmingPage() {
-  // Fetch slimming services dynamically
-  const query = `*[_type == "service" && (category->slug.current == "slimming" || slug.current in ["coolsculpting", "weight-loss", "inch-loss", "coolsculpting-fat-freezing", "inch-loss-treatment"])] | order(order asc) {
+  // Fetch slimming services dynamically from Sanity
+  const query = `*[_type == "service" && category->slug.current == "slimming"] | order(order asc) {
     name,
     shortDescription,
     "slug": slug.current,
     "image": heroImage.asset->url
   }`;
-  const services = await client.fetch(query);
+  const servicesData = await client.fetch(query);
+
+  // Fallback list of treatments
+  const FALLBACK_SLIMMING = [
+    { name: 'CoolSculpting', slug: 'coolsculpting', image: '/images/neofatbury-cooling-tech.png', shortDescription: 'The world’s most advanced non-surgical fat reduction technique.' },
+    { name: 'Weight Loss', slug: 'weight-loss', image: '/images/clinic-reception.webp', shortDescription: 'Safe, medical-grade weight management plans for long-term health.' },
+    { name: 'Inch Loss', slug: 'inch-loss', image: '/images/neofatbury-slimming-standard.png', shortDescription: 'Target stubborn fat pockets with precision clinical contouring.' },
+  ];
+
+  const services = (servicesData && servicesData.length > 0) ? servicesData : FALLBACK_SLIMMING;
 
   return (
     <>
