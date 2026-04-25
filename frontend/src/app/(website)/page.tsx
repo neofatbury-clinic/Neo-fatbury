@@ -75,6 +75,7 @@ export default async function Home() {
   const serviceList = (services && services.length > 0) ? services : (allServices && allServices.length > 0) ? allServices : null;
 
   // Safe filter helper to identify treatments by category
+  const getByCategory = (cat: string) => {
     const skinSlugs = ['laser-hair-reduction', 'scar-treatment', 'acne-scar-treatment', 'skin-brightening', 'acne-scar-pimple-treatment'];
     const hairSlugs = ['hair-loss-treatment', 'anti-dandruff-treatment', 'hair-transplantation'];
     const slimmingSlugs = ['coolsculpting', 'weight-loss', 'inch-loss', 'coolsculpting-fat-freezing', 'inch-loss-treatment'];
