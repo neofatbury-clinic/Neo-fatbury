@@ -962,14 +962,34 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   }
 
   .grid-2, .grid-3, .grid-4 {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+    align-items: stretch !important;
+  }
+
+  .card {
+    padding: 1.25rem 0.75rem !important;
     display: flex !important;
     flex-direction: column !important;
-    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .card h3 {
+    font-size: 1.05rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .card p {
+    font-size: 0.82rem !important;
+    line-height: 1.4 !important;
   }
 
   .btn {
     margin-left: auto !important;
     margin-right: auto !important;
+    padding: 0.6rem 1rem !important;
+    font-size: 0.8rem !important;
   }
 
   .replica-trust-row {
