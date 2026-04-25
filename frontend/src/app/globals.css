@@ -889,9 +889,6 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
     padding-bottom: 0;
     display: block;
   }
-  .replica-primary-bg {
-    display: none !important;
-  }
   .replica-primary-box {
     display: block;
     clip-path: none;
