@@ -7,23 +7,29 @@ export const structure: StructureResolver = (S) =>
     .title('NeoFatbury CMS')
     .items([
 
-      // ── GLOBAL SETTINGS ──────────────────────────
+      // ── PRIMARY SERVICE FOLDERS ──────────────────
       S.listItem()
-        .title('⚙️ Clinic Info & Settings')
-        .id('siteSettings')
+        .title('✨ Skin Treatments')
         .child(
-          S.document()
-            .schemaType('siteSettings')
-            .documentId('siteSettings')
+          S.documentTypeList('service')
+            .title('Skin Treatments')
+            .filter('_type == "service" && category._ref == "cat-skin"')
         ),
 
       S.listItem()
-        .title('📝 Lead Form Settings')
-        .id('contactFormSettings')
+        .title('💆 Hair Treatments')
         .child(
-          S.document()
-            .schemaType('contactFormSettings')
-            .documentId('contactFormSettings')
+          S.documentTypeList('service')
+            .title('Hair Treatments')
+            .filter('_type == "service" && category._ref == "cat-hair"')
+        ),
+
+      S.listItem()
+        .title('⚖️ Slimming & Body')
+        .child(
+          S.documentTypeList('service')
+            .title('Slimming Treatments')
+            .filter('_type == "service" && category._ref == "cat-slimming"')
         ),
 
       S.divider(),
@@ -72,50 +78,6 @@ export const structure: StructureResolver = (S) =>
 
       S.divider(),
 
-      // ── PRIMARY SERVICE FOLDERS ──────────────────
-      S.listItem()
-        .title('✨ Skin Treatments')
-        .child(
-          S.documentTypeList('service')
-            .title('Skin Treatments')
-            .filter('_type == "service" && category._ref == "cat-skin"')
-        ),
-
-      S.listItem()
-        .title('💆 Hair Treatments')
-        .child(
-          S.documentTypeList('service')
-            .title('Hair Treatments')
-            .filter('_type == "service" && category._ref == "cat-hair"')
-        ),
-
-      S.listItem()
-        .title('⚖️ Slimming & Body')
-        .child(
-          S.documentTypeList('service')
-            .title('Slimming Treatments')
-            .filter('_type == "service" && category._ref == "cat-slimming"')
-        ),
-
-      S.divider(),
-
-      // ── MANAGEMENT ───────────────────────────────
-      S.listItem()
-        .title('🛠️ Service Management')
-        .child(
-          S.list()
-            .title('Global Management')
-            .items([
-              S.listItem()
-                .title('🩺 All Services')
-                .child(S.documentTypeList('service').title('All Services')),
-              S.listItem()
-                .title('📂 Manage Categories')
-                .schemaType('category')
-                .child(S.documentTypeList('category').title('Service Categories')),
-            ])
-        ),
-
       // ── BLOG ─────────────────────────────────────
       S.listItem()
         .title('📝 Blog & Articles')
@@ -151,9 +113,37 @@ export const structure: StructureResolver = (S) =>
 
       S.divider(),
 
-      // ── TEAM ─────────────────────────────────────
+      // ── TEAM & CONFIG ─────────────────────────────
       S.listItem()
-        .title('👩‍⚕️ Doctors & Team')
-        .schemaType('teamMember')
-        .child(S.documentTypeList('teamMember').title('Team Members')),
+        .title('⚙️ Setup & Settings')
+        .child(
+          S.list()
+            .title('Settings & Team')
+            .items([
+              S.listItem()
+                .title('⚙️ Clinic Info & Settings')
+                .id('siteSettings')
+                .child(
+                  S.document()
+                    .schemaType('siteSettings')
+                    .documentId('siteSettings')
+                ),
+              S.listItem()
+                .title('📝 Lead Form Settings')
+                .id('contactFormSettings')
+                .child(
+                  S.document()
+                    .schemaType('contactFormSettings')
+                    .documentId('contactFormSettings')
+                ),
+              S.listItem()
+                .title('👩‍⚕️ Doctors & Team')
+                .schemaType('teamMember')
+                .child(S.documentTypeList('teamMember').title('Team Members')),
+              S.listItem()
+                .title('📂 Manage Categories')
+                .schemaType('category')
+                .child(S.documentTypeList('category').title('Service Categories')),
+            ])
+        ),
     ])
