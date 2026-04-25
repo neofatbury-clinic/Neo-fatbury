@@ -55,13 +55,13 @@ export default function ReplicaHero({
             {/* Zone 1: Portrait Space (Desktop) */}
             <div className="replica-zone-left desktop-only" style={{ minHeight: '680px' }}></div>
 
-            {/* Zone 2: Typography (Middle) - Removed as requested to allow clean banner visibility */}
-            {/* 
+            {/* Zone 2: Typography (Middle) */}
             <div className="replica-zone-middle">
               {titleTeal1 && (
                 <h1 className="replica-title">
                   <span className="text-teal">{titleTeal1}</span> {titleTeal2 && <br/>}
-                  {titleTeal2 && <span className="text-teal">{titleTeal2}</span>} {titleTeal2 && <br/>}
+                  {titleTeal2 && <span className="text-teal">{titleTeal2}</span>} 
+                  {(titleTeal1 || titleTeal2) && (titleOrange1 || titleOrange2) && <br/>}
                   <span className="text-orange">{titleOrange1}</span> {titleOrange2 && <br/>}
                   {titleOrange2 && <span className="text-orange">{titleOrange2}</span>}
                 </h1>
@@ -81,7 +81,6 @@ export default function ReplicaHero({
                 </div>
               )}
             </div>
-            */}
           </div>
         </div>
 
