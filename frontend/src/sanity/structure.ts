@@ -72,12 +72,39 @@ export const structure: StructureResolver = (S) =>
 
       S.divider(),
 
-      // ── TREATMENTS ───────────────────────────────
+      // ── PRIMARY SERVICE FOLDERS ──────────────────
       S.listItem()
-        .title('💉 Services & Treatments')
+        .title('✨ Skin Treatments')
+        .child(
+          S.documentTypeList('service')
+            .title('Skin Treatments')
+            .filter('_type == "service" && category._ref == "cat-skin"')
+        ),
+
+      S.listItem()
+        .title('💆 Hair Treatments')
+        .child(
+          S.documentTypeList('service')
+            .title('Hair Treatments')
+            .filter('_type == "service" && category._ref == "cat-hair"')
+        ),
+
+      S.listItem()
+        .title('⚖️ Slimming & Body')
+        .child(
+          S.documentTypeList('service')
+            .title('Slimming Treatments')
+            .filter('_type == "service" && category._ref == "cat-slimming"')
+        ),
+
+      S.divider(),
+
+      // ── MANAGEMENT ───────────────────────────────
+      S.listItem()
+        .title('🛠️ Service Management')
         .child(
           S.list()
-            .title('Services by Category')
+            .title('Global Management')
             .items([
               S.listItem()
                 .title('🩺 All Services')
@@ -86,27 +113,6 @@ export const structure: StructureResolver = (S) =>
                 .title('📂 Manage Categories')
                 .schemaType('category')
                 .child(S.documentTypeList('category').title('Service Categories')),
-              S.listItem()
-                .title('✨ Skin Treatments')
-                .child(
-                  S.documentTypeList('service')
-                    .title('Skin Treatments')
-                    .filter('_type == "service" && category._ref == "cat-skin"')
-                ),
-              S.listItem()
-                .title('💆 Hair Treatments')
-                .child(
-                  S.documentTypeList('service')
-                    .title('Hair Treatments')
-                    .filter('_type == "service" && category._ref == "cat-hair"')
-                ),
-              S.listItem()
-                .title('⚖️ Slimming & Body')
-                .child(
-                  S.documentTypeList('service')
-                    .title('Slimming Treatments')
-                    .filter('_type == "service" && category._ref == "cat-slimming"')
-                ),
             ])
         ),
 
