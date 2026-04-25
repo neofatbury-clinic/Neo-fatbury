@@ -1,12 +1,12 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap');
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   NEOFATBURY â€” Oliva Clinic Inspired Design System
+/* =============================================================
+   NEOFATBURY — Oliva Clinic Inspired Design System
    Primary:  #00acb1  (Deep Teal)
    Accent:   #00a2a7  (Signature Cyan)
    Gold CTA: #e8a317  (Orange-gold CTA)
    Background: #ffffff / #f9fbfb
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+============================================================= */
 
 :root {
   --font-heading: 'Montserrat', sans-serif;
@@ -51,7 +51,7 @@ html, body {
   font-size: 16px;
 }
 
-/* â”€â”€â”€ Global Styling â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* --- Global Styling -------------------------- */
 
 .home-hero-inner {
   position: relative;
@@ -127,7 +127,7 @@ a { color: inherit; text-decoration: none; }
 img { max-width: 100%; }
 button { cursor: pointer; border: none; font-family: var(--font-body); }
 
-/* â”€â”€â”€ Layout â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* --- Layout ---------------------------------- */
 .container {
   width: 100%;
   max-width: 1400px;
@@ -146,18 +146,18 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   .section { padding: 3rem 0; }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   SERVICE HERO â€” TRIPLE-PILLAR MASTER DESIGN
+/* =============================================================
+   SERVICE HERO — TRIPLE-PILLAR MASTER DESIGN
    Aesthetics: Clinical White/Light Gray background
    Subject: Seamless portrait on the left
    Layout: [Visual] | [Content] | [Form]
    Typography: Black/Professional Teal
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   SERVICE HERO â€” THE "MASTER 3-PART GRID"
+============================================================= */
+/* =============================================================
+   SERVICE HERO — THE "MASTER 3-PART GRID"
    [IMAGE 40%] | [TEXT 30%] | [FORM 30%]
    Background: SOLID WHITE (#ffffff)
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+============================================================= */
 .service-hero {
   background: #ffffff;
   color: #1a1a1a;
@@ -335,7 +335,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   z-index: 20;
 }
 
-/* â”€â”€ Mobile Responsive Stacking â”€â”€ */
+/* --- Mobile Responsive Stacking --- */
 @media (max-width: 1280px) {
   .service-hero-grid {
     gap: 2rem;
@@ -379,7 +379,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 .bg-surface    { background-color: var(--color-surface); }
 .bg-primary    { background-color: var(--color-primary); color: white; }
 
-/* â”€â”€â”€ Section Heading â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* --- Section Heading ------------------------- */
 .section-title {
   font-size: clamp(1.4rem, 4vw, 2.25rem);
   font-weight: 700;
@@ -395,7 +395,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   font-weight: 400;
 }
 
-/* â”€â”€â”€ Buttons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* --- Buttons --------------------------------- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -478,7 +478,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 
 .btn-sm { padding: 0.5rem 1rem; font-size: 0.8rem; }
 
-/* â”€â”€â”€ Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* --- Cards ----------------------------------- */
 .card {
   background: white;
   border-radius: var(--radius-md);
@@ -493,14 +493,14 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   border-color: var(--color-cyan);
 }
 
-/* â”€â”€â”€ Standard Utilities â”€â”€â”€ */
+/* --- Standard Utilities --- */
 .grid   { display: grid !important; gap: 2rem !important; }
 .grid-2 { grid-template-columns: repeat(2, 1fr) !important; }
 .grid-3 { grid-template-columns: repeat(3, 1fr) !important; }
 .grid-4 { grid-template-columns: repeat(4, 1fr) !important; }
 .grid-5 { grid-template-columns: repeat(5, 1fr) !important; }
 
-/* â”€â”€â”€ Form Fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* --- Form Fields ----------------------------- */
 .input-field {
   width: 100%;
   padding: 0.875rem 1rem;
@@ -518,7 +518,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   background: white;
 }
 
-/* â”€â”€â”€ Badge / Trust Chip â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* --- Badge / Trust Chip ---------------------- */
 .chip {
   display: inline-flex;
   align-items: center;
@@ -532,7 +532,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   font-weight: 500;
 }
 
-/* â”€â”€â”€ Animations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* --- Animations ------------------------------ */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -544,7 +544,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   to   { opacity: 1; transform: translateX(0); }
 }
 
-/* â”€â”€â”€ Responsive â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* --- Responsive ------------------------------ */
 @media (max-width: 1024px) {
   .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr) !important; }
 }
@@ -562,7 +562,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   .section-title { font-size: 1.4rem; }
 }
 
-/* â”€â”€â”€ Misc utilities â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* --- Misc utilities -------------------------- */
 .flex       { display: flex; }
 .items-center { align-items: center; }
 .justify-between { justify-content: space-between; }
@@ -573,7 +573,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 .fw-600 { font-weight: 600; }
 .muted  { color: var(--color-text-muted); }
 
-/* â”€â”€â”€ Visibility Utils â”€â”€â”€ */
+/* --- Visibility Utils --- */
 .desktop-only { display: block !important; }
 .mobile-only { display: none !important; }
 
@@ -602,7 +602,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   }
 }
 
-/* â”€â”€â”€ Homepage Hero â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* --- Homepage Hero --------------------------- */
 .home-hero {
   position: relative;
   overflow: hidden;
@@ -676,7 +676,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 }
 
 
-/* â”€â”€â”€ Treatment Oval Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* --- Treatment Oval Cards -------------------- */
 .treatment-card-oval {
   display: block;
   text-decoration: none;
@@ -732,7 +732,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   z-index: 10;
   border: 2px solid white;
 }
-/* â”€â”€â”€ Replica Hero (Master Replica) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* --- Replica Hero (Master Replica) ----------- */
 .replica-hero {
   position: relative;
   display: flex;
@@ -934,9 +934,9 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   }
 }
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ------------------------------------------------------------- */
 
-/* â”€â”€â”€ About Us Page Specific Responsiveness â”€â”€â”€ */
+/* --- About Us Page Specific Responsiveness --- */
 .about-us-grid {
   display: flex !important;
   flex-wrap: wrap !important;
@@ -999,7 +999,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   }
 }
 
-/* â”€â”€â”€ Forms / Cards Mobile Spacing â”€â”€â”€ */
+/* --- Forms / Cards Mobile Spacing --- */
 @media (max-width: 600px) {
   .card { padding: 1.5rem 1.25rem !important; }
   .section { padding: 2.5rem 1rem !important; } /* Added explicit side padding to sections for ultra-small screens */
