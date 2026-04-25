@@ -13,14 +13,20 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export default async function SkinPage() {
-  // Fetch skin services dynamically from Sanity
-  const query = `*[_type == "service" && category->slug.current == "skin"] | order(order asc) {
-    name,
-    shortDescription,
-    "slug": slug.current,
-    "image": heroImage.asset->url
+  // Fetch skin category data and services dynamically from Sanity
+  const query = `{
+    "category": *[_type == "category" && slug.current == "skin"][0] {
+      ...,
+      "heroImage": heroImage.asset->url
+    },
+    "services": *[_type == "service" && category->slug.current == "skin"] | order(order asc) {
+      name,
+      shortDescription,
+      "slug": slug.current,
+      "image": heroImage.asset->url
+    }
   }`;
-  const servicesData = await client.fetch(query);
+  const { category, services: servicesData } = await client.fetch(query);
 
   // Fallback list of treatments to ensure the page is never empty
   const FALLBACK_SKIN = [
@@ -34,14 +40,14 @@ export default async function SkinPage() {
 
   return (
     <>
-      {/* 1. HERO SECTION */}
+      {/* 1. HERO SECTION (CMS Managed) */}
       <ReplicaHero 
-        titleTeal1="All Skin"
+        titleTeal1={category?.heroHeadline || "All Skin"}
         titleTeal2=""
         titleOrange1="Treatments"
         titleOrange2=""
-        subtext=""
-        imageSrc="/images/All Skin Treatments.png"
+        subtext={category?.heroSubtext || ""}
+        imageSrc={category?.heroImage || "/images/All Skin Treatments.png"}
         leadFormTitle="Book Skin Analysis"
       />
 
@@ -49,7 +55,7 @@ export default async function SkinPage() {
       <section className="section" id="treatments">
         <div className="container">
           <h2 className="section-title text-center">Skin <span className="text-accent">Aesthetics</span></h2>
-          <p className="section-subtitle text-center">Comprehensive clinical solutions for every skin concern.</p>
+          <p className="section-subtitle text-center">{category?.description || "Comprehensive clinical solutions for every skin concern."}</p>
           
           <div className="grid grid-2" style={{ marginTop: '3rem', maxWidth: '1000px', margin: '3rem auto 0' }}>
             {services.map((s: any) => (
@@ -66,29 +72,57 @@ export default async function SkinPage() {
         </div>
       </section>
 
+      {/* WHY OUR SKIN CARE (CMS Managed) */}
       <section className="section bg-surface">
         <div className="container">
-          <h2 className="section-title text-center">Why Our <span className="text-accent">Skin Care?</span></h2>
-          <div className="grid grid-3 mobile-grid-1" style={{ marginTop: '3rem' }}>
-            {[
-              { title: 'Advanced Technology', desc: 'We use the world’s most advanced lasers and clinical equipment.' },
-              { title: 'Personalized Plans', desc: 'No two skins are the same. We tailor every treatment to your skin type.' },
-              { title: 'Safe & Clinical', desc: 'Every procedure is performed in a 100% sterile environment.' },
-            ].map((p) => (
-              <div key={p.title} className="card text-center" style={{ padding: '2.5rem' }}>
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: 'var(--color-primary)' }}>{p.title}</h3>
-                <p className="text-muted">{p.desc}</p>
-              </div>
-            ))}
+          <h2 className="section-title text-center" style={{ marginBottom: '3rem' }}>{category?.trustHeading || <>Why Our <span className="text-accent">Skin Care?</span></>}</h2>
+          <div className="grid grid-3 mobile-grid-1">
+            {(category?.trustItems && category.trustItems.length > 0) ? (
+              category.trustItems.map((p: any, i: number) => (
+                <div key={i} className="card text-center" style={{ padding: '2.5rem' }}>
+                  <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: 'var(--color-primary)' }}>{p.title}</h3>
+                  <p className="text-muted">{p.desc}</p>
+                </div>
+              ))
+            ) : (
+              [
+                { title: 'Advanced Technology', desc: 'We use the world’s most advanced lasers and clinical equipment.' },
+                { title: 'Personalized Plans', desc: 'No two skins are the same. We tailor every treatment to your skin type.' },
+                { title: 'Safe & Clinical', desc: 'Every procedure is performed in a 100% sterile environment.' },
+              ].map((p, i) => (
+                <div key={i} className="card text-center" style={{ padding: '2.5rem' }}>
+                  <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: 'var(--color-primary)' }}>{p.title}</h3>
+                  <p className="text-muted">{p.desc}</p>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </section>
 
+      {/* FAQ SECTION (CMS Managed) */}
+      {category?.faqItems && category.faqItems.length > 0 && (
+        <section className="section bg-white">
+          <div className="container" style={{ maxWidth: '800px' }}>
+            <h2 className="section-title text-center">{category?.faqHeading || "Frequently Asked Questions"}</h2>
+            <div style={{ marginTop: '3rem' }}>
+              {category.faqItems.map((faq: any, i: number) => (
+                <details key={i} style={{ marginBottom: '1rem', border: '1px solid #eee', borderRadius: '8px', padding: '1rem' }}>
+                  <summary style={{ fontWeight: '700', cursor: 'pointer', color: 'var(--color-primary)' }}>{faq.question}</summary>
+                  <p style={{ marginTop: '1rem', color: '#555', lineHeight: 1.6 }}>{faq.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* FINAL CTA (CMS Managed) */}
       <section className="section bg-primary text-center">
         <div className="container">
-          <h3 style={{ color: 'white', fontSize: '2.5rem', marginBottom: '1.5rem' }}>Ready for Flawless Skin?</h3>
-          <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.25rem', marginBottom: '2.5rem' }}>Book your clinical analysis with our expert dermatologists today.</p>
-          <Link href="/contact-us" className="btn" style={{ backgroundColor: 'white', color: 'var(--color-primary)', fontWeight: '700' }}>Schedule Appointment</Link>
+          <h3 style={{ color: 'white', fontSize: '2.5rem', marginBottom: '1.5rem' }}>{category?.finalCtaHeading || "Ready for Flawless Skin?"}</h3>
+          <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.25rem', marginBottom: '2.5rem' }}>{category?.finalCtaSubtext || "Book your clinical analysis with our expert dermatologists today."}</p>
+          <Link href="/contact-us" className="btn" style={{ backgroundColor: 'white', color: 'var(--color-primary)', fontWeight: '700' }}>{category?.finalCtaBtn || "Schedule Appointment"}</Link>
         </div>
       </section>
     </>

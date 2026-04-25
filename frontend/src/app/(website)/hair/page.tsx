@@ -13,14 +13,20 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export default async function HairPage() {
-  // Fetch hair services dynamically from Sanity
-  const query = `*[_type == "service" && category->slug.current == "hair"] | order(order asc) {
-    name,
-    shortDescription,
-    "slug": slug.current,
-    "image": heroImage.asset->url
+  // Fetch hair category data and services dynamically from Sanity
+  const query = `{
+    "category": *[_type == "category" && slug.current == "hair"][0] {
+      ...,
+      "heroImage": heroImage.asset->url
+    },
+    "services": *[_type == "service" && category->slug.current == "hair"] | order(order asc) {
+      name,
+      shortDescription,
+      "slug": slug.current,
+      "image": heroImage.asset->url
+    }
   }`;
-  const servicesData = await client.fetch(query);
+  const { category, services: servicesData } = await client.fetch(query);
 
   // Fallback list of treatments
   const FALLBACK_HAIR = [
@@ -34,19 +40,19 @@ export default async function HairPage() {
   return (
     <>
       <ReplicaHero 
-        titleTeal1="All Hair"
+        titleTeal1={category?.heroHeadline || "All Hair"}
         titleTeal2=""
         titleOrange1="Treatments"
         titleOrange2=""
-        subtext=""
-        imageSrc="/images/All Hair Treatments.png"
+        subtext={category?.heroSubtext || ""}
+        imageSrc={category?.heroImage || "/images/All Hair Treatments.png"}
         leadFormTitle="Book Hair Analysis"
       />
 
       <section className="section" id="treatments">
         <div className="container">
           <h2 className="section-title text-center">Hair <span className="text-accent">Solutions</span></h2>
-          <p className="section-subtitle text-center">Clinically proven restoration for men and women.</p>
+          <p className="section-subtitle text-center">{category?.description || "Clinically proven restoration for men and women."}</p>
           
           <div className="grid grid-2" style={{ marginTop: '3rem', maxWidth: '1000px', margin: '3rem auto 0' }}>
             {services.map((s: any) => (
@@ -65,23 +71,49 @@ export default async function HairPage() {
 
       <section className="section bg-surface text-center">
         <div className="container">
-          <h2 className="section-title">Common Hair <span className="text-accent">Concerns</span></h2>
+          <h2 className="section-title">{category?.trustHeading || <>Common Hair <span className="text-accent">Concerns</span></>}</h2>
           <div className="grid grid-4 mobile-grid-2" style={{ marginTop: '3rem' }}>
-            {['Pattern Balding', 'Thinning Crown', 'Receding Hairline', 'Excessive Shedding'].map(item => (
-              <div key={item} className="card" style={{ padding: '1.5rem' }}>
-                <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>✓</div>
-                <h4 style={{ margin: 0 }}>{item}</h4>
-              </div>
-            ))}
+            {(category?.trustItems && category.trustItems.length > 0) ? (
+              category.trustItems.map((p: any, i: number) => (
+                <div key={i} className="card" style={{ padding: '1.5rem' }}>
+                  <h4 style={{ color: 'var(--color-primary)', marginBottom: '0.5rem' }}>{p.title}</h4>
+                  <p style={{ fontSize: '0.9rem', color: '#666' }}>{p.desc}</p>
+                </div>
+              ))
+            ) : (
+              ['Pattern Balding', 'Thinning Crown', 'Receding Hairline', 'Excessive Shedding'].map(item => (
+                <div key={item} className="card" style={{ padding: '1.5rem' }}>
+                  <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>✓</div>
+                  <h4 style={{ margin: 0 }}>{item}</h4>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </section>
 
+      {/* FAQ SECTION (CMS Managed) */}
+      {category?.faqItems && category.faqItems.length > 0 && (
+        <section className="section bg-white">
+          <div className="container" style={{ maxWidth: '800px' }}>
+            <h2 className="section-title text-center">{category?.faqHeading || "Frequently Asked Questions"}</h2>
+            <div style={{ marginTop: '3rem' }}>
+              {category.faqItems.map((faq: any, i: number) => (
+                <details key={i} style={{ marginBottom: '1rem', border: '1px solid #eee', borderRadius: '8px', padding: '1rem', textAlign: 'left' }}>
+                  <summary style={{ fontWeight: '700', cursor: 'pointer', color: 'var(--color-primary)' }}>{faq.question}</summary>
+                  <p style={{ marginTop: '1rem', color: '#555', lineHeight: 1.6 }}>{faq.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="section bg-primary text-center">
         <div className="container">
-          <h3 style={{ color: 'white', fontSize: '2.5rem', marginBottom: '1.5rem' }}>See the Difference</h3>
-          <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.25rem', marginBottom: '2rem' }}>Every hair journey starts with a deep clinical analysis.</p>
-          <Link href="/contact-us" className="btn" style={{ backgroundColor: 'white', color: 'var(--color-primary)', fontWeight: '700' }}>Schedule Analysis</Link>
+          <h3 style={{ color: 'white', fontSize: '2.5rem', marginBottom: '1.5rem' }}>{category?.finalCtaHeading || "See the Difference"}</h3>
+          <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.25rem', marginBottom: '2.5rem' }}>{category?.finalCtaSubtext || "Every hair journey starts with a deep clinical analysis."}</p>
+          <Link href="/contact-us" className="btn" style={{ backgroundColor: 'white', color: 'var(--color-primary)', fontWeight: '700' }}>{category?.finalCtaBtn || "Schedule Analysis"}</Link>
         </div>
       </section>
     </>

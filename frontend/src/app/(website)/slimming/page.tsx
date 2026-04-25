@@ -13,14 +13,20 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export default async function SlimmingPage() {
-  // Fetch slimming services dynamically from Sanity
-  const query = `*[_type == "service" && category->slug.current == "slimming"] | order(order asc) {
-    name,
-    shortDescription,
-    "slug": slug.current,
-    "image": heroImage.asset->url
+  // Fetch slimming category data and services dynamically from Sanity
+  const query = `{
+    "category": *[_type == "category" && slug.current == "slimming"][0] {
+      ...,
+      "heroImage": heroImage.asset->url
+    },
+    "services": *[_type == "service" && category->slug.current == "slimming"] | order(order asc) {
+      name,
+      shortDescription,
+      "slug": slug.current,
+      "image": heroImage.asset->url
+    }
   }`;
-  const servicesData = await client.fetch(query);
+  const { category, services: servicesData } = await client.fetch(query);
 
   // Fallback list of treatments
   const FALLBACK_SLIMMING = [
@@ -34,19 +40,19 @@ export default async function SlimmingPage() {
   return (
     <>
       <ReplicaHero 
-        titleTeal1="All Slimming"
+        titleTeal1={category?.heroHeadline || "All Slimming"}
         titleTeal2=""
         titleOrange1="Treatments"
         titleOrange2=""
-        subtext=""
-        imageSrc="/images/neofatbury-slimming-hero.png"
+        subtext={category?.heroSubtext || ""}
+        imageSrc={category?.heroImage || "/images/neofatbury-slimming-hero.png"}
         leadFormTitle="Book Body Analysis"
       />
 
       <section className="section" id="treatments">
         <div className="container">
           <h2 className="section-title text-center">Body & <span className="text-accent">Slimming</span></h2>
-          <p className="section-subtitle text-center">Targeted fat reduction and comprehensive inch-loss programs.</p>
+          <p className="section-subtitle text-center">{category?.description || "Targeted fat reduction and comprehensive inch-loss programs."}</p>
           
           <div className="grid grid-2" style={{ marginTop: '3rem', maxWidth: '1000px', margin: '3rem auto 0' }}>
             {services.map((s: any) => (
@@ -65,27 +71,53 @@ export default async function SlimmingPage() {
 
       <section className="section bg-surface text-center">
         <div className="container">
-          <h2 className="section-title">Why NeoFatbury <span className="text-accent">Slimming?</span></h2>
+          <h2 className="section-title">{category?.trustHeading || <>Why NeoFatbury <span className="text-accent">Slimming?</span></>}</h2>
           <div className="grid grid-3 mobile-grid-1" style={{ marginTop: '3rem' }}>
-             {[
-               { title: 'US-FDA Approved', desc: 'We only use clinically validated technologies like CoolSculpting.' },
-               { title: 'Medical Supervision', desc: 'All weight loss plans are designed by certified clinical nutritionists.' },
-               { title: 'Sustainable Results', desc: 'Focus on healthy metabolism for results that last long-term.' },
-             ].map(p => (
-               <div key={p.title} className="card" style={{ padding: '2.5rem' }}>
-                  <h4 style={{ color: 'var(--color-primary)', fontSize: '1.2rem', marginBottom: '0.75rem' }}>{p.title}</h4>
-                  <p className="text-muted" style={{ fontSize: '0.95rem' }}>{p.desc}</p>
-               </div>
-             ))}
+             {(category?.trustItems && category.trustItems.length > 0) ? (
+               category.trustItems.map((p: any, i: number) => (
+                 <div key={i} className="card" style={{ padding: '2.5rem' }}>
+                    <h4 style={{ color: 'var(--color-primary)', fontSize: '1.2rem', marginBottom: '0.75rem' }}>{p.title}</h4>
+                    <p className="text-muted" style={{ fontSize: '0.95rem' }}>{p.desc}</p>
+                 </div>
+               ))
+             ) : (
+               [
+                 { title: 'US-FDA Approved', desc: 'We only use clinically validated technologies like CoolSculpting.' },
+                 { title: 'Medical Supervision', desc: 'All weight loss plans are designed by certified clinical nutritionists.' },
+                 { title: 'Sustainable Results', desc: 'Focus on healthy metabolism for results that last long-term.' },
+               ].map((p, i) => (
+                 <div key={i} className="card" style={{ padding: '2.5rem' }}>
+                    <h4 style={{ color: 'var(--color-primary)', fontSize: '1.2rem', marginBottom: '0.75rem' }}>{p.title}</h4>
+                    <p className="text-muted" style={{ fontSize: '0.95rem' }}>{p.desc}</p>
+                 </div>
+               ))
+             )}
           </div>
         </div>
       </section>
 
+      {/* FAQ SECTION (CMS Managed) */}
+      {category?.faqItems && category.faqItems.length > 0 && (
+        <section className="section bg-white">
+          <div className="container" style={{ maxWidth: '800px' }}>
+            <h2 className="section-title text-center">{category?.faqHeading || "Frequently Asked Questions"}</h2>
+            <div style={{ marginTop: '3rem' }}>
+              {category.faqItems.map((faq: any, i: number) => (
+                <details key={i} style={{ marginBottom: '1rem', border: '1px solid #eee', borderRadius: '8px', padding: '1rem', textAlign: 'left' }}>
+                  <summary style={{ fontWeight: '700', cursor: 'pointer', color: 'var(--color-primary)' }}>{faq.question}</summary>
+                  <p style={{ marginTop: '1rem', color: '#555', lineHeight: 1.6 }}>{faq.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="section bg-primary text-center">
         <div className="container">
-          <h3 style={{ color: 'white', fontSize: '2.5rem', marginBottom: '1.5rem' }}>Start Your Body Transformation</h3>
-          <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.25rem', marginBottom: '2.5rem' }}>Reach your weight goals with expert medical guidance.</p>
-          <Link href="/contact-us" className="btn" style={{ backgroundColor: 'white', color: 'var(--color-primary)', fontWeight: '700' }}>Book Body Analysis</Link>
+          <h3 style={{ color: 'white', fontSize: '2.5rem', marginBottom: '1.5rem' }}>{category?.finalCtaHeading || "Start Your Body Transformation"}</h3>
+          <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.25rem', marginBottom: '2.5rem' }}>{category?.finalCtaSubtext || "Reach your weight goals with expert medical guidance."}</p>
+          <Link href="/contact-us" className="btn" style={{ backgroundColor: 'white', color: 'var(--color-primary)', fontWeight: '700' }}>{category?.finalCtaBtn || "Book Body Analysis"}</Link>
         </div>
       </section>
     </>
