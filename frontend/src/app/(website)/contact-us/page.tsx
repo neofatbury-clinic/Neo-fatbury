@@ -24,7 +24,7 @@ export default async function ContactUs() {
   return (
     <>
       {/* 1. PREMIUM CONTACT HERO BANNER (Full-width Image) */}
-      <section className="section" style={{ 
+      <section className="contact-hero section" style={{ 
         position: 'relative', 
         height: '400px', 
         display: 'flex', 
@@ -38,10 +38,11 @@ export default async function ContactUs() {
            src="/contact_hero_clinical_interior_1777087729906.png" 
            alt="Contact Hero" 
            fill 
+           className="contact-hero-img"
            style={{ objectFit: 'cover', zIndex: 1 }} 
            priority
          />
-         <div style={{ 
+         <div className="contact-hero-overlay" style={{ 
            position: 'absolute', 
            inset: 0, 
            background: 'linear-gradient(to bottom, rgba(0,77,79,0.7), rgba(0,77,79,0.4))', 
@@ -50,7 +51,7 @@ export default async function ContactUs() {
          
          <div className="container" style={{ position: 'relative', zIndex: 10 }}>
             <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', color: '#fff', fontWeight: '900', marginBottom: '1rem', textShadow: '0 2px 10px rgba(0,0,0,0.3)' }}>{page?.title || 'Contact NeoFatbury'}</h1>
-            <p style={{ fontSize: '1.2rem', color: 'rgba(255,255,255,0.9)', maxWidth: '700px', margin: '0 auto', fontWeight: '600' }}>{page?.subtitle || 'Experience Elite Clinical Care'}</p>
+            <p style={{ fontSize: '1.2rem', color: 'rgba(255,255,255,0.9)', maxWidth: '700px', margin: '0 auto', fontWeight: '600', padding: '0 1rem' }}>{page?.subtitle || 'Experience Elite Clinical Care'}</p>
          </div>
       </section>
 
