@@ -266,9 +266,23 @@ export const service = defineType({
         defineField({ name: 'metaDescription', title: 'Meta Description', type: 'text', rows: 3 }),
         defineField({ name: 'canonicalUrl',    title: 'Canonical URL',    type: 'url' }),
         defineField({ name: 'ogImage',         title: 'Social Share Image', type: 'image' }),
-        defineField({ name: 'customSchema',    title: 'Custom JSON-LD Schema', type: 'text', rows: 10, description: 'Paste custom JSON-LD script here (without <script> tags)' }),
       ],
     }),
+
+    // ── ADVANCED MARKETING & SCRIPTS ───────────────────────────────────────────
+    defineField({ 
+      name: 'customSchema', 
+      title: '🔧 Advanced: Custom JSON-LD Schema', 
+      type: 'text', 
+      rows: 10, 
+      group: 'seo',
+      description: '💡 Paste your custom JSON-LD script here (without <script> tags). This will be injected into the page head.' 
+    }),
+
+    // ── LEGACY FIELDS (To clear 'Unknown field' warnings) ──────────────────────
+    defineField({ name: 'metaTitle', type: 'string', hidden: true }),
+    defineField({ name: 'metaDescription', type: 'text', hidden: true }),
+    defineField({ name: 'metaKeywords', type: 'string', hidden: true }),
 
     // ── AD SCHEMA ─────────────────────────────────────────────────────────────
     defineField({
