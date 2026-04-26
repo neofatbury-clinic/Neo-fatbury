@@ -77,7 +77,7 @@ export default async function InchLoss() {
       <section className="section">
         <div className="container grid grid-2 items-center gap-6">
           <div style={{ position: 'relative', height: '500px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 50px rgba(0,0,0,0.1)' }}>
-            <Image src={(d.whatIsImage as string) || "/images/neofatbury-body-standard.png"} alt="Body Contouring System" fill style={{ objectFit: 'cover' }} />
+            <Image src={(d.whatIsImage as string) || "/images/neofatbury-slimming-standard.png"} alt="Body Contouring System" fill style={{ objectFit: 'cover' }} />
             <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', background: 'white', padding: '0.75rem 1.25rem', borderRadius: '10px', fontSize: '0.85rem', fontWeight: '800', color: 'var(--color-primary)' }}>{wiBadge}</div>
           </div>
           <div className="split-text-block">
@@ -106,7 +106,7 @@ export default async function InchLoss() {
           <h2 className="section-title">{baHead} <span className="text-accent">{baAccent}</span></h2>
           <p className="section-subtitle">{baSub}</p>
           <div style={{ maxWidth: '480px', margin: '3.5rem auto', position: 'relative', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 15px 40px rgba(0,0,0,0.1)' }}>
-            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/6' }}><Image src={(d.baImage as string) || "/images/neofatbury-inch-loss-ba.png"} alt="Inch Loss Results" fill style={{ objectFit: 'cover' }} /></div>
+            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/6' }}><Image src={(d.baImage as string) || "/images/neofatbury-body-ba.png"} alt="Inch Loss Results" fill style={{ objectFit: 'cover' }} /></div>
             <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)', padding: '1.5rem', display: 'flex', justifyContent: 'center', gap: '20vw' }}>
               <span style={{ color:'white', fontWeight:'900', letterSpacing:'3px', fontSize:'0.9rem' }}>BEFORE</span>
               <span style={{ color:'white', fontWeight:'900', letterSpacing:'3px', fontSize:'0.9rem' }}>AFTER</span>
