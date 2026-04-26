@@ -57,14 +57,20 @@ export default function Footer({ settings }: { settings?: any }) {
 
           {/* Column 2: Skin Care Solutions */}
           <div className="footer-col">
-            <h4 style={colTitleStyle}>Skin Care Solutions</h4>
+            <h4 style={colTitleStyle}>Solutions</h4>
             <ul style={linkListStyle}>
-              <li><Link href="/skin/" style={linkStyle}>Advanced Skin Clinic in Hyderabad</Link></li>
-              <li><Link href="/skin/laser-hair-reduction/" style={linkStyle}>Laser Hair Reduction for Men & Women</Link></li>
-              <li><Link href="/skin/acne-scar-treatment/" style={linkStyle}>Acne Scar & Pimple Treatment</Link></li>
-              <li><Link href="/skin/skin-brightening/" style={linkStyle}>Skin Brightening & Pigmentation</Link></li>
-              <li><Link href="/skin/" style={linkStyle}>Anti-Aging & Rejuvenation</Link></li>
-              <li><Link href="/skin/" style={linkStyle}>Chemical Peels & Hydra-Facials</Link></li>
+              {settings?.footerServices && settings.footerServices.length > 0 ? (
+                settings.footerServices.map((item: any, i: number) => (
+                  <li key={i}><Link href={item.url || '#'} style={linkStyle}>{item.label}</Link></li>
+                ))
+              ) : (
+                <>
+                  <li><Link href="/skin/" style={linkStyle}>Advanced Skin Clinic in Hyderabad</Link></li>
+                  <li><Link href="/skin/laser-hair-reduction/" style={linkStyle}>Laser Hair Reduction</Link></li>
+                  <li><Link href="/skin/acne-scar-treatment/" style={linkStyle}>Acne Scar Treatment</Link></li>
+                  <li><Link href="/skin/skin-brightening/" style={linkStyle}>Skin Brightening</Link></li>
+                </>
+              )}
             </ul>
           </div>
 
@@ -109,12 +115,20 @@ export default function Footer({ settings }: { settings?: any }) {
           <div className="footer-col">
             <h4 style={colTitleStyle}>Important Links</h4>
             <ul style={linkListStyle}>
-              <li><Link href="/about-us" style={linkStyle}>About Our Experts</Link></li>
-              <li><Link href="/our-doctors" style={linkStyle}>Our Specialist Doctors</Link></li>
-              <li><Link href="/results" style={linkStyle}>Success Stories (Gallery)</Link></li>
-              <li><Link href="/blog" style={linkStyle}>Latest Wellness Blog</Link></li>
-              <li><Link href="/privacy-policy" style={linkStyle}>Privacy Policy</Link></li>
-              <li><Link href="/terms-conditions" style={linkStyle}>Terms & Conditions</Link></li>
+              {settings?.footerMenu && settings.footerMenu.length > 0 ? (
+                settings.footerMenu.map((item: any, i: number) => (
+                  <li key={i}><Link href={item.url || '#'} style={linkStyle}>{item.label}</Link></li>
+                ))
+              ) : (
+                <>
+                  <li><Link href="/about-us" style={linkStyle}>About Our Experts</Link></li>
+                  <li><Link href="/our-doctors" style={linkStyle}>Our Specialist Doctors</Link></li>
+                  <li><Link href="/results" style={linkStyle}>Success Stories (Gallery)</Link></li>
+                  <li><Link href="/blog" style={linkStyle}>Latest Wellness Blog</Link></li>
+                  <li><Link href="/privacy-policy" style={linkStyle}>Privacy Policy</Link></li>
+                  <li><Link href="/terms-conditions" style={linkStyle}>Terms & Conditions</Link></li>
+                </>
+              )}
             </ul>
           </div>
         </div>

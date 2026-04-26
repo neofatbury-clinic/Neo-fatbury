@@ -6,6 +6,8 @@ export default async function FooterWrapper() {
   const query = `*[_type == "siteSettings"][0] {
     "logo": logo.asset->url,
     clinicLocations,
+    footerMenu,
+    footerServices,
     footerDisclaimer,
     footerCopyright,
     contact {

@@ -138,40 +138,6 @@ export const siteSettings = defineType({
         defineField({ name: 'email', title: 'Email Address', type: 'string', description: '💡 Contact email shown on the website' }),
       ],
     }),
-    defineField({
-      name: 'locations',
-      title: 'Clinic Branches',
-      type: 'array',
-      description: '💡 Add all your clinic branches here. Each branch gets its own location page.',
-      group: 'contact',
-      of: [{
-        type: 'object',
-        name: 'location',
-        fields: [
-          defineField({ name: 'name', title: 'Branch Name', type: 'string', description: '💡 Example: "Kukatpally Clinic"' }),
-          defineField({ name: 'address', title: 'Full Address', type: 'text', rows: 3, description: '💡 Complete postal address for this branch. Example: "City plaza Building, 2nd floor, beside fast rack showroom. Himyathnagar circle, Hyderabad"' }),
-          defineField({ name: 'phone', title: 'Branch Phone', type: 'string', description: '💡 Phone number specific to this branch' }),
-          defineField({ name: 'googleMapsUrl', title: 'Google Maps Link', type: 'url', description: '💡 Go to Google Maps → Search your clinic → Click "Share" → Copy the link and paste here' }),
-          defineField({ name: 'photo', title: 'Clinic Photo', type: 'image', options: { hotspot: true }, description: '💡 A photo of the clinic exterior or reception' }),
-          defineField({ name: 'heroImage', title: 'Location Page Background', type: 'image', options: { hotspot: true }, description: '💡 Large background image for the location page hero section' }),
-          defineField({
-            name: 'openingHours',
-            title: 'Opening Hours',
-            type: 'array',
-            description: '💡 Add each day with its timings',
-            of: [{
-              type: 'object',
-              fields: [
-                defineField({ name: 'day', title: 'Day', type: 'string', description: '💡 Example: "Monday - Saturday"' }),
-                defineField({ name: 'hours', title: 'Hours', type: 'string', description: '💡 Example: "8:00 AM - 10:00 PM"' }),
-              ],
-              preview: { select: { title: 'day', subtitle: 'hours' } },
-            }],
-          }),
-        ],
-        preview: { select: { title: 'name' } },
-      }],
-    }),
 
     // ── NAVIGATION ────────────────────────────────
     defineField({
@@ -217,9 +183,9 @@ export const siteSettings = defineType({
     }),
     defineField({
       name: 'clinicLocations',
-      title: 'Clinic Locations',
+      title: 'Clinic Locations (Footer & Contact)',
       type: 'array',
-      group: 'navigation',
+      group: 'contact',
       description: '💡 Add your clinic addresses and Google Maps links here. They will show in the Footer and Contact page.',
       of: [{
         type: 'object',
