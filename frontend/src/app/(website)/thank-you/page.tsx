@@ -13,12 +13,9 @@ export default function ThankYouPage() {
             ✓
           </div>
           <h1 className="section-title text-primary" style={{ marginBottom: '1rem' }}>Success!</h1>
-          <p className="text-muted" style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>
+          <p className="text-muted" style={{ fontSize: '1.25rem', marginBottom: '2.5rem' }}>
             Submission Successful – Your consultation request is received.
           </p>
-          <div style={{ padding: '1rem', backgroundColor: '#f0f9f9', borderRadius: '8px', marginBottom: '2rem', fontSize: '0.9rem', color: 'var(--color-primary)' }}>
-            <strong>Note:</strong> This page is used for <strong>Google Ads & Social Media Conversion Tracking</strong>.
-          </div>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
             <Link href="/" className="btn btn-primary">Return to Home</Link>
             <a href="tel:9700641000" className="btn btn-outline">Call Us Now</a>
