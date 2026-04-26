@@ -121,22 +121,22 @@ export default async function ServicePage({ params }: { params: Promise<{ catego
 
       {/* ── PROBLEM SECTION ───────────────────────────── */}
       {service.problemHeading && (
-        <section className="py-20 bg-gray-50 text-center">
-          <div className="max-w-[1100px] mx-auto px-6">
-            <h2 className="text-4xl md:text-5xl font-black text-cyan-950 mb-16">
+        <section className="py-10 md:py-20 bg-gray-50 text-center">
+          <div className="max-w-[1100px] mx-auto px-4 md:px-6">
+            <h2 className="text-2xl md:text-5xl font-black text-cyan-950 mb-8 md:mb-16">
               {service.problemHeading} <span className="text-orange-500">{service.problemAccentText}</span>
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 pr-14 md:pr-0">
               {service.problemCards?.map((item: any, i: number) => (
-                <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                  <div className="text-4xl mb-4">{item.icon}</div>
-                  <h3 className="text-lg font-bold text-cyan-900 mb-2">{item.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                <div key={i} className="bg-white p-4 md:p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex flex-col items-center">
+                  <div className="text-3xl md:text-4xl mb-2 md:mb-4">{item.icon}</div>
+                  <h3 className="text-sm md:text-lg font-bold text-cyan-900 mb-1 md:mb-2 leading-snug">{item.title}</h3>
+                  <p className="text-xs md:text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               ))}
             </div>
             {service.problemBottomText && (
-              <p className="text-xl md:text-2xl mt-16 font-bold text-cyan-900">
+              <p className="text-lg md:text-2xl mt-8 md:mt-16 font-bold text-cyan-900">
                 {service.problemBottomText} <span className="text-orange-500">{service.problemBottomAccent}</span>
               </p>
             )}

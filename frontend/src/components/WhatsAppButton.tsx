@@ -30,10 +30,10 @@ export default function WhatsAppButton({ phoneNumber }: { phoneNumber: string })
 
 const widgetStyle: React.CSSProperties = {
   position: 'fixed',
-  bottom: '2rem',
-  right: '2rem',
-  width: '60px',
-  height: '60px',
+  bottom: '1.25rem',
+  right: '1rem',
+  width: '48px',
+  height: '48px',
   backgroundColor: '#25D366',
   color: 'white',
   borderRadius: '50%',
