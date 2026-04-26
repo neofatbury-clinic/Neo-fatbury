@@ -169,14 +169,14 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 
 .service-hero-grid {
   display: grid;
-  grid-template-columns: 1.2fr 1.1fr 1fr; /* Increased left space for subject, pushed text right */
+  grid-template-columns: 1.1fr 1fr 1fr; /* Slightly more balanced ratios */
   align-items: center;
   gap: 0;
   max-width: 1440px;
   margin: 0 auto;
   width: 100%;
   height: 100%;
-  padding: 0 4rem 0 1rem;
+  padding: 0 5rem 0 3rem; /* Increased padding to create "zoom out" effect */
   box-sizing: border-box;
 }
 
@@ -274,12 +274,12 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 }
 
 .service-hero-text h1 {
-  font-size: clamp(2.5rem, 6vw, 4.2rem);
+  font-size: clamp(2.2rem, 5.5vw, 3.8rem); /* Zoomed out (smaller) */
   font-weight: 900;
   color: #1a2b3c;
-  line-height: 1.05;
-  margin-bottom: 2rem;
-  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
 }
 
 .service-hero-text h1 .accent {
@@ -293,12 +293,12 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 }
 
 .service-hero-text p {
-  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-size: clamp(1rem, 1.8vw, 1.2rem); /* Zoomed out (smaller) */
   color: #5a6b7c;
   font-weight: 500;
   line-height: 1.6;
-  margin-bottom: 3rem;
-  max-width: 600px;
+  margin-bottom: 2.5rem;
+  max-width: 550px;
 }
 
 .hero-trust-badges {
