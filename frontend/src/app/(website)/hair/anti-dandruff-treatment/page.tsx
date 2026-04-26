@@ -28,13 +28,15 @@ export default async function AntiDandruffTreatment() {
           <h2 className="section-title" style={{ fontSize: '2.4rem' }}>Struggling with <span className="text-accent">Persistent Dandruff?</span></h2>
           <div className="grid grid-4" style={{ marginTop: '3rem', gap: '1.5rem' }}>
             {[
-              { title: "Flaking Scalp", desc: "Visible white flakes on scalp and clothes causing embarrassment.", icon: "❄️" },
-              { title: "Itching", desc: "Constant irritating itch that disrupts your daily comfort.", icon: "😩" },
-              { title: "Scalp Redness", desc: "Inflammation and redness causing discomfort on the scalp.", icon: "🔴" },
-              { title: "Hair Fall", desc: "Dandruff weakening the scalp leading to increased hair shedding.", icon: "📉" }
+              { title: "Flaking Scalp", desc: "Visible white flakes on scalp and clothes causing embarrassment.", icon: "/problem_dandruff_flaking_1777208241761.png" },
+              { title: "Itching", desc: "Constant irritating itch that disrupts your daily comfort.", icon: "/problem_itching_scalp_1777208262245.png" },
+              { title: "Scalp Redness", desc: "Inflammation and redness causing discomfort on the scalp.", icon: "/problem_redness_scalp_1777208283757.png" },
+              { title: "Hair Fall", desc: "Dandruff weakening the scalp leading to increased hair shedding.", icon: "/problem_hair_fall_1777208307723.png" }
             ].map(item => (
               <div key={item.title} className="card-sleek">
-                <div style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>{item.icon}</div>
+                <div style={{ position: 'relative', width: '80px', height: '80px', margin: '0 auto 1.5rem', borderRadius: '50%', overflow: 'hidden', border: '2px solid #f0f8f8' }}>
+                  <Image src={item.icon} alt={item.title} fill style={{ objectFit: 'cover' }} />
+                </div>
                 <h3 style={{ fontSize: '1.15rem', marginBottom: '1rem', color: 'var(--color-primary)', fontWeight: '800' }}>{item.title}</h3>
                 <p style={{ fontSize: '0.9rem', color: '#666', lineHeight: '1.7' }}>{item.desc}</p>
               </div>

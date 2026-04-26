@@ -8,9 +8,9 @@ export default function Footer({ settings }: { settings?: any }) {
   const branch1 = settings?.branches?.[0];
   const branch2 = settings?.branches?.[1];
   const logoUrl = settings?.logo || "/images/neofatbury-logo-web.png";
-  const phone = settings?.contact?.phone || '9700641000';
+  const phone = settings?.contact?.phone || '7729955577';
   const email = settings?.contact?.email || 'info@neofatbury.co.in';
-  let whatsapp = settings?.contact?.whatsapp || '919700641000';
+  let whatsapp = settings?.contact?.whatsapp || '917729955577';
   if (whatsapp.length === 10 && /^\d+$/.test(whatsapp)) {
     whatsapp = `91${whatsapp}`;
   }
@@ -100,7 +100,7 @@ export default function Footer({ settings }: { settings?: any }) {
                 {loc.gbpUrl && (
                   <a href={loc.gbpUrl} target="_blank" rel="noreferrer" style={mapLink}>Google Profile</a>
                 )}
-                {loc.phone ? (
+                {loc.phone && loc.phone.length > 5 ? (
                   <div style={{ marginTop: '0.35rem' }}>
                     <a href={`tel:${loc.phone}`} style={{ ...mapLink, textDecoration: 'none', fontWeight: '600' }}>📞 {loc.phone}</a>
                   </div>
