@@ -70,35 +70,45 @@ export async function POST(request: NextRequest) {
 
     console.log(`✅ Lead created in Zoho: ${leadId} — ${name} (${phone})`)
 
-    // --- EMAIL NOTIFICATION (RESEND) ---
-    const RESEND_KEY = process.env.RESEND_API_KEY;
-    if (RESEND_KEY) {
+    // --- EMAIL NOTIFICATION (GMAIL SMTP) ---
+    const EMAIL_USER = process.env.EMAIL_USER;
+    const EMAIL_PASS = process.env.EMAIL_PASS; // App Password
+
+    if (EMAIL_USER && EMAIL_PASS) {
       try {
-        const { Resend } = await import('resend');
-        const resend = new Resend(RESEND_KEY);
-        
-        await resend.emails.send({
-          from: 'NeoFatbury Leads <leads@neofatbury.co.in>',
-          to: ['fatburyn@gmail.com'],
+        const nodemailer = await import('nodemailer');
+        const transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            user: EMAIL_USER,
+            pass: EMAIL_PASS,
+          },
+        });
+
+        await transporter.sendMail({
+          from: `"NeoFatbury Leads" <${EMAIL_USER}>`,
+          to: 'fatburyn@gmail.com',
           subject: `New Lead: ${name} (${service})`,
           html: `
-            <h3>New Website Lead</h3>
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Phone:</strong> ${phone}</p>
-            <p><strong>Service:</strong> ${service}</p>
-            <p><strong>Clinic:</strong> ${location}</p>
-            <p><strong>Concerns:</strong> ${concerns?.join(', ') || 'None'}</p>
-            <p><strong>Page:</strong> ${pageUrl}</p>
-            <br/>
-            <p><em>Check Zoho CRM for more details.</em></p>
+            <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px; max-width: 600px;">
+              <h2 style="color: #00acb1; border-bottom: 2px solid #00acb1; padding-bottom: 10px;">New Website Lead</h2>
+              <p><strong>Name:</strong> ${name}</p>
+              <p><strong>Phone:</strong> ${phone}</p>
+              <p><strong>Service:</strong> ${service}</p>
+              <p><strong>Clinic:</strong> ${location}</p>
+              <p><strong>Concerns:</strong> ${concerns?.join(', ') || 'None'}</p>
+              <p><strong>Page:</strong> ${pageUrl}</p>
+              <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
+              <p style="font-size: 0.9rem; color: #666;"><em>This lead has also been synced to Zoho CRM.</em></p>
+            </div>
           `
         });
-        console.log(`📧 Lead email sent to fatburyn@gmail.com`);
+        console.log(`📧 Lead email sent via Gmail to fatburyn@gmail.com`);
       } catch (emailErr) {
-        console.error('❌ Failed to send lead email:', emailErr);
+        console.error('❌ Failed to send lead email via SMTP:', emailErr);
       }
     } else {
-      console.warn('⚠️ RESEND_API_KEY not found. Email notification skipped.');
+      console.warn('⚠️ EMAIL_USER or EMAIL_PASS not found. SMTP notification skipped.');
     }
 
     return NextResponse.json({ success: true, leadId })
