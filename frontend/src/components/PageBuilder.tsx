@@ -62,7 +62,7 @@ const PageBuilder: React.FC<PageBuilderProps> = ({ content }) => {
               <section key={index} className="section bg-primary text-white text-center" style={{ padding: '5rem 0' }}>
                 <div className="container">
                   <h2 style={{ fontSize: '2.5rem', marginBottom: '2rem' }}>{section.text}</h2>
-                  <Link href={section.link || "/contact-us"} className="btn" style={{ backgroundColor: 'white', color: 'var(--color-primary)', scale: '1.2' }}>
+                  <Link href={section.link || "/contact-us"} className="btn" style={{ backgroundColor: 'white', color: 'var(--color-primary)', transform: 'scale(1.2)' }}>
                     {section.buttonText}
                   </Link>
                 </div>

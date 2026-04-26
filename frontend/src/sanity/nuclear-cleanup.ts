@@ -23,7 +23,7 @@ async function nuclear() {
   
   console.log(`🔍 Found ${phantoms.length} phantoms hiding in your Studio folders.`);
 
-  for (const p of phantoms) {
+  for (const p of phantoms as any[]) {
     console.log(`🗑️ Deleting phantom: [${p._id}] Type: ${p._type}`);
     await client.delete(p._id);
   }

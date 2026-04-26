@@ -13,7 +13,7 @@ async function clearBranchPhones() {
   const settings = await client.fetch(`*[_type == "siteSettings"][0]`);
   if (!settings || !settings.clinicLocations) return;
 
-  const updatedLocations = settings.clinicLocations.map(loc => {
+  const updatedLocations = settings.clinicLocations.map((loc: any) => {
     // If it's the old default, remove it to enable fallback
     if (loc.phone === '9700641000') {
       const { phone, ...rest } = loc;
