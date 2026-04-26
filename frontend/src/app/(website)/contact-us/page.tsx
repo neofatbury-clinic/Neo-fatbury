@@ -4,7 +4,7 @@ import ReplicaHero from "@/components/ReplicaHero";
 import Image from "next/image";
 import { client } from '@/sanity/lib/client';
 
-export const revalidate = 60;
+export const revalidate = 0;
 
 async function getContactData() {
   const query = `{
@@ -12,7 +12,13 @@ async function getContactData() {
       ...,
       "heroImage": heroImage.asset->url
     },
-    "settings": *[_type == "siteSettings"][0]
+    "settings": *[_type == "siteSettings"][0] {
+      ...,
+      clinicLocations[]{
+        name, address, phone, mapsUrl, gbpUrl
+      },
+      contact { phone, email, whatsapp }
+    }
   }`;
   return await client.fetch(query);
 }
@@ -20,6 +26,9 @@ async function getContactData() {
 
 export default async function ContactUs() {
   const { page, settings } = await getContactData();
+  const mainPhone = settings?.contact?.phone || '9700641000';
+  const mainEmail = settings?.contact?.email || 'info@neofatbury.co.in';
+  const whatsapp  = settings?.contact?.whatsapp || '919700641000';
   
   return (
     <>
@@ -35,7 +44,7 @@ export default async function ContactUs() {
         textAlign: 'center'
       }}>
          <Image 
-           src="/images/clinic-reception.webp" 
+           src={page?.heroImage || "/images/clinic-reception.webp"} 
            alt="Neo Clinic Reception" 
            fill 
            className="contact-hero-img"
@@ -50,8 +59,8 @@ export default async function ContactUs() {
          }}></div>
          
          <div className="container" style={{ position: 'relative', zIndex: 10 }}>
-            <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', color: '#fff', fontWeight: '900', marginBottom: '1rem', textShadow: '0 2px 10px rgba(0,0,0,0.3)' }}>{page?.title || 'Contact NeoFatbury'}</h1>
-            <p style={{ fontSize: '1.2rem', color: 'rgba(255,255,255,0.9)', maxWidth: '700px', margin: '0 auto', fontWeight: '600', padding: '0 1rem' }}>{page?.subtitle || 'Experience Elite Clinical Care'}</p>
+            <h1 style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)', color: '#fff', fontWeight: '900', marginBottom: '1rem', textShadow: '0 2px 10px rgba(0,0,0,0.3)' }}>{page?.title || 'Contact NeoFatbury'}</h1>
+            <p style={{ fontSize: '1.25rem', color: 'rgba(255,255,255,0.95)', maxWidth: '750px', margin: '0 auto', fontWeight: '600', padding: '0 1rem', lineHeight: '1.6' }}>{page?.subtitle || 'Experience Elite Clinical Care with Our Specialists'}</p>
          </div>
       </section>
 
@@ -70,39 +79,41 @@ export default async function ContactUs() {
           {/* Info Panel */}
           <div style={{ flex: '1 1 350px', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             
-            {/* Clinical Help Section (New) */}
-            <div className="card" style={{ padding: '2.5rem', borderRadius: '24px', border: '1px solid #eef2f2', backgroundColor: '#fcfdfd' }}>
-              <h3 style={{ fontSize: '1.3rem', color: '#00acb1', fontWeight: '900', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Clinical Help</h3>
+            {/* Clinical Help Section */}
+            <div className="card" style={{ padding: '2.5rem', borderRadius: '24px', border: '1px solid #eef2f2', backgroundColor: '#fcfdfd', boxShadow: '0 10px 30px rgba(0,0,0,0.03)' }}>
+              <h3 style={{ fontSize: '1.3rem', color: '#00acb1', fontWeight: '900', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Clinical Support</h3>
               
               <div style={{ marginBottom: '1.5rem' }}>
-                <p style={{ color: '#004d4f', fontWeight: '800', fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: '0.4rem' }}>Business Hours</p>
-                <p style={{ color: '#444', fontSize: '1rem' }}>{page?.businessHours || 'Mon - Sat: 10 AM - 8 PM'}</p>
+                <p style={{ color: '#004d4f', fontWeight: '800', fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: '0.4rem' }}>Primary Booking Number</p>
+                <a href={`tel:${mainPhone}`} style={{ color: '#00acb1', fontWeight: '800', fontSize: '1.3rem', textDecoration: 'none' }}>📞 {mainPhone}</a>
               </div>
 
               <div style={{ marginBottom: '1.5rem' }}>
                 <p style={{ color: '#004d4f', fontWeight: '800', fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: '0.4rem' }}>Email Support</p>
-                <a href={`mailto:${page?.email || 'info@neofatbury.com'}`} style={{ color: '#00acb1', fontWeight: '700', fontSize: '1rem', textDecoration: 'none' }}>{page?.email || 'info@neofatbury.com'}</a>
+                <a href={`mailto:${mainEmail}`} style={{ color: '#444', fontWeight: '700', fontSize: '1rem', textDecoration: 'none' }}>{mainEmail}</a>
               </div>
 
-              {page?.emergencyContact && (
-                <div style={{ marginBottom: '0.5rem' }}>
-                  <p style={{ color: '#d97706', fontWeight: '800', fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: '0.4rem' }}>Emergency/IVR</p>
-                  <p style={{ color: '#444', fontSize: '1rem', fontWeight: '700' }}>{page.emergencyContact}</p>
-                </div>
-              )}
+              <div style={{ marginBottom: '1rem' }}>
+                <p style={{ color: '#004d4f', fontWeight: '800', fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: '0.4rem' }}>Business Hours</p>
+                <p style={{ color: '#444', fontSize: '1rem', fontWeight: '600' }}>{page?.businessHours || 'Mon - Sat: 10 AM - 8 PM'}</p>
+              </div>
             </div>
 
             {/* Branch Details */}
             {settings?.clinicLocations?.map((loc: any, i: number) => (
-              <div key={i} className="card" style={{ padding: '2rem', borderRadius: '24px', border: '1px solid #f0f0f0' }}>
-                <h3 style={{ fontSize: '1.15rem', color: '#00acb1', fontWeight: '800', marginBottom: '0.75rem' }}>{loc.name}</h3>
-                <p style={{ color: '#555', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '1rem' }}>{loc.address}</p>
-                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <div key={i} className="card" style={{ padding: '2rem', borderRadius: '24px', border: '1px solid #f0f0f0', backgroundColor: '#fff' }}>
+                <h3 style={{ fontSize: '1.2rem', color: '#00acb1', fontWeight: '800', marginBottom: '0.75rem' }}>{loc.name}</h3>
+                <p style={{ color: '#555', fontSize: '0.92rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>{loc.address}</p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                   {loc.phone && (
-                    <a href={`tel:${loc.phone}`} style={{ color: '#00acb1', fontWeight: '700', fontSize: '0.9rem', textDecoration: 'none' }}>📞 Call Clinic</a>
+                    <a href={`tel:${loc.phone}`} style={{ color: '#00acb1', fontWeight: '800', fontSize: '1.1rem', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      📞 {loc.phone}
+                    </a>
                   )}
                   {loc.mapsUrl && (
-                    <a href={loc.mapsUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#666', fontWeight: '600', fontSize: '0.9rem', textDecoration: 'none' }}>📍 Directions</a>
+                    <a href={loc.mapsUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#666', fontWeight: '600', fontSize: '0.9rem', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      📍 Get Directions
+                    </a>
                   )}
                 </div>
               </div>
@@ -110,7 +121,7 @@ export default async function ContactUs() {
 
             {/* WhatsApp Integration */}
             <a
-              href={`https://wa.me/${settings?.socialMedia?.whatsapp || '919700641000'}`}
+              href={`https://wa.me/${whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn"
