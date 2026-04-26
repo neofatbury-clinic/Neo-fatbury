@@ -10,13 +10,16 @@ interface HomeClientProps {
 
 // Map of original hardcoded images for each slug as a fallback
 const FALLBACK_IMAGES: Record<string, string> = {
-  'acne-treatment': '/images/neofatbury-cheek-banner.webp',
-  'acne-scar-treatment': '/images/neofatbury-acne-scar-procedure.png',
-  'laser-hair-reduction': '/images/laser-machine-banner.webp',
-  'scar-treatment': '/images/neofatbury-clinical-standard.png',
-  'skin-brightening': '/images/derma-procedure-fixed.webp',
-  'hair-fall-treatment': '/images/neofatbury-hair2-banner.webp',
-  'hair-transplant': '/images/neofatbury-hair-standard.png',
+  'acne-treatment': '/images/Acne & Pimple Treatment.png',
+  'acne-scar-treatment': '/images/Acne & Pimple Treatment.png',
+  'laser-hair-reduction': '/images/Laser Hair Reduction.png',
+  'scar-treatment': '/images/All Skin Treatments.png',
+  'skin-brightening': '/images/Skin Brightening.png',
+  'hair-loss-treatment': '/images/Hair Loss Treatment.png',
+  'hair-fall-treatment': '/images/Hair Loss Treatment.png',
+  'anti-dandruff-treatment': '/images/Anti-Dandruff Treatment.png',
+  'hair-transplant': '/images/Hair Transplantation.png',
+  'hair-transplantation': '/images/Hair Transplantation.png',
   'coolsculpting': '/images/neofatbury-cooling-tech.png',
   'weight-loss': '/images/clinic-reception.webp',
   'inch-loss': '/images/neofatbury-slimming-standard.png'
@@ -63,37 +66,75 @@ export default function HomeClient({ treatments }: HomeClientProps) {
          'Advanced non-surgical body contouring to help you achieve your desired shape.'}
       </p>
 
-      {/* Grid */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '2rem 1.5rem', marginTop: '3rem', padding: '0 1rem' }}>
+      {/* Grid / Slider */}
+      <div className="treatment-slider-container" style={{ 
+        display: 'flex', 
+        overflowX: 'auto', 
+        gap: '1.5rem', 
+        padding: '1rem 1rem 3rem',
+        scrollSnapType: 'x mandatory',
+        scrollbarWidth: 'none', // Hide scrollbar for clean look
+        msOverflowStyle: 'none'
+      }}>
         {currentTreatments.map((item: any, idx: number) => {
           const displayImage = item.image || FALLBACK_IMAGES[item.slug] || '/images/neofatbury-clinical-standard.png';
-          // Fix: Use correct category in URL
           const categorySlug = item.category || tab.toLowerCase();
           return (
             <Link 
               key={idx} 
               href={`/${categorySlug}/${item.slug}`} 
               className="treatment-card-oval"
+              style={{ 
+                flex: '0 0 200px', 
+                scrollSnapAlign: 'start',
+                textAlign: 'center',
+                textDecoration: 'none'
+              }}
             >
-              <div className="oval-container-outer">
-                <div className="oval-image-mask">
+              <div className="oval-container-outer" style={{ aspectRatio: '0.8', height: 'auto' }}>
+                <div className="oval-image-mask" style={{ borderRadius: '24px' }}>
                   <Image 
                     src={displayImage} 
                     alt={item.title} 
                     fill 
                     style={{ objectFit: 'cover' }} 
-                    sizes="(max-width: 768px) 140px, 220px"
+                    sizes="200px"
                   />
                 </div>
-                <div className="oval-arrow">
+                <div className="oval-arrow" style={{ bottom: '-15px' }}>
                   <span style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>→</span>
                 </div>
               </div>
-              <h4 style={{ marginTop: '1.5rem', fontSize: '0.9rem', fontWeight: '700', color: '#1a2b3c', letterSpacing: '0.2px', padding: '0 0.5rem' }}>{item.title}</h4>
+              <h4 style={{ 
+                marginTop: '1.5rem', 
+                fontSize: '0.95rem', 
+                fontWeight: '800', 
+                color: '#00acb1', 
+                letterSpacing: '0.2px' 
+              }}>
+                {item.title}
+              </h4>
             </Link>
           );
         })}
       </div>
+
+      <style jsx>{`
+        .treatment-slider-container::-webkit-scrollbar {
+          display: none;
+        }
+        @media (min-width: 1024px) {
+          .treatment-slider-container {
+            flex-wrap: wrap;
+            justify-content: center;
+            overflow-x: visible;
+            gap: 3rem 2rem;
+          }
+          .treatment-card-oval {
+            flex: 0 0 240px !important;
+          }
+        }
+      `}</style>
     </>
   );
 }
