@@ -88,14 +88,8 @@ export default function Footer({ settings }: { settings?: any }) {
               <div key={i} style={locationBox}>
                 <p style={locationTitle}>{loc.name}</p>
                 <p style={locationAddr}>{loc.address}</p>
-                {loc.mapsUrl && (
-                  <a href={loc.mapsUrl} target="_blank" rel="noreferrer" style={mapLink}>View on Maps</a>
-                )}
                 {loc.gbpUrl && (
-                  <>
-                    <span style={{ color: '#ccc', margin: '0 0.5rem' }}>|</span>
-                    <a href={loc.gbpUrl} target="_blank" rel="noreferrer" style={mapLink}>Google Profile</a>
-                  </>
+                  <a href={loc.gbpUrl} target="_blank" rel="noreferrer" style={mapLink}>Google Profile</a>
                 )}
                 {loc.phone && (
                   <div style={{ marginTop: '0.35rem' }}>
