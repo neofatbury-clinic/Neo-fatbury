@@ -158,7 +158,8 @@ export const service = defineType({
     // ── EXTRA SECTIONS (page-specific) ───────────────────────────────────────
     defineField({
       name: 'causesSection', title: '🧬 Hair Loss: Causes Grid', type: 'object', group: 'extras',
-      description: '💡 Usually only for Hair Loss services.',
+      hidden: ({ document }) => (document?.category as any)?._ref !== 'cat-hair',
+      description: '💡 Only visible for Hair Loss services.',
       fields: [
         defineField({ name: 'heading',    title: 'Heading',       type: 'string' }),
         defineField({ name: 'accentWord', title: 'Accent (Orange)', type: 'string' }),
@@ -187,7 +188,8 @@ export const service = defineType({
     }),
     defineField({
       name: 'targetAreas', title: '🎯 Slimming: Target Areas', type: 'object', group: 'extras',
-      description: '💡 Usually only for CoolSculpting/Slimming services.',
+      hidden: ({ document }) => (document?.category as any)?._ref !== 'cat-slimming',
+      description: '💡 Only visible for CoolSculpting/Slimming services.',
       fields: [
         defineField({ name: 'heading',    title: 'Heading',       type: 'string' }),
         defineField({ name: 'accentWord', title: 'Accent (Orange)', type: 'string' }),
@@ -204,10 +206,12 @@ export const service = defineType({
     // ── SCAR / SKIN CLINICAL SECTIONS ──────────────────────────────────────────
     defineField({ 
       name: 'treatHeading', title: '🏥 Scar/Treatment Heading', type: 'string', group: 'extras',
+      hidden: ({ document }) => (document?.category as any)?._ref !== 'cat-skin',
       description: 'e.g. "Types of Scars We Treat"'
     }),
     defineField({
       name: 'treatItems', title: '🏥 Scar/Treatment Items', type: 'array', group: 'extras',
+      hidden: ({ document }) => (document?.category as any)?._ref !== 'cat-skin',
       of: [{ type: 'object', fields: [
         defineField({ name: 'icon', title: 'Emoji Icon', type: 'string' }),
         defineField({ name: 'text', title: 'Item Text', type: 'string' }),
@@ -215,10 +219,12 @@ export const service = defineType({
     }),
     defineField({ 
       name: 'whoHeading', title: '👥 Audience Heading', type: 'string', group: 'extras',
+      hidden: ({ document }) => (document?.category as any)?._ref !== 'cat-skin',
       description: 'e.g. "Who Can Benefit?"'
     }),
     defineField({
       name: 'whoItems', title: 'Who Section Items', type: 'array', group: 'extras',
+      hidden: ({ document }) => (document?.category as any)?._ref !== 'cat-skin',
       of: [{ type: 'object', fields: [
         defineField({ name: 'icon', title: 'Emoji Icon', type: 'string' }),
         defineField({ name: 'text', title: 'Item Text', type: 'string' }),
