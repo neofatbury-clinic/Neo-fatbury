@@ -122,6 +122,27 @@ export const structure: StructureResolver = (S) =>
 
       S.divider(),
 
+      // ── LEGAL & POLICIES ─────────────────────────
+      S.listItem()
+        .title('⚖️ Legal & Policies')
+        .child(
+          S.list()
+            .title('Legal Settings')
+            .items([
+              S.listItem()
+                .title('🔒 Privacy Policy')
+                .child(S.document().schemaType('siteSettings').documentId('siteSettings').title('Privacy Policy')),
+              S.listItem()
+                .title('📜 Terms & Conditions')
+                .child(S.document().schemaType('siteSettings').documentId('siteSettings').title('Terms & Conditions')),
+              S.listItem()
+                .title('⚠️ Medical Disclaimer')
+                .child(S.document().schemaType('siteSettings').documentId('siteSettings').title('Medical Disclaimer')),
+            ])
+        ),
+
+      S.divider(),
+
       // ── TEAM & CONFIG ─────────────────────────────
       S.listItem()
         .title('⚙️ Setup & Settings')
