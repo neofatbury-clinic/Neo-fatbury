@@ -181,26 +181,34 @@ export default async function ServicePage({ params }: { params: Promise<{ catego
       )}
 
       {/* ── BEFORE & AFTER ───────────────────────────── */}
-      {service.baImage && (
-        <section className="py-24 bg-gray-50 text-center">
-          <div className="max-w-[900px] mx-auto px-6">
-            <h2 className="text-4xl font-black text-cyan-950 mb-4">
-              {service.baHeading} <span className="text-orange-500">{service.baAccentWord}</span>
-            </h2>
-            <p className="text-gray-600 mb-12">{service.baSubtext}</p>
-            <div className="relative aspect-[16/7] rounded-3xl overflow-hidden shadow-xl mb-12">
-              <Image src={service.baImage} alt="Results" fill className="object-cover" />
-              <div className="absolute inset-x-0 bottom-0 py-4 bg-black/40 backdrop-blur-sm flex justify-around text-white font-black tracking-widest text-sm italic">
-                <span>BEFORE</span>
-                <span>AFTER</span>
+      {(() => {
+        const fallbacks: Record<string, string> = {
+          skin: '/images/skin-before-after.png',
+          hair: '/images/hair-before-after.png',
+          slimming: '/images/slimming-before-after.png',
+        };
+        const baImg = service.baImage || fallbacks[service.categorySlug] || '/images/skin-before-after.png';
+        return (
+          <section className="py-24 bg-gray-50 text-center">
+            <div className="max-w-[900px] mx-auto px-6">
+              <h2 className="text-4xl font-black text-cyan-950 mb-4">
+                {service.baHeading || 'Real'} <span className="text-orange-500">{service.baAccentWord || 'Results'}</span>
+              </h2>
+              <p className="text-gray-600 mb-12">{service.baSubtext || 'Visible results from our expert clinical treatments.'}</p>
+              <div className="relative aspect-[16/7] rounded-3xl overflow-hidden shadow-xl mb-12">
+                <Image src={baImg} alt="Before and After Results" fill className="object-cover" />
+                <div className="absolute inset-x-0 bottom-0 py-4 bg-black/40 backdrop-blur-sm flex justify-around text-white font-black tracking-widest text-sm italic">
+                  <span>BEFORE</span>
+                  <span>AFTER</span>
+                </div>
               </div>
+              <Link href="/contact-us" className="inline-block bg-cyan-800 text-white px-12 py-4 rounded-full font-bold hover:bg-cyan-900 transition-colors">
+                {service.baCtaBtnText || 'Book Your Free Analysis'}
+              </Link>
             </div>
-            <Link href="/contact-us" className="inline-block bg-cyan-800 text-white px-12 py-4 rounded-full font-bold hover:bg-cyan-900 transition-colors">
-              {service.baCtaBtnText || 'Book Your Analysis'}
-            </Link>
-          </div>
-        </section>
-      )}
+          </section>
+        );
+      })()}
 
       {/* ── BENEFITS SECTION ──────────────────────────── */}
       {service.benefitItems && (
