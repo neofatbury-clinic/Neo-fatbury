@@ -60,7 +60,7 @@ export async function getServiceBySlug(slug: string) {
     "image": heroImage.asset->url, heroHeadline, heroAccentLine, heroSubtext, heroCtaText,
     heroTrustBadges[]{ icon, label },
     problemHeading, problemAccentText, problemBottomText, problemBottomAccent,
-    problemCards[]{ _key, icon, title, desc },
+    problemCards[]{ _key, icon, title, desc, "image": image.asset->url },
     whatIsLabel, whatIsHeading, whatIsAccentWord, whatIsBody,
     whatIsListHeading, whatIsImageBadge,
     "whatIsImage": whatIsImage.asset->url, whatIsAuthorityNote{ label, text },

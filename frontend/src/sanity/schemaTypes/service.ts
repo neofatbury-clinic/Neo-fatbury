@@ -70,10 +70,11 @@ export const service = defineType({
     defineField({
       name: 'problemCards', title: 'Problem Cards (4-Grid)', type: 'array', group: 'problem',
       of: [{ type: 'object', fields: [
-        defineField({ name: 'icon',  title: 'Emoji Icon', type: 'string' }),
+        defineField({ name: 'image', title: 'Card Image (Replaces Emoji)', type: 'image', options: { hotspot: true } }),
+        defineField({ name: 'icon',  title: 'Emoji Icon (Fallback)', type: 'string' }),
         defineField({ name: 'title', title: 'Card Title', type: 'string' }),
         defineField({ name: 'desc',  title: 'Card Description', type: 'text', rows: 2 }),
-      ], preview: { select: { title: 'title', subtitle: 'icon' } } }],
+      ], preview: { select: { title: 'title', subtitle: 'icon', media: 'image' } } }],
     }),
     defineField({ name: 'problemBottomText',   title: 'Problem Section Bottom Text', type: 'string', group: 'problem' }),
     defineField({ name: 'problemBottomAccent', title: 'Bottom Text Accent (Orange)', type: 'string', group: 'problem' }),

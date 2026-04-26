@@ -50,16 +50,20 @@ export default async function SkinBrightening() {
   const ctaBtn2  = (d.finalCtaSecondaryBtn as string) || 'Get Free Consultation';
 
   // FORCE UPDATE: Ensure new images are used even if Sanity returns old icon-based data
-  const finalProbCards = probCards.map(card => {
+  const finalProbCards = probCards.map((card: any) => {
     let img = card.image;
-    if (!img || img.startsWith('🌫️') || img.length < 5) {
+    // If no image from Sanity, use local clinical assets based on title
+    if (!img) {
       if (card.title.toLowerCase().includes('dull')) img = '/images/skin-concern-dull.png';
-      if (card.title.toLowerCase().includes('uneven')) img = '/images/skin-concern-uneven.png';
-      if (card.title.toLowerCase().includes('pigment')) img = '/images/skin-concern-pigmentation.png';
-      if (card.title.toLowerCase().includes('sun')) img = '/images/skin-concern-sun.png';
+      else if (card.title.toLowerCase().includes('uneven')) img = '/images/skin-concern-uneven.png';
+      else if (card.title.toLowerCase().includes('pigment')) img = '/images/skin-concern-pigmentation.png';
+      else if (card.title.toLowerCase().includes('sun')) img = '/images/skin-concern-sun.png';
+      else img = '/images/neofatbury-clinical-standard.png';
     }
-    return { ...card, image: img || '/images/neofatbury-clinical-standard.png' };
+    return { ...card, image: img };
   });
+
+  const displayBA = (d.baImage as string) || "/images/skin-brightening-ba.png";
 
   return (
     <>
@@ -128,7 +132,7 @@ export default async function SkinBrightening() {
           <p className="section-subtitle">{baSub}</p>
           <div style={{ maxWidth: '600px', margin: '2rem auto', position: 'relative', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 15px 40px rgba(0,0,0,0.1)', border: '1px solid #eee' }}>
             <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9' }}>
-              <Image src={(d.baImage as string) || "/images/skin-brightening-ba.png"} alt="Skin Brightening Results" fill style={{ objectFit: 'cover' }} />
+              <Image src={displayBA} alt="Skin Brightening Results" fill style={{ objectFit: 'cover' }} />
             </div>
             <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)', padding: '1.5rem', display: 'flex', justifyContent: 'center', gap: '20vw' }}>
               <span style={{ color:'white', fontWeight:'900', letterSpacing:'3px', fontSize:'0.9rem', textShadow:'0 2px 4px rgba(0,0,0,0.5)' }}>BEFORE</span>
