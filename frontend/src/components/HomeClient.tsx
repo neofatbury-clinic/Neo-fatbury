@@ -69,12 +69,10 @@ export default function HomeClient({ treatments }: HomeClientProps) {
       {/* Grid / Slider */}
       <div className="treatment-slider-container" style={{ 
         display: 'flex', 
-        overflowX: 'auto', 
-        gap: '1.5rem', 
-        padding: '1rem 1rem 3rem',
-        scrollSnapType: 'x mandatory',
-        scrollbarWidth: 'none', // Hide scrollbar for clean look
-        msOverflowStyle: 'none'
+        flexDirection: 'column', // Stacked on mobile
+        gap: '2.5rem', 
+        padding: '1rem 1rem 4rem',
+        alignItems: 'center'
       }}>
         {currentTreatments.map((item: any, idx: number) => {
           const displayImage = item.image || FALLBACK_IMAGES[item.slug] || '/images/neofatbury-clinical-standard.png';
@@ -85,20 +83,21 @@ export default function HomeClient({ treatments }: HomeClientProps) {
               href={`/${categorySlug}/${item.slug}`} 
               className="treatment-card-oval"
               style={{ 
-                flex: '0 0 200px', 
-                scrollSnapAlign: 'start',
+                width: '100%',
+                maxWidth: '400px', // Responsive cap
                 textAlign: 'center',
-                textDecoration: 'none'
+                textDecoration: 'none',
+                display: 'block'
               }}
             >
-              <div className="oval-container-outer" style={{ aspectRatio: '0.8', height: 'auto' }}>
+              <div className="oval-container-outer" style={{ aspectRatio: '0.8', height: 'auto', width: '100%' }}>
                 <div className="oval-image-mask" style={{ borderRadius: '24px' }}>
                   <Image 
                     src={displayImage} 
                     alt={item.title} 
                     fill 
                     style={{ objectFit: 'cover' }} 
-                    sizes="200px"
+                    sizes="(max-width: 768px) 100vw, 300px"
                   />
                 </div>
                 <div className="oval-arrow" style={{ bottom: '-15px' }}>
@@ -107,7 +106,7 @@ export default function HomeClient({ treatments }: HomeClientProps) {
               </div>
               <h4 style={{ 
                 marginTop: '1.5rem', 
-                fontSize: '0.95rem', 
+                fontSize: '1.1rem', 
                 fontWeight: '800', 
                 color: '#00acb1', 
                 letterSpacing: '0.2px' 
@@ -120,18 +119,16 @@ export default function HomeClient({ treatments }: HomeClientProps) {
       </div>
 
       <style jsx>{`
-        .treatment-slider-container::-webkit-scrollbar {
-          display: none;
-        }
         @media (min-width: 1024px) {
           .treatment-slider-container {
+            flex-direction: row !important;
             flex-wrap: wrap;
             justify-content: center;
-            overflow-x: visible;
             gap: 3rem 2rem;
           }
           .treatment-card-oval {
-            flex: 0 0 240px !important;
+            width: 240px !important;
+            flex: none !important;
           }
         }
       `}</style>
