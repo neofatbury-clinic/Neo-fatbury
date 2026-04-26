@@ -15,11 +15,11 @@ export default async function SkinBrightening() {
   const heroBadges = (d.heroTrustBadges as {icon:string;label:string}[]) || [];
   const probHead   = (d.problemHeading    as string) || 'Is Your Skin Looking';
   const probAccent = (d.problemAccentText as string) || 'Dull or Uneven?';
-  const probCards  = (d.problemCards as {icon:string;title:string;desc:string}[]) || [
-    { icon:'🌫️', title:'Dull Skin',    desc:'Loss of natural radiance and a tired appearance.' },
-    { icon:'🎨', title:'Uneven Tone',  desc:'Patchy skin color or dark spots appearing on face.' },
-    { icon:'🌑', title:'Pigmentation', desc:'Darkening of skin areas caused by excess melanin.' },
-    { icon:'☀️', title:'Sun Damage',   desc:'Skin darkened or damaged by persistent UV exposure.' },
+  const probCards  = (d.problemCards as {image:string;title:string;desc:string}[]) || [
+    { image:'/images/skin-concern-dull.png', title:'Dull Skin',    desc:'Loss of natural radiance and a tired appearance.' },
+    { image:'/images/skin-concern-uneven.png', title:'Uneven Tone',  desc:'Patchy skin color or dark spots appearing on face.' },
+    { image:'/images/skin-concern-pigmentation.png', title:'Pigmentation', desc:'Darkening of skin areas caused by excess melanin.' },
+    { image:'/images/skin-concern-sun.png', title:'Sun Damage',   desc:'Skin darkened or damaged by persistent UV exposure.' },
   ];
   const probBotText   = (d.problemBottomText   as string) || 'Skin brightening focuses on';
   const probBotAccent = (d.problemBottomAccent as string) || "restoring your skin's natural light and glow.";
@@ -65,7 +65,15 @@ export default async function SkinBrightening() {
         <div className="container" style={{ maxWidth: '1100px' }}>
           <h2 className="section-title" style={{ fontSize: '2.8rem' }}>{probHead} <span className="text-accent">{probAccent}</span></h2>
           <div className="grid grid-4 mobile-grid-2" style={{ marginTop: '4rem', gap: '1.5rem' }}>
-            {probCards.map(item=>(<div key={item.title} className="card-sleek"><div style={{fontSize:'2.5rem',marginBottom:'1.5rem'}}>{item.icon}</div><h3 style={{fontSize:'1.15rem',marginBottom:'1rem',color:'var(--color-primary)',fontWeight:'800'}}>{item.title}</h3><p style={{fontSize:'0.9rem',color:'#666',lineHeight:'1.7'}}>{item.desc}</p></div>))}
+            {probCards.map(item=>(
+              <div key={item.title} className="card-sleek">
+                <div style={{ position: 'relative', width: '100%', height: '120px', marginBottom: '1.5rem', borderRadius: '12px', overflow: 'hidden' }}>
+                  <Image src={item.image} alt={item.title} fill style={{ objectFit: 'cover' }} />
+                </div>
+                <h3 style={{fontSize:'1.15rem',marginBottom:'1rem',color:'var(--color-primary)',fontWeight:'800'}}>{item.title}</h3>
+                <p style={{fontSize:'0.9rem',color:'#666',lineHeight:'1.7'}}>{item.desc}</p>
+              </div>
+            ))}
           </div>
           <p style={{ fontSize: '1.3rem', marginTop: '4.5rem', fontWeight: '700', color: 'var(--color-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem' }}>
             {probBotText} <span className="text-accent" style={{ borderBottom: '2px solid rgba(39, 166, 156, 0.3)' }}>{probBotAccent}</span>
@@ -95,11 +103,13 @@ export default async function SkinBrightening() {
         <div className="container">
           <h2 className="section-title" style={{ fontSize: '2.8rem' }}>{baHead} <span className="text-accent">{baAccent}</span></h2>
           <p className="section-subtitle">{baSub}</p>
-          <div style={{ maxWidth: '480px', margin: '2rem auto', position: 'relative', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 15px 40px rgba(0,0,0,0.1)' }}>
-            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/6' }}><Image src={(d.baImage as string) || "/images/before-after-laser.webp"} alt="Skin Brightening Results" fill style={{ objectFit: 'cover' }} /></div>
-            <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)', padding: '1rem', display: 'flex', justifyContent: 'center', gap: '15vw' }}>
-              <span style={{ color:'white', fontWeight:'900', letterSpacing:'3px', fontSize:'0.85rem', textShadow:'0 2px 4px rgba(0,0,0,0.5)' }}>BEFORE</span>
-              <span style={{ color:'white', fontWeight:'900', letterSpacing:'3px', fontSize:'0.85rem', textShadow:'0 2px 4px rgba(0,0,0,0.5)' }}>AFTER</span>
+          <div style={{ maxWidth: '600px', margin: '2rem auto', position: 'relative', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 15px 40px rgba(0,0,0,0.1)', border: '1px solid #eee' }}>
+            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9' }}>
+              <Image src={(d.baImage as string) || "/images/skin-brightening-ba.png"} alt="Skin Brightening Results" fill style={{ objectFit: 'cover' }} />
+            </div>
+            <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)', padding: '1.5rem', display: 'flex', justifyContent: 'center', gap: '20vw' }}>
+              <span style={{ color:'white', fontWeight:'900', letterSpacing:'3px', fontSize:'0.9rem', textShadow:'0 2px 4px rgba(0,0,0,0.5)' }}>BEFORE</span>
+              <span style={{ color:'white', fontWeight:'900', letterSpacing:'3px', fontSize:'0.9rem', textShadow:'0 2px 4px rgba(0,0,0,0.5)' }}>AFTER</span>
             </div>
           </div>
           <p style={{ fontSize: '1.2rem', fontWeight: '800', marginBottom: '3rem', color: 'var(--color-primary)' }}>{baCtaTxt}</p>
