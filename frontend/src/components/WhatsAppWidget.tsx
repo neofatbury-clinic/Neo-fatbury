@@ -7,9 +7,14 @@ export default async function WhatsAppWidget() {
   const data = await client.fetch(
     `*[_type == "siteSettings"][0]{ "whatsapp": contact.whatsapp }`,
     {},
-    { next: { revalidate: 60 } }
+    { next: { revalidate: 0 } }
   );
-  const phoneNumber = data?.whatsapp || '919700641000';
+  
+  let phoneNumber = data?.whatsapp || '919700641000';
+  // If it's a 10-digit number, prepend 91 (India)
+  if (phoneNumber.length === 10 && /^\d+$/.test(phoneNumber)) {
+    phoneNumber = `91${phoneNumber}`;
+  }
 
   return <WhatsAppButton phoneNumber={phoneNumber} />;
 }

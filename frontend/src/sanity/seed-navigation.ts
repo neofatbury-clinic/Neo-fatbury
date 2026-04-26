@@ -70,9 +70,16 @@ async function seedNavigation() {
     { label: 'Non-Surgical Inch Loss Treatment', url: '/slimming/inch-loss-treatment/' }
   ];
 
+  const topHeaderMenu = [
+    { label: 'About Us', url: '/about-us' },
+    { label: 'Results', url: '/results' },
+    { label: 'Contact', url: '/contact-us' }
+  ];
+
   await client.patch(settings._id)
     .set({
       headerMenu,
+      topHeaderMenu,
       footerMenu,
       footerServices
     })

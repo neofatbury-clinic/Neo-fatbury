@@ -26,9 +26,17 @@ export default function Header({ settings }: { settings?: any }) {
 
           {/* Right: Quick-Links */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', fontSize: '0.82rem' }}>
-            <Link href="/about-us" style={topLinkStyle}>About Us</Link>
-            <Link href="/results" style={topLinkStyle}>Results</Link>
-            <Link href="/contact-us" style={topLinkStyle}>Contact</Link>
+            {settings?.topHeaderMenu && settings.topHeaderMenu.length > 0 ? (
+              settings.topHeaderMenu.map((item: any, idx: number) => (
+                <Link key={idx} href={item.url || '/'} style={topLinkStyle}>{item.label}</Link>
+              ))
+            ) : (
+              <>
+                <Link href="/about-us" style={topLinkStyle}>About Us</Link>
+                <Link href="/results" style={topLinkStyle}>Results</Link>
+                <Link href="/contact-us" style={topLinkStyle}>Contact</Link>
+              </>
+            )}
             <span style={{ color: '#555' }} className="mobile-hide">Customer Care · 8 AM–10 PM</span>
             <a href={`tel:${mainPhone}`} style={{ ...topLinkStyle, fontWeight: '700', color: 'var(--color-primary)', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
               📞 {mainPhone}

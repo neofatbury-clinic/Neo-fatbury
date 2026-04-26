@@ -28,7 +28,10 @@ export default async function ContactUs() {
   const { page, settings } = await getContactData();
   const mainPhone = settings?.contact?.phone || '9700641000';
   const mainEmail = settings?.contact?.email || 'info@neofatbury.co.in';
-  const whatsapp  = settings?.contact?.whatsapp || '919700641000';
+  let whatsapp  = settings?.contact?.whatsapp || '919700641000';
+  if (whatsapp.length === 10 && /^\d+$/.test(whatsapp)) {
+    whatsapp = `91${whatsapp}`;
+  }
   
   return (
     <>

@@ -16,6 +16,7 @@ export default async function HeaderWrapper() {
         url
       }
     },
+    topHeaderMenu,
     contact {
       phone,
       whatsapp,
