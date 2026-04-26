@@ -287,12 +287,11 @@ export default function LeadForm({
       <style>{`
         .lf-wrapper {
           background: #ffffff;
-          padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+          padding: 2.2rem 1.5rem 1.8rem 1.5rem;
           border-radius: 18px;
           box-shadow: 0 12px 45px rgba(0, 0, 0, 0.14);
           width: 100%;
           max-width: 100%;
-          overflow: hidden;
           font-family: 'Montserrat', sans-serif;
           box-sizing: border-box;
           display: flex;
@@ -302,11 +301,11 @@ export default function LeadForm({
  
         .lf-title {
           text-align: center;
-          font-size: 1.8rem;
+          font-size: 1.85rem;
           font-weight: 900;
           color: #00acb1;
-          margin: 0 0 0.5rem;
-          line-height: 1.2;
+          margin: 0.2rem 0 0.6rem;
+          line-height: 1.25;
           letter-spacing: -0.02em;
         }
  
