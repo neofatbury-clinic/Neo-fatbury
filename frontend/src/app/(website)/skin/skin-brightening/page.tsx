@@ -49,6 +49,18 @@ export default async function SkinBrightening() {
   const ctaBtn1  = (d.finalCtaPrimaryBtn   as string) || 'Book Appointment';
   const ctaBtn2  = (d.finalCtaSecondaryBtn as string) || 'Get Free Consultation';
 
+  // FORCE UPDATE: Ensure new images are used even if Sanity returns old icon-based data
+  const finalProbCards = probCards.map(card => {
+    let img = card.image;
+    if (!img || img.startsWith('🌫️') || img.length < 5) {
+      if (card.title.toLowerCase().includes('dull')) img = '/images/skin-concern-dull.png';
+      if (card.title.toLowerCase().includes('uneven')) img = '/images/skin-concern-uneven.png';
+      if (card.title.toLowerCase().includes('pigment')) img = '/images/skin-concern-pigmentation.png';
+      if (card.title.toLowerCase().includes('sun')) img = '/images/skin-concern-sun.png';
+    }
+    return { ...card, image: img || '/images/neofatbury-clinical-standard.png' };
+  });
+
   return (
     <>
       <ReplicaHero 
@@ -65,10 +77,16 @@ export default async function SkinBrightening() {
         <div className="container" style={{ maxWidth: '1100px' }}>
           <h2 className="section-title" style={{ fontSize: '2.8rem' }}>{probHead} <span className="text-accent">{probAccent}</span></h2>
           <div className="grid grid-4 mobile-grid-2" style={{ marginTop: '4rem', gap: '1.5rem' }}>
-            {probCards.map(item=>(
+            {finalProbCards.map(item=>(
               <div key={item.title} className="card-sleek">
-                <div style={{ position: 'relative', width: '100%', height: '120px', marginBottom: '1.5rem', borderRadius: '12px', overflow: 'hidden' }}>
-                  <Image src={item.image} alt={item.title} fill style={{ objectFit: 'cover' }} />
+                <div style={{ position: 'relative', width: '100%', height: '140px', marginBottom: '1.5rem', borderRadius: '12px', overflow: 'hidden', backgroundColor: '#f0f0f0' }}>
+                  <Image 
+                    src={item.image} 
+                    alt={item.title} 
+                    fill 
+                    style={{ objectFit: 'cover' }} 
+                    sizes="(max-width: 768px) 150px, 250px"
+                  />
                 </div>
                 <h3 style={{fontSize:'1.15rem',marginBottom:'1rem',color:'var(--color-primary)',fontWeight:'800'}}>{item.title}</h3>
                 <p style={{fontSize:'0.9rem',color:'#666',lineHeight:'1.7'}}>{item.desc}</p>
