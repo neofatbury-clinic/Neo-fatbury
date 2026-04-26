@@ -1006,7 +1006,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   .replica-trust-row {
     justify-content: center !important;
   }
-}
+
   .replica-zone-middle {
     align-items: center;
     padding: 2.5rem 1.25rem 1.5rem;
