@@ -301,35 +301,35 @@ export default function LeadForm({
  
         .lf-title {
           text-align: center;
-          font-size: 1.85rem;
+          font-size: 1.6rem;
           font-weight: 900;
           color: #00acb1;
-          margin: 0.2rem 0 0.6rem;
-          line-height: 1.25;
+          margin: 0.1rem 0 0.3rem;
+          line-height: 1.2;
           letter-spacing: -0.02em;
         }
  
         .lf-subtitle {
           text-align: center;
-          font-size: 0.95rem;
+          font-size: 0.88rem;
           color: #666;
-          margin: 0 0 1.5rem;
+          margin: 0 0 0.8rem;
           font-weight: 500;
-          line-height: 1.5;
+          line-height: 1.4;
         }
  
         .lf-form {
           display: flex;
           flex-direction: column;
-          gap: 0.65rem;
+          gap: 0.5rem;
         }
  
         .lf-input {
           width: 100%;
-          padding: 0.65rem 0.85rem;
+          padding: 0.55rem 0.85rem;
           border: 1px solid #e5e7eb;
           border-radius: 6px;
-          font-size: 0.85rem;
+          font-size: 0.8rem;
           color: #333;
           background: #fff;
           outline: none;
@@ -356,7 +356,7 @@ export default function LeadForm({
           display: flex;
           align-items: center;
           gap: 0.4rem;
-          margin: 0.15rem 0 0.1rem;
+          margin: 0.1rem 0 0.05rem;
         }
  
         .lf-divider-line {
@@ -366,7 +366,7 @@ export default function LeadForm({
         }
  
         .lf-section-title {
-          font-size: 0.75rem;
+          font-size: 0.7rem;
           font-weight: 800;
           color: #374151;
           text-align: center;
@@ -393,10 +393,10 @@ export default function LeadForm({
           align-items: center;
           justify-content: center;
           gap: 0.35rem;
-          padding: 0.6rem 0.4rem;
+          padding: 0.5rem 0.3rem;
           border: none;
           border-radius: 6px;
-          font-size: 0.75rem;
+          font-size: 0.7rem;
           font-weight: 800;
           cursor: pointer;
           transition: all 0.2s;
@@ -431,12 +431,12 @@ export default function LeadForm({
         .lf-category-btn {
           flex: 1 1 auto;
           min-width: 70px;
-          padding: 0.5rem 0.35rem;
+          padding: 0.45rem 0.35rem;
           border-radius: 6px;
           border: 1px solid #e5e7eb;
           background: #fff;
           color: #4b5563;
-          font-size: 0.78rem;
+          font-size: 0.75rem;
           font-weight: 700;
           cursor: pointer;
           transition: all 0.2s;
@@ -454,12 +454,12 @@ export default function LeadForm({
         /* Concern chips */
         .lf-concern-grid {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(3, 1fr);
           gap: 0.35rem;
         }
  
         .lf-concern-chip {
-          padding: 0.35rem 0.15rem;
+          padding: 0.35rem 0.2rem;
           border-radius: 5px;
           font-size: 0.68rem;
           font-weight: 700;
@@ -472,8 +472,10 @@ export default function LeadForm({
           align-items: center;
           justify-content: center;
           text-align: center;
-          min-height: 2.2rem;
+          min-height: 2.1rem;
           line-height: 1.1;
+          word-break: normal;
+          overflow: hidden;
         }
  
         .lf-concern-chip.active {
