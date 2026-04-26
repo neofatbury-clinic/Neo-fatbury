@@ -80,10 +80,11 @@ export default async function SkinBrightening() {
       <section className="section bg-surface text-center" style={{ padding: '6rem 0' }}>
         <div className="container" style={{ maxWidth: '1100px' }}>
           <h2 className="section-title" style={{ fontSize: '2.8rem' }}>{probHead} <span className="text-accent">{probAccent}</span></h2>
-          <div className="grid grid-4 mobile-grid-2" style={{ marginTop: '4rem', gap: '1.5rem' }}>
-            {finalProbCards.map(item=>(
-              <div key={item.title} className="card-sleek">
-                <div style={{ position: 'relative', width: '100%', height: '140px', marginBottom: '1.5rem', borderRadius: '12px', overflow: 'hidden', backgroundColor: '#f0f0f0' }}>
+          <div className="grid grid-4 mobile-grid-2" style={{ marginTop: '5rem', gap: '2rem' }}>
+            {finalProbCards.map((item: any)=>(
+              <div key={item.title} className="card-premium">
+                <div className="card-premium-badge">Clinical</div>
+                <div className="card-premium-img-wrap">
                   <Image 
                     src={item.image} 
                     alt={item.title} 
@@ -92,8 +93,8 @@ export default async function SkinBrightening() {
                     sizes="(max-width: 768px) 150px, 250px"
                   />
                 </div>
-                <h3 style={{fontSize:'1.15rem',marginBottom:'1rem',color:'var(--color-primary)',fontWeight:'800'}}>{item.title}</h3>
-                <p style={{fontSize:'0.9rem',color:'#666',lineHeight:'1.7'}}>{item.desc}</p>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
               </div>
             ))}
           </div>
