@@ -2,14 +2,15 @@ import Image from 'next/image';
 import LeadForm from './LeadForm';
 
 interface ReplicaHeroProps {
-  titleTeal1: string;
+  titleTeal1?: string;
   titleTeal2?: string;
-  titleOrange1: string;
+  titleOrange1?: string;
   titleOrange2?: string;
-  subtext: string;
+  subtext?: string;
   imageSrc: string;
   trustPoints?: { icon: string; text: string }[];
   leadFormTitle?: string;
+  showForm?: boolean;
 }
 
 export default function ReplicaHero({
@@ -20,7 +21,8 @@ export default function ReplicaHero({
   subtext,
   imageSrc,
   trustPoints = [],
-  leadFormTitle
+  leadFormTitle,
+  showForm = true
 }: ReplicaHeroProps) {
   return (
     <section className="replica-hero">
@@ -87,7 +89,7 @@ export default function ReplicaHero({
 
         {/* Zone 3: Lead Form (Right) */}
         <div className="replica-zone-right">
-          <LeadForm title={leadFormTitle} />
+          {showForm && <LeadForm title={leadFormTitle} />}
         </div>
       </div>
     </section>
