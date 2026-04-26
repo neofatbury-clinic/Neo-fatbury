@@ -971,9 +971,8 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   }
 
   .grid-3, .grid-4, .grid-5 {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 1rem !important;
-    align-items: stretch !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
   }
   .grid-2 {
     grid-template-columns: 1fr !important;
