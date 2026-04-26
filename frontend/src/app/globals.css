@@ -764,9 +764,8 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 .replica-hero {
   position: relative;
   display: flex;
-  align-items: center;
-  /* Brand Split: Image/Text zone on left, fixed 480px Brand Green zone on right */
-  background: linear-gradient(to right, #faf8f6 0%, #faf8f6 calc(100% - 480px), #00acb1 calc(100% - 480px), #00acb1 100%);
+  align-items: stretch; /* Ensure children fill height */
+  background: #faf8f6; /* Base background */
   padding-top: calc(var(--header-height) + 10px); 
   overflow: visible;
   min-height: 520px;
@@ -782,8 +781,8 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: 1fr 480px; /* Fixed form zone for stability on all screens */
-  align-items: center; 
+  grid-template-columns: 1fr 480px; 
+  align-items: stretch; /* Stretch pillars to fill section height */
   gap: 0;
   height: 100%;
 }
@@ -892,8 +891,8 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 1.5rem 2rem 0.5rem 0; /* Tightened top and bottom */
-  background-color: transparent;
+  padding: 1.5rem 2rem 0.5rem 0; 
+  background-color: #00acb1; /* Specific background color for this column */
 }
 
 @media (max-width: 1200px) {
