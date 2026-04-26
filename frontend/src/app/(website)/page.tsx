@@ -6,6 +6,7 @@ import ReplicaHero from '@/components/ReplicaHero';
 import HomeClient from '@/components/HomeClient';
 import CustomSchema from '@/components/CustomSchema';
 import { client } from '@/sanity/lib/client';
+import PageBuilder from '@/components/PageBuilder';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -248,6 +249,9 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* DYNAMIC SECTIONS */}
+      {hero?.pageBuilder && <PageBuilder content={hero.pageBuilder} />}
     </>
   );
 }

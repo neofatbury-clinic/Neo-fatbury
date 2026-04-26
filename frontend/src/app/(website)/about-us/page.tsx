@@ -6,6 +6,7 @@ import { client } from '@/sanity/lib/client';
 import { PortableText } from '@portabletext/react';
 
 import LeadForm from "@/components/LeadForm";
+import PageBuilder from '@/components/PageBuilder';
 
 export const revalidate = 60;
 
@@ -20,6 +21,7 @@ async function getAboutData() {
     visionText,
     missionText,
     stats,
+    pageBuilder,
     ctaTitle,
     ctaSubtitle,
     ctaButton
@@ -176,6 +178,9 @@ export default async function AboutUs() {
           </div>
 
           <hr style={{ border: 'none', borderTop: '1px solid #eaeaea', margin: '3rem 0' }} />
+
+          {/* DYNAMIC SECTIONS */}
+          {data?.pageBuilder && <PageBuilder content={data.pageBuilder} />}
 
           {/* Section: Contact Us (Booking) */}
           <div id="contact" style={{ paddingTop: '2rem' }}>

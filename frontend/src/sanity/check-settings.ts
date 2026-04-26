@@ -11,13 +11,8 @@ const client = createClient({
 
 async function checkSettings() {
   const settings = await client.fetch(`*[_type == "siteSettings"][0]`);
-  const result = {};
-  Object.keys(settings).forEach(key => {
-    if (key.toLowerCase().includes('whatsapp') || key.toLowerCase().includes('contact') || key.toLowerCase().includes('social')) {
-      result[key] = settings[key];
-    }
-  });
-  console.log(JSON.stringify(result, null, 2));
+  console.log('Keys:', Object.keys(settings));
+  console.log('Contact Object:', JSON.stringify(settings.contact, null, 2));
 }
 
 checkSettings().catch(console.error);

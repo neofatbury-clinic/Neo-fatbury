@@ -82,6 +82,38 @@ export const aboutPage = defineType({
       name: 'ctaButton',
       title: 'Contact Button Text',
       type: 'string',
+    }),
+    defineField({
+      name: 'pageBuilder',
+      title: '🏗️ Extra Sections (Drag & Drop)',
+      description: '💡 Add more sections to the bottom of the About page.',
+      type: 'array',
+      of: [
+        { type: 'object', name: 'textImage', title: '🌓 Section: Text + Image', fields: [
+          defineField({ name: 'heading', type: 'string' }),
+          defineField({ name: 'text', type: 'text', rows: 4 }),
+          defineField({ name: 'image', type: 'image', options: { hotspot: true } }),
+          defineField({ name: 'reverse', title: 'Image on Left?', type: 'boolean' }),
+        ]},
+        { type: 'object', name: 'richText', title: '📝 Section: Text Block', fields: [
+          defineField({ name: 'content', type: 'array', of: [{ type: 'block' }] }),
+        ]},
+        { type: 'object', name: 'videoSection', title: '🎥 Section: Video', fields: [
+          defineField({ name: 'url', type: 'url' }),
+        ]},
+        { type: 'object', name: 'faqSection', title: '❓ Section: FAQ', fields: [
+          defineField({ name: 'heading', type: 'string' }),
+          defineField({ name: 'items', type: 'array', of: [{ type: 'object', fields: [
+            defineField({ name: 'question', type: 'string' }),
+            defineField({ name: 'answer', type: 'text' }),
+          ]}] }),
+        ]},
+        { type: 'object', name: 'ctaBox', title: '🔘 Section: CTA Banner', fields: [
+          defineField({ name: 'text', type: 'string' }),
+          defineField({ name: 'buttonText', type: 'string' }),
+          defineField({ name: 'link', type: 'string' }),
+        ]},
+      ]
     })
   ]
 })

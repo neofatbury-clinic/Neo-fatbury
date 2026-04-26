@@ -768,8 +768,9 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   /* Brand Split: Image/Text zone on left, fixed 480px Brand Green zone on right */
   background: linear-gradient(to right, #faf8f6 0%, #faf8f6 calc(100% - 480px), #00acb1 calc(100% - 480px), #00acb1 100%);
   padding-top: 25px; 
-  overflow: hidden;
-  height: 680px; /* Ultra-snug fit to completely remove bottom dead space */
+  overflow: visible;
+  min-height: 720px;
+  height: auto;
   box-sizing: border-box;
 }
 

@@ -108,9 +108,13 @@ export default async function ContactUs() {
                 <h3 style={{ fontSize: '1.2rem', color: '#00acb1', fontWeight: '800', marginBottom: '0.75rem' }}>{loc.name}</h3>
                 <p style={{ color: '#555', fontSize: '0.92rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>{loc.address}</p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                  {loc.phone && (
+                  {loc.phone ? (
                     <a href={`tel:${loc.phone}`} style={{ color: '#00acb1', fontWeight: '800', fontSize: '1.1rem', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                       📞 {loc.phone}
+                    </a>
+                  ) : (
+                    <a href={`tel:${mainPhone}`} style={{ color: '#00acb1', fontWeight: '800', fontSize: '1.1rem', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      📞 {mainPhone}
                     </a>
                   )}
                   {loc.mapsUrl && (

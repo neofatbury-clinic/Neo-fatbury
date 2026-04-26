@@ -69,6 +69,35 @@ export const genericPage = defineType({
         },
         {
           type: 'object',
+          name: 'videoSection',
+          title: '🎥 Section: Video Embed',
+          fields: [
+            defineField({ name: 'heading', title: 'Heading', type: 'string' }),
+            defineField({ name: 'url', title: 'Video URL (YouTube/Vimeo)', type: 'url' }),
+            defineField({ name: 'caption', title: 'Video Caption', type: 'string' }),
+          ]
+        },
+        {
+          type: 'object',
+          name: 'gallerySection',
+          title: '📸 Section: Image Gallery',
+          fields: [
+            defineField({ name: 'heading', title: 'Heading', type: 'string' }),
+            defineField({ name: 'images', title: 'Gallery Images', type: 'array', of: [{ type: 'image', options: { hotspot: true } }] }),
+            defineField({ name: 'columns', title: 'Columns', type: 'number', initialValue: 3, options: { list: [2, 3, 4] } }),
+          ]
+        },
+        {
+          type: 'object',
+          name: 'serviceGrid',
+          title: '💉 Section: Featured Services Grid',
+          fields: [
+            defineField({ name: 'heading', title: 'Heading', type: 'string', initialValue: 'Our Specializations' }),
+            defineField({ name: 'services', title: 'Select Services', type: 'array', of: [{ type: 'reference', to: [{ type: 'service' }] }] }),
+          ]
+        },
+        {
+          type: 'object',
           name: 'faqSection',
           title: '❓ Section: FAQ List',
           fields: [
