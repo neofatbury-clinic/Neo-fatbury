@@ -769,7 +769,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   background: linear-gradient(to right, #faf8f6 0%, #faf8f6 calc(100% - 480px), #00acb1 calc(100% - 480px), #00acb1 100%);
   padding-top: 25px; 
   overflow: visible;
-  min-height: 720px;
+  min-height: 640px;
   height: auto;
   box-sizing: border-box;
 }
