@@ -949,13 +949,12 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 
   .contact-hero {
     height: auto !important;
-    min-height: 250px !important;
-    background-color: #00acb1 !important;
-    padding: 3rem 1rem !important;
+    min-height: 350px !important;
+    padding: 4rem 1rem !important;
   }
   .contact-hero-img,
   .contact-hero-overlay {
-    display: none !important;
+    display: block !important;
   }
 
   /* CENTRALIZED MOBILE LAYOUT */

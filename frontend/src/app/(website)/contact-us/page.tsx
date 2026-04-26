@@ -26,7 +26,7 @@ export default async function ContactUs() {
       {/* 1. PREMIUM CONTACT HERO BANNER (Full-width Image) */}
       <section className="contact-hero section" style={{ 
         position: 'relative', 
-        height: '400px', 
+        height: '450px', 
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'center', 
@@ -35,8 +35,8 @@ export default async function ContactUs() {
         textAlign: 'center'
       }}>
          <Image 
-           src="/contact_hero_clinical_interior_1777087729906.png" 
-           alt="Contact Hero" 
+           src="/images/clinic-reception.webp" 
+           alt="Neo Clinic Reception" 
            fill 
            className="contact-hero-img"
            style={{ objectFit: 'cover', zIndex: 1 }} 
