@@ -77,21 +77,51 @@ export const siteSettings = defineType({
       group: 'brand',
     }),
 
-    // COLORS
+    // COLORS & FONTS
     defineField({
-      name: 'colors',
-      title: '🎨 Website Colors',
+      name: 'typography',
+      title: '🎨 Colors & Typography',
       type: 'object',
-      description: '💡 Change these to update colors across the ENTIRE website instantly. Use hex codes like #00acb1.',
+      description: '💡 Change fonts and colors across the ENTIRE website instantly.',
       group: 'brand',
       fields: [
-        defineField({ name: 'primary', title: 'Primary Color (Main Teal)', type: 'string', initialValue: '#00acb1', description: '💡 Used for buttons, links, and headings. Default: #00acb1' }),
-        defineField({ name: 'accent', title: 'Accent Color (Orange/Gold)', type: 'string', initialValue: '#e8a317', description: '💡 Used for highlighted text and special buttons. Default: #e8a317' }),
-        defineField({ name: 'background', title: 'Page Background', type: 'string', initialValue: '#ffffff', description: '💡 Main background color. Default: white' }),
-        defineField({ name: 'surface', title: 'Card Background', type: 'string', initialValue: '#f0f8f8', description: '💡 Background of cards and sections. Default: light teal' }),
-        defineField({ name: 'text', title: 'Body Text Color', type: 'string', initialValue: '#1a2b3c', description: '💡 Color of paragraph text' }),
-        defineField({ name: 'ctaButton', title: 'CTA Button Color', type: 'string', initialValue: '#00acb1', description: '💡 "Book Appointment" button color' }),
-        defineField({ name: 'ctaButtonText', title: 'CTA Button Text Color', type: 'string', initialValue: '#ffffff', description: '💡 Text on CTA buttons (usually white)' }),
+        defineField({
+          name: 'headingFont',
+          title: 'Heading Font Style',
+          type: 'string',
+          initialValue: 'Montserrat',
+          options: {
+            list: [
+              { title: 'Montserrat (Bold & Modern)', value: 'Montserrat' },
+              { title: 'Playfair Display (Elegant & Classic)', value: 'Playfair Display' },
+              { title: 'Poppins (Clean & Professional)', value: 'Poppins' },
+              { title: 'Outfit (Sleek & Techy)', value: 'Outfit' },
+              { title: 'Lora (Sophisticated Serif)', value: 'Lora' },
+            ],
+          },
+          description: '💡 Used for main titles and section headings.'
+        }),
+        defineField({
+          name: 'bodyFont',
+          title: 'Body Text Font Style',
+          type: 'string',
+          initialValue: 'Poppins',
+          options: {
+            list: [
+              { title: 'Poppins (Best for Readability)', value: 'Poppins' },
+              { title: 'Inter (Modern & Neutral)', value: 'Inter' },
+              { title: 'Montserrat (Consistent & Strong)', value: 'Montserrat' },
+              { title: 'Roboto (Standard & Safe)', value: 'Roboto' },
+              { title: 'Open Sans (Friendly & Accessible)', value: 'Open Sans' },
+            ],
+          },
+          description: '💡 Used for paragraphs and smaller text.'
+        }),
+        defineField({ name: 'primary', title: 'Primary Color (Main Teal)', type: 'string', initialValue: '#00acb1', description: '💡 Used for buttons, links, and headings.' }),
+        defineField({ name: 'accent', title: 'Accent Color (Orange/Gold)', type: 'string', initialValue: '#e8a317', description: '💡 Used for highlighted text and special buttons.' }),
+        defineField({ name: 'background', title: 'Page Background', type: 'string', initialValue: '#ffffff' }),
+        defineField({ name: 'surface', title: 'Card Background', type: 'string', initialValue: '#f0f8f8' }),
+        defineField({ name: 'text', title: 'Body Text Color', type: 'string', initialValue: '#1a2b3c' }),
       ],
     }),
 

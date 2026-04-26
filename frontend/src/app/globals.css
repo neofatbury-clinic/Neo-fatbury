@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap');
-
 /* =============================================================
    NEOFATBURY — Oliva Clinic Inspired Design System
    Primary:  #00acb1  (Deep Teal)
@@ -9,8 +7,9 @@
 ============================================================= */
 
 :root {
-  --font-heading: 'Montserrat', sans-serif;
-  --font-body:    'Poppins', sans-serif;
+  /* These are now managed dynamically via layout.tsx */
+  /* --font-heading: 'Montserrat', sans-serif; */
+  /* --font-body:    'Poppins', sans-serif; */
 
   --color-primary:     #00acb1;
   --color-cyan:        #00c2cb;
