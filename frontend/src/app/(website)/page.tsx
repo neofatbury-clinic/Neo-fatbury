@@ -4,6 +4,7 @@ import Link from 'next/link';
 import LeadForm from '@/components/LeadForm';
 import ReplicaHero from '@/components/ReplicaHero';
 import HomeClient from '@/components/HomeClient';
+import CustomSchema from '@/components/CustomSchema';
 import { client } from '@/sanity/lib/client';
 
 export const dynamic = 'force-dynamic';
@@ -120,6 +121,7 @@ export default async function Home() {
 
   return (
     <>
+      <CustomSchema schema={hero?.seo?.customSchema} />
       {/* SECTION 1: HERO */}
       <ReplicaHero 
         titleTeal1={hero?.heroHeadline || ""}

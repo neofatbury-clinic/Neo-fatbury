@@ -32,6 +32,15 @@ export const structure: StructureResolver = (S) =>
             .filter('_type == "service" && category._ref == "cat-slimming"')
         ),
 
+      S.listItem()
+        .title('🛠️ All Services (Master List)')
+        .child(S.documentTypeList('service').title('All Services')),
+
+      S.listItem()
+        .title('📂 Manage Categories')
+        .schemaType('category')
+        .child(S.documentTypeList('category').title('Service Categories')),
+
       S.divider(),
 
       // ── PAGES ────────────────────────────────────
@@ -140,10 +149,6 @@ export const structure: StructureResolver = (S) =>
                 .title('👩‍⚕️ Doctors & Team')
                 .schemaType('teamMember')
                 .child(S.documentTypeList('teamMember').title('Team Members')),
-              S.listItem()
-                .title('📂 Manage Categories')
-                .schemaType('category')
-                .child(S.documentTypeList('category').title('Service Categories')),
             ])
         ),
     ])

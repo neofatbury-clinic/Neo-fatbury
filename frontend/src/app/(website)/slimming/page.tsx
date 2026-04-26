@@ -3,6 +3,7 @@ import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
 import ReplicaHero from "@/components/ReplicaHero";
 import { client } from "@/sanity/lib/client";
+import CustomSchema from "@/components/CustomSchema";
 
 export const metadata = {
   title: 'Slimming & Weight Loss Clinic in Hyderabad - NeoFatbury',
@@ -17,7 +18,8 @@ export default async function SlimmingPage() {
   const query = `{
     "category": *[_type == "category" && slug.current == "slimming"][0] {
       ...,
-      "heroImage": heroImage.asset->url
+      "heroImage": heroImage.asset->url,
+      "seo": seo
     },
     "services": *[_type == "service" && category->slug.current == "slimming"] | order(order asc) {
       name,
@@ -39,6 +41,7 @@ export default async function SlimmingPage() {
 
   return (
     <>
+      <CustomSchema schema={category?.seo?.customSchema} />
       <ReplicaHero 
         titleTeal1={category?.heroHeadline || "All Slimming"}
         titleTeal2=""

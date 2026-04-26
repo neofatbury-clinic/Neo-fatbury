@@ -53,6 +53,7 @@ export const genericPage = defineType({
       fields: [
         defineField({ name: 'metaTitle', title: 'Google Title', type: 'string' }),
         defineField({ name: 'metaDescription', title: 'Google Description', type: 'text', rows: 2 }),
+        defineField({ name: 'customSchema', title: 'Custom JSON-LD Schema', type: 'text', rows: 10, description: 'Paste custom JSON-LD script here (without <script> tags)' }),
       ],
     }),
   ],

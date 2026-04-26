@@ -3,6 +3,7 @@ import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
 import ReplicaHero from "@/components/ReplicaHero";
 import { client } from "@/sanity/lib/client";
+import CustomSchema from "@/components/CustomSchema";
 
 export const metadata = {
   title: 'Hair Clinic in Hyderabad | Hair Loss & Transplant Specialists - NeoFatbury',
@@ -17,7 +18,8 @@ export default async function HairPage() {
   const query = `{
     "category": *[_type == "category" && slug.current == "hair"][0] {
       ...,
-      "heroImage": heroImage.asset->url
+      "heroImage": heroImage.asset->url,
+      "seo": seo
     },
     "services": *[_type == "service" && category->slug.current == "hair"] | order(order asc) {
       name,
@@ -39,6 +41,7 @@ export default async function HairPage() {
 
   return (
     <>
+      <CustomSchema schema={category?.seo?.customSchema} />
       <ReplicaHero 
         titleTeal1={category?.heroHeadline || "All Hair"}
         titleTeal2=""

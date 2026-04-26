@@ -3,6 +3,7 @@ import { client } from '@/sanity/lib/client';
 import Image from 'next/image';
 import LeadForm from '@/components/LeadForm';
 import ReplicaHero from '@/components/ReplicaHero';
+import CustomSchema from '@/components/CustomSchema';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -73,12 +74,13 @@ async function getService(category: string, slug: string) {
     finalCtaPrimaryBtn,
     finalCtaSecondaryBtn,
     
-    seo {
-      metaTitle,
-      metaDescription,
-      canonicalUrl
-    }
-  }`;
+      seo {
+        metaTitle,
+        metaDescription,
+        canonicalUrl,
+        customSchema
+      }
+    }`;
   return await client.fetch(query, { category, slug });
 }
 
@@ -105,6 +107,7 @@ export default async function ServicePage({ params }: { params: Promise<{ catego
 
   return (
     <article className="min-h-screen bg-white">
+      <CustomSchema schema={service.seo?.customSchema} />
       {/* ── HERO BANNER ────────────────────────────────── */}
       <ReplicaHero 
         titleTeal1={service.heroHeadline || ''}

@@ -199,6 +199,24 @@ export const service = defineType({
       ],
     }),
 
+    // ── MISSING FIELDS (to resolve 'Unknown fields' error) ───────────────────────
+    defineField({ name: 'treatHeading', title: 'Treat Section Heading', type: 'string', group: 'extras' }),
+    defineField({
+      name: 'treatItems', title: 'Treat Section Items', type: 'array', group: 'extras',
+      of: [{ type: 'object', fields: [
+        defineField({ name: 'icon', title: 'Emoji Icon', type: 'string' }),
+        defineField({ name: 'text', title: 'Item Text', type: 'string' }),
+      ], preview: { select: { title: 'text', subtitle: 'icon' } } }],
+    }),
+    defineField({ name: 'whoHeading', title: 'Who Section Heading', type: 'string', group: 'extras' }),
+    defineField({
+      name: 'whoItems', title: 'Who Section Items', type: 'array', group: 'extras',
+      of: [{ type: 'object', fields: [
+        defineField({ name: 'icon', title: 'Emoji Icon', type: 'string' }),
+        defineField({ name: 'text', title: 'Item Text', type: 'string' }),
+      ], preview: { select: { title: 'text', subtitle: 'icon' } } }],
+    }),
+
     // ── TRUST / WHY CHOOSE US ─────────────────────────────────────────────────
     defineField({ name: 'trustHeading',    title: '"Why Choose Us" Heading', type: 'string', group: 'trust' }),
     defineField({ name: 'trustAccentWord', title: '"Why Choose Us" Accent (Orange)', type: 'string', group: 'trust' }),
@@ -234,6 +252,7 @@ export const service = defineType({
         defineField({ name: 'metaDescription', title: 'Meta Description', type: 'text', rows: 3 }),
         defineField({ name: 'canonicalUrl',    title: 'Canonical URL',    type: 'url' }),
         defineField({ name: 'ogImage',         title: 'Social Share Image', type: 'image' }),
+        defineField({ name: 'customSchema',    title: 'Custom JSON-LD Schema', type: 'text', rows: 10, description: 'Paste custom JSON-LD script here (without <script> tags)' }),
       ],
     }),
 

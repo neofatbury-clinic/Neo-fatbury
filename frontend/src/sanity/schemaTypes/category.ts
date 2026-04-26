@@ -93,6 +93,7 @@ export const category = defineType({
       fields: [
         defineField({ name: 'metaTitle',       title: 'Meta Title',       type: 'string' }),
         defineField({ name: 'metaDescription', title: 'Meta Description', type: 'text', rows: 3 }),
+        defineField({ name: 'customSchema', title: 'Custom JSON-LD Schema', type: 'text', rows: 10, description: 'Paste custom JSON-LD script here (without <script> tags)' }),
       ],
     }),
   ],
