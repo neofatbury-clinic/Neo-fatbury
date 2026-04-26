@@ -64,7 +64,7 @@ export default async function InchLoss() {
 
       <section className="section bg-surface text-center" style={{ padding: '4.5rem 0' }}>
         <div className="container" style={{ maxWidth: '1000px' }}>
-          <h2 className="section-title" style={{ fontSize: '2.6rem' }}>{probHead} <span className="text-accent">{probAccent}</span></h2>
+          <h2 className="section-title">{probHead} <span className="text-accent">{probAccent}</span></h2>
           <div className="grid grid-4" style={{ marginTop: '3.5rem', gap: '1.5rem' }}>
             {probCards.map(item=>(<div key={item.title} className="card-sleek"><div style={{fontSize:'2.4rem',marginBottom:'1.25rem'}}>{item.icon}</div><h3 style={{fontSize:'1.1rem',marginBottom:'0.75rem',color:'var(--color-primary)',fontWeight:'800'}}>{item.title}</h3><p style={{fontSize:'0.9rem',color:'#666',lineHeight:'1.6'}}>{item.desc}</p></div>))}
           </div>
@@ -80,9 +80,9 @@ export default async function InchLoss() {
             <Image src={(d.whatIsImage as string) || "/images/neofatbury-body-standard.png"} alt="Body Contouring System" fill style={{ objectFit: 'cover' }} />
             <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', background: 'white', padding: '0.75rem 1.25rem', borderRadius: '10px', fontSize: '0.85rem', fontWeight: '800', color: 'var(--color-primary)' }}>{wiBadge}</div>
           </div>
-          <div style={{ paddingLeft: '2.5rem' }}>
+          <div className="split-text-block">
             <h2 className="section-subtitle" style={{ color: 'var(--color-accent)', fontWeight: '900', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.9rem' }}>{wiLabel}</h2>
-            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '1.5rem', fontSize: '2.6rem' }}>{wiHead} <span className="text-accent">{wiAccent}</span></h2>
+            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '1.5rem' }}>{wiHead} <span className="text-accent">{wiAccent}</span></h2>
             <p className="text-muted" style={{ fontSize: '1.1rem', marginBottom: '2.5rem', lineHeight: '1.8' }}>{wiBody}</p>
             <h4 style={{ marginBottom: '1.25rem', fontSize: '1.1rem', fontWeight: '800' }}>{wiSubHead}</h4>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
@@ -103,7 +103,7 @@ export default async function InchLoss() {
 
       <section className="section text-center">
         <div className="container">
-          <h2 className="section-title" style={{ fontSize: '2.6rem' }}>{baHead} <span className="text-accent">{baAccent}</span></h2>
+          <h2 className="section-title">{baHead} <span className="text-accent">{baAccent}</span></h2>
           <p className="section-subtitle">{baSub}</p>
           <div style={{ maxWidth: '480px', margin: '3.5rem auto', position: 'relative', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 15px 40px rgba(0,0,0,0.1)' }}>
             <div style={{ position: 'relative', width: '100%', aspectRatio: '16/6' }}><Image src={(d.baImage as string) || "/images/neofatbury-inch-loss-ba.png"} alt="Inch Loss Results" fill style={{ objectFit: 'cover' }} /></div>

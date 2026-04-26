@@ -21,9 +21,9 @@ export default async function CoolSculpting() {
       />
 
       {/* 2. PROBLEM SECTION */}
-      <section className="section bg-surface text-center" style={{ padding: '3.5rem 0' }}>
+      <section className="section bg-surface text-center">
         <div className="container" style={{ maxWidth: '1000px' }}>
-          <h2 className="section-title" style={{ fontSize: '2.4rem' }}>Stubborn Fat <span className="text-accent">That Won’t Go Away?</span></h2>
+          <h2 className="section-title">Stubborn Fat <span className="text-accent">That Won’t Go Away?</span></h2>
           <div className="grid grid-4" style={{ marginTop: '3.5rem', gap: '1.25rem' }}>
             {[
               { title: "Belly Fat", desc: "Target persistent fat around the abdomen area.", icon: "🥋" },
@@ -47,9 +47,9 @@ export default async function CoolSculpting() {
             <Image src={(d.whatIsImage as string) || "/images/neofatbury-slimming-standard.png"} alt="CoolSculpting Technology" fill style={{ objectFit: 'cover' }} />
             <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', background: 'white', padding: '0.5rem 1rem', borderRadius: '8px', fontSize: '0.8rem', fontWeight: '700', color: 'var(--color-primary)' }}>NEOFATBURY CLINICAL STANDARD</div>
           </div>
-          <div style={{ paddingLeft: '2.5rem' }}>
+          <div className="split-text-block">
             <h2 className="section-subtitle" style={{ color: 'var(--color-accent)', fontWeight: '800', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.9rem' }}>Precision Contouring</h2>
-            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '1.5rem', fontSize: '2.4rem' }}>What is <span className="text-accent">CoolSculpting?</span></h2>
+            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '1.5rem' }}>What is <span className="text-accent">CoolSculpting?</span></h2>
             <p className="text-muted" style={{ fontSize: '1.05rem', marginBottom: '2rem', lineHeight: '1.8' }}>
               CoolSculpting is a non-invasive fat reduction treatment that uses controlled cooling to freeze and eliminate stubborn fat cells.
             </p>
@@ -74,8 +74,8 @@ export default async function CoolSculpting() {
 
       <section className="section bg-surface">
         <div className="container grid grid-2 items-center gap-4">
-          <div style={{ paddingRight: '2.5rem' }}>
-            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '1.5rem' }}>Advanced Body <span className="text-accent">Contouring Technology</span></h2>
+          <div className="split-text-block">
+            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '1.5rem' }}>Precision <span className="text-accent">Freezing Tech</span></h2>
             <p className="text-muted" style={{ fontSize: '1.05rem', marginBottom: '2.5rem' }}>
               We use modern, clinically proven fat reduction technology designed for safe and effective results across all body types.
             </p>

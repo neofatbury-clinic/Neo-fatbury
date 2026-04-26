@@ -58,7 +58,7 @@ export default async function CoolSculpting() {
 
       <section className="section bg-surface text-center" style={{ padding: '6rem 0' }}>
         <div className="container" style={{ maxWidth: '1100px' }}>
-          <h2 className="section-title" style={{ fontSize: '2.8rem' }}>Stubborn Fat <span className="text-accent">That Won&apos;t Go Away?</span></h2>
+          <h2 className="section-title">Stubborn Fat <span className="text-accent">That Won&apos;t Go Away?</span></h2>
           <div className="grid grid-4" style={{ marginTop: '4rem', gap: '1.5rem' }}>
             {probCards.map(item=>(<div key={item.title} className="card-sleek"><div style={{fontSize:'2.5rem',marginBottom:'1.5rem'}}>{item.icon}</div><h3 style={{fontSize:'1.15rem',marginBottom:'1rem',color:'var(--color-primary)',fontWeight:'800'}}>{item.title}</h3><p style={{fontSize:'0.9rem',color:'#666',lineHeight:'1.7'}}>{item.desc}</p></div>))}
           </div>
@@ -74,9 +74,9 @@ export default async function CoolSculpting() {
             <Image src={(d.whatIsImage as string) || "/images/neofatbury-slimming-standard.png"} alt="CoolSculpting Technology" fill style={{ objectFit: 'cover' }} />
             <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', background: 'white', padding: '0.75rem 1.5rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: '800', color: 'var(--color-primary)', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}>{wiBadge}</div>
           </div>
-          <div style={{ paddingLeft: '3.5rem' }}>
+          <div className="split-text-block">
             <h2 className="section-subtitle" style={{ color: 'var(--color-accent)', fontWeight: '900', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '2.5px', fontSize: '1rem' }}>{wiLabel}</h2>
-            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '2rem', fontSize: '2.8rem' }}>What is <span className="text-accent">{wiAccent}</span></h2>
+            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '2rem' }}>What is <span className="text-accent">{wiAccent}</span></h2>
             <p className="text-muted" style={{ fontSize: '1.15rem', marginBottom: '2.5rem', lineHeight: '1.8' }}>{wiBody}</p>
             <div style={{ background: '#f8fdfd', padding: '2rem', borderRadius: '16px', border: '1px solid rgba(39, 166, 156, 0.15)', marginBottom: '3.5rem' }}>
               <h4 style={{ color: 'var(--color-primary)', fontWeight: '900', marginBottom: '0.75rem', fontSize: '1rem' }}>{authNote.label}</h4>
@@ -97,7 +97,7 @@ export default async function CoolSculpting() {
 
       <section className="section text-center">
         <div className="container">
-          <h2 className="section-title" style={{ fontSize: '2.8rem' }}>{baHead} <span className="text-accent">{baAccent}</span></h2>
+          <h2 className="section-title">{baHead} <span className="text-accent">{baAccent}</span></h2>
           <p className="section-subtitle">{baSub}</p>
           <div style={{ maxWidth: '480px', margin: '4.5rem auto', position: 'relative', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 15px 45px rgba(0,0,0,0.1)' }}>
             <div style={{ position: 'relative', width: '100%', aspectRatio: '16/6' }}><Image src={(d.baImage as string) || "/images/neofatbury-body-ba.png"} alt="CoolSculpting Results" fill style={{ objectFit: 'cover' }} /></div>
