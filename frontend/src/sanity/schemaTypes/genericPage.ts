@@ -23,27 +23,70 @@ export const genericPage = defineType({
     }),
     defineField({
       name: 'content',
-      title: 'Page Content',
+      title: '🏗️ Page Builder',
+      description: '💡 Add sections one by one to build your page. You can drag and drop to reorder them.',
       type: 'array',
       of: [
-        { type: 'block' },
         {
-          type: 'image',
-          options: { hotspot: true },
+          type: 'object',
+          name: 'pageHero',
+          title: '🔥 Section: Large Hero',
           fields: [
-            defineField({ name: 'alt', title: 'Alt Text (SEO)', type: 'string', description: '💡 Describe what is in the image for Google.' }),
-          ],
+            defineField({ name: 'title', title: 'Main Heading', type: 'string' }),
+            defineField({ name: 'subtitle', title: 'Sub-heading', type: 'string' }),
+            defineField({ name: 'image', title: 'Background Image', type: 'image', options: { hotspot: true } }),
+            defineField({ name: 'showForm', title: 'Show Lead Form?', type: 'boolean', initialValue: true }),
+          ]
+        },
+        {
+          type: 'object',
+          name: 'textImage',
+          title: '🌓 Section: Text + Image (Split)',
+          fields: [
+            defineField({ name: 'heading', title: 'Heading', type: 'string' }),
+            defineField({ name: 'text', title: 'Paragraph Text', type: 'text', rows: 4 }),
+            defineField({ name: 'image', title: 'Section Image', type: 'image', options: { hotspot: true } }),
+            defineField({ name: 'reverse', title: 'Image on Left?', type: 'boolean', initialValue: false }),
+          ]
+        },
+        {
+          type: 'object',
+          name: 'richText',
+          title: '📝 Section: Standard Text Block',
+          fields: [
+            defineField({ name: 'content', title: 'Text Content', type: 'array', of: [{ type: 'block' }] }),
+          ]
         },
         {
           type: 'object',
           name: 'ctaBox',
-          title: 'Section: CTA Box',
+          title: '🔘 Section: Call to Action Banner',
           fields: [
             defineField({ name: 'text', title: 'Banner Text', type: 'string' }),
             defineField({ name: 'buttonText', title: 'Button Label', type: 'string' }),
             defineField({ name: 'link', title: 'Button Link', type: 'string' }),
           ],
         },
+        {
+          type: 'object',
+          name: 'faqSection',
+          title: '❓ Section: FAQ List',
+          fields: [
+            defineField({ name: 'heading', title: 'Section Heading', type: 'string' }),
+            defineField({
+              name: 'items',
+              title: 'Questions',
+              type: 'array',
+              of: [{
+                type: 'object',
+                fields: [
+                  defineField({ name: 'question', title: 'Question', type: 'string' }),
+                  defineField({ name: 'answer', title: 'Answer', type: 'text' }),
+                ]
+              }]
+            })
+          ]
+        }
       ],
     }),
     defineField({
