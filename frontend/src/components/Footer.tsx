@@ -91,8 +91,14 @@ export default function Footer({ settings }: { settings?: any }) {
                 {loc.mapsUrl && (
                   <a href={loc.mapsUrl} target="_blank" rel="noreferrer" style={mapLink}>View on Maps</a>
                 )}
+                {loc.gbpUrl && (
+                  <>
+                    <span style={{ color: '#ccc', margin: '0 0.5rem' }}>|</span>
+                    <a href={loc.gbpUrl} target="_blank" rel="noreferrer" style={mapLink}>Google Profile</a>
+                  </>
+                )}
                 {loc.phone && (
-                  <div style={{ marginTop: '0.25rem' }}>
+                  <div style={{ marginTop: '0.35rem' }}>
                     <a href={`tel:${loc.phone}`} style={{ ...mapLink, textDecoration: 'none', fontWeight: '600' }}>📞 {loc.phone}</a>
                   </div>
                 )}
