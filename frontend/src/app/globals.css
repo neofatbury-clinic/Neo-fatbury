@@ -767,7 +767,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   align-items: center;
   /* Brand Split: Image/Text zone on left, fixed 480px Brand Green zone on right */
   background: linear-gradient(to right, #faf8f6 0%, #faf8f6 calc(100% - 480px), #00acb1 calc(100% - 480px), #00acb1 100%);
-  padding-top: 25px; 
+  padding-top: calc(var(--header-height) + 10px); 
   overflow: visible;
   min-height: 520px;
   height: auto;
