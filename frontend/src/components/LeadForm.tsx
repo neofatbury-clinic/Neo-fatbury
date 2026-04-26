@@ -291,6 +291,8 @@ export default function LeadForm({
           border-radius: 18px;
           box-shadow: 0 12px 45px rgba(0, 0, 0, 0.14);
           width: 100%;
+          max-width: 100%;
+          overflow: hidden;
           font-family: 'Montserrat', sans-serif;
           box-sizing: border-box;
           display: flex;
@@ -421,21 +423,24 @@ export default function LeadForm({
         /* Category Row */
         .lf-category-row {
           display: flex;
+          flex-wrap: wrap;
           gap: 0.4rem;
         }
  
         .lf-category-btn {
-          flex: 1;
-          padding: 0.5rem;
+          flex: 1 1 auto;
+          min-width: 70px;
+          padding: 0.5rem 0.35rem;
           border-radius: 6px;
           border: 1px solid #e5e7eb;
           background: #fff;
           color: #4b5563;
-          font-size: 0.8rem;
+          font-size: 0.78rem;
           font-weight: 700;
           cursor: pointer;
           transition: all 0.2s;
           text-align: center;
+          white-space: nowrap;
         }
  
         .lf-category-btn.active {
