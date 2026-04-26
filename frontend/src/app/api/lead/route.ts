@@ -69,6 +69,38 @@ export async function POST(request: NextRequest) {
     const leadId = result?.data?.[0]?.details?.id
 
     console.log(`✅ Lead created in Zoho: ${leadId} — ${name} (${phone})`)
+
+    // --- EMAIL NOTIFICATION (RESEND) ---
+    const RESEND_KEY = process.env.RESEND_API_KEY;
+    if (RESEND_KEY) {
+      try {
+        const { Resend } = await import('resend');
+        const resend = new Resend(RESEND_KEY);
+        
+        await resend.emails.send({
+          from: 'NeoFatbury Leads <leads@neofatbury.co.in>',
+          to: ['fatburyn@gmail.com'],
+          subject: `New Lead: ${name} (${service})`,
+          html: `
+            <h3>New Website Lead</h3>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Phone:</strong> ${phone}</p>
+            <p><strong>Service:</strong> ${service}</p>
+            <p><strong>Clinic:</strong> ${location}</p>
+            <p><strong>Concerns:</strong> ${concerns?.join(', ') || 'None'}</p>
+            <p><strong>Page:</strong> ${pageUrl}</p>
+            <br/>
+            <p><em>Check Zoho CRM for more details.</em></p>
+          `
+        });
+        console.log(`📧 Lead email sent to fatburyn@gmail.com`);
+      } catch (emailErr) {
+        console.error('❌ Failed to send lead email:', emailErr);
+      }
+    } else {
+      console.warn('⚠️ RESEND_API_KEY not found. Email notification skipped.');
+    }
+
     return NextResponse.json({ success: true, leadId })
 
   } catch (err) {
