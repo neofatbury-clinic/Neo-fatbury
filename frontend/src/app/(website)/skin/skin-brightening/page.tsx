@@ -93,9 +93,14 @@ export default async function SkinBrightening() {
               </div>
             ))}
           </div>
-          <p style={{ fontSize: '1.3rem', marginTop: '4.5rem', fontWeight: '700', color: 'var(--color-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem' }}>
-            {probBotText} <span className="text-accent" style={{ borderBottom: '2px solid rgba(39, 166, 156, 0.3)' }}>{probBotAccent}</span>
-          </p>
+          <div style={{ marginTop: '5rem', padding: '2rem', backgroundColor: 'rgba(0, 172, 177, 0.03)', borderRadius: '20px', border: '1px dashed rgba(0, 172, 177, 0.2)' }}>
+            <p style={{ fontSize: '1.4rem', fontWeight: '700', color: 'var(--color-primary)', lineHeight: '1.5', margin: 0 }}>
+              {probBotText} <span className="text-accent" style={{ position: 'relative', display: 'inline-block' }}>
+                {probBotAccent}
+                <span style={{ position: 'absolute', bottom: '2px', left: 0, width: '100%', height: '8px', backgroundColor: 'rgba(232, 163, 23, 0.2)', zIndex: -1 }}></span>
+              </span>
+            </p>
+          </div>
         </div>
       </section>
 
