@@ -160,8 +160,13 @@ export default async function SkinBrightening() {
       <section className="section text-center">
         <div className="container">
           <h2 className="section-title">{trustHead} <span className="text-accent">{trustAccent}</span></h2>
-          <div className="grid grid-4 mobile-grid-2" style={{ marginTop: '5rem', gap: '1.5rem' }}>
-            {trustItems.map(item=>(<div key={item.text} className="card-trust"><div style={{fontSize:'2.8rem',marginBottom:'1.5rem'}}>{item.icon}</div><h4 style={{fontSize:'1.1rem',fontWeight:'800',color:'var(--color-primary)'}}>{item.text}</h4></div>))}
+          <div className="grid grid-4 mobile-grid-2" style={{ marginTop: '5rem', gap: '1rem' }}>
+            {trustItems.map(item=>(
+              <div key={item.text} className="card-trust" style={{ padding: '1.5rem 1rem' }}>
+                <div style={{fontSize:'2.2rem',marginBottom:'1rem'}}>{item.icon}</div>
+                <h4 style={{fontSize:'0.95rem',fontWeight:'800',color:'var(--color-primary)', lineHeight: '1.2'}}>{item.text}</h4>
+              </div>
+            ))}
           </div>
         </div>
       </section>

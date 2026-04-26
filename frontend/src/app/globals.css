@@ -549,7 +549,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 }
 @media (max-width: 768px) {
   .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr !important; gap: 2rem !important; }
-  .mobile-grid-2 { grid-template-columns: repeat(2, 1fr) !important; gap: 1rem !important; }
+  .mobile-grid-2 { grid-template-columns: repeat(2, 1fr) !important; gap: 1rem !important; display: grid !important; }
   .section        { padding: 3rem 0 !important; }
   .section-sm     { padding: 2rem 0 !important; }
   .section-title  { font-size: 1.8rem; margin-bottom: 0.75rem; text-align: center; }
