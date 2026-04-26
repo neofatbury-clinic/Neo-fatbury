@@ -157,7 +157,8 @@ export const service = defineType({
 
     // ── EXTRA SECTIONS (page-specific) ───────────────────────────────────────
     defineField({
-      name: 'causesSection', title: 'Causes Grid (Hair Loss page)', type: 'object', group: 'extras',
+      name: 'causesSection', title: '🧬 Hair Loss: Causes Grid', type: 'object', group: 'extras',
+      description: '💡 Usually only for Hair Loss services.',
       fields: [
         defineField({ name: 'heading',    title: 'Heading',       type: 'string' }),
         defineField({ name: 'accentWord', title: 'Accent (Orange)', type: 'string' }),
@@ -185,7 +186,8 @@ export const service = defineType({
       ],
     }),
     defineField({
-      name: 'targetAreas', title: '"Target Areas" Chips (CoolSculpting)', type: 'object', group: 'extras',
+      name: 'targetAreas', title: '🎯 Slimming: Target Areas', type: 'object', group: 'extras',
+      description: '💡 Usually only for CoolSculpting/Slimming services.',
       fields: [
         defineField({ name: 'heading',    title: 'Heading',       type: 'string' }),
         defineField({ name: 'accentWord', title: 'Accent (Orange)', type: 'string' }),
@@ -199,16 +201,22 @@ export const service = defineType({
       ],
     }),
 
-    // ── MISSING FIELDS (to resolve 'Unknown fields' error) ───────────────────────
-    defineField({ name: 'treatHeading', title: 'Treat Section Heading', type: 'string', group: 'extras' }),
+    // ── SCAR / SKIN CLINICAL SECTIONS ──────────────────────────────────────────
+    defineField({ 
+      name: 'treatHeading', title: '🏥 Scar/Treatment Heading', type: 'string', group: 'extras',
+      description: 'e.g. "Types of Scars We Treat"'
+    }),
     defineField({
-      name: 'treatItems', title: 'Treat Section Items', type: 'array', group: 'extras',
+      name: 'treatItems', title: '🏥 Scar/Treatment Items', type: 'array', group: 'extras',
       of: [{ type: 'object', fields: [
         defineField({ name: 'icon', title: 'Emoji Icon', type: 'string' }),
         defineField({ name: 'text', title: 'Item Text', type: 'string' }),
       ], preview: { select: { title: 'text', subtitle: 'icon' } } }],
     }),
-    defineField({ name: 'whoHeading', title: 'Who Section Heading', type: 'string', group: 'extras' }),
+    defineField({ 
+      name: 'whoHeading', title: '👥 Audience Heading', type: 'string', group: 'extras',
+      description: 'e.g. "Who Can Benefit?"'
+    }),
     defineField({
       name: 'whoItems', title: 'Who Section Items', type: 'array', group: 'extras',
       of: [{ type: 'object', fields: [
