@@ -61,16 +61,10 @@ export default async function ContactUs() {
 
           {/* Contact Form */}
           <div style={{ flex: '2 1 550px' }}>
-             <div style={{ marginBottom: '2.5rem' }}>
-                <h2 style={{ fontSize: '2.4rem', color: 'var(--color-primary)', fontWeight: '900', marginBottom: '1rem' }}>{page?.leadFormTitle || 'Drop us a Message'}</h2>
-                <p style={{ fontSize: '1.1rem', color: '#666', lineHeight: '1.6' }}>{page?.leadFormDescription || 'Our medical team is ready to guide you on your transformation journey.'}</p>
-             </div>
-             <div className="card-form-wrap" style={{ backgroundColor: 'white', borderRadius: '30px', boxShadow: '0 20px 60px rgba(0,0,0,0.06)', border: '1px solid #f0f0f0', padding: '3rem' }}>
-                <LeadForm 
-                  title={page?.leadFormTitle} 
-                  subtitle={page?.leadFormDescription}
-                />
-             </div>
+             <LeadForm 
+               title={page?.leadFormTitle || 'Drop us a Message'} 
+               subtitle={page?.leadFormDescription || 'Our clinical experts will get back to you within 24 hours.'}
+             />
           </div>
 
           {/* Info Panel */}

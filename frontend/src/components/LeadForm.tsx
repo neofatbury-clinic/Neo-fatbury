@@ -302,19 +302,21 @@ export default function LeadForm({
  
         .lf-title {
           text-align: center;
-          font-size: 1.2rem;
-          font-weight: 800;
+          font-size: 1.8rem;
+          font-weight: 900;
           color: #00acb1;
-          margin: 0 0 0.25rem;
-          letter-spacing: -0.01em;
+          margin: 0 0 0.5rem;
+          line-height: 1.2;
+          letter-spacing: -0.02em;
         }
  
         .lf-subtitle {
           text-align: center;
-          font-size: 0.8rem;
+          font-size: 0.95rem;
           color: #666;
-          margin: 0 0 1rem;
+          margin: 0 0 1.5rem;
           font-weight: 500;
+          line-height: 1.5;
         }
  
         .lf-form {
@@ -520,9 +522,10 @@ export default function LeadForm({
         }
  
         @media (max-width: 480px) {
-          .lf-wrapper { padding: 1.5rem 1rem; }
+          .lf-wrapper { padding: 2rem 1.25rem; }
+          .lf-title { font-size: 1.5rem; }
           .lf-clinic-row { flex-direction: column; }
-          .lf-concern-grid { grid-template-columns: 1fr 1fr; }
+          .lf-concern-grid { grid-template-columns: repeat(2, 1fr); }
         }
       `}</style>
 
