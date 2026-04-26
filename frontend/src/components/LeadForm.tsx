@@ -287,7 +287,7 @@ export default function LeadForm({
       <style>{`
         .lf-wrapper {
           background: #ffffff;
-          padding: 2.2rem 1.5rem 2rem 1.5rem;
+          padding: 2.2rem 1.5rem 1.5rem 1.5rem;
           border-radius: 18px;
           box-shadow: 0 12px 45px rgba(0, 0, 0, 0.14);
           width: 100%;

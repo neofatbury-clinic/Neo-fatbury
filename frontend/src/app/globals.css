@@ -769,7 +769,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   background: linear-gradient(to right, #faf8f6 0%, #faf8f6 calc(100% - 480px), #00acb1 calc(100% - 480px), #00acb1 100%);
   padding-top: 25px; 
   overflow: visible;
-  min-height: 640px;
+  min-height: 580px;
   height: auto;
   box-sizing: border-box;
 }
@@ -892,7 +892,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 3.5rem 2rem 1.5rem 0; /* Pushed form down a very little bit as requested */
+  padding: 3.5rem 2rem 0.5rem 0; /* Tightened as requested */
   background-color: transparent;
 }
 
