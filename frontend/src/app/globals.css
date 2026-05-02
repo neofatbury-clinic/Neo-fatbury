@@ -777,13 +777,12 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   position: relative;
   z-index: 10;
   width: 100%;
-  max-width: 100%;
+  max-width: 100%; /* Ensure full width */
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: 1fr 480px; 
-  align-items: stretch; /* Stretch pillars to fill section height */
-  gap: 0;
+  grid-template-columns: 1fr 520px; /* Increased from 480px to prevent form cut-off */
+  align-items: stretch;
   height: 100%;
 }
 
@@ -889,9 +888,9 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 
 .replica-zone-right {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center; /* Center the form in its column */
   align-items: center;
-  padding: 1rem 2rem 1rem 0; /* Slimmer padding */
+  padding: 1rem 3rem; /* More padding for safety */
   background-color: transparent; 
 }
 
