@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
 import ReplicaHero from "@/components/ReplicaHero";
-import { client } from "@/sanity/lib/client";
+import { client, urlFor } from "@/sanity/client";
 import CustomSchema from "@/components/CustomSchema";
 
 export const metadata = {
@@ -18,17 +18,19 @@ export default async function SkinPage() {
   const query = `{
     "category": *[_type == "category" && slug.current == "skin"][0] {
       ...,
-      "heroImage": heroImage.asset->url,
+      heroImage,
       "seo": seo
     },
     "services": *[_type == "service" && category->slug.current == "skin"] | order(order asc) {
       name,
       shortDescription,
       "slug": slug.current,
-      "image": heroImage.asset->url
+      heroImage
     }
   }`;
   const { category, services: servicesData } = await client.fetch(query);
+
+  const heroImageSrc = (category?.heroImage?.asset) ? urlFor(category.heroImage).url() : "/images/All Skin Treatments.png";
 
   // Fallback list of treatments to ensure the page is never empty
   const FALLBACK_SKIN = [
@@ -47,10 +49,10 @@ export default async function SkinPage() {
       <ReplicaHero 
         titleTeal1={category?.heroHeadline || "All Skin"}
         titleTeal2=""
-        titleOrange1="Treatments"
+        titleOrange1={category?.heroAccentLine || "Treatments"}
         titleOrange2=""
         subtext={category?.heroSubtext || ""}
-        imageSrc={category?.heroImage || "/images/All Skin Treatments.png"}
+        imageSrc={heroImageSrc}
         leadFormTitle="Book Skin Analysis"
       />
 
@@ -61,16 +63,19 @@ export default async function SkinPage() {
           <p className="section-subtitle text-center">{category?.description || "Comprehensive clinical solutions for every skin concern."}</p>
           
           <div className="grid grid-2" style={{ marginTop: '3rem', maxWidth: '1000px', margin: '3rem auto 0' }}>
-            {services.map((s: any) => (
-              <div key={s.name} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
-                <div style={{ position: 'relative', height: '260px', marginBottom: '1.5rem', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
-                  <Image src={s.image || '/images/neofatbury-clinical-standard.png'} alt={s.name} fill style={{ objectFit: 'cover' }} />
+            {services.map((s: any) => {
+              const sImg = (s.heroImage?.asset) ? urlFor(s.heroImage).url() : (s.image || '/images/neofatbury-clinical-standard.png');
+              return (
+                <div key={s.name} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ position: 'relative', height: '260px', marginBottom: '1.5rem', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
+                    <Image src={sImg} alt={s.name} fill style={{ objectFit: 'cover' }} />
+                  </div>
+                  <h3 style={{ fontSize: '1.5rem', marginBottom: '0.75rem' }}>{s.name}</h3>
+                  <p className="text-muted" style={{ marginBottom: '1.5rem', flexGrow: 1, lineHeight: 1.6 }}>{s.shortDescription}</p>
+                  <Link href={`/skin/${s.slug}`} className="btn btn-outline" style={{ width: 'fit-content' }}>View Details</Link>
                 </div>
-                <h3 style={{ fontSize: '1.5rem', marginBottom: '0.75rem' }}>{s.name}</h3>
-                <p className="text-muted" style={{ marginBottom: '1.5rem', flexGrow: 1, lineHeight: 1.6 }}>{s.shortDescription}</p>
-                <Link href={`/skin/${s.slug}`} className="btn btn-outline" style={{ width: 'fit-content' }}>View Details</Link>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

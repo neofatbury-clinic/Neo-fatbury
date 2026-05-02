@@ -70,11 +70,15 @@ export default function HomeClient({ treatments }: HomeClientProps) {
       <div className="treatment-slider-container" style={{ 
         display: 'flex', 
         flexDirection: 'row', 
-        flexWrap: 'wrap',
-        gap: '2.5rem 1.5rem', 
+        flexWrap: 'nowrap',
+        gap: '1.5rem', 
         padding: '1rem 1rem 4rem',
-        justifyContent: 'center',
-        alignItems: 'flex-start'
+        overflowX: 'auto',
+        scrollSnapType: 'x mandatory',
+        WebkitOverflowScrolling: 'touch',
+        justifyContent: 'flex-start',
+        scrollbarWidth: 'none',
+        msOverflowStyle: 'none'
       }}>
         {currentTreatments.map((item: any, idx: number) => {
           const displayImage = item.image || FALLBACK_IMAGES[item.slug] || '/images/neofatbury-clinical-standard.png';
@@ -84,6 +88,7 @@ export default function HomeClient({ treatments }: HomeClientProps) {
               key={idx} 
               href={`/${categorySlug}/${item.slug}`} 
               className="treatment-card-oval"
+              style={{ flex: '0 0 auto', scrollSnapAlign: 'center' }}
             >
               <div className="oval-container-outer">
                 <div className="oval-image-mask">
@@ -114,16 +119,20 @@ export default function HomeClient({ treatments }: HomeClientProps) {
       </div>
 
       <style jsx>{`
+        .treatment-slider-container::-webkit-scrollbar {
+          display: none;
+        }
         @media (min-width: 1024px) {
           .treatment-slider-container {
-            flex-direction: row !important;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 3rem 2rem;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            overflow-x: visible !important;
+            gap: 3rem 2rem !important;
           }
           .treatment-card-oval {
             width: 240px !important;
             flex: none !important;
+            scroll-snap-align: none !important;
           }
         }
       `}</style>

@@ -5,9 +5,25 @@ import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
 import { getServicePageData } from "@/sanity/fetchers/services";
+import { urlFor } from "@/sanity/client";
 
 export default async function LaserHairReduction() {
-  const d = await getServicePageData('laser-hair-reduction') as Record<string, unknown>;
+  const d = await getServicePageData('laser-hair-reduction') as any;
+
+  // Image helpers
+  const getUrl = (source: any) => {
+    if (!source || !source.asset) return null;
+    try {
+      return urlFor(source).url();
+    } catch (e) {
+      return null;
+    }
+  };
+
+  const heroImageSrc = getUrl(d.heroImage) || "/images/Laser Hair Reduction.png";
+  const whatIsImageSrc = getUrl(d.whatIsImage) || "/images/neofatbury-clinical-standard.png";
+  const baImageSrc = getUrl(d.baImage) || "/images/neofatbury-laser-ba.png";
+  const techImageSrc = getUrl(d.techImage) || "/images/neofatbury-cooling-tech.png";
 
   // Hero
   const heroH1     = (d.heroHeadline   as string) || '';
@@ -73,7 +89,7 @@ export default async function LaserHairReduction() {
         titleOrange1={heroAccent}
         titleOrange2=""
         subtext={heroDesc}
-        imageSrc={(d.image as string) || "/images/Laser Hair Reduction.png"}
+        imageSrc={heroImageSrc}
         trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
       />
 
@@ -100,7 +116,7 @@ export default async function LaserHairReduction() {
       <section className="section">
         <div className="container grid grid-2 items-center gap-6">
           <div style={{ position: 'relative', height: '550px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 25px 55px rgba(0,0,0,0.1)' }}>
-            <Image src={(d.whatIsImage as string) || "/images/neofatbury-clinical-standard.png"} alt="Laser Hair Procedure" fill style={{ objectFit: 'cover' }} />
+            <Image src={whatIsImageSrc} alt="Laser Hair Procedure" fill style={{ objectFit: 'cover' }} />
             <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', background: 'white', padding: '0.75rem 1.5rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: '800', color: 'var(--color-primary)', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}>{wiBadge}</div>
           </div>
           <div style={{ paddingLeft: '3.5rem' }}>
@@ -126,7 +142,7 @@ export default async function LaserHairReduction() {
           <p className="section-subtitle">{baSub}</p>
           <div style={{ maxWidth: '480px', margin: '2rem auto', position: 'relative', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 15px 40px rgba(0,0,0,0.1)' }}>
             <div style={{ position: 'relative', width: '100%', aspectRatio: '16/6' }}>
-              <Image src={(d.baImage as string) || "/images/neofatbury-laser-ba.png"} alt="Laser Treatment Results" fill style={{ objectFit: 'cover' }} />
+              <Image src={baImageSrc} alt="Laser Treatment Results" fill style={{ objectFit: 'cover' }} />
             </div>
             <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)', padding: '1rem', display: 'flex', justifyContent: 'center', gap: '15vw' }}>
               <span style={{ color: 'white', fontWeight: '900', letterSpacing: '3px', fontSize: '0.85rem', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>BEFORE</span>
@@ -168,7 +184,7 @@ export default async function LaserHairReduction() {
             </div>
           </div>
           <div style={{ position: 'relative', height: '480px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 25px 55px rgba(0,0,0,0.1)' }}>
-            <Image src={(d.techImage as string) || "/images/neofatbury-cooling-tech.png"} alt="Soprano ICE Technology" fill style={{ objectFit: 'cover' }} />
+            <Image src={techImageSrc} alt="Soprano ICE Technology" fill style={{ objectFit: 'cover' }} />
           </div>
         </div>
       </section>

@@ -764,8 +764,8 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 .replica-hero {
   position: relative;
   display: flex;
-  align-items: stretch; /* Ensure children fill height */
-  background: #faf8f6; /* Base background */
+  align-items: stretch;
+  background: #faf8f6; /* Unified consistent background */
   padding-top: calc(var(--header-height) + 10px); 
   overflow: visible;
   min-height: 520px;
@@ -848,7 +848,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 }
 
 .replica-title .text-teal {
-  color: #ffffff !important;
+  color: #00acb1 !important; /* Changed to teal since background is now light */
 }
 
 .replica-title .text-orange {
@@ -857,7 +857,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 
 .replica-subtext {
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: #555555;
   line-height: 1.5;
   margin-bottom: 1.5rem;
   max-width: 500px;
@@ -892,7 +892,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   justify-content: flex-end;
   align-items: center;
   padding: 1.5rem 2rem 0.5rem 0; 
-  background-color: #00acb1; /* Specific background color for this column */
+  background-color: transparent; 
 }
 
 @media (max-width: 1200px) {
@@ -935,7 +935,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   }
   .replica-primary-box {
     display: block !important;
-    background-color: #00acb1 !important;
+    background-color: #ffffff !important;
     clip-path: none !important;
     margin: 0 !important;
   }

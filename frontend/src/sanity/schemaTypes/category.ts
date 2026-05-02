@@ -60,6 +60,7 @@ export const category = defineType({
       group: 'hero',
     }),
     defineField({ name: 'heroHeadline',   title: 'Hero Headline (Title)', type: 'string', group: 'hero' }),
+    defineField({ name: 'heroAccentLine', title: 'Hero Accent (Orange Title)', type: 'string', group: 'hero' }),
     defineField({ name: 'heroSubtext',    title: 'Hero Description (Subtitle)', type: 'text', rows: 3, group: 'hero' }),
 
     // ── TRUST ─────────────────────────────────

@@ -286,10 +286,13 @@ export default function LeadForm({
 
       <style>{`
         .lf-wrapper {
-          background: #ffffff;
-          padding: 1.8rem 1.2rem 1.2rem 1.2rem;
-          border-radius: 18px;
-          box-shadow: 0 12px 45px rgba(0, 0, 0, 0.14);
+          background: rgba(255, 255, 255, 0.85);
+          backdrop-filter: blur(15px);
+          -webkit-backdrop-filter: blur(15px);
+          padding: 2.2rem 1.5rem 1.8rem;
+          border-radius: 24px;
+          border: 1px solid rgba(255, 255, 255, 0.4);
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
           width: 100%;
           max-width: 100%;
           font-family: 'Montserrat', sans-serif;
@@ -497,18 +500,20 @@ export default function LeadForm({
         /* Submit */
         .lf-submit-btn {
           width: 100%;
-          margin-top: 0.5rem;
-          padding: 0.75rem;
-          background: #00acb1;
+          margin-top: 0.8rem;
+          padding: 0.9rem;
+          background: linear-gradient(135deg, #00acb1 0%, #00898d 100%);
           color: #fff;
           border: none;
-          border-radius: 8px;
-          font-size: 0.95rem;
+          border-radius: 12px;
+          font-size: 1rem;
           font-weight: 800;
-          text-transform: none;
+          text-transform: uppercase;
+          letter-spacing: 1px;
           cursor: pointer;
-          transition: all 0.2s;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
           display: block;
+          box-shadow: 0 10px 25px rgba(0, 172, 177, 0.25);
         }
  
         .lf-submit-btn:hover {

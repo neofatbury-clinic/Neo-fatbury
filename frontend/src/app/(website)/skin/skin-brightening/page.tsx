@@ -5,9 +5,25 @@ import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
 import ReplicaHero from "@/components/ReplicaHero";
 import { getServicePageData } from "@/sanity/fetchers/services";
+import { urlFor } from "@/sanity/client";
 
 export default async function SkinBrightening() {
-  const d = await getServicePageData('skin-brightening') as Record<string, unknown>;
+  const d = await getServicePageData('skin-brightening') as any;
+
+  // Image helpers
+  const getUrl = (source: any) => {
+    if (!source || !source.asset) return null;
+    try {
+      return urlFor(source).url();
+    } catch (e) {
+      return null;
+    }
+  };
+
+  const heroImageSrc = getUrl(d.heroImage) || "/images/Skin Brightening.png";
+  const whatIsImageSrc = getUrl(d.whatIsImage) || "/images/neofatbury-clinical-standard.png";
+  const baImageSrc = getUrl(d.baImage) || "/images/skin-brightening-ba.png";
+  const techImageSrc = getUrl(d.techImage) || "/images/neofatbury-clinical-standard.png";
 
   const heroH1     = (d.heroHeadline   as string) || '';
   const heroAccent = (d.heroAccentLine as string) || '';
@@ -51,7 +67,7 @@ export default async function SkinBrightening() {
 
   // FORCE UPDATE: Ensure new images are used even if Sanity returns old icon-based data
   const finalProbCards = probCards.map((card: any) => {
-    let img = card.image;
+    let img = getUrl(card.image);
     // If no image from Sanity, use local clinical assets based on title
     if (!img) {
       if (card.title.toLowerCase().includes('dull')) img = '/images/skin-concern-dull.png';
@@ -63,7 +79,7 @@ export default async function SkinBrightening() {
     return { ...card, image: img };
   });
 
-  const displayBA = (d.baImage as string) || "/images/skin-brightening-ba.png";
+  const displayBA = baImageSrc;
 
   return (
     <>
@@ -73,7 +89,7 @@ export default async function SkinBrightening() {
         titleOrange1={heroAccent}
         titleOrange2=""
         subtext={heroDesc}
-        imageSrc={(d.image as string) || "/images/Skin Brightening.png"}
+        imageSrc={heroImageSrc}
         trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
       />
 
@@ -112,7 +128,7 @@ export default async function SkinBrightening() {
       <section className="section">
         <div className="container grid grid-2 items-center gap-6">
           <div style={{ position: 'relative', height: '550px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 25px 55px rgba(0,0,0,0.1)' }}>
-            <Image src={(d.whatIsImage as string) || "/images/neofatbury-clinical-standard.png"} alt="Skin Brightening Tech" fill style={{ objectFit: 'cover' }} />
+            <Image src={whatIsImageSrc} alt="Skin Brightening Tech" fill style={{ objectFit: 'cover' }} />
             <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', background: 'white', padding: '0.75rem 1.5rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: '800', color: 'var(--color-primary)', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}>{wiBadge}</div>
           </div>
           <div style={{ paddingLeft: '3.5rem' }}>
@@ -152,7 +168,7 @@ export default async function SkinBrightening() {
             <p className="text-muted" style={{ fontSize: '1.15rem', marginBottom: '3rem', lineHeight: '1.8' }}>{techBody}</p>
           </div>
           <div style={{ position: 'relative', height: '480px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 25px 55px rgba(0,0,0,0.1)' }}>
-            <Image src={(d.techImage as string) || "/images/neofatbury-clinical-standard.png"} alt="Skin Excellence" fill style={{ objectFit: 'cover' }} />
+            <Image src={techImageSrc} alt="Skin Excellence" fill style={{ objectFit: 'cover' }} />
           </div>
         </div>
       </section>
