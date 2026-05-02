@@ -10,11 +10,11 @@ interface HomeClientProps {
 
 // Map of original hardcoded images for each slug as a fallback
 const FALLBACK_IMAGES: Record<string, string> = {
-  'acne-treatment': '/images/Acne & Pimple Treatment.png',
-  'acne-scar-treatment': '/images/Acne & Pimple Treatment.png',
-  'laser-hair-reduction': '/images/Laser Hair Reduction.png',
-  'scar-treatment': '/images/All Skin Treatments.png',
-  'skin-brightening': '/images/Skin Brightening.png',
+  'acne-treatment': '/images/neofatbury-acne-scar-procedure.png',
+  'acne-scar-treatment': '/images/neofatbury-acne-scar-procedure.png',
+  'laser-hair-reduction': '/images/neofatbury-laser-bg-left.png',
+  'scar-treatment': '/images/derma-procedure-fixed.webp',
+  'skin-brightening': '/images/neofatbury-cheek-banner.webp',
   'hair-loss-treatment': '/images/Hair Loss Treatment.png',
   'hair-fall-treatment': '/images/Hair Loss Treatment.png',
   'anti-dandruff-treatment': '/images/Anti-Dandruff Treatment.png',
