@@ -69,10 +69,12 @@ export default function HomeClient({ treatments }: HomeClientProps) {
       {/* Grid / Slider */}
       <div className="treatment-slider-container" style={{ 
         display: 'flex', 
-        flexDirection: 'column', // Stacked on mobile
-        gap: '2.5rem', 
+        flexDirection: 'row', 
+        flexWrap: 'wrap',
+        gap: '2.5rem 1.5rem', 
         padding: '1rem 1rem 4rem',
-        alignItems: 'center'
+        justifyContent: 'center',
+        alignItems: 'flex-start'
       }}>
         {currentTreatments.map((item: any, idx: number) => {
           const displayImage = item.image || FALLBACK_IMAGES[item.slug] || '/images/neofatbury-clinical-standard.png';
@@ -82,16 +84,9 @@ export default function HomeClient({ treatments }: HomeClientProps) {
               key={idx} 
               href={`/${categorySlug}/${item.slug}`} 
               className="treatment-card-oval"
-              style={{ 
-                width: '100%',
-                maxWidth: '400px', // Responsive cap
-                textAlign: 'center',
-                textDecoration: 'none',
-                display: 'block'
-              }}
             >
-              <div className="oval-container-outer" style={{ aspectRatio: '0.8', height: 'auto', width: '100%' }}>
-                <div className="oval-image-mask" style={{ borderRadius: '24px' }}>
+              <div className="oval-container-outer">
+                <div className="oval-image-mask">
                   <Image 
                     src={displayImage} 
                     alt={item.title} 
@@ -100,15 +95,15 @@ export default function HomeClient({ treatments }: HomeClientProps) {
                     sizes="(max-width: 768px) 100vw, 300px"
                   />
                 </div>
-                <div className="oval-arrow" style={{ bottom: '-15px' }}>
+                <div className="oval-arrow">
                   <span style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>→</span>
                 </div>
               </div>
               <h4 style={{ 
                 marginTop: '1.5rem', 
-                fontSize: '1.1rem', 
-                fontWeight: '800', 
-                color: '#00acb1', 
+                fontSize: '1rem', 
+                fontWeight: '700', 
+                color: '#333', 
                 letterSpacing: '0.2px' 
               }}>
                 {item.title}

@@ -51,15 +51,16 @@ const RESULTS = [
 // Hardcoded fallback treatments — always shown if CMS data is empty
 const FALLBACK_TREATMENTS: Record<string, { title: string; slug: string; image: string }[]> = {
   skin: [
-    { title: 'Laser Hair Reduction', slug: 'laser-hair-reduction', image: '/images/laser-machine-banner.webp' },
-    { title: 'Acne Scar Treatment', slug: 'acne-scar-treatment', image: '/images/neofatbury-acne-scar-procedure.png' },
-    { title: 'Skin Brightening', slug: 'skin-brightening', image: '/images/derma-procedure-fixed.webp' },
-    { title: 'Scar Treatment', slug: 'scar-treatment', image: '/images/neofatbury-clinical-standard.png' },
+    { title: 'Laser Hair Reduction', slug: 'laser-hair-reduction', image: '/images/Laser Hair Reduction.png' },
+    { title: 'Acne Scar Treatment', slug: 'acne-scar-treatment', image: '/images/Acne & Pimple Treatment.png' },
+    { title: 'Skin Brightening', slug: 'skin-brightening', image: '/images/Skin Brightening.png' },
+    { title: 'Pimples Treatment', slug: 'acne-treatment', image: '/images/Acne & Pimple Treatment.png' },
+    { title: 'Pigmentation Treatment', slug: 'pigmentation-treatment', image: '/images/skin-concern-pigmentation.png' },
   ],
   hair: [
-    { title: 'Hair Loss Treatment', slug: 'hair-loss-treatment', image: '/images/neofatbury-hair2-banner.webp' },
-    { title: 'Anti-Dandruff Treatment', slug: 'anti-dandruff-treatment', image: '/images/neofatbury-dandruff-clinical.png' },
-    { title: 'Hair Transplantation', slug: 'hair-transplantation', image: '/images/neofatbury-hair-standard.png' },
+    { title: 'Hair Loss Treatment', slug: 'hair-loss-treatment', image: '/images/Hair Loss Treatment.png' },
+    { title: 'Anti-Dandruff Treatment', slug: 'anti-dandruff-treatment', image: '/images/Anti-Dandruff Treatment.png' },
+    { title: 'Hair Transplantation', slug: 'hair-transplantation', image: '/images/Hair Transplantation.png' },
   ],
   slimming: [
     { title: 'CoolSculpting', slug: 'coolsculpting', image: '/images/neofatbury-cooling-tech.png' },
