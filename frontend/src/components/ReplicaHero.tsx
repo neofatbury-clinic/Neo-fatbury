@@ -59,21 +59,9 @@ export default function ReplicaHero({
 
             {/* Zone 2: Typography (Middle) */}
             <div className="replica-zone-middle">
-              {titleTeal1 && (
-                <h1 className="replica-title">
-                  <span className="text-teal">{titleTeal1}</span> {titleTeal2 && <br/>}
-                  {titleTeal2 && <span className="text-teal">{titleTeal2}</span>} {titleTeal2 && <br/>}
-                  <span className="text-orange">{titleOrange1}</span> {titleOrange2 && <br/>}
-                  {titleOrange2 && <span className="text-orange">{titleOrange2}</span>}
-                </h1>
-              )}
-              {subtext && (
-                <p className="replica-subtext">
-                  {subtext}
-                </p>
-              )}
+              {/* Text removed as it is already in the background image */}
               {trustPoints.length > 0 && (
-                <div className="replica-trust-row">
+                <div className="replica-trust-row" style={{ marginTop: 'auto', paddingBottom: '2rem' }}>
                   {trustPoints.map((point, index) => (
                     <div key={index} className="replica-trust-item">
                       <span>{point.icon}</span> {point.text}
