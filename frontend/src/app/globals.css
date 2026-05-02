@@ -765,7 +765,8 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   position: relative;
   display: flex;
   align-items: stretch;
-  background: #faf8f6; 
+  /* Blend portrait cream into Brand Teal */
+  background: linear-gradient(90deg, #faf8f6 0%, #faf8f6 10%, #00acb1 40%, #00acb1 100%);
   padding-top: var(--header-height); 
   overflow: visible;
   min-height: 420px; /* Slimmer height */
@@ -847,7 +848,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 }
 
 .replica-title .text-teal {
-  color: #00acb1 !important; /* Changed to teal since background is now light */
+  color: #ffffff !important; /* White text on Teal background */
 }
 
 .replica-title .text-orange {
@@ -856,7 +857,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
 
 .replica-subtext {
   font-size: 0.95rem;
-  color: #555555;
+  color: #ffffff; /* White for premium look */
   line-height: 1.5;
   margin-bottom: 1.5rem;
   max-width: 500px;
