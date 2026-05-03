@@ -292,7 +292,7 @@ export default function LeadForm({
           border: 1px solid rgba(0, 0, 0, 0.05);
           box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
           width: 100%;
-          max-width: 400px; /* Bigger form */
+          max-width: 440px; /* Even Bigger form */
           margin-left: auto;
           margin-right: 0; 
           font-family: 'Montserrat', sans-serif;
