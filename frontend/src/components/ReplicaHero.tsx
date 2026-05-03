@@ -45,30 +45,21 @@ export default function ReplicaHero({
     <section className="replica-hero">
       {/* Absolute Background Image (Sole source of background visual) */}
       <div className="replica-primary-bg">
-        <Image 
+        <img 
             src={finalImageSrc} 
             alt="Hero Background" 
-            fill
-            priority 
-            quality={95}
-            unoptimized
-            style={{ objectFit: 'cover', objectPosition: 'left center' }} 
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'left center' }} 
           />
         <div className="replica-primary-overlay"></div>
       </div>
 
       <div className="replica-hero-container" style={{ position: 'relative', zIndex: 10 }}>
         {/* ── Mobile-Only Visual ── */}
-        <div className="replica-hero-visual-mobile mobile-only">
-          <Image 
+          <img 
             src={finalImageSrc} 
             alt="Hero Visual" 
-            width={800}
-            height={600}
-            priority
             style={{ width: '100%', height: 'auto', display: 'block' }}
           />
-        </div>
 
         <div className="replica-primary-box">
           <div className="replica-primary-content">
