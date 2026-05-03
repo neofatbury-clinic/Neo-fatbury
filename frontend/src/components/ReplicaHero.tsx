@@ -53,7 +53,7 @@ export default function ReplicaHero({
       <div className="replica-bg-layer" style={{ 
         position: 'absolute', 
         inset: 0, 
-        width: '80%', 
+        width: '90%', 
         zIndex: 0,
         animation: 'zoomOutEffect 1.5s ease-out forwards'
       }}>
