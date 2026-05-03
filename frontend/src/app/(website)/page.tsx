@@ -99,6 +99,8 @@ export default async function Home() {
       slug: s.slug, 
       image: s.image 
     })) || [];
+  };
+
   const treatments = {
     skin: FALLBACK_TREATMENTS.skin,
     hair: allServices && allServices.filter((s: any) => s.category === 'hair').length > 0 
