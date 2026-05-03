@@ -21,7 +21,7 @@ export default function ReplicaHero({
   imageSrc,
   leadFormTitle,
   showForm = true,
-  zoom = 1.01,
+  zoom = 1.05,
 }: ReplicaHeroProps) {
   
   // Resolve Image Source
@@ -53,7 +53,7 @@ export default function ReplicaHero({
       <div className="replica-bg-layer" style={{ 
         position: 'absolute', 
         inset: 0, 
-        width: 'calc(100% - 190px)', /* Extends to half of the 380px form */
+        width: '100%', 
         zIndex: 0,
         animation: 'zoomOutEffect 1.5s ease-out forwards'
       }}>
