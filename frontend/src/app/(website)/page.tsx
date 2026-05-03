@@ -105,8 +105,8 @@ export default async function Home() {
   const treatments = {
     skin: FALLBACK_TREATMENTS.skin,
     hair: FALLBACK_TREATMENTS.hair,
-    slimming: allServices && allServices.filter((s: any) => s.category === 'hair' || s.category === 'slimming').length > 0 
-      ? allServices.filter((s: any) => s.category === 'hair' || s.category === 'slimming').map((s: any) => ({ title: s.name, slug: s.slug, image: s.image }))
+    slimming: allServices && allServices.filter((s: any) => s.category === 'slimming').length > 0 
+      ? allServices.filter((s: any) => s.category === 'slimming').map((s: any) => ({ title: s.name, slug: s.slug, image: s.image }))
       : FALLBACK_TREATMENTS.slimming,
   };
 
