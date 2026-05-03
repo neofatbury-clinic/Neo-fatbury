@@ -1,5 +1,5 @@
 // src/app/(website)/[category]/[slug]/page.tsx
-import { client } from '@/sanity/lib/client';
+import { client, urlFor } from '@/sanity/client';
 import Image from 'next/image';
 import LeadForm from '@/components/LeadForm';
 import ReplicaHero from '@/components/ReplicaHero';
@@ -18,7 +18,7 @@ async function getService(category: string, slug: string) {
     name,
     "slug": slug.current,
     "categorySlug": category->slug.current,
-    "image": heroImage.asset->url,
+    "image": heroImage,
     heroHeadline,
     heroAccentLine,
     heroSubtext,
@@ -37,14 +37,14 @@ async function getService(category: string, slug: string) {
     whatIsBody,
     whatIsListHeading,
     whatIsPoints,
-    "whatIsImage": whatIsImage.asset->url,
+    whatIsImage,
     whatIsImageBadge,
     whatIsAuthorityNote,
     
     baHeading,
     baAccentWord,
     baSubtext,
-    "baImage": baImage.asset->url,
+    baImage,
     baCtaText,
     baCtaBtnText,
     
@@ -59,7 +59,7 @@ async function getService(category: string, slug: string) {
     techHeading,
     techAccentWord,
     techBody,
-    "techImage": techImage.asset->url,
+    techImage,
     techFeatures,
     
     trustHeading,
@@ -115,7 +115,7 @@ export default async function ServicePage({ params }: { params: Promise<{ catego
         titleOrange1={service.heroAccentLine || ''}
         titleOrange2=""
         subtext={service.heroSubtext || ''}
-        imageSrc={service.image || '/images/neofatbury-clinical-standard.png'}
+        imageSrc={(service.image?.asset) ? urlFor(service.image).url() : undefined}
         trustPoints={service.heroTrustBadges || []}
         slug={slug}
       />
@@ -151,7 +151,7 @@ export default async function ServicePage({ params }: { params: Promise<{ catego
           <div className="max-w-[1200px] mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
             <div className="relative h-[550px] rounded-3xl overflow-hidden shadow-2xl">
               <Image 
-                src={service.whatIsImage || '/images/neofatbury-clinical-standard.png'} 
+                src={(service.whatIsImage?.asset) ? urlFor(service.whatIsImage).url() : '/images/neofatbury-clinical-standard.png'} 
                 alt={service.name} 
                 fill 
                 className="object-cover" 
@@ -197,7 +197,7 @@ export default async function ServicePage({ params }: { params: Promise<{ catego
               </h2>
               <p className="text-gray-600 mb-12">{service.baSubtext || 'Visible results from our expert clinical treatments.'}</p>
               <div className="relative aspect-[16/7] rounded-3xl overflow-hidden shadow-xl mb-12">
-                <Image src={baImg} alt="Before and After Results" fill className="object-cover" />
+                <Image src={(service.baImage?.asset) ? urlFor(service.baImage).url() : baImg} alt="Before and After Results" fill className="object-cover" />
                 <div className="absolute inset-x-0 bottom-0 py-4 bg-black/40 backdrop-blur-sm flex justify-around text-white font-black tracking-widest text-sm italic">
                   <span>BEFORE</span>
                   <span>AFTER</span>
