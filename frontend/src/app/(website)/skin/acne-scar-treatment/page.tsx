@@ -106,7 +106,7 @@ export default async function AcneScarTreatment() {
       <section className="section">
         <div className="container grid grid-2 items-center gap-6">
           <div style={{ position: 'relative', height: '550px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 25px 55px rgba(0,0,0,0.1)' }}>
-            <Image src="/images/neofatbury-acne-scar-procedure.png" alt="Acne Scar Procedure" fill style={{ objectFit: 'cover' }} />
+            <Image src="/images/acne-scar-treatment.png" alt="Acne Scar Procedure" fill style={{ objectFit: 'cover' }} />
             <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', background: 'white', padding: '0.75rem 1.5rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: '800', color: 'var(--color-primary)', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}>{wiBadge}</div>
           </div>
           <div style={{ paddingLeft: '3.5rem' }}>
@@ -127,8 +127,8 @@ export default async function AcneScarTreatment() {
           <p className="section-subtitle">{baSub}</p>
           <div style={{ maxWidth: '720px', margin: '3rem auto' }}>
             <ComparisonSlider 
-              before="/images/neofatbury-acne-scar-ba.png" 
-              after="/images/neofatbury-acne-scar-ba.png" 
+              before="/images/acne-before-after.webp" 
+              after="/images/acne-before-after.webp" 
               label="Severe Acne Scar Restoration"
               autoSlide={true}
             />
@@ -157,7 +157,7 @@ export default async function AcneScarTreatment() {
             </div>
           </div>
           <div style={{ position: 'relative', height: '480px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 25px 55px rgba(0,0,0,0.1)' }}>
-            <Image src="/images/neofatbury-acne-scar-banner.png" alt="Clinical Precision" fill style={{ objectFit: 'cover' }} />
+            <Image src="/images/neofatbury-cheek-banner.webp" alt="Clinical Precision" fill style={{ objectFit: 'cover' }} />
           </div>
         </div>
       </section>
