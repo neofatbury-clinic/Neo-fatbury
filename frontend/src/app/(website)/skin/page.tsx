@@ -63,18 +63,17 @@ export default async function SkinPage() {
           <h2 className="section-title text-center">Skin <span className="text-accent">Aesthetics</span></h2>
           <p className="section-subtitle text-center">{category?.description || "Comprehensive clinical solutions for every skin concern."}</p>
           
-          <div className="grid grid-2" style={{ marginTop: '3rem', maxWidth: '1000px', margin: '3rem auto 0' }}>
+          <div className="premium-grid">
             {services.map((s: any) => {
               const sImg = (s.heroImage?.asset) ? urlFor(s.heroImage).url() : (s.image || '/images/neofatbury-clinical-standard.png');
               return (
-                <div key={s.name} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
-                  <div style={{ position: 'relative', height: '260px', marginBottom: '1.5rem', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
-                    <Image src={sImg} alt={s.name} fill style={{ objectFit: 'cover' }} />
+                <Link key={s.name} href={`/skin/${s.slug}`} className="premium-card">
+                  <div className="pill-image-wrap">
+                    <Image src={sImg} alt={s.name} fill />
+                    <div className="circle-arrow-btn">→</div>
                   </div>
-                  <h3 style={{ fontSize: '1.5rem', marginBottom: '0.75rem' }}>{s.name}</h3>
-                  <p className="text-muted" style={{ marginBottom: '1.5rem', flexGrow: 1, lineHeight: 1.6 }}>{s.shortDescription}</p>
-                  <Link href={`/skin/${s.slug}`} className="btn btn-outline" style={{ width: 'fit-content' }}>View Details</Link>
-                </div>
+                  <h3>{s.name}</h3>
+                </Link>
               );
             })}
           </div>

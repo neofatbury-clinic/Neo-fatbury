@@ -58,17 +58,19 @@ export default async function HairPage() {
           <h2 className="section-title text-center">Hair <span className="text-accent">Solutions</span></h2>
           <p className="section-subtitle text-center">{category?.description || "Clinically proven restoration for men and women."}</p>
           
-          <div className="grid grid-2" style={{ marginTop: '3rem', maxWidth: '1000px', margin: '3rem auto 0' }}>
-            {services.map((s: any) => (
-              <div key={s.name} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
-                <div style={{ position: 'relative', height: '260px', marginBottom: '1.5rem', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
-                  <Image src={s.image || '/images/neofatbury-hair2-banner.webp'} alt={s.name} fill style={{ objectFit: 'cover' }} />
-                </div>
-                <h3 style={{ fontSize: '1.5rem', marginBottom: '0.75rem' }}>{s.name}</h3>
-                <p className="text-muted" style={{ marginBottom: '1.5rem', flexGrow: 1, lineHeight: 1.6 }}>{s.shortDescription}</p>
-                <Link href={`/hair/${s.slug}`} className="btn btn-outline" style={{ width: 'fit-content' }}>Learn More</Link>
-              </div>
-            ))}
+          <div className="premium-grid">
+            {services.map((s: any) => {
+              const sImg = (s.heroImage?.asset) ? urlFor(s.heroImage).url() : (s.image || '/images/neofatbury-hair2-banner.webp');
+              return (
+                <Link key={s.name} href={`/hair/${s.slug}`} className="premium-card">
+                  <div className="pill-image-wrap">
+                    <Image src={sImg} alt={s.name} fill />
+                    <div className="circle-arrow-btn">→</div>
+                  </div>
+                  <h3>{s.name}</h3>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
 import ReplicaHero from "@/components/ReplicaHero";
-import { client } from "@/sanity/lib/client";
+import { client, urlFor } from "@/sanity/client";
 import CustomSchema from "@/components/CustomSchema";
 
 export const metadata = {
@@ -25,7 +25,7 @@ export default async function SlimmingPage() {
       name,
       shortDescription,
       "slug": slug.current,
-      "image": heroImage.asset->url
+      "image": heroImage
     }
   }`;
   const { category, services: servicesData } = await client.fetch(query);
@@ -57,17 +57,19 @@ export default async function SlimmingPage() {
           <h2 className="section-title text-center">Body & <span className="text-accent">Slimming</span></h2>
           <p className="section-subtitle text-center">{category?.description || "Targeted fat reduction and comprehensive inch-loss programs."}</p>
           
-          <div className="grid grid-2" style={{ marginTop: '3rem', maxWidth: '1000px', margin: '3rem auto 0' }}>
-            {services.map((s: any) => (
-              <div key={s.name} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
-                <div style={{ position: 'relative', height: '260px', marginBottom: '1.5rem', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
-                  <Image src={s.image || '/images/neofatbury-clinical-standard.png'} alt={s.name} fill style={{ objectFit: 'cover' }} />
-                </div>
-                <h3 style={{ fontSize: '1.5rem', marginBottom: '0.75rem' }}>{s.name}</h3>
-                <p className="text-muted" style={{ marginBottom: '1.5rem', flexGrow: 1, lineHeight: 1.6 }}>{s.shortDescription}</p>
-                <Link href={`/slimming/${s.slug}`} className="btn btn-outline" style={{ width: 'fit-content' }}>Learn More</Link>
-              </div>
-            ))}
+          <div className="premium-grid">
+            {services.map((s: any) => {
+              const sImg = (s.image?.asset) ? urlFor(s.image).url() : '/images/neofatbury-clinical-standard.png';
+              return (
+                <Link key={s.name} href={`/slimming/${s.slug}`} className="premium-card">
+                  <div className="pill-image-wrap">
+                    <Image src={sImg} alt={s.name} fill />
+                    <div className="circle-arrow-btn">→</div>
+                  </div>
+                  <h3>{s.name}</h3>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

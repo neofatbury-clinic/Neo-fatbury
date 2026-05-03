@@ -1218,3 +1218,74 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
     padding: 1.25rem;
   }
 }
+/* Premium Service Grid (Pill Style) */
+.premium-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.premium-card {
+  text-decoration: none;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.premium-card:hover {
+  transform: translateY(-5px);
+}
+
+.pill-image-wrap {
+  position: relative;
+  aspect-ratio: 4/6;
+  border-radius: 120px 120px 40px 40px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  background: #00acb1; /* Fallback brand teal */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.pill-image-wrap img {
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.premium-card:hover .pill-image-wrap img {
+  transform: scale(1.05);
+}
+
+.circle-arrow-btn {
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 44px;
+  background: #00acb1;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  border: 3px solid white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 2;
+}
+
+.premium-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a3636;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .premium-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+}
+
+@media (max-width: 640px) {
+  .premium-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .pill-image-wrap { aspect-ratio: 1/1; border-radius: 100px; }
+}
