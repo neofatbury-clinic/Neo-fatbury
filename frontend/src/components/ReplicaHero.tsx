@@ -38,7 +38,7 @@ export default function ReplicaHero({
   }
 
   return (
-    <section className="replica-hero" style={{ position: 'relative', minHeight: '300px', backgroundColor: '#ffffff', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
+    <section className="replica-hero" style={{ position: 'relative', minHeight: '280px', backgroundColor: '#ffffff', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
       
       {/* Background Image Layer (This contains your designed text) */}
       <div className="replica-bg-layer" style={{ 
@@ -81,7 +81,7 @@ export default function ReplicaHero({
 
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes zoomOutEffect {
-          from { transform: scale(1.4); }
+          from { transform: scale(1.05); }
           to { transform: scale(1); }
         }
         @keyframes slideUp {
