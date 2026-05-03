@@ -64,6 +64,26 @@ html, body {
   justify-content: space-between;
   gap: 3rem;
 }
+
+/* Responsive Overrides for Sections and Grids */
+@media (max-width: 900px) {
+  .section { padding: 2.5rem 1rem !important; }
+  .section-title { font-size: 1.8rem !important; text-align: center !important; }
+  .section-subtitle { font-size: 1rem !important; text-align: center !important; margin-bottom: 2rem !important; }
+  
+  .grid-2, .grid-3, .grid-4, .grid-5 { 
+    grid-template-columns: 1fr !important; 
+    gap: 1.5rem !important; 
+  }
+
+  /* Specific fix for the problem text shown in the user's image */
+  .problem-bottom-wrap {
+    flex-direction: column !important;
+    text-align: center !important;
+    font-size: 1.1rem !important;
+    margin-top: 2rem !important;
+  }
+}
 .home-hero-text {
   flex: 1;
   max-width: 560px;
@@ -608,6 +628,15 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
     min-height: auto !important;
     display: block !important;
   }
+
+  /* NEW: Fix for ReplicaHero background on mobile */
+  .replica-hero img {
+    transform: none !important;
+    object-position: center center !important;
+    width: 100% !important;
+    height: 100% !important;
+    opacity: 0.6; /* Slight fade to make form more readable */
+  }
 }
 
 .responsive-hero-container {
@@ -622,11 +651,30 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   .responsive-hero-container {
     text-align: center;
   }
-  .responsive-hero-container .hero-content-block {
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  }
+}
+
+/* Mobile Image & Content Stacking Utility */
+@media (max-width: 850px) {
+  .mobile-stack {
+    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .mobile-stack > div {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    height: auto !important;
+    min-height: auto !important;
+  }
+  .mobile-stack img {
+    position: relative !important;
+    height: 300px !important;
+    width: 100% !important;
+  }
+  .mobile-stack .image-container {
+    height: 300px !important;
+    margin-bottom: 1.5rem !important;
   }
 }
 

@@ -84,21 +84,18 @@ export default async function LaserHairReduction() {
   return (
     <>
       <ReplicaHero 
-        titleTeal1={heroH1}
-        titleTeal2=""
-        titleOrange1={heroAccent}
-        titleOrange2=""
-        subtext={heroDesc}
-        imageSrc={heroImageSrc}
+        titleTeal1={heroH1 || "Smooth Skin."}
+        titleOrange1={heroAccent || "Forever Hair-Free."}
+        subtext={heroDesc || "Experience the freedom of permanent hair reduction with our US-FDA approved pain-free technology."}
+        imageSrc={d.heroImage || "/images/laser-hair-removal.png"}
         trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
-        slug="laser-hair-reduction"
       />
 
       {/* 2. PROBLEM */}
-      <section className="section bg-surface text-center" style={{ padding: '3rem 0' }}>
+      <section className="section bg-surface text-center">
         <div className="container" style={{ maxWidth: '1100px' }}>
-          <h2 className="section-title" style={{ fontSize: '2.8rem' }}>{probHead} <span className="text-accent">{probAccent}</span></h2>
-          <div className="grid grid-4" style={{ marginTop: '4rem', gap: '1.5rem' }}>
+          <h2 className="section-title">{probHead} <span className="text-accent">{probAccent}</span></h2>
+          <div className="grid grid-4" style={{ marginTop: '4rem' }}>
             {probCards.map(item => (
               <div key={item.title} className="card-sleek">
                 <div style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>{item.icon}</div>
@@ -107,7 +104,7 @@ export default async function LaserHairReduction() {
               </div>
             ))}
           </div>
-          <p style={{ fontSize: '1.3rem', marginTop: '4.5rem', fontWeight: '700', color: 'var(--color-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem' }}>
+          <p className="problem-bottom-wrap" style={{ fontSize: '1.3rem', marginTop: '4.5rem', fontWeight: '700', color: 'var(--color-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
             {probBotText} <span className="text-accent" style={{ borderBottom: '2px solid rgba(39, 166, 156, 0.3)' }}>{probBotAccent}</span>
           </p>
         </div>
@@ -115,17 +112,17 @@ export default async function LaserHairReduction() {
 
       {/* 3. WHAT IS */}
       <section className="section">
-        <div className="container grid grid-2 items-center gap-6">
-          <div style={{ position: 'relative', height: '550px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 25px 55px rgba(0,0,0,0.1)' }}>
+        <div className="container grid grid-2 items-center gap-6 mobile-stack">
+          <div className="image-container" style={{ position: 'relative', height: '550px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 25px 55px rgba(0,0,0,0.1)' }}>
             <Image src={whatIsImageSrc} alt="Laser Hair Procedure" fill style={{ objectFit: 'cover' }} />
             <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', background: 'white', padding: '0.75rem 1.5rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: '800', color: 'var(--color-primary)', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}>{wiBadge}</div>
           </div>
-          <div style={{ paddingLeft: '3.5rem' }}>
-            <h2 className="section-subtitle" style={{ color: 'var(--color-accent)', fontWeight: '900', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '2.5px', fontSize: '1rem' }}>{wiLabel}</h2>
-            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '2rem', fontSize: '2.8rem' }}>{wiHead} <span className="text-accent">{wiAccent}</span></h2>
+          <div className="content-block" style={{ paddingLeft: '3.5rem' }}>
+            <h2 className="section-subtitle" style={{ color: 'var(--color-accent)', fontWeight: '900', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '2.5px', fontSize: '1rem', textAlign: 'left' }}>{wiLabel}</h2>
+            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '2rem' }}>{wiHead} <span className="text-accent">{wiAccent}</span></h2>
             <p className="text-muted" style={{ fontSize: '1.15rem', marginBottom: '2.5rem', lineHeight: '1.8' }}>{wiBody}</p>
             <h4 style={{ marginBottom: '1.5rem', fontSize: '1.2rem', fontWeight: '800' }}>{wiSubHead}</h4>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '3.5rem' }}>
+            <div className="grid grid-2" style={{ gap: '1.5rem', marginBottom: '3.5rem' }}>
               {wiPoints.map(point => (
                 <div key={point.text} style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', fontWeight: '800', color: '#004d4f', fontSize: '1.05rem' }}>
                   <span style={{ fontSize: '1.4rem' }}>{point.icon}</span> {point.text}
@@ -139,7 +136,7 @@ export default async function LaserHairReduction() {
       {/* 5. BEFORE / AFTER */}
       <section className="section text-center">
         <div className="container">
-          <h2 className="section-title" style={{ fontSize: '2.8rem' }}>{baHead} <span className="text-accent">{baAccent}</span></h2>
+          <h2 className="section-title">{baHead} <span className="text-accent">{baAccent}</span></h2>
           <p className="section-subtitle">{baSub}</p>
           <div style={{ maxWidth: '480px', margin: '2rem auto', position: 'relative', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 15px 40px rgba(0,0,0,0.1)' }}>
             <div style={{ position: 'relative', width: '100%', aspectRatio: '16/6' }}>
@@ -159,7 +156,7 @@ export default async function LaserHairReduction() {
       <section className="section bg-surface">
         <div className="container">
           <h2 className="section-title text-center">{benHead} <span className="text-accent">{benAccent}</span></h2>
-          <div className="grid grid-5" style={{ marginTop: '4.5rem', gap: '1.5rem' }}>
+          <div className="grid grid-5" style={{ marginTop: '4.5rem' }}>
             {benItems.map(benefit => (
               <div key={benefit.text} className="card-benefit" style={{ padding: '2.5rem 1.5rem', textAlign: 'center' }}>
                 <div style={{ fontSize: '2.5rem', marginBottom: '1.25rem' }}>{benefit.icon}</div>
@@ -172,9 +169,9 @@ export default async function LaserHairReduction() {
 
       {/* 8. TECHNOLOGY */}
       <section className="section bg-surface">
-        <div className="container grid grid-2 items-center gap-6">
-          <div style={{ paddingRight: '3.5rem' }}>
-            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '2rem', fontSize: '2.8rem' }}>{techHead} <span className="text-accent">{techAccent}</span></h2>
+        <div className="container grid grid-2 items-center gap-6 mobile-stack">
+          <div className="content-block" style={{ paddingRight: '3.5rem' }}>
+            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '2rem' }}>{techHead} <span className="text-accent">{techAccent}</span></h2>
             <p className="text-muted" style={{ fontSize: '1.15rem', marginBottom: '3rem', lineHeight: '1.8' }}>{techBody}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               {techFeat.map(p => (
@@ -184,7 +181,7 @@ export default async function LaserHairReduction() {
               ))}
             </div>
           </div>
-          <div style={{ position: 'relative', height: '480px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 25px 55px rgba(0,0,0,0.1)' }}>
+          <div className="image-container" style={{ position: 'relative', height: '480px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 25px 55px rgba(0,0,0,0.1)' }}>
             <Image src={techImageSrc} alt="Soprano ICE Technology" fill style={{ objectFit: 'cover' }} />
           </div>
         </div>
@@ -194,7 +191,7 @@ export default async function LaserHairReduction() {
       <section className="section text-center">
         <div className="container">
           <h2 className="section-title">{trustHead} <span className="text-accent">{trustAccent}</span></h2>
-          <div className="grid grid-4" style={{ marginTop: '5rem', gap: '1.5rem' }}>
+          <div className="grid grid-4" style={{ marginTop: '5rem' }}>
             {trustItems.map(item => (
               <div key={item.text} className="card-trust">
                 <div style={{ fontSize: '2.8rem', marginBottom: '1.5rem' }}>{item.icon}</div>

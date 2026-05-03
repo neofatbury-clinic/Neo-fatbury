@@ -53,12 +53,10 @@ export default async function InchLoss() {
     <>
       {/* 1. HERO SECTION */}
       <ReplicaHero 
-        titleTeal1={heroH1}
-        titleTeal2=""
-        titleOrange1={heroAccent}
-        titleOrange2=""
-        subtext={heroDesc}
-        imageSrc={(d.image as string) || "/images/neofatbury-slimming-hero.png"}
+        titleTeal1={heroH1 || "Inch Loss &"}
+        titleOrange1={heroAccent || "Body Contouring."}
+        subtext={heroDesc || "Target stubborn fat with precision clinical contouring and non-surgical fat reduction."}
+        imageSrc={d.heroImage || "/images/neofatbury-slimming-standard.png"}
         trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
       />
 

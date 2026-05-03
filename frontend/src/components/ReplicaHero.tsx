@@ -1,4 +1,5 @@
 import LeadForm from './LeadForm';
+import { urlFor } from '@/sanity/client';
 
 interface ReplicaHeroProps {
   titleTeal1?: string;
@@ -6,71 +7,113 @@ interface ReplicaHeroProps {
   titleOrange1?: string;
   titleOrange2?: string;
   subtext?: string;
-  imageSrc?: string;
+  imageSrc?: any; // Can be string URL or Sanity Image object
   trustPoints?: { icon: string; text: string }[];
   leadFormTitle?: string;
   showForm?: boolean;
   slug?: string;
 }
 
-// Direct Sanity CDN URLs for guaranteed loading as fallback
-const CDN_URL_MAP: Record<string, string> = {
-  'laser-hair-reduction': "https://cdn.sanity.io/images/p8ddtj8e/production/af23b2381b0668cf8afaf8525af9941161187f55-1920x1080.png",
-  'acne-scar-treatment': "https://cdn.sanity.io/images/p8ddtj8e/production/f90cdbe4c2443566106f36541c0f209b889024f9-1920x1080.png",
-  'skin-brightening': "https://cdn.sanity.io/images/p8ddtj8e/production/b46124f86f2071145a9d0b91ee6296152821a84f-1920x1080.png",
-  'hair-loss-treatment': "https://cdn.sanity.io/images/p8ddtj8e/production/aa02bf15370c60bf970e4a6187f0e7c0ebd181a4-1920x1080.png",
-  'hair-transplantation': "https://cdn.sanity.io/images/p8ddtj8e/production/fe10a1dcef8396f48eabfacb18e38fe8fb2760e8-1920x1080.png",
-  'anti-dandruff-treatment': "https://cdn.sanity.io/images/p8ddtj8e/production/ff7fbe00e66623d4b8117cd8d95310a7014997b2-1920x1080.png",
-  'coolsculpting': "https://cdn.sanity.io/images/p8ddtj8e/production/0c031ba02cede7e98c6d7076649ec0232339193a-1920x1080.png",
-  'inch-loss': "https://cdn.sanity.io/images/p8ddtj8e/production/2f49d747a3f00be1486a01284ee863aa7c1305a8-1920x1080.png",
-  'weight-loss': "https://cdn.sanity.io/images/p8ddtj8e/production/1c3a20a40673109cf56ffc439898ebf0cd5b2582-1920x1080.png",
-  'scar-treatment': "https://cdn.sanity.io/images/p8ddtj8e/production/07e6fa62d5deedcc8971b1f30bf3a93302e5bd0b-1920x1080.png",
-  'skin': "https://cdn.sanity.io/images/p8ddtj8e/production/c8e44a5114a65bdf232ae0a2e2b824f4631f8ee5-1920x1080.png",
-  'hair': "https://cdn.sanity.io/images/p8ddtj8e/production/a2068426ee029acde81d5242596a8de2173be975-1920x1080.png",
-  'slimming': "https://cdn.sanity.io/images/p8ddtj8e/production/699ae4e8efcbaa6c09006cfc2771919b4af0c365-1920x1080.png",
-  'home': "https://cdn.sanity.io/images/p8ddtj8e/production/9d8754d349737f65de0bc95a94124dc510fa239b-1920x1080.png"
-};
-
 export default function ReplicaHero({
+  titleTeal1,
+  titleOrange1,
+  subtext,
   imageSrc,
   trustPoints = [],
   leadFormTitle,
   showForm = true,
-  slug
 }: ReplicaHeroProps) {
-  // 1. If we have a valid absolute URL passed (Sanity), use it.
-  // 2. Otherwise, check our hardcoded CDN map using the slug.
-  // 3. Fallback to homepage banner.
-  const finalImageSrc = (imageSrc && imageSrc.startsWith('http')) 
-    ? imageSrc 
-    : (slug && CDN_URL_MAP[slug]) 
-    || CDN_URL_MAP['home'] 
-    || "/images/neofatbury-hero-banner.webp";
+  
+  // Resolve Image Source
+  let finalImageSrc = "/images/neofatbury-hero-banner.webp";
+  
+  if (typeof imageSrc === 'string' && imageSrc.startsWith('http')) {
+    finalImageSrc = imageSrc;
+  } else if (imageSrc && typeof imageSrc === 'object') {
+    try {
+      finalImageSrc = urlFor(imageSrc).url();
+    } catch (e) {
+      console.warn("Hero image resolution failed", e);
+    }
+  } else if (typeof imageSrc === 'string' && imageSrc.startsWith('/')) {
+    finalImageSrc = imageSrc;
+  }
+
+  // Default Trust Points if none provided
+  const displayTrustPoints = trustPoints.length > 0 ? trustPoints : [
+    { icon: '🛡️', text: 'US-FDA Approved' },
+    { icon: '⭐', text: '10+ Years of Expertise' },
+    { icon: '✅', text: '15k+ Success' }
+  ];
 
   return (
-    <section className="replica-hero">
-      {/* Background Image Layer (Renders on top of solid teal background) */}
-      <div className="replica-primary-bg" style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+    <section className="replica-hero" style={{ position: 'relative', minHeight: '650px', backgroundColor: '#00acb1', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
+      
+      {/* Background Image Layer */}
+      <div className="replica-bg-layer" style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         <img 
-            src={finalImageSrc} 
-            alt="Hero Background" 
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'left center', transform: 'scale(0.85)', transformOrigin: 'left center' }} 
-          />
+          src={finalImageSrc} 
+          alt="Hero Background" 
+          style={{ 
+            position: 'absolute', 
+            inset: 0, 
+            width: '100%', 
+            height: '100%', 
+            objectFit: 'cover', 
+            objectPosition: 'left center',
+            opacity: 0.9
+          }} 
+        />
+        {/* Subtle Gradient Overlay to ensure text readability if image is busy */}
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(0,172,177,0.4) 0%, transparent 60%)' }}></div>
       </div>
 
-      <div className="replica-hero-container" style={{ position: 'relative', zIndex: 10 }}>
-        <div className="replica-primary-box">
-          <div className="replica-primary-content">
-            <div className="replica-zone-left desktop-only" style={{ minHeight: '520px' }}></div>
-            <div className="replica-zone-middle">
-            </div>
+      <div className="container" style={{ position: 'relative', zIndex: 10, display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '4rem', alignItems: 'center', width: '100%' }}>
+        
+        {/* Left Content Area (Text) */}
+        <div className="hero-content-text" style={{ padding: '2rem 0' }}>
+          <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', color: 'white', fontWeight: '900', lineHeight: '1.1', marginBottom: '1.5rem', textShadow: '0 2px 10px rgba(0,0,0,0.1)' }}>
+            {titleTeal1 || "Expert Clinical"} <br />
+            <span style={{ color: '#ff7e1a' }}>{titleOrange1 || "Aesthetic Care"}</span>
+          </h1>
+          
+          <p style={{ fontSize: 'clamp(1.1rem, 2vw, 1.4rem)', color: 'white', maxWidth: '600px', marginBottom: '3rem', lineHeight: '1.6', fontWeight: '500', opacity: 0.95 }}>
+            {subtext || "Transform your confidence with US-FDA approved treatments and expert clinical care at NeoFatbury."}
+          </p>
+
+          {/* Trust Badges */}
+          <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', marginTop: '2rem' }}>
+            {displayTrustPoints.map((point, idx) => (
+              <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', backgroundColor: 'rgba(255,255,255,0.15)', backdropFilter: 'blur(10px)', padding: '0.6rem 1.2rem', borderRadius: '50px', border: '1px solid rgba(255,255,255,0.2)' }}>
+                <span style={{ fontSize: '1.2rem' }}>{point.icon}</span>
+                <span style={{ color: 'white', fontWeight: '700', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{point.text}</span>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="replica-zone-right">
-          {showForm && <LeadForm title={leadFormTitle} />}
+        {/* Right Content Area (Form) */}
+        <div className="hero-content-form">
+          <div style={{ transform: 'translateY(20px)', animation: 'slideUp 0.6s ease-out forwards' }}>
+            {showForm && <LeadForm title={leadFormTitle} />}
+          </div>
         </div>
       </div>
+
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes slideUp {
+          from { opacity: 0; transform: translateY(40px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 968px) {
+          .replica-hero { min-height: auto; padding: 4rem 0; }
+          .replica-hero .container { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+          .replica-hero .hero-content-text { display: flex; flex-direction: column; align-items: center; }
+          .replica-hero .hero-content-text p { margin-inline: auto; }
+          .replica-hero .hero-content-text div { justify-content: center; }
+          .replica-bg-layer img { object-position: center; }
+        }
+      `}} />
     </section>
   );
 }

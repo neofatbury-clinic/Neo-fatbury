@@ -125,10 +125,10 @@ export default async function Home() {
       />
 
       {/* SECTION 2: OUR TREATMENTS (TABBED) */}
-      <section className="section bg-white" style={{ paddingBottom: '2rem' }}>
+      <section className="section bg-white">
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h2 className="section-title" style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>Our Treatments</h2>
+            <h2 className="section-title">Our Treatments</h2>
           </div>
           
           <TreatmentTabs 
@@ -216,7 +216,7 @@ export default async function Home() {
       </section>
 
       {/* SECTION 6: VISIT OUR CLINICS */}
-      <section className="section bg-surface" style={{ padding: '6rem 0', borderTop: '1px solid #f0f0f0' }}>
+      <section className="section bg-surface" style={{ borderTop: '1px solid #f0f0f0' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
             <p style={{ color: '#00acb1', fontWeight: '700', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.75rem' }}>Find Us</p>
@@ -224,16 +224,16 @@ export default async function Home() {
             <p style={{ color: '#00acb1', fontWeight: '500', marginTop: '1rem' }}>Two premium clinics — conveniently located to serve you better.</p>
           </div>
           
-          <div className="grid grid-2" style={{ gap: '3rem' }}>
+          <div className="grid grid-2 mobile-stack" style={{ gap: '3rem' }}>
             {(settings?.clinicLocations || []).slice(0, 2).map((loc: any, i: number) => (
               <div key={i} className="card" style={{ padding: 0, overflow: 'hidden', borderRadius: '24px', backgroundColor: 'white', border: '1px solid #f0f0f0', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
-                <div style={{ padding: '2.5rem' }}>
+                <div style={{ padding: '2rem' }}>
                   <h3 style={{ fontSize: '1.4rem', color: '#00acb1', fontWeight: '800', marginBottom: '1rem' }}>{loc.name}</h3>
                   <p style={{ color: '#00898d', lineHeight: 1.6, marginBottom: '1.5rem', fontSize: '0.95rem' }}>
                     {loc.address}
                   </p>
                 </div>
-                <div style={{ width: '100%', height: '350px' }}>
+                <div style={{ width: '100%', height: '350px' }} className="map-container">
                   <iframe 
                     src={loc.embedUrl || (loc.name.toLowerCase().includes('kukatpally') ? "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.4200823195633!2d78.39101459999999!3d17.4874492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91ddb45a8f99%3A0x7f1a789fc8a90d2!2sNeo%20Fatbury%20Kukatpally!5e0!3m2!1sen!2sin!4v1775875687552!5m2!1sen!2sin" : "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.411634567232!2d78.4835695!3d17.4040055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99da979f4281%3A0x4642220e895ec060!2sNeo%20Fatbury%20Hair%20Skin%20Slimming%20Clinic%20Himayatnagar!5e0!3m2!1sen!2sin!4v1775875842961!5m2!1sen!2sin" )} 
                     width="100%" 

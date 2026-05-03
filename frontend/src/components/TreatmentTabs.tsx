@@ -30,7 +30,8 @@ export default function TreatmentTabs({ skin, hair, body }: TreatmentTabsProps) 
         display: 'flex', 
         justifyContent: 'center', 
         gap: '0.5rem', 
-        marginBottom: '4rem' 
+        marginBottom: '4rem',
+        flexWrap: 'wrap'
       }}>
         {tabs.map((tab) => (
           <button

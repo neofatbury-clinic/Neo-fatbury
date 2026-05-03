@@ -55,40 +55,40 @@ export default async function HairLossTreatment() {
     <>
       {/* 1. HERO SECTION */}
       <ReplicaHero 
-        titleTeal1={heroH1}
+        titleTeal1={heroH1 || "Expert Hair"}
         titleTeal2=""
-        titleOrange1={heroAccent}
+        titleOrange1={heroAccent || "Loss Solutions."}
         titleOrange2=""
-        subtext={heroDesc}
-        imageSrc={(d.image as string) || "/images/Hair Loss Treatment.png"}
+        subtext={heroDesc || "Regrow your confidence with our advanced clinical hair restoration protocols."}
+        imageSrc={(d.heroImage as string) || "/images/hair-loss-treatment-new.png"}
         trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
         slug="hair-loss-treatment"
       />
 
-      <section className="section bg-surface text-center" style={{ padding: '3.5rem 0' }}>
+      <section className="section bg-surface text-center">
         <div className="container" style={{ maxWidth: '1000px' }}>
-          <h2 className="section-title" style={{ fontSize: '2.4rem' }}>Facing Hair Loss <span className="text-accent">or Thinning?</span></h2>
-          <div className="grid grid-4" style={{ marginTop: '3.5rem', gap: '1.25rem' }}>
+          <h2 className="section-title">Facing Hair Loss <span className="text-accent">or Thinning?</span></h2>
+          <div className="grid grid-4" style={{ marginTop: '3.5rem' }}>
             {probCards.map(item=>(<div key={item.title} className="card-sleek"><div style={{fontSize:'2rem',marginBottom:'1rem'}}>{item.icon}</div><h3 style={{fontSize:'1.05rem',marginBottom:'0.75rem',color:'var(--color-primary)',fontWeight:'700'}}>{item.title}</h3><p style={{fontSize:'0.85rem',color:'#666',lineHeight:'1.6'}}>{item.desc}</p></div>))}
           </div>
-          <p style={{ fontSize: '1.2rem', marginTop: '3.5rem', fontWeight: '600', color: 'var(--color-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+          <p className="problem-bottom-wrap" style={{ fontSize: '1.2rem', marginTop: '3.5rem', fontWeight: '600', color: 'var(--color-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
             {probBotText} <span className="text-accent" style={{ borderBottom: '2px solid rgba(39, 166, 156, 0.2)' }}>{probBotAccent}</span>
           </p>
         </div>
       </section>
 
       <section className="section">
-        <div className="container grid grid-2 items-center gap-4">
-          <div style={{ position: 'relative', height: '450px', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 15px 45px rgba(0,0,0,0.08)' }}>
+        <div className="container grid grid-2 items-center gap-4 mobile-stack">
+          <div className="image-container" style={{ position: 'relative', height: '450px', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 15px 45px rgba(0,0,0,0.08)' }}>
             <Image src={(d.whatIsImage as string) || "/images/neofatbury-hair-standard.png"} alt="Hair Loss Technology" fill style={{ objectFit: 'cover' }} />
             <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', background: 'white', padding: '0.5rem 1rem', borderRadius: '8px', fontSize: '0.8rem', fontWeight: '700', color: 'var(--color-primary)', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>{wiBadge}</div>
           </div>
-          <div style={{ paddingLeft: '2.5rem' }}>
-            <h2 className="section-subtitle" style={{ color: 'var(--color-accent)', fontWeight: '800', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.9rem' }}>{wiLabel}</h2>
-            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '1.5rem', fontSize: '2.4rem' }}>What is <span className="text-accent">{wiAccent}</span></h2>
+          <div className="content-block" style={{ paddingLeft: '2.5rem' }}>
+            <h2 className="section-subtitle" style={{ color: 'var(--color-accent)', fontWeight: '800', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.9rem', textAlign: 'left' }}>{wiLabel}</h2>
+            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '1.5rem' }}>What is <span className="text-accent">{wiAccent}</span></h2>
             <p className="text-muted" style={{ fontSize: '1.05rem', marginBottom: '2rem', lineHeight: '1.8' }}>{wiBody}</p>
             <h4 style={{ marginBottom: '1.25rem', fontSize: '1.1rem', fontWeight: '700' }}>{wiSubHead}</h4>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '2.5rem' }}>
+            <div className="grid grid-2" style={{ gap: '1rem', marginBottom: '2.5rem' }}>
               {wiPoints.map(point=>(<div key={point.text} style={{display:'flex',alignItems:'center',gap:'0.6rem',fontWeight:'700',color:'#00acb1',fontSize:'0.95rem'}}><span style={{fontSize:'1.2rem'}}>{point.icon}</span> {point.text}</div>))}
             </div>
           </div>
@@ -98,7 +98,7 @@ export default async function HairLossTreatment() {
       <section className="section text-center" style={{ background: '#f8fdfd' }}>
         <div className="container">
           <h2 className="section-title">{causes.heading} <span className="text-accent">{causes.accentWord}</span></h2>
-          <div className="grid grid-5" style={{ marginTop: '4rem', gap: '1.5rem' }}>
+          <div className="grid grid-5" style={{ marginTop: '4rem' }}>
             {causes.items.map(type=>(<div key={type.title} className="card-cause"><div className="cause-icon">{type.icon}</div><h4 style={{fontSize:'0.95rem',fontWeight:'700',color:'var(--color-primary)'}}>{type.title}</h4></div>))}
           </div>
         </div>
@@ -123,7 +123,7 @@ export default async function HairLossTreatment() {
       <section className="section bg-surface">
         <div className="container">
           <h2 className="section-title text-center">{benHead} <span className="text-accent">{benAccent}</span></h2>
-          <div className="grid grid-5" style={{ marginTop: '3.5rem', gap: '1.25rem' }}>
+          <div className="grid grid-5" style={{ marginTop: '3.5rem' }}>
             {benItems.map(benefit=>(<div key={benefit.text} className="card-benefit" style={{padding:'2rem 1rem',textAlign:'center'}}><div style={{fontSize:'2rem',marginBottom:'1rem'}}>{benefit.icon}</div><p style={{fontWeight:'700',fontSize:'0.9rem',color:'var(--color-primary)'}}>{benefit.text}</p></div>))}
           </div>
         </div>
@@ -132,22 +132,22 @@ export default async function HairLossTreatment() {
       <section className="section">
         <div className="container">
           <h2 className="section-title text-center">Our <span className="text-accent">Treatment Process</span></h2>
-          <div className="grid grid-4" style={{ marginTop: '4rem', gap: '1.25rem' }}>
+          <div className="grid grid-4" style={{ marginTop: '4rem' }}>
             {procSteps.map(item=>(<div key={item.title} className="card-process"><div style={{fontSize:'2rem',marginBottom:'1rem'}}>{item.icon}</div><h3 style={{marginBottom:'0.75rem',fontSize:'1.05rem',fontWeight:'700'}}>{item.title}</h3><p className="text-muted" style={{fontSize:'0.85rem',lineHeight:'1.6'}}>{item.desc}</p></div>))}
           </div>
         </div>
       </section>
 
       <section className="section bg-surface">
-        <div className="container grid grid-2 items-center gap-4">
-          <div style={{ paddingRight: '2.5rem' }}>
+        <div className="container grid grid-2 items-center gap-4 mobile-stack">
+          <div className="content-block" style={{ paddingRight: '2.5rem' }}>
             <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '1.5rem' }}>{techHead} <span className="text-accent">{techAccent}</span></h2>
             <p className="text-muted" style={{ fontSize: '1.05rem', marginBottom: '2.5rem' }}>{techBody}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
               {techFeat.map(p=>(<div key={p.text} style={{display:'flex',alignItems:'center',gap:'0.75rem',fontWeight:'700'}}><span style={{fontSize:'1.2rem'}}>{p.icon}</span> {p.text}</div>))}
             </div>
           </div>
-          <div style={{ position: 'relative', height: '380px', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 15px 45px rgba(0,0,0,0.06)' }}>
+          <div className="image-container" style={{ position: 'relative', height: '380px', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 15px 45px rgba(0,0,0,0.06)' }}>
             <Image src={(d.techImage as string) || "/images/neofatbury-hair2-banner.webp"} alt="Hair Restoration" fill style={{ objectFit: 'cover' }} />
           </div>
         </div>
@@ -174,7 +174,7 @@ export default async function HairLossTreatment() {
       <section className="section text-center">
         <div className="container">
           <h2 className="section-title">{trustHead} <span className="text-accent">{trustAccent}</span></h2>
-          <div className="grid grid-4" style={{ marginTop: '4rem', gap: '1.25rem' }}>
+          <div className="grid grid-4" style={{ marginTop: '4rem' }}>
             {trustItems.map(item=>(<div key={item.text} className="card-trust"><div className="trust-icon" style={{background:'none',fontSize:'2rem'}}>{item.icon}</div><h4 style={{fontSize:'0.95rem',fontWeight:'700',color:'var(--color-primary)'}}>{item.text}</h4></div>))}
           </div>
         </div>

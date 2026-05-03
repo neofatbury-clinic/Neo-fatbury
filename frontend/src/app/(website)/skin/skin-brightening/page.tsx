@@ -84,20 +84,17 @@ export default async function SkinBrightening() {
   return (
     <>
       <ReplicaHero 
-        titleTeal1={heroH1}
-        titleTeal2=""
-        titleOrange1={heroAccent}
-        titleOrange2=""
-        subtext={heroDesc}
-        imageSrc={heroImageSrc}
+        titleTeal1={heroH1 || "Expert Skin"}
+        titleOrange1={heroAccent || "Brightening Care"}
+        subtext={heroDesc || "Achieve a radiant, even-toned complexion with our advanced clinical brightening treatments."}
+        imageSrc={d.heroImage || "/images/skin-lightening.png"}
         trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
-        slug="skin-brightening"
       />
 
-      <section className="section bg-surface text-center" style={{ padding: '6rem 0' }}>
+      <section className="section bg-surface text-center">
         <div className="container" style={{ maxWidth: '1100px' }}>
-          <h2 className="section-title" style={{ fontSize: '2.8rem' }}>{probHead} <span className="text-accent">{probAccent}</span></h2>
-          <div className="grid grid-4 mobile-grid-2" style={{ marginTop: '5rem', gap: '2rem' }}>
+          <h2 className="section-title">{probHead} <span className="text-accent">{probAccent}</span></h2>
+          <div className="grid grid-4" style={{ marginTop: '5rem' }}>
             {finalProbCards.map((item: any)=>(
               <div key={item.title} className="card-premium">
                 <div className="card-premium-badge">Clinical</div>
@@ -115,7 +112,7 @@ export default async function SkinBrightening() {
               </div>
             ))}
           </div>
-          <div style={{ marginTop: '5rem', padding: '2rem', backgroundColor: 'rgba(0, 172, 177, 0.03)', borderRadius: '20px', border: '1px dashed rgba(0, 172, 177, 0.2)' }}>
+          <div className="problem-bottom-wrap" style={{ marginTop: '5rem', padding: '2rem', backgroundColor: 'rgba(0, 172, 177, 0.03)', borderRadius: '20px', border: '1px dashed rgba(0, 172, 177, 0.2)' }}>
             <p style={{ fontSize: '1.4rem', fontWeight: '700', color: 'var(--color-primary)', lineHeight: '1.5', margin: 0 }}>
               {probBotText} <span className="text-accent" style={{ position: 'relative', display: 'inline-block' }}>
                 {probBotAccent}
@@ -127,17 +124,17 @@ export default async function SkinBrightening() {
       </section>
 
       <section className="section">
-        <div className="container grid grid-2 items-center gap-6">
-          <div style={{ position: 'relative', height: '550px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 25px 55px rgba(0,0,0,0.1)' }}>
+        <div className="container grid grid-2 items-center gap-6 mobile-stack">
+          <div className="image-container" style={{ position: 'relative', height: '550px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 25px 55px rgba(0,0,0,0.1)' }}>
             <Image src={whatIsImageSrc} alt="Skin Brightening Tech" fill style={{ objectFit: 'cover' }} />
             <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', background: 'white', padding: '0.75rem 1.5rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: '800', color: 'var(--color-primary)', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}>{wiBadge}</div>
           </div>
-          <div style={{ paddingLeft: '3.5rem' }}>
-            <h2 className="section-subtitle" style={{ color: 'var(--color-accent)', fontWeight: '900', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '2.5px', fontSize: '1rem' }}>{wiLabel}</h2>
-            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '2rem', fontSize: '2.8rem' }}>{wiHead} <span className="text-accent">{wiAccent}</span></h2>
+          <div className="content-block" style={{ paddingLeft: '3.5rem' }}>
+            <h2 className="section-subtitle" style={{ color: 'var(--color-accent)', fontWeight: '900', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '2.5px', fontSize: '1rem', textAlign: 'left' }}>{wiLabel}</h2>
+            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '2rem' }}>{wiHead} <span className="text-accent">{wiAccent}</span></h2>
             <p className="text-muted" style={{ fontSize: '1.15rem', marginBottom: '2.5rem', lineHeight: '1.8' }}>{wiBody}</p>
             <h4 style={{ marginBottom: '1.5rem', fontSize: '1.2rem', fontWeight: '800' }}>{wiSubHead}</h4>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '3.5rem' }}>
+            <div className="grid grid-2" style={{ gap: '1.5rem', marginBottom: '3.5rem' }}>
               {wiPoints.map(point=>(<div key={point.text} style={{display:'flex',alignItems:'center',gap:'0.8rem',fontWeight:'800',color:'#004d4f',fontSize:'1.05rem'}}><span style={{fontSize:'1.4rem'}}>{point.icon}</span> {point.text}</div>))}
             </div>
           </div>
@@ -146,7 +143,7 @@ export default async function SkinBrightening() {
 
       <section className="section text-center">
         <div className="container">
-          <h2 className="section-title" style={{ fontSize: '2.8rem' }}>{baHead} <span className="text-accent">{baAccent}</span></h2>
+          <h2 className="section-title">{baHead} <span className="text-accent">{baAccent}</span></h2>
           <p className="section-subtitle">{baSub}</p>
           <div style={{ maxWidth: '600px', margin: '2rem auto', position: 'relative', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 15px 40px rgba(0,0,0,0.1)', border: '1px solid #eee' }}>
             <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9' }}>
@@ -163,12 +160,12 @@ export default async function SkinBrightening() {
       </section>
 
       <section className="section bg-surface">
-        <div className="container grid grid-2 items-center gap-6">
-          <div style={{ paddingRight: '3.5rem' }}>
-            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '2rem', fontSize: '2.8rem' }}>{techHead} <span className="text-accent">{techAccent}</span></h2>
+        <div className="container grid grid-2 items-center gap-6 mobile-stack">
+          <div className="content-block" style={{ paddingRight: '3.5rem' }}>
+            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '2rem' }}>{techHead} <span className="text-accent">{techAccent}</span></h2>
             <p className="text-muted" style={{ fontSize: '1.15rem', marginBottom: '3rem', lineHeight: '1.8' }}>{techBody}</p>
           </div>
-          <div style={{ position: 'relative', height: '480px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 25px 55px rgba(0,0,0,0.1)' }}>
+          <div className="image-container" style={{ position: 'relative', height: '480px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 25px 55px rgba(0,0,0,0.1)' }}>
             <Image src={techImageSrc} alt="Skin Excellence" fill style={{ objectFit: 'cover' }} />
           </div>
         </div>
@@ -177,7 +174,7 @@ export default async function SkinBrightening() {
       <section className="section text-center">
         <div className="container">
           <h2 className="section-title">{trustHead} <span className="text-accent">{trustAccent}</span></h2>
-          <div className="grid grid-4 mobile-grid-2" style={{ marginTop: '5rem', gap: '1rem' }}>
+          <div className="grid grid-4" style={{ marginTop: '5rem' }}>
             {trustItems.map(item=>(
               <div key={item.text} className="card-trust" style={{ padding: '1.5rem 1rem' }}>
                 <div style={{fontSize:'2.2rem',marginBottom:'1rem'}}>{item.icon}</div>

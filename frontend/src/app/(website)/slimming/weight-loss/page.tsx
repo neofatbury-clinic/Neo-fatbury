@@ -52,12 +52,10 @@ export default async function WeightLoss() {
     <>
       {/* 1. HERO SECTION */}
       <ReplicaHero 
-        titleTeal1={heroH1}
-        titleTeal2=""
-        titleOrange1={heroAccent}
-        titleOrange2=""
-        subtext={heroDesc}
-        imageSrc={(d.image as string) || "/images/neofatbury-slimming-hero.png"}
+        titleTeal1={heroH1 || "Scientific"}
+        titleOrange1={heroAccent || "Weight Loss."}
+        subtext={heroDesc || "Achieve sustainable weight management with our MD-certified metabolic protocols."}
+        imageSrc={d.heroImage || "/images/neofatbury-slimming-hero.png"}
         trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
       />
 
