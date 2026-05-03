@@ -17,7 +17,7 @@ export default async function ScarTreatment() {
         subtext={(d.heroSubtext as string) || "Clinical reduction of surgical, injury, or keloid scars using US-FDA approved technology."}
         imageSrc={(typeof d.heroImage === 'string' ? d.heroImage : '') || "/images/scra-treatment.png"}
         trustPoints={(d.heroTrustBadges as any[])?.map(b => ({ icon: b.icon, text: b.label }))}
-        zoom={d.heroZoom}
+        zoom={d.heroZoom as number}
       />
 
       <section className="section bg-surface text-center" style={{ padding: '6rem 0' }}>

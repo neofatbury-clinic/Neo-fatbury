@@ -21,7 +21,7 @@ export default async function AntiDandruffTreatment() {
         subtext={heroDesc}
         imageSrc={(typeof d.heroImage === 'string' ? d.heroImage : '') || "/images/neofatbury-dandruff-clinical.png"}
         slug="anti-dandruff-treatment"
-        zoom={d.heroZoom}
+        zoom={d.heroZoom as number}
       />
 
       {/* 2. PROBLEM SECTION */}
