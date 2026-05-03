@@ -215,7 +215,9 @@ export default function LeadForm({
                 </button>
               ))}
             </div>
-            {/* Compact Hint removed to save space */}
+            <p className="lf-clinic-hint">
+              <em>Choose your nearest clinic for faster appointment scheduling</em>
+            </p>
           </div>
 
           {/* What are you looking for? */}
@@ -287,12 +289,12 @@ export default function LeadForm({
           background: rgba(255, 255, 255, 0.95); /* Semi-transparent White */
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
-          padding: 1.5rem 1.25rem 1.25rem;
-          border-radius: 20px;
+          padding: 2.5rem 2rem 2rem;
+          border-radius: 24px;
           border: 1px solid rgba(0, 0, 0, 0.05);
-          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
           width: 100%;
-          max-width: 460px; /* Filling the column */
+          max-width: 500px; /* Natural "Free" size */
           margin-left: auto;
           margin-right: 0; 
           font-family: 'Montserrat', sans-serif;
@@ -304,35 +306,35 @@ export default function LeadForm({
  
         .lf-title {
           text-align: center;
-          font-size: 1.4rem;
+          font-size: 1.75rem;
           font-weight: 900;
           color: #008084;
-          margin: 0 0 0.35rem;
+          margin: 0 0 0.5rem;
           line-height: 1.2;
-          letter-spacing: -0.01em;
+          letter-spacing: -0.02em;
         }
  
         .lf-subtitle {
           text-align: center;
-          font-size: 0.85rem;
+          font-size: 1rem;
           color: #666; 
-          margin: 0 0 1rem;
+          margin: 0 0 1.5rem;
           font-weight: 500;
-          line-height: 1.3;
+          line-height: 1.5;
         }
  
         .lf-form {
           display: flex;
           flex-direction: column;
-          gap: 0.4rem;
+          gap: 0.85rem;
         }
  
         .lf-input {
           width: 100%;
-          padding: 0.65rem 0.85rem;
+          padding: 1rem 1.25rem;
           border: 1px solid rgba(0, 0, 0, 0.1);
-          border-radius: 8px;
-          font-size: 0.8rem;
+          border-radius: 12px;
+          font-size: 0.95rem;
           color: #1a2b3c;
           background: #f8fafc;
           outline: none;
