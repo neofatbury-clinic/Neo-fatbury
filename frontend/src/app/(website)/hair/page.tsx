@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
 import ReplicaHero from "@/components/ReplicaHero";
-import { client } from "@/sanity/lib/client";
+import { client, urlFor } from "@/sanity/client";
 import CustomSchema from "@/components/CustomSchema";
 
 export const metadata = {
