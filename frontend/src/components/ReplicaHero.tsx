@@ -44,7 +44,7 @@ export default function ReplicaHero({
       position: 'relative', 
       minHeight: '700px', 
       background: '#00acb1', 
-      padding: '50px 0',
+      padding: '120px 0 50px 0',
       boxSizing: 'border-box',
       overflow: 'visible', 
       display: 'flex', 

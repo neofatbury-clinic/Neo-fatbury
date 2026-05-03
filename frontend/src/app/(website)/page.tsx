@@ -64,9 +64,9 @@ const FALLBACK_TREATMENTS: Record<string, { title: string; slug: string; image: 
     { title: 'Anti-Dandruff Clinical Solutions', slug: 'anti-dandruff-treatment', image: '/images/anti-dandruff-clinical.png' },
   ],
   slimming: [
-    { title: 'CoolSculpting', slug: 'coolsculpting', image: '/images/neofatbury-cooling-tech.png' },
-    { title: 'Weight Loss', slug: 'weight-loss', image: '/images/clinic-reception.webp' },
-    { title: 'Inch Loss', slug: 'inch-loss', image: '/images/neofatbury-slimming-standard.png' },
+    { title: 'CoolSculpting', slug: 'coolsculpting', image: '/images/coolsculpting-portrait.png' },
+    { title: 'Weight Loss', slug: 'weight-loss', image: '/images/weight-loss-portrait.png' },
+    { title: 'Inch Loss', slug: 'inch-loss', image: '/images/inch-loss-portrait.png' },
   ],
 };
 
