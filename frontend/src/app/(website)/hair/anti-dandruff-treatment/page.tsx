@@ -19,7 +19,7 @@ export default async function AntiDandruffTreatment() {
         titleOrange1={heroAccent}
         titleOrange2=""
         subtext={heroDesc}
-        imageSrc={(d.image as string) || "/images/Anti-Dandruff Treatment.png"}
+        imageSrc={d.heroImage || "/images/neofatbury-dandruff-clinical.png"}
         slug="anti-dandruff-treatment"
       />
 

@@ -38,7 +38,7 @@ export default function ReplicaHero({
   }
 
   return (
-    <section className="replica-hero" style={{ position: 'relative', minHeight: '500px', backgroundColor: '#00acb1', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
+    <section className="replica-hero" style={{ position: 'relative', minHeight: '500px', backgroundColor: '#ffffff', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
       
       {/* Background Image Layer (This contains your designed text) */}
       <div className="replica-bg-layer" style={{ 

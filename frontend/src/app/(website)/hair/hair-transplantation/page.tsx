@@ -63,7 +63,7 @@ export default async function HairTransplantation() {
         titleOrange1=""
         titleOrange2=""
         subtext={heroDesc}
-        imageSrc={(d.image as string) || "/images/Hair Transplantation.png"}
+        imageSrc={d.heroImage || "/images/hair-transplantation-new.png"}
         trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
         slug="hair-transplantation"
       />
