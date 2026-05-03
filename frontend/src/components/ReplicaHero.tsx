@@ -37,7 +37,7 @@ export default function ReplicaHero({
   showForm = true,
   slug
 }: ReplicaHeroProps) {
-  const finalImageSrc = imageSrc || (slug && SLUG_IMAGE_MAP[slug]) || "/images/neofatbury-hero-banner.webp";
+  const finalImageSrc = "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=1920&h=1080";
 
   return (
     <section className="replica-hero">
