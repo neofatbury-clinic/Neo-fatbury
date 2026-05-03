@@ -147,29 +147,50 @@ export default async function Home() {
         <div className="container text-center">
           <p style={{ color: '#00acb1', fontWeight: '700', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.75rem' }}>Why NeoFatbury Stands Out</p>
           <h2 className="section-title" style={{ marginBottom: '1rem' }}>{hero?.whyUsTitle || 'Clinical Excellence, Personal Care'}</h2>
-          <div className="grid grid-4" style={{ marginTop: '3.5rem' }}>
-            {hero?.whyUsPoints && hero.whyUsPoints.length > 0 ? (
-              hero.whyUsPoints.map((p: any, i: number) => (
-                <div key={i} className="card" style={{ padding: '2.5rem 1.5rem', backgroundColor: 'white', borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)', border: '1px solid #f1f1f1' }}>
-                  <div style={{ fontSize: '2.5rem', marginBottom: '1.25rem' }}>{p.icon}</div>
-                  <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: '#00acb1', fontWeight: '700' }}>{p.title}</h3>
-                  <p style={{ fontSize: '0.92rem', color: '#00acb1', opacity: 0.85, lineHeight: 1.6 }}>{p.description}</p>
-                </div>
-              ))
-            ) : (
-              [
-                { title: 'Dermatologist-Led', description: 'Every treatment is supervised by qualified medical professionals.', icon: '👩‍⚕️' },
-                { title: 'Safety First', description: 'We exclusively use ISO-certified processes and internationally recognized equipment.', icon: '🛡️' },
-                { title: 'No Hidden Costs', description: 'Transparent pricing with detailed pre-treatment counseling.', icon: '💳' },
-                { title: 'Convenient Locations', description: 'Premium clinics located in the heart of Kukatpally and Himayatnagar.', icon: '📍' },
-              ].map((p: any, i: number) => (
-                <div key={i} className="card" style={{ padding: '2.5rem 1.5rem', backgroundColor: 'white', borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)', border: '1px solid #f1f1f1' }}>
-                  <div style={{ fontSize: '2.5rem', marginBottom: '1.25rem' }}>{p.icon}</div>
-                  <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: '#00acb1', fontWeight: '700' }}>{p.title}</h3>
-                  <p style={{ fontSize: '0.92rem', color: '#00acb1', opacity: 0.85, lineHeight: 1.6 }}>{p.description}</p>
-                </div>
-              ))
-            )}
+          <div className="grid grid-4" style={{ marginTop: '4rem', gap: '2rem' }}>
+            {[
+              { title: 'Dermatologist-Led', description: 'Every treatment is supervised by qualified medical professionals.', icon: '👩‍⚕️' },
+              { title: 'Safety First', description: 'We exclusively use ISO-certified processes and US-FDA approved equipment.', icon: '🛡️' },
+              { title: 'No Hidden Costs', description: 'Transparent clinical pricing with detailed pre-treatment counseling.', icon: '💳' },
+              { title: 'Convenient Locations', description: 'Premium luxury clinics located in the heart of Kukatpally and Himayatnagar.', icon: '📍' },
+            ].map((p, i) => (
+              <div key={i} className="aesthetic-card" style={{ 
+                padding: '3rem 2rem', 
+                backgroundColor: 'white', 
+                borderRadius: '24px', 
+                boxShadow: '0 15px 40px rgba(0,172,177,0.06)', 
+                border: '1px solid rgba(0,172,177,0.08)',
+                textAlign: 'center',
+                transition: 'all 0.4s ease'
+              }}>
+                <div className="icon-box" style={{ 
+                  width: '70px', 
+                  height: '70px', 
+                  margin: '0 auto 1.5rem', 
+                  backgroundColor: '#f0f9fa', 
+                  borderRadius: '20px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  fontSize: '2.2rem'
+                }}>{p.icon}</div>
+                <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem', color: '#1a1a1a', fontWeight: '800' }}>{p.title}</h3>
+                <p style={{ fontSize: '0.95rem', color: '#555', lineHeight: 1.6, fontWeight: '500' }}>{p.description}</p>
+                
+                <style jsx>{`
+                  .aesthetic-card:hover {
+                    transform: translateY(-10px);
+                    box-shadow: 0 25px 50px rgba(0,172,177,0.12);
+                    border-color: rgba(0,172,177,0.2);
+                  }
+                  .aesthetic-card:hover .icon-box {
+                    background-color: #00acb1;
+                    transform: scale(1.1) rotate(5deg);
+                    transition: all 0.3s ease;
+                  }
+                `}</style>
+              </div>
+            ))}
           </div>
         </div>
       </section>
