@@ -20,7 +20,7 @@ export default function TreatmentTabs({ skin, hair, body }: TreatmentTabsProps) 
   const tabs = [
     { name: 'Skin', data: skin },
     { name: 'Hair', data: hair },
-    { name: 'Body', data: body },
+    { name: 'Slimming', data: body },
   ];
 
   return (
@@ -63,7 +63,7 @@ export default function TreatmentTabs({ skin, hair, body }: TreatmentTabsProps) 
           >
             <TreatmentGrid 
               treatments={tab.data} 
-              defaultCategory={tab.name.toLowerCase() === 'body' ? 'slimming' : tab.name.toLowerCase()} 
+              defaultCategory={tab.name.toLowerCase()} 
             />
           </div>
         ))}
