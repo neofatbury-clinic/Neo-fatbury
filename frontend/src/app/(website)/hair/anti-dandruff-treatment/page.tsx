@@ -19,7 +19,7 @@ export default async function AntiDandruffTreatment() {
         titleOrange1={heroAccent}
         titleOrange2=""
         subtext={heroDesc}
-        imageSrc={d.heroImage || "/images/neofatbury-dandruff-clinical.png"}
+        imageSrc={(d.heroImage as string) || "/images/neofatbury-dandruff-clinical.png"}
         slug="anti-dandruff-treatment"
       />
 
@@ -51,7 +51,7 @@ export default async function AntiDandruffTreatment() {
       <section className="section">
         <div className="container grid grid-2 items-center gap-6">
           <div style={{ position: 'relative', height: '520px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 25px 55px rgba(0,0,0,0.1)' }}>
-            <Image src={d.whatIsImage || "/images/neofatbury-dandruff-clinical.png"} alt="Anti-Dandruff Procedure" fill style={{ objectFit: 'cover' }} />
+            <Image src={(d.whatIsImage as string) || "/images/neofatbury-dandruff-clinical.png"} alt="Anti-Dandruff Procedure" fill style={{ objectFit: 'cover' }} />
             <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', background: 'white', padding: '0.75rem 1.5rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: '800', color: 'var(--color-primary)', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}>NEOFATBURY SCALP STANDARD</div>
           </div>
           <div style={{ paddingLeft: '3.5rem' }}>
@@ -83,7 +83,7 @@ export default async function AntiDandruffTreatment() {
           <p className="section-subtitle">See natural-looking scalp restoration results from our elite sessions.</p>
           <div style={{ maxWidth: '480px', margin: '3.5rem auto', position: 'relative', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 15px 45px rgba(0,0,0,0.1)' }}>
             <div style={{ position: 'relative', width: '100%', aspectRatio: '16/8' }}>
-              <Image src={d.baImage || "/images/neofatbury-dandruff-clinical.png"} alt="Anti-Dandruff Results" fill style={{ objectFit: 'cover' }} />
+              <Image src={(d.baImage as string) || "/images/neofatbury-dandruff-clinical.png"} alt="Anti-Dandruff Results" fill style={{ objectFit: 'cover' }} />
             </div>
             <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)', padding: '3rem', display: 'flex', justifyContent: 'center', gap: '25vw' }}>
               <span style={{ color: 'white', fontWeight: '900', letterSpacing: '5px', fontSize: '1.1rem', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>BEFORE</span>
