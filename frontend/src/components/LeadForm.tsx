@@ -215,9 +215,7 @@ export default function LeadForm({
                 </button>
               ))}
             </div>
-            <p className="lf-clinic-hint">
-              <em>Choose your nearest clinic for faster appointment scheduling</em>
-            </p>
+            {/* Compact Hint removed to save space */}
           </div>
 
           {/* What are you looking for? */}
@@ -289,14 +287,14 @@ export default function LeadForm({
           background: rgba(255, 255, 255, 0.95); /* Semi-transparent White */
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
-          padding: 2rem 1.5rem 1.5rem;
-          border-radius: 24px;
+          padding: 1.25rem 1rem 1rem;
+          border-radius: 20px;
           border: 1px solid rgba(0, 0, 0, 0.05);
-          box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
           width: 100%;
-          max-width: 460px; /* Optimized width */
-          margin-left: auto; /* Shifted right */
-          margin-right: -10px; /* Nudged a little right */
+          max-width: 360px; /* Slimmer form */
+          margin-left: auto;
+          margin-right: 0; 
           font-family: 'Montserrat', sans-serif;
           box-sizing: border-box;
           display: flex;
@@ -306,35 +304,35 @@ export default function LeadForm({
  
         .lf-title {
           text-align: center;
-          font-size: 1.5rem;
+          font-size: 1.25rem;
           font-weight: 900;
-          color: #008084; /* Deep Teal */
-          margin: 0.1rem 0 0.3rem;
+          color: #008084;
+          margin: 0 0 0.25rem;
           line-height: 1.2;
-          letter-spacing: -0.02em;
+          letter-spacing: -0.01em;
         }
  
         .lf-subtitle {
           text-align: center;
-          font-size: 0.9rem;
+          font-size: 0.8rem;
           color: #666; 
-          margin: 0 0 1.2rem;
+          margin: 0 0 0.75rem;
           font-weight: 500;
-          line-height: 1.4;
+          line-height: 1.3;
         }
  
         .lf-form {
           display: flex;
           flex-direction: column;
-          gap: 0.6rem;
+          gap: 0.4rem;
         }
  
         .lf-input {
           width: 100%;
-          padding: 0.75rem 1rem;
+          padding: 0.65rem 0.85rem;
           border: 1px solid rgba(0, 0, 0, 0.1);
-          border-radius: 10px;
-          font-size: 0.85rem;
+          border-radius: 8px;
+          font-size: 0.8rem;
           color: #1a2b3c;
           background: #f8fafc;
           outline: none;
