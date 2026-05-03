@@ -24,27 +24,25 @@ export default async function AntiDandruffTreatment() {
       />
 
       {/* 2. PROBLEM SECTION */}
-      <section className="section bg-surface text-center" style={{ padding: '3.5rem 0' }}>
+      <section className="section bg-surface text-center" style={{ padding: '4rem 0' }}>
         <div className="container" style={{ maxWidth: '1100px' }}>
           <h2 className="section-title" style={{ fontSize: '2.4rem' }}>Struggling with <span className="text-accent">Persistent Dandruff?</span></h2>
-          <div className="grid grid-4" style={{ marginTop: '3rem', gap: '1.5rem' }}>
+          <div className="grid grid-4" style={{ marginTop: '3.5rem', gap: '1.5rem' }}>
             {[
-              { title: "Flaking Scalp", desc: "Visible white flakes on scalp and clothes causing embarrassment.", icon: "/problem_dandruff_flaking_1777208241761.png" },
-              { title: "Itching", desc: "Constant irritating itch that disrupts your daily comfort.", icon: "/problem_itching_scalp_1777208262245.png" },
-              { title: "Scalp Redness", desc: "Inflammation and redness causing discomfort on the scalp.", icon: "/problem_redness_scalp_1777208283757.png" },
-              { title: "Hair Fall", desc: "Dandruff weakening the scalp leading to increased hair shedding.", icon: "/problem_hair_fall_1777208307723.png" }
+              { title: "Flaking Scalp", desc: "Visible white flakes on scalp and clothes causing embarrassment.", icon: "❄️" },
+              { title: "Itching", desc: "Constant irritating itch that disrupts your daily comfort.", icon: "💆‍♂️" },
+              { title: "Scalp Redness", desc: "Inflammation and redness causing discomfort on the scalp.", icon: "🔴" },
+              { title: "Hair Fall", desc: "Dandruff weakening the scalp leading to increased hair shedding.", icon: "📉" }
             ].map(item => (
               <div key={item.title} className="card-sleek">
-                <div style={{ position: 'relative', width: '80px', height: '80px', margin: '0 auto 1.5rem', borderRadius: '50%', overflow: 'hidden', border: '2px solid #f0f8f8' }}>
-                  <Image src={item.icon} alt={item.title} fill style={{ objectFit: 'cover' }} />
-                </div>
+                <div style={{ fontSize: '2.8rem', marginBottom: '1.5rem' }}>{item.icon}</div>
                 <h3 style={{ fontSize: '1.15rem', marginBottom: '1rem', color: 'var(--color-primary)', fontWeight: '800' }}>{item.title}</h3>
                 <p style={{ fontSize: '0.9rem', color: '#666', lineHeight: '1.7' }}>{item.desc}</p>
               </div>
             ))}
           </div>
-          <p style={{ fontSize: '1.2rem', marginTop: '4rem', fontWeight: '700', color: 'var(--color-primary)' }}>
-            Dandruff is treatable — <span className="text-accent" style={{ borderBottom: '2px solid rgba(39, 166, 156, 0.3)' }}>our experts restore your scalp health permanently.</span>
+          <p style={{ fontSize: '1.3rem', marginTop: '4.5rem', fontWeight: '800', color: 'var(--color-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem' }}>
+            Dandruff is treatable — <span className="text-accent" style={{ borderBottom: '3px solid rgba(0, 172, 177, 0.2)' }}>our experts restore your scalp health permanently.</span>
           </p>
         </div>
       </section>
@@ -52,13 +50,13 @@ export default async function AntiDandruffTreatment() {
       {/* 3. WHAT IS ANTI-DANDRUFF TREATMENT */}
       <section className="section">
         <div className="container grid grid-2 items-center gap-6">
-          <div style={{ position: 'relative', height: '500px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 25px 55px rgba(0,0,0,0.1)' }}>
-            <Image src="/images/neofatbury-dandruff-clinical.png" alt="Anti-Dandruff Procedure" fill style={{ objectFit: 'cover' }} />
+          <div style={{ position: 'relative', height: '520px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 25px 55px rgba(0,0,0,0.1)' }}>
+            <Image src={d.whatIsImage || "/images/neofatbury-dandruff-clinical.png"} alt="Anti-Dandruff Procedure" fill style={{ objectFit: 'cover' }} />
             <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', background: 'white', padding: '0.75rem 1.5rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: '800', color: 'var(--color-primary)', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}>NEOFATBURY SCALP STANDARD</div>
           </div>
           <div style={{ paddingLeft: '3.5rem' }}>
             <h2 className="section-subtitle" style={{ color: 'var(--color-accent)', fontWeight: '900', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '2.5px', fontSize: '1rem' }}>Scalp Science</h2>
-            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '2rem', fontSize: '2.6rem' }}>What is <span className="text-accent">Anti-Dandruff Treatment?</span></h2>
+            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '2rem', fontSize: '2.8rem' }}>What is <span className="text-accent">Anti-Dandruff Treatment?</span></h2>
             <p className="text-muted" style={{ fontSize: '1.15rem', marginBottom: '2.5rem', lineHeight: '1.8' }}>
               Anti-dandruff treatment addresses the root causes of dandruff — fungal overgrowth, excessive sebum, and scalp inflammation — using clinical protocols for lasting scalp health.
             </p>
@@ -69,7 +67,7 @@ export default async function AntiDandruffTreatment() {
                 { t: 'Scalp micro-peeling', i: '🧴' },
                 { t: 'PRP scalp booster', i: '💉' }
               ].map(point => (
-                <div key={point.t} style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', fontWeight: '800', color: '#004d4f', fontSize: '1rem' }}>
+                <div key={point.t} style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', fontWeight: '800', color: '#004d4f', fontSize: '1.05rem' }}>
                   <span style={{ fontSize: '1.4rem' }}>{point.i}</span> {point.t}
                 </div>
               ))}
@@ -78,11 +76,30 @@ export default async function AntiDandruffTreatment() {
         </div>
       </section>
 
+      {/* 3.5 RESULTS SECTION */}
+      <section className="section text-center">
+        <div className="container">
+          <h2 className="section-title" style={{ fontSize: '2.8rem' }}>Real Results. <span className="text-accent">Healthy Scalp.</span></h2>
+          <p className="section-subtitle">See natural-looking scalp restoration results from our elite sessions.</p>
+          <div style={{ maxWidth: '480px', margin: '3.5rem auto', position: 'relative', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 15px 45px rgba(0,0,0,0.1)' }}>
+            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/8' }}>
+              <Image src={d.baImage || "/images/neofatbury-dandruff-clinical.png"} alt="Anti-Dandruff Results" fill style={{ objectFit: 'cover' }} />
+            </div>
+            <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)', padding: '3rem', display: 'flex', justifyContent: 'center', gap: '25vw' }}>
+              <span style={{ color: 'white', fontWeight: '900', letterSpacing: '5px', fontSize: '1.1rem', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>BEFORE</span>
+              <span style={{ color: 'white', fontWeight: '900', letterSpacing: '5px', fontSize: '1.1rem', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>AFTER</span>
+            </div>
+          </div>
+          <p style={{ fontSize: '1.2rem', fontWeight: '800', marginBottom: '3rem', color: 'var(--color-primary)' }}>Start Your Scalp Health Journey Today</p>
+          <Link href="/contact-us" className="btn btn-primary" style={{ padding: '1.25rem 4rem', fontSize: '1.1rem' }}>Start Your Journey</Link>
+        </div>
+      </section>
+
       {/* 4. BENEFITS */}
       <section className="section bg-surface">
         <div className="container">
           <h2 className="section-title text-center">Benefits of <span className="text-accent">Anti-Dandruff Treatment</span></h2>
-          <div className="grid grid-5" style={{ marginTop: '4rem', gap: '1.5rem' }}>
+          <div className="grid grid-5" style={{ marginTop: '4.5rem', gap: '1.5rem' }}>
             {[
               { t: "Flake-free scalp", i: "❄️" },
               { t: "Reduced itching", i: "😌" },
