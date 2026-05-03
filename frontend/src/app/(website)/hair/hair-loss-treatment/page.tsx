@@ -62,6 +62,7 @@ export default async function HairLossTreatment() {
         subtext={heroDesc}
         imageSrc={(d.image as string) || "/images/Hair Loss Treatment.png"}
         trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
+        slug="hair-loss-treatment"
       />
 
       <section className="section bg-surface text-center" style={{ padding: '3.5rem 0' }}>

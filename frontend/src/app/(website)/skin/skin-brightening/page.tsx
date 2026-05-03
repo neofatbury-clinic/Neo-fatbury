@@ -91,6 +91,7 @@ export default async function SkinBrightening() {
         subtext={heroDesc}
         imageSrc={heroImageSrc}
         trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
+        slug="skin-brightening"
       />
 
       <section className="section bg-surface text-center" style={{ padding: '6rem 0' }}>

@@ -50,6 +50,7 @@ export default async function HairPage() {
         subtext={category?.heroSubtext || ""}
         imageSrc={category?.heroImage || "/images/All Hair Treatments.png"}
         leadFormTitle="Book Hair Analysis"
+        slug="hair"
       />
 
       <section className="section" id="treatments">

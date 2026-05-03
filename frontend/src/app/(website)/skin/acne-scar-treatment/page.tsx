@@ -58,8 +58,9 @@ export default async function AcneScarTreatment() {
         titleOrange1={heroAccent}
         titleOrange2=""
         subtext={heroDesc}
-        imageSrc={(d.image as string) || "/images/Acne Scar Treatment.png"}
+        imageSrc={(d.image as string) || "/images/Acne & Pimple Treatment.png"}
         trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
+        slug="acne-scar-treatment"
       />
 
       <section className="section bg-surface text-center" style={{ padding: '4rem 0' }}>

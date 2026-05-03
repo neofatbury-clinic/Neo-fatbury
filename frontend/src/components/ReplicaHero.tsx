@@ -11,7 +11,21 @@ interface ReplicaHeroProps {
   trustPoints?: { icon: string; text: string }[];
   leadFormTitle?: string;
   showForm?: boolean;
+  slug?: string; // Optional slug to help with automatic image mapping
 }
+
+// Global mapping of slugs to high-resolution "Replica" images
+const SLUG_IMAGE_MAP: Record<string, string> = {
+  'laser-hair-reduction': '/images/Laser Hair Reduction.png',
+  'acne-scar-treatment': '/images/Acne & Pimple Treatment.png',
+  'acne-treatment': '/images/Acne & Pimple Treatment.png',
+  'skin-brightening': '/images/Skin Brightening.png',
+  'hair-loss-treatment': '/images/Hair Loss Treatment.png',
+  'hair-transplantation': '/images/Hair Transplantation.png',
+  'anti-dandruff-treatment': '/images/Anti-Dandruff Treatment.png',
+  'skin': '/images/All Skin Treatments.png',
+  'hair': '/images/All Hair Treatments.png',
+};
 
 export default function ReplicaHero({
   titleTeal1,
@@ -22,14 +36,18 @@ export default function ReplicaHero({
   imageSrc,
   trustPoints = [],
   leadFormTitle,
-  showForm = true
+  showForm = true,
+  slug
 }: ReplicaHeroProps) {
+  // Determine the final image source: Priority 1: Slug-based mapping, Priority 2: Passed imageSrc
+  const finalImageSrc = (slug && SLUG_IMAGE_MAP[slug]) ? SLUG_IMAGE_MAP[slug] : imageSrc;
+
   return (
     <section className="replica-hero">
       {/* Absolute Background Image (Sole source of background visual) */}
       <div className="replica-primary-bg">
         <Image 
-            src={imageSrc} 
+            src={finalImageSrc} 
             alt="Hero Background" 
             fill
             priority 
@@ -43,7 +61,7 @@ export default function ReplicaHero({
         {/* ── Mobile-Only Visual ── */}
         <div className="replica-hero-visual-mobile mobile-only">
           <Image 
-            src={imageSrc} 
+            src={finalImageSrc} 
             alt="Hero Visual" 
             width={800}
             height={600}

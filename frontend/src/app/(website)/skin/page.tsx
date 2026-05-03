@@ -54,6 +54,7 @@ export default async function SkinPage() {
         subtext={category?.heroSubtext || ""}
         imageSrc={heroImageSrc}
         leadFormTitle="Book Skin Analysis"
+        slug="skin"
       />
 
       {/* TREATMENTS GRID */}

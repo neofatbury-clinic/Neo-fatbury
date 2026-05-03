@@ -91,6 +91,7 @@ export default async function LaserHairReduction() {
         subtext={heroDesc}
         imageSrc={heroImageSrc}
         trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
+        slug="laser-hair-reduction"
       />
 
       {/* 2. PROBLEM */}

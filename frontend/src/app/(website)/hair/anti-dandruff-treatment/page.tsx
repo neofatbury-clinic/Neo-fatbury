@@ -20,6 +20,7 @@ export default async function AntiDandruffTreatment() {
         titleOrange2=""
         subtext={heroDesc}
         imageSrc={(d.image as string) || "/images/Anti-Dandruff Treatment.png"}
+        slug="anti-dandruff-treatment"
       />
 
       {/* 2. PROBLEM SECTION */}

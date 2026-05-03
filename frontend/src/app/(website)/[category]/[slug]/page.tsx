@@ -117,6 +117,7 @@ export default async function ServicePage({ params }: { params: Promise<{ catego
         subtext={service.heroSubtext || ''}
         imageSrc={service.image || '/images/neofatbury-clinical-standard.png'}
         trustPoints={service.heroTrustBadges || []}
+        slug={slug}
       />
 
       {/* ── PROBLEM SECTION ───────────────────────────── */}
