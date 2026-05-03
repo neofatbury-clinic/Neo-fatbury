@@ -286,13 +286,13 @@ export default function LeadForm({
 
       <style>{`
         .lf-wrapper {
-          background: rgba(0, 75, 77, 0.9); /* Deep Teal Glass */
+          background: rgba(255, 255, 255, 0.95); /* Semi-transparent White */
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
           padding: 2.2rem 1.5rem 1.8rem;
           border-radius: 24px;
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+          border: 1px solid rgba(0, 0, 0, 0.05);
+          box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
           width: 100%;
           max-width: 100%;
           font-family: 'Montserrat', sans-serif;
@@ -306,17 +306,16 @@ export default function LeadForm({
           text-align: center;
           font-size: 1.5rem;
           font-weight: 900;
-          color: #ffffff; 
+          color: #008084; /* Deep Teal */
           margin: 0.1rem 0 0.3rem;
           line-height: 1.2;
           letter-spacing: -0.02em;
-          text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
  
         .lf-subtitle {
           text-align: center;
           font-size: 0.9rem;
-          color: rgba(255, 255, 255, 0.8); 
+          color: #666; 
           margin: 0 0 1.2rem;
           font-weight: 500;
           line-height: 1.4;
@@ -331,24 +330,24 @@ export default function LeadForm({
         .lf-input {
           width: 100%;
           padding: 0.75rem 1rem;
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(0, 0, 0, 0.1);
           border-radius: 10px;
           font-size: 0.85rem;
-          color: #f8fafc;
-          background: rgba(30, 41, 59, 0.5); /* Slate 800 transparent */
+          color: #1a2b3c;
+          background: #f8fafc;
           outline: none;
           transition: all 0.2s;
           box-sizing: border-box;
         }
  
         .lf-input:focus {
-          border-color: #00d1d7;
-          background: rgba(30, 41, 59, 0.8);
-          box-shadow: 0 0 0 3px rgba(0, 209, 215, 0.1);
+          border-color: #00acb1;
+          background: #ffffff;
+          box-shadow: 0 0 0 3px rgba(0, 172, 177, 0.1);
         }
  
         .lf-input::placeholder {
-          color: #64748b;
+          color: #94a3b8;
         }
  
         /* Section */
@@ -368,13 +367,13 @@ export default function LeadForm({
         .lf-divider-line {
           flex: 1;
           height: 1px;
-          background: rgba(255, 255, 255, 0.08);
+          background: rgba(0, 0, 0, 0.08);
         }
  
         .lf-section-title {
           font-size: 0.7rem;
           font-weight: 800;
-          color: #cbd5e1; /* Slate 300 */
+          color: #64748b;
           text-align: center;
           white-space: nowrap;
           text-transform: uppercase;
@@ -383,7 +382,7 @@ export default function LeadForm({
  
         .lf-concern-hint {
           font-weight: 400;
-          color: #64748b;
+          color: #94a3b8;
           font-size: 0.65rem;
           font-style: italic;
           text-transform: none;
@@ -413,7 +412,7 @@ export default function LeadForm({
  
         .lf-clinic-btn.active {
           transform: translateY(-2px);
-          box-shadow: 0 8px 20px rgba(0,0,0,0.3) !important;
+          box-shadow: 0 8px 20px rgba(0,0,0,0.2) !important;
         }
  
         .lf-pin-icon {
@@ -424,7 +423,7 @@ export default function LeadForm({
         .lf-clinic-hint {
           text-align: center;
           font-size: 0.7rem;
-          color: #64748b;
+          color: #94a3b8;
           margin-top: -0.1rem;
           margin-bottom: 0.2rem;
           font-style: italic;
@@ -442,9 +441,9 @@ export default function LeadForm({
           min-width: 80px;
           padding: 0.55rem 0.4rem;
           border-radius: 8px;
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          background: rgba(30, 41, 59, 0.5);
-          color: #e2e8f0;
+          border: 1px solid rgba(0, 0, 0, 0.08);
+          background: #f8fafc;
+          color: #64748b;
           font-size: 0.75rem;
           font-weight: 700;
           cursor: pointer;
@@ -454,15 +453,15 @@ export default function LeadForm({
         }
  
         .lf-category-btn:hover {
-          background: rgba(30, 41, 59, 0.8);
-          border-color: rgba(255, 255, 255, 0.2);
+          background: #f1f5f9;
+          border-color: rgba(0, 0, 0, 0.15);
         }
  
         .lf-category-btn.active {
           background: #00acb1;
           color: #fff;
           border-color: #00acb1;
-          box-shadow: 0 4px 12px rgba(0, 172, 177, 0.3);
+          box-shadow: 0 4px 12px rgba(0, 172, 177, 0.2);
         }
  
         /* Concern chips */
@@ -479,9 +478,9 @@ export default function LeadForm({
           font-weight: 700;
           cursor: pointer;
           transition: all 0.15s;
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          background: rgba(30, 41, 59, 0.3);
-          color: #94a3b8;
+          border: 1px solid rgba(0, 0, 0, 0.08);
+          background: #f8fafc;
+          color: #64748b;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -493,21 +492,21 @@ export default function LeadForm({
         }
  
         .lf-concern-chip:hover {
-          background: rgba(30, 41, 59, 0.6);
-          border-color: rgba(255, 255, 255, 0.15);
-          color: #e2e8f0;
+          background: #f1f5f9;
+          border-color: rgba(0, 0, 0, 0.1);
+          color: #1a2b3c;
         }
  
         .lf-concern-chip.active {
-          border-color: #00d1d7;
-          color: #00d1d7;
-          background: rgba(0, 209, 215, 0.1);
-          box-shadow: inset 0 0 0 1px rgba(0, 209, 215, 0.2);
+          border-color: #00acb1;
+          color: #00acb1;
+          background: rgba(0, 172, 177, 0.05);
+          box-shadow: inset 0 0 0 1px rgba(0, 172, 177, 0.1);
         }
  
         .lf-more-trigger {
-          color: #00d1d7;
-          border-color: rgba(0, 209, 215, 0.3);
+          color: #00acb1;
+          border-color: rgba(0, 172, 177, 0.2);
         }
  
         .chevron {

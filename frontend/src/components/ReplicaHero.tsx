@@ -39,7 +39,6 @@ export default function ReplicaHero({
   showForm = true,
   slug
 }: ReplicaHeroProps) {
-  // Determine the final image source: Priority 1: Passed imageSrc (Sanity), Priority 2: Slug-based mapping (Local Fallback)
   const finalImageSrc = imageSrc || (slug && SLUG_IMAGE_MAP[slug]) || "/images/neofatbury-hero-banner.webp";
 
   return (
@@ -52,6 +51,7 @@ export default function ReplicaHero({
             fill
             priority 
             quality={95}
+            unoptimized
             style={{ objectFit: 'cover', objectPosition: 'left center' }} 
           />
         <div className="replica-primary-overlay"></div>

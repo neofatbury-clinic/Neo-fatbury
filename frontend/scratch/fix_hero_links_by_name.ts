@@ -40,7 +40,7 @@ async function fixHeroLinksByName() {
     'slimming': ['all slimming treatments'],
   };
 
-  const homepageSearch = 'neo (14)';
+  const homepageSearch = 'home page';
 
   // 3. Update Services
   for (const [slug, searchNames] of Object.entries(MAPPING)) {
