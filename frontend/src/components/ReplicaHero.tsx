@@ -31,21 +31,18 @@ const SLUG_IMAGE_MAP: Record<string, string> = {
 };
 
 export default function ReplicaHero({
-  titleTeal1,
-  titleOrange1,
   imageSrc,
   trustPoints = [],
   leadFormTitle,
   showForm = true,
   slug
 }: ReplicaHeroProps) {
-  // Priority: 1. Passed imageSrc (Sanity) 2. Local slug-based mapping 3. Default fallback
   const finalImageSrc = imageSrc || (slug && SLUG_IMAGE_MAP[slug]) || "/images/neofatbury-hero-banner.webp";
 
   return (
     <section className="replica-hero">
-      {/* Absolute Background Image Layer */}
-      <div className="replica-primary-bg" style={{ zIndex: 2 }}>
+      {/* 1. Absolute Background Image (Sole source of background visual) */}
+      <div className="replica-primary-bg" style={{ zIndex: 1 }}>
         <Image 
             src={finalImageSrc} 
             alt="Hero Background" 
@@ -58,19 +55,7 @@ export default function ReplicaHero({
       </div>
 
       <div className="replica-hero-container" style={{ position: 'relative', zIndex: 10 }}>
-        {/* ── Mobile-Only Visual ── */}
-        <div className="replica-hero-visual-mobile mobile-only" style={{ background: 'white' }}>
-          <Image 
-            src={finalImageSrc} 
-            alt="Hero Visual" 
-            width={800}
-            height={600}
-            priority
-            unoptimized
-            style={{ width: '100%', height: 'auto', display: 'block' }}
-          />
-        </div>
-
+        {/* ── Main Content Grid ── */}
         <div className="replica-primary-box">
           <div className="replica-primary-content">
             {/* Zone 1: Portrait Space (Desktop) */}
@@ -78,8 +63,7 @@ export default function ReplicaHero({
 
             {/* Zone 2: Typography (Middle) */}
             <div className="replica-zone-middle">
-              {/* Note: In these specific dark banners, text is often baked in, 
-                  but we keep the trust points for accessibility and SEO. */}
+              {/* Trust points only */}
               {trustPoints.length > 0 && (
                 <div className="replica-trust-row" style={{ marginTop: 'auto', paddingBottom: '2rem' }}>
                   {trustPoints.map((point, index) => (
