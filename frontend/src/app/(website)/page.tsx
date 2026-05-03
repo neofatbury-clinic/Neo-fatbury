@@ -99,25 +99,14 @@ export default async function Home() {
       slug: s.slug, 
       image: s.image 
     })) || [];
-
-    // If still empty or incomplete, merge with fallbacks to ensure a rich list
-    const fallbacks = FALLBACK_TREATMENTS[cat.toLowerCase()] || [];
-    const merged = [...filtered];
-    
-    // Add fallbacks that are not already in the filtered list (by slug)
-    fallbacks.forEach(fb => {
-      if (!merged.some(m => m.slug === fb.slug)) {
-        merged.push(fb);
-      }
-    });
-
-    return merged;
-  };
-
   const treatments = {
-    skin: getByCategory('skin'),
-    hair: getByCategory('hair'),
-    slimming: getByCategory('slimming'),
+    skin: FALLBACK_TREATMENTS.skin,
+    hair: allServices && allServices.filter((s: any) => s.category === 'hair').length > 0 
+      ? allServices.filter((s: any) => s.category === 'hair').map((s: any) => ({ title: s.name, slug: s.slug, image: s.image }))
+      : FALLBACK_TREATMENTS.hair,
+    slimming: allServices && allServices.filter((s: any) => s.category === 'slimming').length > 0 
+      ? allServices.filter((s: any) => s.category === 'slimming').map((s: any) => ({ title: s.name, slug: s.slug, image: s.image }))
+      : FALLBACK_TREATMENTS.slimming,
   };
 
   return (
