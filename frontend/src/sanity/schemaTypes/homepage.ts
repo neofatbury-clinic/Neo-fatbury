@@ -31,6 +31,15 @@ export const homepage = defineType({
     }),
     defineField({ name: 'heroCtaText', title: 'Main Button Label', type: 'string', initialValue: 'Book Free Consultation', group: 'hero' }),
     defineField({
+      name: 'heroZoom',
+      title: 'Hero Image Zoom (1.0 = Zoom Out, 1.3+ = Zoom In)',
+      type: 'number',
+      initialValue: 1.0,
+      description: '💡 Adjust this to prevent text cutting on the homepage banner. 1.0 = Full Width (Zoom Out).',
+      validation: r => r.min(0.5).max(3),
+      group: 'hero'
+    }),
+    defineField({
       name: 'heroStats',
       title: 'Trust Numbers (e.g. 10k+ Happy Patients)',
       type: 'array',
