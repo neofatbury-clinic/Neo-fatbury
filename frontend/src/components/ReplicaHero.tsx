@@ -50,6 +50,9 @@ export default function ReplicaHero({
             alt="Hero Background" 
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'left center' }} 
           />
+        <div className="replica-primary-overlay" style={{ position: 'absolute', bottom: 0, right: 0, background: 'rgba(0,0,0,0.5)', color: 'white', fontSize: '10px', padding: '2px', zIndex: 100 }}>
+          URL: {finalImageSrc}
+        </div>
         <div className="replica-primary-overlay"></div>
       </div>
 
