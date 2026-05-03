@@ -43,13 +43,10 @@ export default function ReplicaHero({
     <section className="replica-hero">
       {/* 1. Background Image Layer (Renders on top of solid teal background) */}
       <div className="replica-primary-bg" style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-        <Image 
+        <img 
             src={finalImageSrc} 
             alt="Hero Background" 
-            fill
-            priority 
-            unoptimized
-            style={{ objectFit: 'cover', objectPosition: 'left center' }} 
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'left center' }} 
           />
       </div>
 
