@@ -286,12 +286,12 @@ export default function LeadForm({
 
       <style>{`
         .lf-wrapper {
-          background: rgba(15, 23, 42, 0.95); /* Deep Slate 900 */
+          background: rgba(0, 75, 77, 0.9); /* Deep Teal Glass */
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
           padding: 2.2rem 1.5rem 1.8rem;
           border-radius: 24px;
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.2);
           box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
           width: 100%;
           max-width: 100%;
@@ -306,7 +306,7 @@ export default function LeadForm({
           text-align: center;
           font-size: 1.5rem;
           font-weight: 900;
-          color: #00d1d7; /* Lighter, vibrant teal */
+          color: #ffffff; 
           margin: 0.1rem 0 0.3rem;
           line-height: 1.2;
           letter-spacing: -0.02em;
@@ -316,7 +316,7 @@ export default function LeadForm({
         .lf-subtitle {
           text-align: center;
           font-size: 0.9rem;
-          color: #94a3b8; /* Slate 400 */
+          color: rgba(255, 255, 255, 0.8); 
           margin: 0 0 1.2rem;
           font-weight: 500;
           line-height: 1.4;
