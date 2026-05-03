@@ -15,7 +15,7 @@ async function clearBranchPhones() {
 
   const updatedLocations = settings.clinicLocations.map((loc: any) => {
     // If it's the old default, remove it to enable fallback
-    if (loc.phone === '9700641000') {
+    if (loc.phone === '7729955577') {
       const { phone, ...rest } = loc;
       return rest;
     }

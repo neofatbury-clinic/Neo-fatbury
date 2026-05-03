@@ -5,6 +5,7 @@ import LeadForm from '@/components/LeadForm';
 import ReplicaHero from '@/components/ReplicaHero';
 import TreatmentGrid from '@/components/TreatmentGrid';
 import TreatmentTabs from '@/components/TreatmentTabs';
+import TransformationsSlider from '@/components/TransformationsSlider';
 import CustomSchema from '@/components/CustomSchema';
 import { client } from '@/sanity/lib/client';
 import PageBuilder from '@/components/PageBuilder';
@@ -202,21 +203,7 @@ export default async function Home() {
           <h2 className="section-title">Clinical <span className="text-accent">Transformations</span></h2>
           <p className="section-subtitle" style={{ color: '#00acb1', fontWeight: '500', maxWidth: '700px', margin: '0 auto' }}>Witness the power of US-FDA approved technology and expert dermatological care.</p>
           
-          <div className="results-container" style={{ position: 'relative', maxWidth: '720px', margin: '3rem auto', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 15px 40px rgba(0,172,177,0.08)', border: '1px solid #f0f0f0' }}>
-            <div style={{ display: 'flex', transition: 'transform 0.5s ease' }}>
-              {RESULTS.map((r, i) => (
-                <div key={i} style={{ flex: '0 0 100%', position: 'relative' }}>
-                  <div style={{ position: 'relative', width: '100%', aspectRatio: '20/7' }}>
-                    <Image src={r.img} alt={r.label} fill style={{ objectFit: 'cover' }} />
-                  </div>
-                  <div style={{ display: 'flex', justifyContent: 'center', gap: '20%', background: 'white', padding: '1.25rem', borderTop: '1px solid #eee' }}>
-                    <span style={{ fontWeight: '900', color: '#00acb1', fontSize: '0.8rem', letterSpacing: '2px' }}>BEFORE</span>
-                    <span style={{ fontWeight: '900', color: '#00acb1', fontSize: '0.8rem', letterSpacing: '2px' }}>AFTER</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <TransformationsSlider results={RESULTS} />
 
           <div style={{ textAlign: 'center', marginTop: '1rem' }}>
             <Link href="/results" className="btn btn-cta" style={{ padding: '1rem 2.5rem', backgroundColor: '#00acb1', color: 'white', borderRadius: '50px', fontWeight: '700' }}>View Our Full Results Gallery</Link>

@@ -19,14 +19,14 @@ async function seedSettings() {
       {
         name: 'NeoFatbury Clinic - Himayatnagar',
         address: 'City plaza Building, 2nd floor, beside fast rack showroom. Himyathnagar circle, Hyderabad',
-        phone: '9700641000',
+        phone: '7729955577',
         mapsUrl: 'https://maps.app.goo.gl/himayatnagar-placeholder',
         gbpUrl: 'https://g.page/neofatbury-himayatnagar'
       },
       {
         name: 'NeoFatbury Clinic - Kukatpally',
         address: 'Road No 1, KPHB Colony, Beside Main Road Exit, Hyderabad, Telangana.',
-        phone: '9700641000',
+        phone: '7729955577',
         mapsUrl: 'https://maps.app.goo.gl/kukatpally-placeholder',
         gbpUrl: 'https://g.page/neofatbury-kukatpally'
       }

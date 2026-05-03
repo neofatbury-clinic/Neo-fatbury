@@ -18,7 +18,7 @@ export default function ThankYouPage() {
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
             <Link href="/" className="btn btn-primary">Return to Home</Link>
-            <a href="tel:9700641000" className="btn btn-outline">Call Us Now</a>
+            <a href="tel:7729955577" className="btn btn-outline">Call Us Now</a>
           </div>
         </div>
       </section>

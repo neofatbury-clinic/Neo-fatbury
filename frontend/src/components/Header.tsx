@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 export default function Header({ settings }: { settings?: any }) {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const mainPhone = settings?.contact?.phone || '9700641000';
+  const mainPhone = settings?.contact?.phone || '7729955577';
   const logoUrl = settings?.logo || "/images/neofatbury-logo-web.png";
 
   return (

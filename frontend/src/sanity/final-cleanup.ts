@@ -27,8 +27,8 @@ async function cleanup() {
         clinicName: 'NeoFatbury',
         tagline: 'Leading Skin, Hair & Slimming Clinic',
         contact: {
-          phone: '9700641000',
-          whatsapp: '919700641000',
+          phone: '7729955577',
+          whatsapp: '917729955577',
           email: 'info@neofatbury.com'
         }
       })

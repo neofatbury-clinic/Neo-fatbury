@@ -149,7 +149,7 @@ export default async function ScarTreatment() {
           <p style={{ fontSize: '1.5rem', color: 'rgba(255,255,255,0.95)', marginBottom: '4.5rem', fontWeight: '500' }}>Schedule your consultation and start your scar restoration journey today.</p>
           <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link href="/contact-us" className="btn btn-accent" style={{ padding: '1.5rem 4.5rem', fontSize: '1.2rem', fontWeight: '900' }}>Book Appointment</Link>
-            <a href="tel:9700641000" className="btn" style={{ backgroundColor: 'white', color: 'var(--color-primary)', padding: '1.5rem 4.5rem', fontSize: '1.2rem', fontWeight: '900' }}>Get Free Consultation</a>
+            <a href="tel:7729955577" className="btn" style={{ backgroundColor: 'white', color: 'var(--color-primary)', padding: '1.5rem 4.5rem', fontSize: '1.2rem', fontWeight: '900' }}>Get Free Consultation</a>
           </div>
         </div>
       </section>

@@ -119,7 +119,7 @@ export default function OurDoctors() {
         <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.15rem', marginBottom: '2rem' }}>Book a free, no-obligation consultation with one of our expert doctors today.</p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
           <Link href="/contact-us" className="btn" style={{ backgroundColor: 'white', color: 'var(--color-primary)' }}>Book Appointment</Link>
-          <a href="tel:9700641000" className="btn btn-accent">📞 9700641000</a>
+          <a href="tel:7729955577" className="btn btn-accent">📞 7729955577</a>
         </div>
       </section>
     </>

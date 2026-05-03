@@ -133,8 +133,8 @@ export const siteSettings = defineType({
       description: '💡 These details appear in the header, footer, and contact page.',
       group: 'contact',
       fields: [
-        defineField({ name: 'phone', title: 'Primary Phone Number', type: 'string', description: '💡 Main clinic number shown in the header. Example: 9700641000' }),
-        defineField({ name: 'whatsapp', title: 'WhatsApp Number', type: 'string', description: '💡 Number for the green WhatsApp button. Include country code, e.g. 919700641000' }),
+        defineField({ name: 'phone', title: 'Primary Phone Number', type: 'string', description: '💡 Main clinic number shown in the header. Example: 7729955577' }),
+        defineField({ name: 'whatsapp', title: 'WhatsApp Number', type: 'string', description: '💡 Number for the green WhatsApp button. Include country code, e.g. 917729955577' }),
         defineField({ name: 'email', title: 'Email Address', type: 'string', description: '💡 Contact email shown on the website' }),
       ],
     }),

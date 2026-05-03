@@ -10,7 +10,7 @@ export default async function WhatsAppWidget() {
     { next: { revalidate: 0 } }
   );
   
-  let phoneNumber = data?.whatsapp || '919700641000';
+  let phoneNumber = data?.whatsapp || '917729955577';
   // If it's a 10-digit number, prepend 91 (India)
   if (phoneNumber.length === 10 && /^\d+$/.test(phoneNumber)) {
     phoneNumber = `91${phoneNumber}`;

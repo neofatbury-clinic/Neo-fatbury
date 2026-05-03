@@ -22,7 +22,7 @@ export default function HimayatnagarLocation() {
               <strong>NeoFatbury Clinic - Himayatnagar</strong><br/>
               Main Road, Himayatnagar,<br/>
               Near Main Signal, Hyderabad, Telangana.<br/><br/>
-              <strong>Phone:</strong> <a href="tel:9700641000" style={{ color: 'var(--color-primary)', fontWeight: 'bold' }}>9700641000</a>
+              <strong>Phone:</strong> <a href="tel:7729955577" style={{ color: 'var(--color-primary)', fontWeight: 'bold' }}>7729955577</a>
             </address>
           </div>
         </div>

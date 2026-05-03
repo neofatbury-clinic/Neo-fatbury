@@ -29,13 +29,13 @@ async function seed() {
         _key: 'b1',
         name: 'Kukatpally Branch',
         address: '4th Floor, Ganesh Plaza, JNTU - Hitech City Rd, Kukatpally, Hyderabad.',
-        phone: '9700641000'
+        phone: '7729955577'
       },
       {
         _key: 'b2',
         name: 'Himayatnagar Branch',
         address: '4th Floor, Velma Bhavan, Beside Pantaloons, Himayatnagar, Hyderabad.',
-        phone: '9700641000'
+        phone: '7729955577'
       }
     ]
   };
