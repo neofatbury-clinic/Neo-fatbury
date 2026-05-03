@@ -12,6 +12,11 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "src/scripts/**",
+    "src/sanity/seed-*.ts",
+    "src/sanity/upload-*.ts",
+    "src/sanity/super-seed-*.ts",
+    "scratch/**",
   ]),
 ]);
 

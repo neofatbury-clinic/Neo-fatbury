@@ -651,7 +651,6 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   .responsive-hero-container {
     text-align: center;
   }
-  }
 }
 
 /* Mobile Image & Content Stacking Utility */
