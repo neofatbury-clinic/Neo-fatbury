@@ -41,8 +41,8 @@ export default function ReplicaHero({
 
   return (
     <section className="replica-hero">
-      {/* 1. Absolute Background Image (Sole source of background visual) */}
-      <div className="replica-primary-bg" style={{ zIndex: 1 }}>
+      {/* 1. Background Image Layer (Renders on top of solid teal background) */}
+      <div className="replica-primary-bg" style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         <Image 
             src={finalImageSrc} 
             alt="Hero Background" 
@@ -51,7 +51,6 @@ export default function ReplicaHero({
             unoptimized
             style={{ objectFit: 'cover', objectPosition: 'left center' }} 
           />
-        <div className="replica-primary-overlay"></div>
       </div>
 
       <div className="replica-hero-container" style={{ position: 'relative', zIndex: 10 }}>
