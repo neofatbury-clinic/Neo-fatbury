@@ -65,7 +65,7 @@ export default function ReplicaHero({
         />
       </div>
 
-      <div className="container" style={{ position: 'relative', zIndex: 10, display: 'grid', gridTemplateColumns: '1fr 400px', gap: '4rem', alignItems: 'center', width: '100%' }}>
+      <div className="container" style={{ position: 'relative', zIndex: 10, display: 'grid', gridTemplateColumns: '1fr 380px', gap: '2rem', alignItems: 'center', width: '100%', paddingRight: '2rem' }}>
         
         {/* Left Area - Empty visually because the image already has the text */}
         <div className="hero-content-text" style={{ padding: '2rem 0' }}>
@@ -76,7 +76,7 @@ export default function ReplicaHero({
         </div>
 
         {/* Right Area - Lead Form */}
-        <div className="hero-content-form">
+        <div className="hero-content-form" style={{ display: 'flex', justifyContent: 'flex-end' }}>
           <div style={{ animation: 'slideUp 0.6s ease-out forwards' }}>
             {showForm && <LeadForm title={leadFormTitle} />}
           </div>
