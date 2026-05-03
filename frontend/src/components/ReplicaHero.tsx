@@ -54,7 +54,7 @@ export default function ReplicaHero({
         <img 
             src={finalImageSrc} 
             alt="Hero Background" 
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'left center' }} 
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'left center', transform: 'scale(0.85)', transformOrigin: 'left center' }} 
           />
       </div>
 
