@@ -38,10 +38,15 @@ export default function ReplicaHero({
   }
 
   return (
-    <section className="replica-hero" style={{ position: 'relative', minHeight: '600px', backgroundColor: '#00acb1', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
+    <section className="replica-hero" style={{ position: 'relative', minHeight: '500px', backgroundColor: '#00acb1', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
       
       {/* Background Image Layer (This contains your designed text) */}
-      <div className="replica-bg-layer" style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+      <div className="replica-bg-layer" style={{ 
+        position: 'absolute', 
+        inset: 0, 
+        zIndex: 0,
+        animation: 'zoomOutEffect 1.5s ease-out forwards'
+      }}>
         <img 
           src={finalImageSrc} 
           alt="Hero Banner" 
@@ -75,6 +80,10 @@ export default function ReplicaHero({
       </div>
 
       <style dangerouslySetInnerHTML={{__html: `
+        @keyframes zoomOutEffect {
+          from { transform: scale(1.15); }
+          to { transform: scale(1); }
+        }
         @keyframes slideUp {
           from { opacity: 0; transform: translateY(40px); }
           to { opacity: 1; transform: translateY(0); }
@@ -87,7 +96,7 @@ export default function ReplicaHero({
             display: flex;
             flex-direction: column;
           }
-          .replica-hero .hero-content-text { height: 280px; width: 100%; order: 1; }
+          .replica-hero .hero-content-text { height: 260px; width: 100%; order: 1; }
           .replica-hero .hero-content-form { 
             width: 100%; 
             background: white; 
@@ -95,7 +104,7 @@ export default function ReplicaHero({
             order: 2;
             margin: 0;
           }
-          .replica-bg-layer { height: 280px; position: relative; z-index: 1; order: 1; }
+          .replica-bg-layer { height: 260px; position: relative; z-index: 1; order: 1; }
         }
       `}} />
     </section>
