@@ -58,9 +58,9 @@ const FALLBACK_TREATMENTS: Record<string, { title: string; slug: string; image: 
     { title: 'Skin Brightening', slug: 'skin-brightening', image: '/images/skin-lightening.png' },
   ],
   hair: [
-    { title: 'Hair Loss Treatment', slug: 'hair-loss-treatment', image: '/images/Hair Loss Treatment.png' },
-    { title: 'Anti-Dandruff Treatment', slug: 'anti-dandruff-treatment', image: '/images/Anti-Dandruff Treatment.png' },
-    { title: 'Hair Transplantation', slug: 'hair-transplantation', image: '/images/Hair Transplantation.png' },
+    { title: 'Hair Loss Treatment', slug: 'hair-loss-treatment', image: '/images/hair-loss-treatment-new.png' },
+    { title: 'Hair Transplantation', slug: 'hair-transplantation', image: '/images/hair-transplantation-new.png' },
+    { title: 'Anti-Dandruff Clinical Solutions', slug: 'anti-dandruff-treatment', image: '/images/anti-dandruff-clinical.png' },
   ],
   slimming: [
     { title: 'CoolSculpting', slug: 'coolsculpting', image: '/images/neofatbury-cooling-tech.png' },
@@ -104,11 +104,9 @@ export default async function Home() {
 
   const treatments = {
     skin: FALLBACK_TREATMENTS.skin,
-    hair: allServices && allServices.filter((s: any) => s.category === 'hair').length > 0 
-      ? allServices.filter((s: any) => s.category === 'hair').map((s: any) => ({ title: s.name, slug: s.slug, image: s.image }))
-      : FALLBACK_TREATMENTS.hair,
-    slimming: allServices && allServices.filter((s: any) => s.category === 'slimming').length > 0 
-      ? allServices.filter((s: any) => s.category === 'slimming').map((s: any) => ({ title: s.name, slug: s.slug, image: s.image }))
+    hair: FALLBACK_TREATMENTS.hair,
+    slimming: allServices && allServices.filter((s: any) => s.category === 'hair' || s.category === 'slimming').length > 0 
+      ? allServices.filter((s: any) => s.category === 'hair' || s.category === 'slimming').map((s: any) => ({ title: s.name, slug: s.slug, image: s.image }))
       : FALLBACK_TREATMENTS.slimming,
   };
 
