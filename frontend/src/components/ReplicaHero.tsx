@@ -42,7 +42,7 @@ export default function ReplicaHero({
   return (
     <section className="replica-hero" style={{ 
       position: 'relative', 
-      minHeight: '450px', 
+      minHeight: '550px', 
       background: 'linear-gradient(to right, #ffffff 60%, #00acb1 100%)', 
       overflow: 'visible', 
       display: 'flex', 
