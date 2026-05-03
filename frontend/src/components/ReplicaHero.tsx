@@ -63,15 +63,6 @@ export default function ReplicaHero({
           <div className="replica-primary-content">
             <div className="replica-zone-left desktop-only" style={{ minHeight: '520px' }}></div>
             <div className="replica-zone-middle">
-              {trustPoints.length > 0 && (
-                <div className="replica-trust-row" style={{ marginTop: 'auto', paddingBottom: '2rem' }}>
-                  {trustPoints.map((point, index) => (
-                    <div key={index} className="replica-trust-item">
-                      <span>{point.icon}</span> {point.text}
-                    </div>
-                  ))}
-                </div>
-              )}
             </div>
           </div>
         </div>
