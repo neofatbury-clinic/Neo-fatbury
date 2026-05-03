@@ -3,12 +3,15 @@ import { urlFor } from '@/sanity/client';
 
 interface ReplicaHeroProps {
   titleTeal1?: string;
+  titleTeal2?: string;
   titleOrange1?: string;
+  titleOrange2?: string;
   subtext?: string;
   imageSrc?: any; 
   trustPoints?: { icon: string; text: string }[];
   leadFormTitle?: string;
   showForm?: boolean;
+  slug?: string;
 }
 
 export default function ReplicaHero({
