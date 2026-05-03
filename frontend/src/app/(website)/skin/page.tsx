@@ -63,8 +63,8 @@ export default async function SkinPage() {
         <div className="container">
           <div className="treatment-rect-grid" style={{ 
             display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', 
-            gap: '2rem', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', 
+            gap: '3rem', 
             marginTop: '3rem' 
           }}>
             {services.map((s: any) => {
@@ -74,41 +74,45 @@ export default async function SkinPage() {
                   <div style={{ 
                     position: 'relative', 
                     width: '100%', 
-                    aspectRatio: '4/3', 
-                    borderRadius: '12px', 
+                    aspectRatio: '16/9', 
+                    borderRadius: '24px', 
                     overflow: 'hidden',
-                    boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
+                    boxShadow: '0 20px 50px rgba(0,0,0,0.1)',
                     border: '1px solid #f0f0f0'
                   }}>
                     <Image src={sImg} alt={s.name} fill style={{ objectFit: 'cover' }} />
                     <div style={{ 
                       position: 'absolute', 
-                      bottom: '1rem', 
-                      right: '1rem', 
-                      backgroundColor: 'rgba(0,172,177,0.9)', 
+                      bottom: '2rem', 
+                      right: '2rem', 
+                      backgroundColor: 'rgba(0,172,177,0.95)', 
                       color: 'white', 
-                      padding: '0.5rem 1rem', 
+                      padding: '0.75rem 1.5rem', 
                       borderRadius: '50px',
-                      fontSize: '0.8rem',
-                      fontWeight: '700'
+                      fontSize: '0.9rem',
+                      fontWeight: '800',
+                      letterSpacing: '1px'
                     }}>
                       VIEW DETAILS →
                     </div>
                   </div>
-                  <h3 style={{ 
-                    marginTop: '1.25rem', 
-                    fontSize: '1.2rem', 
-                    fontWeight: '800', 
-                    color: '#333',
-                    textAlign: 'left'
-                  }}>{s.name}</h3>
-                  <p style={{ 
-                    color: '#666', 
-                    fontSize: '0.9rem', 
-                    lineHeight: 1.5, 
-                    marginTop: '0.5rem',
-                    textAlign: 'left'
-                  }}>Advanced clinical care for permanent results.</p>
+                  <div style={{ padding: '1rem 0.5rem' }}>
+                    <h3 style={{ 
+                      marginTop: '1.5rem', 
+                      fontSize: '1.75rem', 
+                      fontWeight: '900', 
+                      color: '#222',
+                      textAlign: 'left'
+                    }}>{s.name}</h3>
+                    <p style={{ 
+                      color: '#555', 
+                      fontSize: '1.1rem', 
+                      lineHeight: 1.6, 
+                      marginTop: '0.75rem',
+                      textAlign: 'left',
+                      maxWidth: '600px'
+                    }}>World-class clinical treatment using US-FDA approved technology for permanent results and natural radiance.</p>
+                  </div>
                 </Link>
               );
             })}
