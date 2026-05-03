@@ -61,17 +61,58 @@ export default async function SkinPage() {
       {/* TREATMENTS GRID */}
       <section className="section" id="treatments">
         <div className="container">
-          <h2 className="section-title text-center">Skin <span className="text-accent">Aesthetics</span></h2>
-          <p className="section-subtitle text-center">{category?.description || "Comprehensive clinical solutions for every skin concern."}</p>
-          
-          <TreatmentGrid 
-            treatments={services.map((s: any) => ({
-              title: s.name,
-              slug: s.slug,
-              image: (s.heroImage?.asset) ? urlFor(s.heroImage).url() : (s.image || '/images/neofatbury-clinical-standard.png')
-            }))} 
-            defaultCategory="skin" 
-          />
+          <div className="treatment-rect-grid" style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', 
+            gap: '2rem', 
+            marginTop: '3rem' 
+          }}>
+            {services.map((s: any) => {
+              const sImg = (s.heroImage?.asset) ? urlFor(s.heroImage).url() : (s.image || '/images/neofatbury-clinical-standard.png');
+              return (
+                <Link key={s.name} href={`/skin/${s.slug}`} className="treatment-rect-card" style={{ textDecoration: 'none' }}>
+                  <div style={{ 
+                    position: 'relative', 
+                    width: '100%', 
+                    aspectRatio: '4/3', 
+                    borderRadius: '12px', 
+                    overflow: 'hidden',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
+                    border: '1px solid #f0f0f0'
+                  }}>
+                    <Image src={sImg} alt={s.name} fill style={{ objectFit: 'cover' }} />
+                    <div style={{ 
+                      position: 'absolute', 
+                      bottom: '1rem', 
+                      right: '1rem', 
+                      backgroundColor: 'rgba(0,172,177,0.9)', 
+                      color: 'white', 
+                      padding: '0.5rem 1rem', 
+                      borderRadius: '50px',
+                      fontSize: '0.8rem',
+                      fontWeight: '700'
+                    }}>
+                      VIEW DETAILS →
+                    </div>
+                  </div>
+                  <h3 style={{ 
+                    marginTop: '1.25rem', 
+                    fontSize: '1.2rem', 
+                    fontWeight: '800', 
+                    color: '#333',
+                    textAlign: 'left'
+                  }}>{s.name}</h3>
+                  <p style={{ 
+                    color: '#666', 
+                    fontSize: '0.9rem', 
+                    lineHeight: 1.5, 
+                    marginTop: '0.5rem',
+                    textAlign: 'left'
+                  }}>Advanced clinical care for permanent results.</p>
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </section>
 
