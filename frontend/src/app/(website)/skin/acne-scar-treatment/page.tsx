@@ -1,9 +1,8 @@
-// /skin/acne-scar-treatment/page.tsx — CMS-driven, layout unchanged
-export const revalidate = 0;
 import ReplicaHero from "@/components/ReplicaHero";
 import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
+import ComparisonSlider from "@/components/ComparisonSlider";
 import { getServicePageData } from "@/sanity/fetchers/services";
 
 export default async function AcneScarTreatment() {
@@ -66,11 +65,38 @@ export default async function AcneScarTreatment() {
       <section className="section bg-surface text-center" style={{ padding: '4rem 0' }}>
         <div className="container" style={{ maxWidth: '1100px' }}>
           <h2 className="section-title" style={{ fontSize: '2.8rem' }}>{probHead} <span className="text-accent">{probAccent}</span></h2>
-          <div className="grid grid-4" style={{ marginTop: '4rem', gap: '1.5rem' }}>
-            {probCards.map(item=>(<div key={item.title} className="card-sleek"><div style={{fontSize:'2.5rem',marginBottom:'1.5rem'}}>{item.icon}</div><h3 style={{fontSize:'1.15rem',marginBottom:'1rem',color:'var(--color-primary)',fontWeight:'800'}}>{item.title}</h3><p style={{fontSize:'0.9rem',color:'#666',lineHeight:'1.7'}}>{item.desc}</p></div>))}
+          <div className="grid grid-4" style={{ marginTop: '5rem', gap: '2.5rem' }}>
+            {probCards.map((item, i) => (
+              <div key={i} className="aesthetic-card" style={{ 
+                backgroundColor: 'white', 
+                padding: '3.5rem 2rem', 
+                borderRadius: '32px', 
+                textAlign: 'center', 
+                boxShadow: '0 15px 45px rgba(0,172,177,0.06)',
+                border: '1px solid rgba(0,172,177,0.08)',
+                transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+              }}>
+                <div className="icon-wrapper" style={{ 
+                  width: '80px', 
+                  height: '80px', 
+                  margin: '0 auto 2rem', 
+                  backgroundColor: '#f0f9fa', 
+                  borderRadius: '24px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  fontSize: '2.5rem',
+                  boxShadow: 'inset 0 0 0 1px rgba(0,172,177,0.1)'
+                }}>
+                  {item.icon}
+                </div>
+                <h3 style={{ fontSize: '1.35rem', fontWeight: '800', color: '#1a1a1a', marginBottom: '1.25rem' }}>{item.title}</h3>
+                <p style={{ color: '#555', lineHeight: 1.7, fontSize: '1rem', fontWeight: '500' }}>{item.desc}</p>
+              </div>
+            ))}
           </div>
-          <p style={{ fontSize: '1.3rem', marginTop: '4.5rem', fontWeight: '700', color: 'var(--color-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem' }}>
-            {probBotText} <span className="text-accent" style={{ borderBottom: '2px solid rgba(39, 166, 156, 0.3)' }}>{probBotAccent}</span>
+          <p style={{ fontSize: '1.4rem', marginTop: '5rem', fontWeight: '800', color: '#1a1a1a', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem' }}>
+            {probBotText} <span className="text-accent" style={{ borderBottom: '3px solid rgba(0, 172, 177, 0.2)' }}>{probBotAccent}</span>
           </p>
         </div>
       </section>
@@ -97,12 +123,13 @@ export default async function AcneScarTreatment() {
         <div className="container">
           <h2 className="section-title" style={{ fontSize: '2.8rem' }}>{baHead} <span className="text-accent">{baAccent}</span></h2>
           <p className="section-subtitle">{baSub}</p>
-          <div style={{ maxWidth: '480px', margin: '2rem auto', position: 'relative', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 15px 40px rgba(0,0,0,0.1)' }}>
-            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/6' }}><Image src="/images/neofatbury-acne-scar-ba.png" alt="Acne Scar Results" fill style={{ objectFit: 'cover' }} /></div>
-            <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)', padding: '1rem', display: 'flex', justifyContent: 'center', gap: '15vw' }}>
-              <span style={{ color:'white', fontWeight:'900', letterSpacing:'3px', fontSize:'0.85rem', textShadow:'0 2px 4px rgba(0,0,0,0.5)' }}>BEFORE</span>
-              <span style={{ color:'white', fontWeight:'900', letterSpacing:'3px', fontSize:'0.85rem', textShadow:'0 2px 4px rgba(0,0,0,0.5)' }}>AFTER</span>
-            </div>
+          <div style={{ maxWidth: '720px', margin: '3rem auto' }}>
+            <ComparisonSlider 
+              before="/images/neofatbury-acne-scar-ba.png" 
+              after="/images/neofatbury-acne-scar-ba.png" 
+              label="Severe Acne Scar Restoration"
+              autoSlide={true}
+            />
           </div>
           <p style={{ fontSize: '1.2rem', fontWeight: '800', marginBottom: '3rem', color: 'var(--color-primary)' }}>{baCtaTxt}</p>
           <Link href="/contact-us" className="btn btn-primary" style={{ padding: '1.25rem 4rem', fontSize: '1.1rem' }}>{baCtaBtn}</Link>
@@ -154,14 +181,20 @@ export default async function AcneScarTreatment() {
       </section>
 
       <style dangerouslySetInnerHTML={{__html:`
-        .card-sleek{background:white;padding:3rem 2rem;border-radius:16px;border:1px solid #f2f2f2;box-shadow:0 6px 25px rgba(0,0,0,0.04);transition:all 0.4s cubic-bezier(0.175,0.885,0.32,1.275)}
-        .card-sleek:hover{transform:translateY(-10px);box-shadow:0 15px 45px rgba(0,0,0,0.08);border-color:var(--color-accent)}
-        .card-benefit{background:white;padding:2.5rem;border-radius:20px;border:1px solid #f2f2f2;transition:all 0.3s ease}
-        .card-benefit:hover{transform:translateY(-8px);box-shadow:0 15px 40px rgba(0,0,0,0.06)}
-        .card-trust{background:white;padding:3.5rem 2rem;border-radius:16px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.5rem;border:1px solid #f2f2f2;transition:all 0.3s ease}
+        .aesthetic-card:hover {
+          transform: translateY(-12px);
+          box-shadow: 0 25px 60px rgba(0,172,177,0.12);
+          border-color: rgba(0,172,177,0.2);
+        }
+        .aesthetic-card:hover .icon-wrapper {
+          background-color: #00acb1;
+          transform: rotate(10deg);
+          transition: all 0.3s ease;
+        }
+        .card-benefit{background:white;padding:2.5rem;border-radius:32px;border:1px solid #f2f2f2;transition:all 0.3s ease;box-shadow:0 10px 30px rgba(0,172,177,0.04)}
+        .card-benefit:hover{transform:translateY(-8px);box-shadow:0 15px 40px rgba(0,172,177,0.08)}
+        .card-trust{background:white;padding:3.5rem 2rem;border-radius:32px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.5rem;border:1px solid #f2f2f2;transition:all 0.3s ease;box-shadow:0 10px 30px rgba(0,172,177,0.04)}
         .card-trust:hover{transform:translateY(-8px);border-color:var(--color-accent)}
-        .chip-sleek{background:white;padding:1.25rem 2.5rem;border-radius:60px;border:1px solid #f0f0f0;font-weight:800;color:var(--color-primary);transition:all 0.3s ease;box-shadow:0 4px 12px rgba(0,0,0,0.03)}
-        .chip-sleek:hover{border-color:var(--color-accent);transform:scale(1.05)}
       `}} />
     </>
   );
