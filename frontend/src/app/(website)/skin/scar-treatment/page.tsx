@@ -15,7 +15,7 @@ export default async function ScarTreatment() {
         titleTeal1={(d.heroHeadline as string) || "Professional"}
         titleOrange1={(d.heroAccentLine as string) || "Scar Treatment"}
         subtext={(d.heroSubtext as string) || "Clinical reduction of surgical, injury, or keloid scars using US-FDA approved technology."}
-        imageSrc={d.heroImage || "/images/scra-treatment.png"}
+        imageSrc={(typeof d.heroImage === 'string' ? d.heroImage : '') || "/images/scra-treatment.png"}
         trustPoints={(d.heroTrustBadges as any[])?.map(b => ({ icon: b.icon, text: b.label }))}
       />
 
@@ -45,7 +45,7 @@ export default async function ScarTreatment() {
       <section className="section">
         <div className="container grid grid-2 items-center gap-6">
           <div style={{ position: 'relative', height: '550px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 25px 55px rgba(0,0,0,0.1)' }}>
-            <Image src={(d.whatIsImage as string) || "/images/acne-scar-treatment.png"} alt="Scar Treatment Procedure" fill style={{ objectFit: 'cover' }} />
+            <Image src={(typeof d.whatIsImage === 'string' ? d.whatIsImage : '') || "/images/acne-scar-treatment.png"} alt="Scar Treatment Procedure" fill style={{ objectFit: 'cover' }} />
             <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', background: 'white', padding: '0.75rem 1.5rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: '800', color: 'var(--color-primary)', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}>NEOFATBURY SURGICAL STANDARD</div>
           </div>
           <div style={{ paddingLeft: '3.5rem' }}>
@@ -77,7 +77,7 @@ export default async function ScarTreatment() {
           <p className="section-subtitle">See natural-looking skin refining results from our elite sessions.</p>
           <div style={{ maxWidth: '480px', margin: '3.5rem auto', position: 'relative', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 15px 45px rgba(0,0,0,0.1)' }}>
             <div style={{ position: 'relative', width: '100%', aspectRatio: '16/6' }}>
-              <Image src={(d.baImage as string) || "/images/skin-before-after.png"} alt="Scar Treatment Results" fill style={{ objectFit: 'cover' }} />
+              <Image src={(typeof d.baImage === 'string' ? d.baImage : '') || "/images/skin-before-after.png"} alt="Scar Treatment Results" fill style={{ objectFit: 'cover' }} />
             </div>
             <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)', padding: '3rem', display: 'flex', justifyContent: 'center', gap: '25vw' }}>
               <span style={{ color: 'white', fontWeight: '900', letterSpacing: '5px', fontSize: '1.3rem', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>BEFORE</span>
@@ -118,7 +118,7 @@ export default async function ScarTreatment() {
             </p>
           </div>
           <div style={{ position: 'relative', height: '480px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 25px 55px rgba(0,0,0,0.1)' }}>
-            <Image src={(d.techImage as string) || "/images/laser-hair-removal.png"} alt="Clinical Precision" fill style={{ objectFit: 'cover' }} />
+            <Image src={(typeof d.techImage === 'string' ? d.techImage : '') || "/images/laser-hair-removal.png"} alt="Clinical Precision" fill style={{ objectFit: 'cover' }} />
           </div>
         </div>
       </section>
