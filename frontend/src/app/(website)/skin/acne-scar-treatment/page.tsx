@@ -65,37 +65,39 @@ export default async function AcneScarTreatment() {
       <section className="section bg-surface text-center" style={{ padding: '4rem 0' }}>
         <div className="container" style={{ maxWidth: '1100px' }}>
           <h2 className="section-title" style={{ fontSize: '2.8rem' }}>{probHead} <span className="text-accent">{probAccent}</span></h2>
-          <div className="grid grid-4" style={{ marginTop: '5rem', gap: '2.5rem' }}>
+          <div className="grid grid-4" style={{ marginTop: '3rem', gap: '1.5rem' }}>
             {probCards.map((item, i) => (
               <div key={i} className="aesthetic-card" style={{ 
                 backgroundColor: 'white', 
-                padding: '3.5rem 2rem', 
-                borderRadius: '32px', 
+                padding: '2rem 1.5rem', 
+                borderRadius: '24px', 
                 textAlign: 'center', 
-                boxShadow: '0 15px 45px rgba(0,172,177,0.06)',
-                border: '1px solid rgba(0,172,177,0.08)',
-                transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                boxShadow: '0 10px 30px rgba(0,172,177,0.04)',
+                border: '1px solid rgba(0,172,177,0.06)',
+                transition: 'all 0.4s ease',
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%'
               }}>
                 <div className="icon-wrapper" style={{ 
-                  width: '80px', 
-                  height: '80px', 
-                  margin: '0 auto 2rem', 
+                  width: '60px', 
+                  height: '60px', 
+                  margin: '0 auto 1.5rem', 
                   backgroundColor: '#f0f9fa', 
-                  borderRadius: '24px', 
+                  borderRadius: '16px', 
                   display: 'flex', 
                   alignItems: 'center', 
                   justifyContent: 'center',
-                  fontSize: '2.5rem',
-                  boxShadow: 'inset 0 0 0 1px rgba(0,172,177,0.1)'
+                  fontSize: '1.8rem',
                 }}>
                   {item.icon}
                 </div>
-                <h3 style={{ fontSize: '1.35rem', fontWeight: '800', color: '#1a1a1a', marginBottom: '1.25rem' }}>{item.title}</h3>
-                <p style={{ color: '#555', lineHeight: 1.7, fontSize: '1rem', fontWeight: '500' }}>{item.desc}</p>
+                <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: '#1a1a1a', marginBottom: '0.75rem' }}>{item.title}</h3>
+                <p style={{ color: '#666', lineHeight: 1.6, fontSize: '0.9rem', fontWeight: '500' }}>{item.desc}</p>
               </div>
             ))}
           </div>
-          <p style={{ fontSize: '1.4rem', marginTop: '5rem', fontWeight: '800', color: '#1a1a1a', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem' }}>
+          <p style={{ fontSize: '1.4rem', marginTop: '3.5rem', fontWeight: '800', color: '#1a1a1a', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem' }}>
             {probBotText} <span className="text-accent" style={{ borderBottom: '3px solid rgba(0, 172, 177, 0.2)' }}>{probBotAccent}</span>
           </p>
         </div>
