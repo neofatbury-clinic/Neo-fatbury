@@ -2,11 +2,11 @@ import Image from 'next/image';
 import LeadForm from './LeadForm';
 
 interface ReplicaHeroProps {
-  titleTeal1: string;
+  titleTeal1?: string;
   titleTeal2?: string;
-  titleOrange1: string;
+  titleOrange1?: string;
   titleOrange2?: string;
-  subtext: string;
+  subtext?: string;
   imageSrc?: string;
   trustPoints?: { icon: string; text: string }[];
   leadFormTitle?: string;
