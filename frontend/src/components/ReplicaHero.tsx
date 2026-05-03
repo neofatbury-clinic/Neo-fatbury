@@ -72,7 +72,7 @@ export default function ReplicaHero({
         />
       </div>
 
-      <div style={{ position: 'relative', zIndex: 10, display: 'grid', gridTemplateColumns: '1.5fr 500px', gap: '2rem', alignItems: 'center', width: '100%', paddingLeft: '0', paddingRight: '2rem' }}>
+      <div style={{ position: 'relative', zIndex: 10, display: 'grid', gridTemplateColumns: '1.8fr 380px', gap: '1.5rem', alignItems: 'center', width: '100%', paddingLeft: '0', paddingRight: '2rem' }}>
         
         {/* Left Area - Empty visually because the image already has the text */}
         <div className="hero-content-text" style={{ padding: '2rem 0' }}>
