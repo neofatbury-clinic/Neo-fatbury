@@ -39,8 +39,8 @@ export default function ReplicaHero({
   showForm = true,
   slug
 }: ReplicaHeroProps) {
-  // Determine the final image source: Priority 1: Slug-based mapping, Priority 2: Passed imageSrc
-  const finalImageSrc = (slug && SLUG_IMAGE_MAP[slug]) ? SLUG_IMAGE_MAP[slug] : imageSrc;
+  // Determine the final image source: Priority 1: Passed imageSrc (Sanity), Priority 2: Slug-based mapping (Local Fallback)
+  const finalImageSrc = imageSrc || (slug && SLUG_IMAGE_MAP[slug]) || "/images/neofatbury-hero-banner.webp";
 
   return (
     <section className="replica-hero">
