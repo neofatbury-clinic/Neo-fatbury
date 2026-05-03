@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
 import ReplicaHero from "@/components/ReplicaHero";
+import TreatmentGrid from "@/components/TreatmentGrid";
 import { client, urlFor } from "@/sanity/client";
 import CustomSchema from "@/components/CustomSchema";
 
@@ -57,20 +58,14 @@ export default async function SlimmingPage() {
           <h2 className="section-title text-center">Body & <span className="text-accent">Slimming</span></h2>
           <p className="section-subtitle text-center">{category?.description || "Targeted fat reduction and comprehensive inch-loss programs."}</p>
           
-          <div className="premium-grid">
-            {services.map((s: any) => {
-              const sImg = (s.image?.asset) ? urlFor(s.image).url() : '/images/neofatbury-clinical-standard.png';
-              return (
-                <Link key={s.name} href={`/slimming/${s.slug}`} className="premium-card">
-                  <div className="pill-image-wrap">
-                    <Image src={sImg} alt={s.name} fill />
-                    <div className="circle-arrow-btn">→</div>
-                  </div>
-                  <h3>{s.name}</h3>
-                </Link>
-              );
-            })}
-          </div>
+          <TreatmentGrid 
+            treatments={services.map((s: any) => ({
+              title: s.name,
+              slug: s.slug,
+              image: (s.image?.asset) ? urlFor(s.image).url() : '/images/neofatbury-clinical-standard.png'
+            }))} 
+            defaultCategory="slimming" 
+          />
         </div>
       </section>
 

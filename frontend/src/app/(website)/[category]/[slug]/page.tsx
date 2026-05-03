@@ -150,11 +150,10 @@ export default async function ServicePage({ params }: { params: Promise<{ catego
         <section className="py-24">
           <div className="max-w-[1200px] mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
             <div className="relative h-[550px] rounded-3xl overflow-hidden shadow-2xl">
-              <Image 
-                src={(service.whatIsImage?.asset) ? urlFor(service.whatIsImage).url() : '/images/neofatbury-clinical-standard.png'} 
+              <img 
+                src={(service.whatIsImage?.asset) ? urlFor(service.whatIsImage).url() : (slug === 'acne-scar-treatment' ? 'https://cdn.sanity.io/images/p8ddtj8e/production/5ad1da892b020ccfb0623c50cb89a492f2248dea-1024x1024.jpg' : '/images/neofatbury-clinical-standard.png')} 
                 alt={service.name} 
-                fill 
-                className="object-cover" 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
               />
               {service.whatIsImageBadge && (
                 <div className="absolute bottom-8 left-8 bg-white px-6 py-3 rounded-xl font-black text-cyan-900 text-sm shadow-xl uppercase tracking-widest">
@@ -197,7 +196,11 @@ export default async function ServicePage({ params }: { params: Promise<{ catego
               </h2>
               <p className="text-gray-600 mb-12">{service.baSubtext || 'Visible results from our expert clinical treatments.'}</p>
               <div className="relative aspect-[16/7] rounded-3xl overflow-hidden shadow-xl mb-12">
-                <Image src={(service.baImage?.asset) ? urlFor(service.baImage).url() : baImg} alt="Before and After Results" fill className="object-cover" />
+                <img 
+                  src={(service.baImage?.asset) ? urlFor(service.baImage).url() : (slug === 'acne-scar-treatment' ? 'https://cdn.sanity.io/images/p8ddtj8e/production/6bce95dede3c143f308199103be1fe8f46b6378e-1024x1024.jpg' : baImg)} 
+                  alt="Before and After Results" 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                />
                 <div className="absolute inset-x-0 bottom-0 py-4 bg-black/40 backdrop-blur-sm flex justify-around text-white font-black tracking-widest text-sm italic">
                   <span>BEFORE</span>
                   <span>AFTER</span>

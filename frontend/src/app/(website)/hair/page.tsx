@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
 import ReplicaHero from "@/components/ReplicaHero";
+import TreatmentGrid from "@/components/TreatmentGrid";
 import { client, urlFor } from "@/sanity/client";
 import CustomSchema from "@/components/CustomSchema";
 
@@ -58,20 +59,14 @@ export default async function HairPage() {
           <h2 className="section-title text-center">Hair <span className="text-accent">Solutions</span></h2>
           <p className="section-subtitle text-center">{category?.description || "Clinically proven restoration for men and women."}</p>
           
-          <div className="premium-grid">
-            {services.map((s: any) => {
-              const sImg = (s.heroImage?.asset) ? urlFor(s.heroImage).url() : (s.image || '/images/neofatbury-hair2-banner.webp');
-              return (
-                <Link key={s.name} href={`/hair/${s.slug}`} className="premium-card">
-                  <div className="pill-image-wrap">
-                    <Image src={sImg} alt={s.name} fill />
-                    <div className="circle-arrow-btn">→</div>
-                  </div>
-                  <h3>{s.name}</h3>
-                </Link>
-              );
-            })}
-          </div>
+          <TreatmentGrid 
+            treatments={services.map((s: any) => ({
+              title: s.name,
+              slug: s.slug,
+              image: (s.heroImage?.asset) ? urlFor(s.heroImage).url() : (s.image || '/images/neofatbury-hair2-banner.webp')
+            }))} 
+            defaultCategory="hair" 
+          />
         </div>
       </section>
 

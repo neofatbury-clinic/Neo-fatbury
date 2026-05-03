@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import LeadForm from '@/components/LeadForm';
 import ReplicaHero from '@/components/ReplicaHero';
-import HomeClient from '@/components/HomeClient';
+import TreatmentGrid from '@/components/TreatmentGrid';
 import CustomSchema from '@/components/CustomSchema';
 import { client } from '@/sanity/lib/client';
 import PageBuilder from '@/components/PageBuilder';
@@ -51,9 +51,10 @@ const RESULTS = [
 // Hardcoded fallback treatments — always shown if CMS data is empty
 const FALLBACK_TREATMENTS: Record<string, { title: string; slug: string; image: string }[]> = {
   skin: [
-    { title: 'Laser Hair Reduction', slug: 'laser-hair-reduction', image: '/images/Laser Hair Reduction.png' },
-    { title: 'Acne Scar Treatment', slug: 'acne-scar-treatment', image: '/images/Acne & Pimple Treatment.png' },
-    { title: 'Skin Brightening', slug: 'skin-brightening', image: '/images/Skin Brightening.png' },
+    { title: 'Laser Hair Reduction', slug: 'laser-hair-reduction', image: '/images/laser-hair-removal.png' },
+    { title: 'Acne Scar Treatment', slug: 'acne-scar-treatment', image: '/images/acne-scar-treatment.png' },
+    { title: 'Scar Treatment', slug: 'scar-treatment', image: '/images/scra-treatment.png' },
+    { title: 'Skin Brightening', slug: 'skin-brightening', image: '/images/skin-lightening.png' },
   ],
   hair: [
     { title: 'Hair Loss Treatment', slug: 'hair-loss-treatment', image: '/images/Hair Loss Treatment.png' },
@@ -132,13 +133,41 @@ export default async function Home() {
         imageSrc={hero?.heroImage || "/images/neofatbury-hero-banner.webp"}
       />
 
-      {/* SECTION 2: OUR TREATMENTS (FIXED IMAGES) */}
-      <section className="section bg-white">
+      {/* SECTION 2: SKIN TREATMENTS */}
+      <section className="section bg-white" style={{ paddingBottom: '2rem' }}>
         <div className="container">
-          <h2 className="section-title text-center">{hero?.treatmentsSectionTitle || 'Our Premier Treatments'}</h2>
-          <p className="section-subtitle text-center">{hero?.treatmentsSectionSubtitle || 'Discover world-class dermatology and aesthetic care tailored to your goals.'}</p>
-          <HomeClient treatments={treatments} />
-          <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <p style={{ color: '#00acb1', fontWeight: '700', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.75rem' }}>Skin Aesthetics</p>
+            <h2 className="section-title">Reveal Your <span className="text-accent">Natural Glow</span></h2>
+            <p className="section-subtitle" style={{ marginBottom: 0 }}>Discover world-class dermatology and aesthetic care tailored to your goals.</p>
+          </div>
+          <TreatmentGrid treatments={treatments.skin} defaultCategory="skin" />
+        </div>
+      </section>
+
+      {/* SECTION 2.1: HAIR TREATMENTS */}
+      <section className="section" style={{ backgroundColor: '#f9fbfb', padding: '4rem 0' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <p style={{ color: '#00acb1', fontWeight: '700', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.75rem' }}>Hair Solutions</p>
+            <h2 className="section-title">Expert <span className="text-accent">Hair Care</span></h2>
+            <p className="section-subtitle" style={{ marginBottom: 0 }}>Advanced clinical solutions for hair loss and scalp health.</p>
+          </div>
+          <TreatmentGrid treatments={treatments.hair} defaultCategory="hair" />
+        </div>
+      </section>
+
+      {/* SECTION 2.2: SLIMMING TREATMENTS */}
+      <section className="section bg-white" style={{ padding: '4rem 0' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <p style={{ color: '#00acb1', fontWeight: '700', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.75rem' }}>Body & Slimming</p>
+            <h2 className="section-title">Clinical <span className="text-accent">Transformation</span></h2>
+            <p className="section-subtitle" style={{ marginBottom: 0 }}>Advanced non-surgical body contouring for your desired shape.</p>
+          </div>
+          <TreatmentGrid treatments={treatments.slimming} defaultCategory="slimming" />
+          
+          <div style={{ textAlign: 'center', marginTop: '4rem' }}>
             <Link href="/results" className="btn btn-cyan" style={{ width: '100%', maxWidth: '500px', display: 'inline-block', padding: '1.2rem 1rem', borderRadius: '50px', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: '800', backgroundColor: '#00acb1' }}>View our full results gallery</Link>
           </div>
         </div>
