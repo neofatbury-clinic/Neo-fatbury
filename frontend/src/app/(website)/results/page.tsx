@@ -1,8 +1,8 @@
-// src/app/(website)/results/page.tsx
 import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
 import ReplicaHero from "@/components/ReplicaHero";
+import ComparisonSlider from "@/components/ComparisonSlider";
 import { client } from '@/sanity/lib/client';
 
 export const revalidate = 60;
@@ -50,27 +50,13 @@ export default async function Results() {
         <div className="container">
           <div className="grid grid-2" style={{ gap: '3rem' }}>
             {items?.map((r: any, i: number) => (
-              <div key={i} className="card" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                
-                {/* Image Container */}
-                <div style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden', backgroundColor: '#f9f9f9' }}>
-                  {r.combinedImg ? (
-                    <div style={{ position: 'relative', height: '320px', width: '100%' }}>
-                      <Image src={r.combinedImg} alt={r.title} fill style={{ objectFit: 'cover' }} />
-                    </div>
-                  ) : (
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px', height: '320px' }}>
-                      <div style={{ position: 'relative' }}>
-                        <Image src={r.beforeImg || '/images/neofatbury-clinical-standard.png'} alt="Before" fill style={{ objectFit: 'cover' }} />
-                        <span style={{ position: 'absolute', bottom: '10px', left: '10px', background: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '0.7rem', padding: '2px 8px', borderRadius: '4px', fontWeight: 700 }}>BEFORE</span>
-                      </div>
-                      <div style={{ position: 'relative' }}>
-                        <Image src={r.afterImg || '/images/neofatbury-clinical-standard.png'} alt="After" fill style={{ objectFit: 'cover' }} />
-                        <span style={{ position: 'absolute', bottom: '10px', right: '10px', background: 'var(--color-accent)', color: 'white', fontSize: '0.7rem', padding: '2px 8px', borderRadius: '4px', fontWeight: 700 }}>AFTER</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
+              <div key={i} className="card" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', borderRadius: '24px' }}>
+                <ComparisonSlider 
+                  before={r.beforeImg || '/images/neofatbury-clinical-standard.png'} 
+                  after={r.afterImg || '/images/neofatbury-clinical-standard.png'} 
+                  label={r.title}
+                  autoSlide={true}
+                />
 
                 {/* Text Content */}
                 <div>
