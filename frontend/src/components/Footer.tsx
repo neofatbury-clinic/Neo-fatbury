@@ -100,15 +100,7 @@ export default function Footer({ settings }: { settings?: any }) {
                 {loc.gbpUrl && (
                   <a href={loc.gbpUrl} target="_blank" rel="noreferrer" style={mapLink}>Google Profile</a>
                 )}
-                {loc.phone && loc.phone.length > 5 ? (
-                  <div style={{ marginTop: '0.35rem' }}>
-                    <a href={`tel:${loc.phone}`} style={{ ...mapLink, textDecoration: 'none', fontWeight: '600' }}>📞 {loc.phone}</a>
-                  </div>
-                ) : (
-                  <div style={{ marginTop: '0.35rem' }}>
-                    <a href={`tel:${phone}`} style={{ ...mapLink, textDecoration: 'none', fontWeight: '600' }}>📞 {phone}</a>
-                  </div>
-                )}
+                {/* Phone removed per user request */}
               </div>
             ))}
             
