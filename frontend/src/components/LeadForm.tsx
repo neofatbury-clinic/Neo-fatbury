@@ -289,12 +289,14 @@ export default function LeadForm({
           background: rgba(255, 255, 255, 0.95); /* Semi-transparent White */
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
-          padding: 2.2rem 1.5rem 1.8rem;
+          padding: 2rem 1.5rem 1.5rem;
           border-radius: 24px;
           border: 1px solid rgba(0, 0, 0, 0.05);
           box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
           width: 100%;
-          max-width: 100%;
+          max-width: 460px; /* Optimized width */
+          margin-left: auto; /* Shifted right */
+          margin-right: -10px; /* Nudged a little right */
           font-family: 'Montserrat', sans-serif;
           box-sizing: border-box;
           display: flex;
