@@ -42,8 +42,8 @@ export default function ReplicaHero({
   return (
     <section className="replica-hero" style={{ 
       position: 'relative', 
-      minHeight: '500px', 
-      background: 'linear-gradient(to right, #ffffff 80%, #00acb1 100%)', 
+      minHeight: '600px', 
+      background: 'linear-gradient(to right, #ffffff 90%, #00acb1 90%)', 
       overflow: 'visible', 
       display: 'flex', 
       alignItems: 'center' 
@@ -53,7 +53,7 @@ export default function ReplicaHero({
       <div className="replica-bg-layer" style={{ 
         position: 'absolute', 
         inset: 0, 
-        width: '80%', 
+        width: '90%', 
         zIndex: 0,
         animation: 'zoomOutEffect 1.5s ease-out forwards'
       }}>
