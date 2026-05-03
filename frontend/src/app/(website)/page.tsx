@@ -178,22 +178,26 @@ export default async function Home() {
                 <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem', color: '#1a1a1a', fontWeight: '800' }}>{p.title}</h3>
                 <p style={{ fontSize: '0.95rem', color: '#555', lineHeight: 1.6, fontWeight: '500' }}>{p.description}</p>
                 
-                <style jsx>{`
-                  .aesthetic-card:hover {
-                    transform: translateY(-10px);
-                    box-shadow: 0 25px 50px rgba(0,172,177,0.12);
-                    border-color: rgba(0,172,177,0.2);
-                  }
-                  .aesthetic-card:hover .icon-box {
-                    background-color: #00acb1;
-                    transform: scale(1.1) rotate(5deg);
-                    transition: all 0.3s ease;
-                  }
-                `}</style>
+                {/* Hover styles moved to a global block below the loop for better performance */}
               </div>
             ))}
           </div>
         </div>
+
+        {/* CSS for hover effects in Server Component */}
+        <style dangerouslySetInnerHTML={{__html: `
+          .aesthetic-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,172,177,0.12);
+            border-color: rgba(0,172,177,0.2);
+          }
+          .aesthetic-card:hover .icon-box {
+            background-color: #00acb1 !important;
+            color: white !important;
+            transform: scale(1.1) rotate(5deg);
+            transition: all 0.3s ease;
+          }
+        `}} />
       </section>
 
       {/* SECTION 4: TRANSFORMATIONS (RESTORED SLIDER IMAGES) */}
