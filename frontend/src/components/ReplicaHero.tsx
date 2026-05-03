@@ -2,67 +2,74 @@ import Image from 'next/image';
 import LeadForm from './LeadForm';
 
 interface ReplicaHeroProps {
-  titleTeal1?: string;
+  titleTeal1: string;
   titleTeal2?: string;
-  titleOrange1?: string;
+  titleOrange1: string;
   titleOrange2?: string;
-  subtext?: string;
-  imageSrc: string;
+  subtext: string;
+  imageSrc?: string;
   trustPoints?: { icon: string; text: string }[];
   leadFormTitle?: string;
   showForm?: boolean;
-  slug?: string; // Optional slug to help with automatic image mapping
+  slug?: string;
 }
 
-// Global mapping of slugs to high-resolution "Replica" images
 const SLUG_IMAGE_MAP: Record<string, string> = {
   'laser-hair-reduction': '/images/Laser Hair Reduction.png',
-  'acne-scar-treatment': '/images/Acne & Pimple Treatment.png',
-  'acne-treatment': '/images/Acne & Pimple Treatment.png',
   'skin-brightening': '/images/Skin Brightening.png',
-  'hair-loss-treatment': '/images/Hair Loss Treatment.png',
-  'hair-transplantation': '/images/Hair Transplantation.png',
-  'anti-dandruff-treatment': '/images/Anti-Dandruff Treatment.png',
-  'skin': '/images/All Skin Treatments.png',
-  'hair': '/images/All Hair Treatments.png',
+  'acne-scar-treatment': '/images/Acne Treatment.png',
+  'hair-loss-treatment': '/images/Hair Loss.png',
+  'hair-transplantation': '/images/Hair Transplant.png',
+  'anti-dandruff-treatment': '/images/Anti Dandruff.png',
+  'coolsculpting': '/images/Cool Sculpting.png',
+  'inch-loss': '/images/Inch loss.png',
+  'weight-loss': '/images/Weight loss.png',
+  'scar-treatment': '/images/Scar Treatment.png',
+  'skin': '/images/All skin treatments.png',
+  'hair': '/images/All Hair treatments.png',
+  'slimming': '/images/All slimming treatments.png',
 };
 
 export default function ReplicaHero({
   titleTeal1,
-  titleTeal2,
   titleOrange1,
-  titleOrange2,
-  subtext,
   imageSrc,
   trustPoints = [],
   leadFormTitle,
   showForm = true,
   slug
 }: ReplicaHeroProps) {
+  // Priority: 1. Passed imageSrc (Sanity) 2. Local slug-based mapping 3. Default fallback
   const finalImageSrc = imageSrc || (slug && SLUG_IMAGE_MAP[slug]) || "/images/neofatbury-hero-banner.webp";
 
   return (
     <section className="replica-hero">
-      {/* Absolute Background Image (Sole source of background visual) */}
-      <div className="replica-primary-bg">
-        <img 
+      {/* Absolute Background Image Layer */}
+      <div className="replica-primary-bg" style={{ zIndex: 2 }}>
+        <Image 
             src={finalImageSrc} 
             alt="Hero Background" 
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'left center' }} 
+            fill
+            priority 
+            unoptimized
+            style={{ objectFit: 'cover', objectPosition: 'left center' }} 
           />
-        <div className="replica-primary-overlay" style={{ position: 'absolute', bottom: 0, right: 0, background: 'rgba(0,0,0,0.5)', color: 'white', fontSize: '10px', padding: '2px', zIndex: 100 }}>
-          URL: {finalImageSrc}
-        </div>
         <div className="replica-primary-overlay"></div>
       </div>
 
       <div className="replica-hero-container" style={{ position: 'relative', zIndex: 10 }}>
         {/* ── Mobile-Only Visual ── */}
-          <img 
+        <div className="replica-hero-visual-mobile mobile-only" style={{ background: 'white' }}>
+          <Image 
             src={finalImageSrc} 
             alt="Hero Visual" 
+            width={800}
+            height={600}
+            priority
+            unoptimized
             style={{ width: '100%', height: 'auto', display: 'block' }}
           />
+        </div>
 
         <div className="replica-primary-box">
           <div className="replica-primary-content">
@@ -71,7 +78,8 @@ export default function ReplicaHero({
 
             {/* Zone 2: Typography (Middle) */}
             <div className="replica-zone-middle">
-              {/* Text removed as it is already in the background image */}
+              {/* Note: In these specific dark banners, text is often baked in, 
+                  but we keep the trust points for accessibility and SEO. */}
               {trustPoints.length > 0 && (
                 <div className="replica-trust-row" style={{ marginTop: 'auto', paddingBottom: '2rem' }}>
                   {trustPoints.map((point, index) => (
@@ -82,7 +90,6 @@ export default function ReplicaHero({
                 </div>
               )}
             </div>
-
           </div>
         </div>
 
