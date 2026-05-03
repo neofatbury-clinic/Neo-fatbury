@@ -40,7 +40,7 @@ export default function ReplicaHero({
   }
 
   return (
-    <section className="replica-hero" style={{ position: 'relative', minHeight: '350px', backgroundColor: '#ffffff', overflow: 'visible', display: 'flex', alignItems: 'center' }}>
+    <section className="replica-hero" style={{ position: 'relative', minHeight: '300px', backgroundColor: '#ffffff', overflow: 'visible', display: 'flex', alignItems: 'center' }}>
       
       {/* Background Image Layer (This contains your designed text) */}
       <div className="replica-bg-layer" style={{ 
@@ -65,7 +65,7 @@ export default function ReplicaHero({
         />
       </div>
 
-      <div className="container" style={{ position: 'relative', zIndex: 10, display: 'grid', gridTemplateColumns: '1fr 380px', gap: '2rem', alignItems: 'center', width: '100%', paddingRight: '2rem' }}>
+      <div className="container" style={{ position: 'relative', zIndex: 10, display: 'grid', gridTemplateColumns: '1.3fr 360px', gap: '2rem', alignItems: 'center', width: '100%', paddingRight: '1rem', maxWidth: '1440px' }}>
         
         {/* Left Area - Empty visually because the image already has the text */}
         <div className="hero-content-text" style={{ padding: '2rem 0' }}>
