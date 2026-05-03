@@ -21,7 +21,7 @@ export default function ReplicaHero({
   imageSrc,
   leadFormTitle,
   showForm = true,
-  zoom = 1.05,
+  zoom = 1.02,
 }: ReplicaHeroProps) {
   
   // Resolve Image Source
