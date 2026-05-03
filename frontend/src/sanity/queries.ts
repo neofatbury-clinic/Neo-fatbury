@@ -57,7 +57,7 @@ export async function getAllServices() {
 export async function getServiceBySlug(slug: string) {
   return client.fetch(`*[_type == "service" && slug.current == $slug][0]{
     name, slug, category, isFeatured, order, shortDescription,
-    "heroImage": heroImage.asset->url, heroHeadline, heroAccentLine, heroSubtext, heroCtaText,
+    "heroImage": heroImage.asset->url, heroHeadline, heroAccentLine, heroSubtext, heroCtaText, heroZoom,
     heroTrustBadges[]{ icon, label },
     problemHeading, problemAccentText, problemBottomText, problemBottomAccent,
     problemCards[]{ _key, icon, title, desc, image },

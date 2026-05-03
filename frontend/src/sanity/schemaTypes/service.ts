@@ -63,6 +63,15 @@ export const service = defineType({
       ], preview: { select: { title: 'label', subtitle: 'icon' } } }],
     }),
     defineField({ name: 'heroCtaText', title: 'Hero CTA Button Text', type: 'string', initialValue: 'Book Free Consultation', group: 'hero' }),
+    defineField({
+      name: 'heroZoom',
+      title: 'Hero Image Zoom (1.0 = Zoom Out, 1.3+ = Zoom In)',
+      type: 'number',
+      initialValue: 1.0,
+      description: '💡 Adjust this to prevent text cutting. 1.0 shows the full width (Zoom Out). 1.3 or higher zooms in (Zoom In).',
+      validation: r => r.min(0.5).max(3),
+      group: 'hero'
+    }),
 
     // ── PROBLEM SECTION ───────────────────────────────────────────────────────
     defineField({ name: 'problemHeading',     title: 'Problem Section Heading', type: 'string', group: 'problem' }),

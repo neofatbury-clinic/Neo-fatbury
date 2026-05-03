@@ -12,6 +12,7 @@ interface ReplicaHeroProps {
   leadFormTitle?: string;
   showForm?: boolean;
   slug?: string;
+  zoom?: number;
 }
 
 export default function ReplicaHero({
@@ -20,6 +21,7 @@ export default function ReplicaHero({
   imageSrc,
   leadFormTitle,
   showForm = true,
+  zoom = 1,
 }: ReplicaHeroProps) {
   
   // Resolve Image Source
@@ -55,8 +57,10 @@ export default function ReplicaHero({
             inset: 0, 
             width: '100%', 
             height: '100%', 
-            objectFit: 'cover', 
-            objectPosition: 'left center'
+            objectFit: zoom > 1 ? 'cover' : 'contain', 
+            objectPosition: 'left center',
+            transform: `scale(${zoom})`,
+            transition: 'transform 0.5s ease'
           }} 
         />
       </div>
