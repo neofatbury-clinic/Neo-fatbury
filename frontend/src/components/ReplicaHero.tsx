@@ -21,7 +21,7 @@ export default function ReplicaHero({
   imageSrc,
   leadFormTitle,
   showForm = true,
-  zoom = 1.02,
+  zoom = 1.01,
 }: ReplicaHeroProps) {
   
   // Resolve Image Source
@@ -42,7 +42,7 @@ export default function ReplicaHero({
   return (
     <section className="replica-hero" style={{ 
       position: 'relative', 
-      minHeight: '325px', 
+      minHeight: '400px', 
       background: 'linear-gradient(to right, #ffffff 60%, #00acb1 100%)', 
       overflow: 'visible', 
       display: 'flex', 
@@ -72,7 +72,7 @@ export default function ReplicaHero({
         />
       </div>
 
-      <div className="container" style={{ position: 'relative', zIndex: 10, display: 'grid', gridTemplateColumns: '1.3fr 360px', gap: '2rem', alignItems: 'center', width: '100%', paddingRight: '1rem', maxWidth: '1440px' }}>
+      <div className="container" style={{ position: 'relative', zIndex: 10, display: 'grid', gridTemplateColumns: '1.2fr 400px', gap: '2rem', alignItems: 'center', width: '100%', paddingRight: '1rem', maxWidth: '1440px' }}>
         
         {/* Left Area - Empty visually because the image already has the text */}
         <div className="hero-content-text" style={{ padding: '2rem 0' }}>

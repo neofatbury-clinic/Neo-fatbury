@@ -287,12 +287,12 @@ export default function LeadForm({
           background: rgba(255, 255, 255, 0.95); /* Semi-transparent White */
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
-          padding: 1.25rem 1rem 1rem;
+          padding: 1.5rem 1.25rem 1.25rem;
           border-radius: 20px;
           border: 1px solid rgba(0, 0, 0, 0.05);
           box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
           width: 100%;
-          max-width: 360px; /* Slimmer form */
+          max-width: 400px; /* Bigger form */
           margin-left: auto;
           margin-right: 0; 
           font-family: 'Montserrat', sans-serif;
@@ -304,19 +304,19 @@ export default function LeadForm({
  
         .lf-title {
           text-align: center;
-          font-size: 1.25rem;
+          font-size: 1.4rem;
           font-weight: 900;
           color: #008084;
-          margin: 0 0 0.25rem;
+          margin: 0 0 0.35rem;
           line-height: 1.2;
           letter-spacing: -0.01em;
         }
  
         .lf-subtitle {
           text-align: center;
-          font-size: 0.8rem;
+          font-size: 0.85rem;
           color: #666; 
-          margin: 0 0 0.75rem;
+          margin: 0 0 1rem;
           font-weight: 500;
           line-height: 1.3;
         }

@@ -67,7 +67,7 @@ export const service = defineType({
       name: 'heroZoom',
       title: 'Hero Image Zoom (1.0 = Zoom Out, 1.3+ = Zoom In)',
       type: 'number',
-      initialValue: 1.05,
+      initialValue: 1.01,
       description: '💡 Adjust this to prevent text cutting. 1.0 shows the full width (Zoom Out). 1.3 or higher zooms in (Zoom In).',
       validation: r => r.min(0.5).max(3),
       group: 'hero'
