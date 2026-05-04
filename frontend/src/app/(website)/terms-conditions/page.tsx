@@ -30,7 +30,7 @@ export default async function TermsConditions() {
       <div className="container" style={{ maxWidth: '900px', margin: '0 auto' }}>
         <h1 className="section-title" style={{ textAlign: 'left', marginBottom: '2rem' }}>Terms & Conditions</h1>
         <div style={contentStyle}>
-          <PortableText value={(content && content.length > 0 && content[0].children[0].text.length > 50) ? content : defaultContent} />
+          <PortableText value={(content && content.length > 0 && content[0].children[0].text.length > 500) ? content : defaultContent} />
         </div>
         <div style={{ marginTop: '4rem' }}>
           <Link href="/" style={{ color: 'var(--color-primary)', fontWeight: '600' }}>← Back to Home</Link>

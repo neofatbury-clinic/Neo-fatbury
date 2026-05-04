@@ -34,7 +34,7 @@ export default async function PrivacyPolicy() {
       <div className="container" style={{ maxWidth: '900px', margin: '0 auto' }}>
         <h1 className="section-title" style={{ textAlign: 'left', marginBottom: '2rem' }}>Privacy Policy</h1>
         <div style={contentStyle}>
-          <PortableText value={(content && content.length > 0 && content[0].children[0].text.length > 50) ? content : defaultContent} />
+          <PortableText value={(content && content.length > 0 && content[0].children[0].text.length > 500) ? content : defaultContent} />
         </div>
         <div style={{ marginTop: '4rem' }}>
           <Link href="/" style={{ color: 'var(--color-primary)', fontWeight: '600' }}>← Back to Home</Link>
@@ -43,6 +43,7 @@ export default async function PrivacyPolicy() {
     </div>
   );
 }
+// Triggering fresh build for legal content update: 1714833725
 
 const contentStyle: React.CSSProperties = {
   fontSize: '1.1rem',
