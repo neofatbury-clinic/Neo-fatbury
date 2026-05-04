@@ -2,6 +2,9 @@ import { client } from "@/sanity/lib/client";
 import { PortableText } from "next-sanity";
 import Link from "next/link";
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function PrivacyPolicy() {
   const query = `*[_type == "siteSettings"][0] {
     privacyPolicy

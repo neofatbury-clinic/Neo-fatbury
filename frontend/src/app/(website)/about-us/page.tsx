@@ -47,9 +47,9 @@ export default async function AboutUs() {
               { label: 'Our Vision', id: '#vision' },
               { label: 'Our Mission', id: '#mission' },
               { label: 'Our Milestones', id: '#milestones' },
-              { label: 'Contact Us', id: '#contact' }
+
             ].map((link, i) => (
-              <li key={i} style={{ borderBottom: i !== 4 ? '1px solid #dce8e8' : 'none', margin: '0 2rem' }}>
+              <li key={i} style={{ borderBottom: i !== 3 ? '1px solid #dce8e8' : 'none', margin: '0 2rem' }}>
                 <a href={link.id} className="about-toc-link">
                   {link.label}
                 </a>
@@ -182,31 +182,7 @@ export default async function AboutUs() {
           {/* DYNAMIC SECTIONS */}
           {data?.pageBuilder && <PageBuilder content={data.pageBuilder} />}
 
-          {/* Section: Contact Us (Booking) */}
-          <div id="contact" style={{ paddingTop: '2rem' }}>
-            <h2 style={{ fontSize: '2rem', color: '#1a1a1a', fontWeight: 700, marginBottom: '1.5rem' }}>
-              Contact Us
-            </h2>
-            <div style={{ 
-              backgroundColor: '#f6fdfd', 
-              padding: '2rem 2.5rem', 
-              borderRadius: '8px', 
-              border: '1px solid #cbedf0',
-              marginBottom: '2rem'
-            }}>
-              <h3 style={{ fontSize: '1.5rem', color: '#1a1a1a', marginBottom: '0.5rem', fontWeight: 700 }}>
-                {data?.ctaTitle || 'Take the First Step Towards Confidence'}
-              </h3>
-              <p style={{ color: '#4a4a4a', fontSize: '1.05rem', marginBottom: '2rem' }}>
-                {data?.ctaSubtitle || 'Our clinical experts will get back to you within 24 hours to schedule your complimentary skin & hair analysis.'}
-              </p>
-              
-              {/* Actual Lead Form embedded inside About Us! */}
-              <div style={{ backgroundColor: '#ffffff', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 4px 15px rgba(0,0,0,0.05)' }}>
-                <LeadForm />
-              </div>
-            </div>
-          </div>
+
 
         </main>
       </div>

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import ReplicaHero from '@/components/ReplicaHero';
+
 import { getBlogPosts } from '@/sanity/fetchers/blog';
 
 export const dynamic = 'force-dynamic';
@@ -26,14 +26,7 @@ export default async function BlogListingPage() {
 
   return (
     <>
-      <ReplicaHero 
-        titleTeal1=""
-        titleTeal2=""
-        titleOrange1=""
-        titleOrange2=""
-        subtext=""
-        imageSrc="/images/neofatbury-home-hero.png"
-      />
+
 
       <section className="section">
         <div className="container">
