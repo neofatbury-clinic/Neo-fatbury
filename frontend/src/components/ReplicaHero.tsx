@@ -45,24 +45,21 @@ export default function ReplicaHero({
       minHeight: '600px', 
       width: '90%',
       maxWidth: '1800px',
-      margin: '0 auto',
-      borderRadius: '30px',
+      margin: '0',
+      borderRadius: '0',
       backgroundColor: '#ffffff', 
       padding: '100px 0 20px 0',
       boxSizing: 'border-box',
       overflow: 'hidden', 
       display: 'flex', 
-      alignItems: 'center',
-      boxShadow: '0 20px 50px rgba(0,0,0,0.1)'
+      alignItems: 'center'
     }}>
       
       {/* Background Image Layer */}
       <div className="replica-bg-layer" style={{ 
         position: 'absolute', 
-        top: 0,
-        bottom: 0,
-        left: '-18%', 
-        width: '136%', 
+        inset: 0, 
+        width: '100%', 
         zIndex: 0
       }}>
         <img 
