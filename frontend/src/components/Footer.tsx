@@ -83,9 +83,9 @@ export default function Footer({ settings }: { settings?: any }) {
             <ul style={linkListStyle}>
               <li><Link href="/hair/hair-loss-treatment/" style={linkStyle}>Professional Hair Loss Treatment</Link></li>
               <li><Link href="/hair/anti-dandruff-treatment/" style={linkStyle}>Anti-Dandruff Clinical Solutions</Link></li>
-              <li><Link href="/hair/" style={linkStyle}>Hair Regrowth Therapies</Link></li>
-              <li><Link href="/slimming/coolsculpting-fat-freezing/" style={linkStyle}>CoolSculpting Fat Freezing</Link></li>
-              <li><Link href="/slimming/inch-loss-treatment/" style={linkStyle}>Non-Surgical Inch Loss Treatment</Link></li>
+               <li><Link href="/hair/" style={linkStyle}>Hair Regrowth Therapies</Link></li>
+               <li><Link href="/slimming/coolsculpting/" style={linkStyle}>CoolSculpting Fat Freezing</Link></li>
+               <li><Link href="/slimming/inch-loss/" style={linkStyle}>Non-Surgical Inch Loss Treatment</Link></li>
               <li><Link href="/slimming/" style={linkStyle}>Body Contouring & Shaping</Link></li>
             </ul>
           </div>
