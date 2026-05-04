@@ -55,7 +55,7 @@ export default async function WeightLoss() {
         titleTeal1={heroH1 || "Scientific"}
         titleOrange1={heroAccent || "Weight Loss."}
         subtext={heroDesc || "Achieve sustainable weight management with our MD-certified metabolic protocols."}
-        imageSrc={d.heroImage || "/images/neofatbury-slimming-hero.png"}
+        imageSrc={d.heroImage || "/images/weight-loss-portrait.png"}
         trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
       />
 

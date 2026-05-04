@@ -56,7 +56,7 @@ export default async function InchLoss() {
         titleTeal1={heroH1 || "Inch Loss &"}
         titleOrange1={heroAccent || "Body Contouring."}
         subtext={heroDesc || "Target stubborn fat with precision clinical contouring and non-surgical fat reduction."}
-        imageSrc={d.heroImage || "/images/neofatbury-slimming-standard.png"}
+        imageSrc={d.heroImage || "/images/inch-loss-portrait.png"}
         trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
       />
 

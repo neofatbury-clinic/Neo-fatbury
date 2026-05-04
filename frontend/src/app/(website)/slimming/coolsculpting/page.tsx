@@ -50,7 +50,7 @@ export default async function CoolSculpting() {
         titleTeal1={heroH1 || "US-FDA Approved"}
         titleOrange1={heroAccent || "CoolSculpting."}
         subtext={heroDesc || "The world’s #1 non-surgical fat reduction treatment for permanent results."}
-        imageSrc={d.heroImage || "/images/neofatbury-cooling-tech.png"}
+        imageSrc={d.heroImage || "/images/coolsculpting-portrait.png"}
         trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
       />
 

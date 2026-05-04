@@ -20,10 +20,10 @@ export default async function LaserHairReduction() {
     }
   };
 
-  const heroImageSrc = getUrl(d.heroImage) || "/images/Laser Hair Reduction.png";
-  const whatIsImageSrc = getUrl(d.whatIsImage) || "/images/neofatbury-clinical-standard.png";
+  const heroImageSrc = getUrl(d.heroImage) || "/images/laser-hair-removal.png";
+  const whatIsImageSrc = getUrl(d.whatIsImage) || "/images/laser-procedure-new.png";
   const baImageSrc = getUrl(d.baImage) || "/images/neofatbury-laser-ba.png";
-  const techImageSrc = getUrl(d.techImage) || "/images/neofatbury-cooling-tech.png";
+  const techImageSrc = getUrl(d.techImage) || "/images/soprano-titanium-new.png";
 
   // Hero
   const heroH1     = (d.heroHeadline   as string) || '';
@@ -87,7 +87,7 @@ export default async function LaserHairReduction() {
         titleTeal1={heroH1 || "Smooth Skin."}
         titleOrange1={heroAccent || "Forever Hair-Free."}
         subtext={heroDesc || "Experience the freedom of permanent hair reduction with our US-FDA approved pain-free technology."}
-        imageSrc={d.heroImage || "/images/laser-hair-removal.png"}
+        imageSrc={heroImageSrc}
         trustPoints={heroBadges.map(b => ({ icon: b.icon, text: b.label }))}
       />
 
