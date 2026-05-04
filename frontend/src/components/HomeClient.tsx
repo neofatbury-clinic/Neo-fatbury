@@ -81,7 +81,13 @@ export default function HomeClient({ treatments }: HomeClientProps) {
         msOverflowStyle: 'none'
       }}>
         {currentTreatments.map((item: any, idx: number) => {
-          const displayImage = item.image || FALLBACK_IMAGES[item.slug] || '/images/neofatbury-clinical-standard.png';
+          let displayImage = item.image || FALLBACK_IMAGES[item.slug] || '/images/neofatbury-clinical-standard.png';
+          
+          // Force override for Slimming portraits as requested
+          if (['coolsculpting', 'weight-loss', 'inch-loss'].includes(item.slug)) {
+            displayImage = FALLBACK_IMAGES[item.slug];
+          }
+
           const categorySlug = item.category || tab.toLowerCase();
           return (
             <Link 
