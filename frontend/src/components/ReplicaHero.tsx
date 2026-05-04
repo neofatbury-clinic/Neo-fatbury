@@ -43,13 +43,17 @@ export default function ReplicaHero({
     <section className="replica-hero" style={{ 
       position: 'relative', 
       minHeight: '600px', 
+      width: '90%',
+      maxWidth: '1800px',
+      margin: '0 auto',
+      borderRadius: '30px',
       backgroundColor: '#ffffff', 
       padding: '100px 0 20px 0',
       boxSizing: 'border-box',
       overflow: 'hidden', 
       display: 'flex', 
       alignItems: 'center',
-      width: '100%'
+      boxShadow: '0 20px 50px rgba(0,0,0,0.1)'
     }}>
       
       {/* Background Image Layer */}
