@@ -63,9 +63,11 @@ export default function Footer({ settings }: { settings?: any }) {
             <h4 style={colTitleStyle}>Solutions</h4>
             <ul style={linkListStyle}>
               {settings?.footerServices && settings.footerServices.length > 0 ? (
-                settings.footerServices.map((item: any, i: number) => (
-                  <li key={i}><Link href={item.url || '#'} style={linkStyle}>{item.label}</Link></li>
-                ))
+                settings.footerServices
+                  .filter((item: any) => !item.label.toLowerCase().includes('inch loss'))
+                  .map((item: any, i: number) => (
+                    <li key={i}><Link href={item.url || '#'} style={linkStyle}>{item.label}</Link></li>
+                  ))
               ) : (
                 <>
                   <li><Link href="/skin/" style={linkStyle}>Advanced Skin Clinic in Hyderabad</Link></li>
