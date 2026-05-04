@@ -57,8 +57,8 @@ export default function ReplicaHero({
         position: 'absolute', 
         top: 0,
         bottom: 0,
-        left: '-2%', 
-        width: '104%', 
+        left: '-18%', 
+        width: '136%', 
         zIndex: 0,
         animation: 'zoomOutEffect 1.5s ease-out forwards'
       }}>
