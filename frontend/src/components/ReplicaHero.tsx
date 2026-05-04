@@ -59,8 +59,7 @@ export default function ReplicaHero({
         bottom: 0,
         left: '-25%', 
         width: '160%', 
-        zIndex: 0,
-        animation: 'zoomOutEffect 1.5s ease-out forwards'
+        zIndex: 0
       }}>
         <img 
           src={finalImageSrc} 
@@ -100,21 +99,13 @@ export default function ReplicaHero({
 
         {/* Right Area - Lead Form */}
         <div className="hero-content-form">
-          <div style={{ animation: 'slideUp 0.6s ease-out forwards' }}>
+          <div>
             {showForm && <LeadForm title={leadFormTitle} />}
           </div>
         </div>
       </div>
 
       <style dangerouslySetInnerHTML={{__html: `
-        @keyframes zoomOutEffect {
-          from { transform: scale(${zoom + 0.05}); }
-          to { transform: scale(${zoom}); }
-        }
-        @keyframes slideUp {
-          from { opacity: 0; transform: translateY(40px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
         @media (max-width: 968px) {
           .replica-hero { min-height: auto; padding: 0 !important; }
           .replica-hero > div { 
