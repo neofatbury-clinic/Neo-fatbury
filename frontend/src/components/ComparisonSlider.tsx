@@ -53,7 +53,6 @@ export default function ComparisonSlider({ before, after, label, autoSlide = tru
       style={{ 
         position: 'relative', 
         width: '100%', 
-        aspectRatio: '16/9', 
         overflow: 'hidden', 
         borderRadius: '24px',
         cursor: 'ew-resize',
@@ -94,48 +93,76 @@ export default function ComparisonSlider({ before, after, label, autoSlide = tru
         boxShadow: '0 0 10px rgba(0,0,0,0.3)',
         zIndex: 10
       }}>
-        <div style={{ 
-          position: 'absolute', 
-          top: '50%', 
-          left: '50%', 
-          transform: 'translate(-50%, -50%)', 
-          width: '40px', 
-          height: '40px', 
-          backgroundColor: 'white', 
-          borderRadius: '50%', 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'center',
-          boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
-          color: '#00acb1',
-          fontSize: '12px',
-          fontWeight: '900'
-        }}>
+        <div className="slider-handle">
           ↔
         </div>
       </div>
 
       {/* Labels */}
-      <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', color: 'white', fontWeight: '900', fontSize: '0.8rem', textShadow: '0 2px 4px rgba(0,0,0,0.5)', zIndex: 5 }}>BEFORE</div>
-      <div style={{ position: 'absolute', bottom: '1.5rem', right: '1.5rem', color: 'white', fontWeight: '900', fontSize: '0.8rem', textShadow: '0 2px 4px rgba(0,0,0,0.5)', zIndex: 5 }}>AFTER</div>
+      <div className="comp-label before">BEFORE</div>
+      <div className="comp-label after">AFTER</div>
       
       {label && (
-        <div style={{ 
-          position: 'absolute', 
-          top: '1.5rem', 
-          left: '50%', 
-          transform: 'translateX(-50%)', 
-          backgroundColor: 'rgba(0,172,177,0.9)', 
-          color: 'white', 
-          padding: '0.5rem 1.5rem', 
-          borderRadius: '50px', 
-          fontSize: '0.85rem', 
-          fontWeight: '800',
-          zIndex: 5
-        }}>
+        <div className="comp-title">
           {label}
         </div>
       )}
+
+      <style jsx>{`
+        .comparison-container { aspect-ratio: 16/9; }
+        .slider-handle {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 40px;
+          height: 40px;
+          backgroundColor: white;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+          color: #00acb1;
+          font-size: 12px;
+          font-weight: 900;
+          background: white;
+        }
+        .comp-label {
+          position: absolute;
+          bottom: 1.5rem;
+          color: white;
+          font-weight: 900;
+          font-size: 0.8rem;
+          text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+          z-index: 5;
+        }
+        .comp-label.before { left: 1.5rem; }
+        .comp-label.after { right: 1.5rem; }
+        .comp-title {
+          position: absolute;
+          top: 1.5rem;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: rgba(0,172,177,0.9);
+          color: white;
+          padding: 0.5rem 1.5rem;
+          border-radius: 50px;
+          font-size: 0.85rem;
+          font-weight: 800;
+          z-index: 5;
+          white-space: nowrap;
+        }
+
+        @media (max-width: 768px) {
+          .comparison-container { aspect-ratio: 4/3 !important; border-radius: 12px !important; }
+          .slider-handle { width: 32px !important; height: 32px !important; }
+          .comp-label { bottom: 0.75rem !important; font-size: 0.65rem !important; }
+          .comp-label.before { left: 0.75rem !important; }
+          .comp-label.after { right: 0.75rem !important; }
+          .comp-title { top: 0.75rem !important; padding: 0.4rem 1rem !important; font-size: 0.75rem !important; }
+        }
+      `}</style>
     </div>
   );
 }

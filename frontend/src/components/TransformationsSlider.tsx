@@ -38,11 +38,10 @@ export default function TransformationsSlider({ results }: TransformationsSlider
           transform: `translateX(-${currentIndex * 100}%)`
         }}>
           {results.map((r, i) => {
-            // Support for split image strings or fallback to same image
             const [before, after] = r.img.includes('|') ? r.img.split('|') : [r.img, r.img];
             
             return (
-              <div key={i} style={{ flex: '0 0 100%', position: 'relative', padding: '0 0.5rem' }}>
+              <div key={i} className="slider-item" style={{ flex: '0 0 100%', position: 'relative', padding: '0 0.5rem' }}>
                 <ComparisonSlider 
                   before={before} 
                   after={after} 
@@ -54,6 +53,18 @@ export default function TransformationsSlider({ results }: TransformationsSlider
           })}
         </div>
       </div>
+
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .results-wrapper { margin: 1rem 0 !important; }
+          .results-container { 
+            padding: 0.5rem !important; 
+            border-radius: 20px !important; 
+            box-shadow: 0 10px 30px rgba(0,172,177,0.1) !important;
+          }
+          .slider-item { padding: 0 !important; }
+        }
+      `}</style>
 
       {/* Pagination Dots */}
       <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem', marginTop: '2rem' }}>
