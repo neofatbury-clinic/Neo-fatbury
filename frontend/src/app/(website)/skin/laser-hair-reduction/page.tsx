@@ -10,20 +10,10 @@ import { urlFor } from "@/sanity/client";
 export default async function LaserHairReduction() {
   const d = await getServicePageData('laser-hair-reduction') as any;
 
-  // Image helpers
-  const getUrl = (source: any) => {
-    if (!source || !source.asset) return null;
-    try {
-      return urlFor(source).url();
-    } catch (e) {
-      return null;
-    }
-  };
-
-  const heroImageSrc = getUrl(d.heroImage) || "/images/laser-hair-removal.png";
-  const whatIsImageSrc = getUrl(d.whatIsImage) || "/images/laser-procedure-new.png";
-  const baImageSrc = getUrl(d.baImage) || "/images/neofatbury-laser-ba.png";
-  const techImageSrc = getUrl(d.techImage) || "/images/soprano-titanium-new.png";
+  const heroImageSrc = (d.heroImage as string) || "/images/laser-hair-removal.png";
+  const whatIsImageSrc = (d.whatIsImage as string) || "/images/laser-procedure-new.png";
+  const baImageSrc = (d.baImage as string) || "/images/neofatbury-laser-ba.png";
+  const techImageSrc = (d.techImage as string) || "/images/soprano-titanium-new.png";
 
   // Hero
   const heroH1     = (d.heroHeadline   as string) || '';
