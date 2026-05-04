@@ -812,8 +812,7 @@ button { cursor: pointer; border: none; font-family: var(--font-body); }
   position: relative;
   display: flex;
   align-items: stretch;
-  /* Blend portrait cream into Brand Teal */
-  background: #00acb1;
+  background: #ffffff;
   padding-top: calc(var(--header-height) - 15px); 
   padding-bottom: 0; /* No padding at bottom */
   margin-bottom: 0; /* No margin at bottom */
