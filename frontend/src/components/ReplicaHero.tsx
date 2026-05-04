@@ -108,23 +108,34 @@ export default function ReplicaHero({
 
       <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 968px) {
-          .replica-hero { min-height: auto; padding: 0 !important; }
+          .replica-hero { 
+            min-height: auto; 
+            padding: 0 !important; 
+            display: flex !important;
+            flex-direction: column !important;
+          }
           .replica-hero > div { 
             grid-template-columns: 1fr !important; 
             gap: 0 !important; 
-            display: flex !important;
-            flex-direction: column !important;
+            display: block !important;
             padding: 0 !important;
+            width: 100% !important;
           }
-          .replica-hero .hero-content-text { height: 260px; width: 100%; order: 1; display: block !important; }
+          .replica-hero .hero-content-text { display: none !important; }
           .replica-hero .hero-content-form { 
             width: 100% !important; 
             background: white !important; 
-            padding: 2rem 1.5rem 4rem !important; 
-            order: 2 !important;
+            padding: 1.5rem 1rem 3rem !important; 
             margin: 0 !important;
+            position: relative;
+            z-index: 10;
           }
-          .replica-bg-layer { height: 260px !important; position: relative !important; z-index: 1 !important; order: 1 !important; width: 100% !important; }
+          .replica-bg-layer { 
+            height: 240px !important; 
+            position: relative !important; 
+            z-index: 1 !important; 
+            width: 100% !important; 
+          }
         }
       `}} />
     </section>
