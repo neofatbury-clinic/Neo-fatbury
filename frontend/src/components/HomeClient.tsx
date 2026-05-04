@@ -111,7 +111,7 @@ export default function HomeClient({ treatments }: HomeClientProps) {
                 color: '#333', 
                 letterSpacing: '0.2px' 
               }}>
-                {item.title}
+                {item.slug === 'weight-loss' ? 'Weight Loss & Transformation' : item.title}
               </h4>
             </Link>
           );
