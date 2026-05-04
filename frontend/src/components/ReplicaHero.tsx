@@ -44,9 +44,9 @@ export default function ReplicaHero({
       position: 'relative', 
       minHeight: '600px', 
       backgroundColor: '#00acb1', 
-      padding: '100px 0 60px 0',
+      padding: '140px 0 40px 0',
       boxSizing: 'border-box',
-      overflow: 'visible', 
+      overflow: 'hidden', 
       display: 'flex', 
       alignItems: 'center',
       width: '100%'
@@ -55,8 +55,10 @@ export default function ReplicaHero({
       {/* Background Image Layer */}
       <div className="replica-bg-layer" style={{ 
         position: 'absolute', 
-        inset: 0, 
-        width: '100%', 
+        top: 0,
+        bottom: 0,
+        left: '-2%', 
+        width: '104%', 
         zIndex: 0,
         animation: 'zoomOutEffect 1.5s ease-out forwards'
       }}>
