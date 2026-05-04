@@ -43,12 +43,11 @@ export default function ReplicaHero({
     <section className="replica-hero" style={{ 
       position: 'relative', 
       minHeight: '600px', 
-      width: '90%',
-      maxWidth: '1800px',
+      width: '100%',
       margin: '0',
       borderRadius: '0',
-      backgroundColor: '#ffffff', 
-      padding: '100px 0 20px 0',
+      backgroundColor: '#00acb1', 
+      padding: '120px 0 60px 0',
       boxSizing: 'border-box',
       overflow: 'hidden', 
       display: 'flex', 
@@ -81,13 +80,12 @@ export default function ReplicaHero({
         position: 'relative', 
         zIndex: 10, 
         display: 'grid', 
-        gridTemplateColumns: '1.5fr 380px', 
+        gridTemplateColumns: '2.5fr 380px', 
         gap: '2rem', 
         alignItems: 'center', 
         width: '100%', 
-        maxWidth: '1400px',
         margin: '0 auto',
-        padding: '0 2rem'
+        padding: '0 4rem'
       }}>
         
         {/* Left Area */}
