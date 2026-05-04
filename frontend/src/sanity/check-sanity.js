@@ -13,7 +13,7 @@ async function check() {
     console.log("No siteSettings found!");
     return;
   }
-  console.log("Medical Disclaimer Content:", JSON.stringify(settings.medicalDisclaimerContent));
+  console.log("Terms Content:", JSON.stringify(settings.termsConditions, null, 2));
 }
 
 check();
