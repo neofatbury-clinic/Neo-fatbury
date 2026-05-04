@@ -42,20 +42,21 @@ export default function ReplicaHero({
   return (
     <section className="replica-hero" style={{ 
       position: 'relative', 
-      minHeight: '700px', 
-      background: '#00acb1', 
-      padding: '120px 0 50px 0',
+      minHeight: '850px', 
+      backgroundColor: '#00acb1', 
+      padding: '120px 0',
       boxSizing: 'border-box',
       overflow: 'visible', 
       display: 'flex', 
-      alignItems: 'center' 
+      alignItems: 'center',
+      width: '100%'
     }}>
       
-      {/* Background Image Layer (This contains your designed text) */}
+      {/* Background Image Layer */}
       <div className="replica-bg-layer" style={{ 
         position: 'absolute', 
         inset: 0, 
-        width: '90%', 
+        width: '100%', 
         zIndex: 0,
         animation: 'zoomOutEffect 1.5s ease-out forwards'
       }}>
@@ -67,7 +68,7 @@ export default function ReplicaHero({
             inset: 0, 
             width: '100%', 
             height: '100%', 
-            objectFit: zoom > 1 ? 'cover' : 'contain', 
+            objectFit: 'cover', 
             objectPosition: 'left center',
             transform: `scale(${zoom})`,
             transition: 'transform 0.5s ease'
@@ -75,18 +76,28 @@ export default function ReplicaHero({
         />
       </div>
 
-      <div style={{ position: 'relative', zIndex: 10, display: 'grid', gridTemplateColumns: '2fr 380px', gap: '1.5rem', alignItems: 'center', width: '100%', paddingLeft: '0', paddingRight: '2rem' }}>
+      <div style={{ 
+        position: 'relative', 
+        zIndex: 10, 
+        display: 'grid', 
+        gridTemplateColumns: '1.5fr 380px', 
+        gap: '2rem', 
+        alignItems: 'center', 
+        width: '100%', 
+        maxWidth: '1400px',
+        margin: '0 auto',
+        padding: '0 2rem'
+      }}>
         
-        {/* Left Area - Empty visually because the image already has the text */}
+        {/* Left Area */}
         <div className="hero-content-text" style={{ padding: '2rem 0' }}>
-          {/* SEO Only: Hidden H1 for Google search visibility */}
           <h1 style={{ position: 'absolute', width: '1px', height: '1px', padding: '0', margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', border: '0' }}>
             {titleTeal1} {titleOrange1}
           </h1>
         </div>
 
         {/* Right Area - Lead Form */}
-        <div className="hero-content-form" style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <div className="hero-content-form">
           <div style={{ animation: 'slideUp 0.6s ease-out forwards' }}>
             {showForm && <LeadForm title={leadFormTitle} />}
           </div>
@@ -103,22 +114,23 @@ export default function ReplicaHero({
           to { opacity: 1; transform: translateY(0); }
         }
         @media (max-width: 968px) {
-          .replica-hero { min-height: auto; padding: 0; }
-          .replica-hero .container { 
-            grid-template-columns: 1fr; 
-            gap: 0; 
-            display: flex;
-            flex-direction: column;
+          .replica-hero { min-height: auto; padding: 0 !important; }
+          .replica-hero > div { 
+            grid-template-columns: 1fr !important; 
+            gap: 0 !important; 
+            display: flex !important;
+            flex-direction: column !important;
+            padding: 0 !important;
           }
-          .replica-hero .hero-content-text { height: 260px; width: 100%; order: 1; }
+          .replica-hero .hero-content-text { height: 260px; width: 100%; order: 1; display: block !important; }
           .replica-hero .hero-content-form { 
-            width: 100%; 
-            background: white; 
-            padding: 2rem 1.5rem 4rem; 
-            order: 2;
-            margin: 0;
+            width: 100% !important; 
+            background: white !important; 
+            padding: 2rem 1.5rem 4rem !important; 
+            order: 2 !important;
+            margin: 0 !important;
           }
-          .replica-bg-layer { height: 260px; position: relative; z-index: 1; order: 1; }
+          .replica-bg-layer { height: 260px !important; position: relative !important; z-index: 1 !important; order: 1 !important; width: 100% !important; }
         }
       `}} />
     </section>

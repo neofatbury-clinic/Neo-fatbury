@@ -287,7 +287,7 @@ export default function LeadForm({
           background: rgba(255, 255, 255, 0.95); /* Semi-transparent White */
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
-          padding: 1.25rem 1rem 1rem;
+          padding: 1.5rem 1.25rem;
           border-radius: 20px;
           border: 1px solid rgba(0, 0, 0, 0.05);
           box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
@@ -437,8 +437,7 @@ export default function LeadForm({
         }
  
         .lf-category-btn {
-          flex: 1 1 auto;
-          min-width: 80px;
+          flex: 1;
           padding: 0.55rem 0.4rem;
           border-radius: 8px;
           border: 1px solid rgba(0, 0, 0, 0.08);
