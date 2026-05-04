@@ -98,10 +98,6 @@ export default function ComparisonSlider({ before, after, label, autoSlide = tru
         </div>
       </div>
 
-      {/* Labels */}
-      <div className="comp-label before">BEFORE</div>
-      <div className="comp-label after">AFTER</div>
-      
       {label && (
         <div className="comp-title">
           {label}
