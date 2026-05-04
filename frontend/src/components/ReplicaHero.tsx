@@ -42,12 +42,12 @@ export default function ReplicaHero({
   return (
     <section className="replica-hero" style={{ 
       position: 'relative', 
-      minHeight: '600px', 
+      minHeight: '550px', 
       width: '100%',
       margin: '0',
       borderRadius: '0',
       backgroundColor: '#00acb1', 
-      padding: '120px 0 60px 0',
+      padding: '100px 0 40px 0',
       boxSizing: 'border-box',
       overflow: 'hidden', 
       display: 'flex', 
