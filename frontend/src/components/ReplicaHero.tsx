@@ -21,7 +21,7 @@ export default function ReplicaHero({
   imageSrc,
   leadFormTitle,
   showForm = true,
-  zoom = 0.7,
+  zoom = 1,
 }: ReplicaHeroProps) {
   
   // Resolve Image Source
@@ -71,7 +71,6 @@ export default function ReplicaHero({
             height: '100%', 
             objectFit: 'cover', 
             objectPosition: 'left center',
-            transform: `scale(${zoom})`,
             transition: 'transform 0.5s ease'
           }} 
         />
