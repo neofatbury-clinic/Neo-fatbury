@@ -59,8 +59,10 @@ export default function ReplicaHero({
       {/* Background Image Layer */}
       <div className="replica-bg-layer" style={{ 
         position: 'absolute', 
-        inset: 0, 
-        width: '100%', 
+        top: 0,
+        bottom: 0,
+        left: '-18%', 
+        width: '136%', 
         zIndex: 0
       }}>
         <img 
