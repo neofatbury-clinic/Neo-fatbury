@@ -18,6 +18,7 @@ interface ReplicaHeroProps {
 export default function ReplicaHero({
   titleTeal1,
   titleOrange1,
+  subtext,
   imageSrc,
   leadFormTitle,
   showForm = true,
@@ -74,33 +75,61 @@ export default function ReplicaHero({
             height: '100%', 
             objectFit: 'cover', 
             objectPosition: 'left center',
-            transition: 'transform 0.5s ease'
+            transition: 'transform 0.5s ease',
+            opacity: 0.85
           }} 
         />
+        {/* Clinical Teal Overlay for readability */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(to right, rgba(0,172,177,0.4) 0%, transparent 60%)',
+          zIndex: 1
+        }} />
       </div>
 
       <div style={{ 
         position: 'relative', 
         zIndex: 10, 
         display: 'grid', 
-        gridTemplateColumns: '2.5fr 380px', 
-        gap: '2rem', 
+        gridTemplateColumns: '1.2fr 380px', 
+        gap: '4rem', 
         alignItems: 'center', 
         width: '100%', 
+        maxWidth: '1280px',
         margin: '0 auto',
-        padding: '0 4rem'
+        padding: '0 2rem'
       }}>
         
-        {/* Left Area */}
+        {/* Left Area - Content Visibility restored */}
         <div className="hero-content-text" style={{ padding: '2rem 0' }}>
-          <h1 style={{ position: 'absolute', width: '1px', height: '1px', padding: '0', margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', border: '0' }}>
-            {titleTeal1} {titleOrange1}
+          <h1 style={{ 
+            fontSize: 'clamp(2.5rem, 5vw, 4.2rem)', 
+            lineHeight: '1.1', 
+            fontWeight: '900', 
+            color: 'white',
+            marginBottom: '1.5rem',
+            textShadow: '0 2px 10px rgba(0,0,0,0.1)'
+          }}>
+            <span style={{ display: 'block' }}>{titleTeal1}</span>
+            <span style={{ color: 'var(--color-accent)', display: 'block' }}>{titleOrange1}</span>
           </h1>
+          {subtext && (
+            <p style={{ 
+              fontSize: '1.25rem', 
+              color: 'rgba(255,255,255,0.95)', 
+              maxWidth: '600px', 
+              lineHeight: '1.6',
+              fontWeight: '500'
+            }}>
+              {subtext}
+            </p>
+          )}
         </div>
 
         {/* Right Area - Lead Form */}
         <div className="hero-content-form">
-          <div>
+          <div style={{ background: 'white', borderRadius: '16px', boxShadow: '0 20px 50px rgba(0,77,79,0.15)', overflow: 'hidden' }}>
             {showForm && <LeadForm title={leadFormTitle} />}
           </div>
         </div>
