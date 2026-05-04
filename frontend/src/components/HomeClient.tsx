@@ -83,7 +83,7 @@ export default function HomeClient({ treatments }: HomeClientProps) {
         {currentTreatments.map((item: any, idx: number) => {
           let displayImage = item.image || FALLBACK_IMAGES[item.slug] || '/images/neofatbury-clinical-standard.png';
           
-          // Force override for Slimming portraits as requested
+          // Force override ONLY for Slimming portraits as requested
           if (['coolsculpting', 'weight-loss', 'inch-loss'].includes(item.slug)) {
             displayImage = FALLBACK_IMAGES[item.slug];
           }
