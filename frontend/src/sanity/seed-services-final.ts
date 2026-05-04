@@ -25,8 +25,8 @@ const ALL_SERVICES = [
   { name: 'PRP Hair Therapy', category: 'hair', slug: 'prp-hair', h1: 'Natural Growth Factors', desc: 'High-concentration injectable growth factor therapy.' },
 
   // ⚖️ SLIMMING
-  { name: 'CoolSculpting (Fat Freezing)', category: 'slimming', slug: 'coolsculpting', h1: 'Freeze Stubborn Fat', desc: 'Original US-FDA approved non-surgical fat reduction.' },
-  { name: 'Weight Loss', category: 'slimming', slug: 'weight-loss', h1: 'Clinical Weight Management', desc: 'MD-certified programs for healthy, sustainable weight loss.' },
+  { name: 'CoolSculpting', category: 'slimming', slug: 'coolsculpting', h1: 'Freeze Stubborn Fat', desc: 'Original US-FDA approved non-surgical fat reduction.' },
+  { name: 'Weight Loss & Transformation', category: 'slimming', slug: 'weight-loss', h1: 'Clinical Weight Management', desc: 'MD-certified programs for healthy, sustainable weight loss.' },
   { name: 'Inch Loss & Body Contouring', category: 'slimming', slug: 'inch-loss', h1: 'Sculpt Your Shape', desc: 'Advanced HIFU & Radio-frequency for body shaping.' }
 ];
 

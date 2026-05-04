@@ -15,14 +15,14 @@ const FALLBACK_IMAGES: Record<string, string> = {
   'laser-hair-reduction': '/images/neofatbury-laser-bg-left.png',
   'scar-treatment': '/images/derma-procedure-fixed.webp',
   'skin-brightening': '/images/neofatbury-cheek-banner.webp',
-  'hair-loss-treatment': '/images/Hair Loss Treatment.png',
-  'hair-fall-treatment': '/images/Hair Loss Treatment.png',
-  'anti-dandruff-treatment': '/images/Anti-Dandruff Treatment.png',
-  'hair-transplant': '/images/Hair Transplantation.png',
-  'hair-transplantation': '/images/Hair Transplantation.png',
-  'coolsculpting': '/images/neofatbury-cooling-tech.png',
-  'weight-loss': '/images/clinic-reception.webp',
-  'inch-loss': '/images/neofatbury-slimming-standard.png'
+  'hair-loss-treatment': '/images/hair-loss-treatment-new.png',
+  'hair-fall-treatment': '/images/hair-loss-treatment-new.png',
+  'anti-dandruff-treatment': '/images/anti-dandruff-clinical.png',
+  'hair-transplant': '/images/hair-transplantation-new.png',
+  'hair-transplantation': '/images/hair-transplantation-new.png',
+  'coolsculpting': '/images/coolsculpting-portrait.png',
+  'weight-loss': '/images/weight-loss-portrait.png',
+  'inch-loss': '/images/inch-loss-portrait.png'
 };
 
 export default function HomeClient({ treatments }: HomeClientProps) {
