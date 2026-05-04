@@ -160,8 +160,23 @@ export async function getSiteSettings() {
         label,
         url
       }
-    }
+    },
+    privacyPolicy,
+    termsConditions,
+    medicalDisclaimerContent
   }`)
+}
+
+export async function getPrivacyPolicy() {
+  return client.fetch(`*[_type == "siteSettings"][0].privacyPolicy`)
+}
+
+export async function getTermsConditions() {
+  return client.fetch(`*[_type == "siteSettings"][0].termsConditions`)
+}
+
+export async function getMedicalDisclaimer() {
+  return client.fetch(`*[_type == "siteSettings"][0].medicalDisclaimerContent`)
 }
 
 // ── Testimonials & Gallery (Legacy support) ────────────────
