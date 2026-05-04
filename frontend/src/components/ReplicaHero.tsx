@@ -21,7 +21,7 @@ export default function ReplicaHero({
   imageSrc,
   leadFormTitle,
   showForm = true,
-  zoom = 0.8,
+  zoom = 0.7,
 }: ReplicaHeroProps) {
   
   // Resolve Image Source
@@ -57,8 +57,8 @@ export default function ReplicaHero({
         position: 'absolute', 
         top: 0,
         bottom: 0,
-        left: '-22%', 
-        width: '145%', 
+        left: '-25%', 
+        width: '160%', 
         zIndex: 0,
         animation: 'zoomOutEffect 1.5s ease-out forwards'
       }}>
@@ -108,8 +108,8 @@ export default function ReplicaHero({
 
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes zoomOutEffect {
-          from { transform: scale(1.05); }
-          to { transform: scale(1); }
+          from { transform: scale(${zoom + 0.05}); }
+          to { transform: scale(${zoom}); }
         }
         @keyframes slideUp {
           from { opacity: 0; transform: translateY(40px); }
