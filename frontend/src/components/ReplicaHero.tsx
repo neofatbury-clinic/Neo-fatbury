@@ -54,12 +54,15 @@ export default function ReplicaHero({
       alignItems: 'center'
     }}>
       
-      {/* Background Image Layer */}
+      {/* Background Image Layer (90% width) */}
       <div className="replica-bg-layer" style={{ 
         position: 'absolute', 
-        inset: 0, 
-        width: '100%', 
-        zIndex: 0
+        top: 0,
+        bottom: 0,
+        left: 0, 
+        width: '90%', 
+        zIndex: 0,
+        overflow: 'hidden'
       }}>
         <img 
           src={finalImageSrc} 
