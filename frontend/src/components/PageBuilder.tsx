@@ -59,10 +59,10 @@ const PageBuilder: React.FC<PageBuilderProps> = ({ content }) => {
 
           case 'ctaBox':
             return (
-              <section key={index} className="section bg-primary text-white text-center" style={{ padding: '5rem 0' }}>
-                <div className="container">
-                  <h2 style={{ fontSize: '2.5rem', marginBottom: '2rem' }}>{section.text}</h2>
-                  <Link href={section.link || "/contact-us"} className="btn" style={{ backgroundColor: 'white', color: 'var(--color-primary)', transform: 'scale(1.2)' }}>
+              <section key={index} className="section bg-primary text-white text-center" style={{ padding: '3.5rem 0' }}>
+                <div className="container" style={{ maxWidth: '800px' }}>
+                  <h2 style={{ fontSize: '2.1rem', marginBottom: '1.25rem', fontWeight: '800', lineHeight: '1.2' }}>{section.text}</h2>
+                  <Link href={section.link || "/contact-us"} className="btn" style={{ backgroundColor: 'white', color: 'var(--color-primary)', padding: '0.8rem 2.5rem', borderRadius: '50px', fontWeight: '700' }}>
                     {section.buttonText}
                   </Link>
                 </div>
