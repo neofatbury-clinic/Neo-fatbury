@@ -21,7 +21,7 @@ export default function ReplicaHero({
   imageSrc,
   leadFormTitle,
   showForm = true,
-  zoom = 1.05,
+  zoom = 1,
 }: ReplicaHeroProps) {
   
   // Resolve Image Source
@@ -42,9 +42,9 @@ export default function ReplicaHero({
   return (
     <section className="replica-hero" style={{ 
       position: 'relative', 
-      minHeight: '850px', 
+      minHeight: '600px', 
       backgroundColor: '#00acb1', 
-      padding: '120px 0',
+      padding: '60px 0',
       boxSizing: 'border-box',
       overflow: 'visible', 
       display: 'flex', 
