@@ -47,6 +47,7 @@ export default function ReplicaHero({
       width: '100%',
       margin: '0',
       borderRadius: '0',
+      backgroundColor: '#00acb1', 
       padding: '100px 0 40px 0',
       boxSizing: 'border-box',
       overflow: 'hidden', 
